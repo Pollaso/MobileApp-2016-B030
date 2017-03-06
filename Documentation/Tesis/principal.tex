@@ -9,27 +9,35 @@
 \usepackage{tabularx}
 
 \begin{document}
-
 \renewcommand{\bibname}{Referencias}
 
 \include{Portada/portada}
 \tableofcontents
-%Indice de figuras y tablas
+% Indice de figuras y tablas
 \listoffigures
 \listoftables
 
-%Capitulo 1: Planteamiento del Problema
+% Capitulo 1: Planteamiento del Problema
 \include{Capitulo1/capitulo1}
 \subfile{Capitulo1/introduccion}
 \subfile{Capitulo1/objetivo}
 \subfile{Capitulo1/justificacion}
 \subfile{Capitulo1/resultados}
 
-%Capitulo 2: Estado del Arte
+% Capitulo 2: Estado del Arte
 \include{Capitulo2/capitulo2}
 \subfile{Capitulo2/alcoholemia}
+\subfile{Capitulo2/moviles}
+\subfile{Capitulo2/ambientes}
+\subfile{Capitulo2/comparacion}
 
-%Referencias
+% Capitulo3
+\include{Capitulo3/capitulo3}
+
+% Capitulo4
+\include{Capitulo4/capitulo4}
+
+% Referencias
 \nocite{*}
 \bibliographystyle{ieeetr}
 \bibliography{Referencias/referencias.bib}
