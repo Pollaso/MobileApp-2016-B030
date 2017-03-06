@@ -7,8 +7,7 @@
     pages     = "",
     year      = "XXXX",
     month     = "",
-    note      = "",
-    doi       = "",
+    note      = "DOI: ",    
 }
 @book{Xbook,
     author    = "",

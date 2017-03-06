@@ -1,17 +1,22 @@
 \documentclass[fontsize=11pt, paper=A4, pagesize=auto, oneside]{book}
 \usepackage[utf8]{inputenc}
-\usepackage[spanish]{babel}
+\usepackage[spanish,mexico]{babel}
 \usepackage{subfiles}
 \usepackage[nottoc]{tocbibind}
 \usepackage{graphicx}
 \usepackage{capt-of}
+\usepackage{amsmath}
+\usepackage{tabularx}
 
 \begin{document}
-\renewcommand{\listtablename}{\'Indice de tablas}
+
 \renewcommand{\bibname}{Referencias}
 
 \include{Portada/portada}
 \tableofcontents
+%Indice de figuras y tablas
+\listoffigures
+\listoftables
 
 %Capitulo 1: Planteamiento del Problema
 \include{Capitulo1/capitulo1}
@@ -20,11 +25,9 @@
 \subfile{Capitulo1/justificacion}
 \subfile{Capitulo1/resultados}
 
-%Indice de figuras y tablas
-\begin{appendix}
-  \listoffigures
-  \listoftables
-\end{appendix}
+%Capitulo 2: Estado del Arte
+\include{Capitulo2/capitulo2}
+\subfile{Capitulo2/alcoholemia}
 
 %Referencias
 \nocite{*}
