@@ -8,15 +8,19 @@
 \usepackage{amsmath}
 \usepackage{tabularx}
 \usepackage{titling}
+\usepackage{hyperref}
+%\usepackage[toc]{glossaries}
+\usepackage[toc,page]{appendix}
 
 \begin{document}
 \renewcommand{\bibname}{Referencias}
-
+\setcounter{secnumdepth}{5}
 \include{Portada/portada}
 \tableofcontents
-% Indice de figuras y tablas
+% Índice de figuras y tablas
 \listoffigures
 \listoftables
+\makeglossaries
 
 % Capitulo 1: Planteamiento del Problema
 \include{Capitulo1/capitulo1}
@@ -28,13 +32,15 @@
 % Capitulo 2: Estado del Arte
 \include{Capitulo2/capitulo2}
 \subfile{Capitulo2/alcoholemia}
-\subfile{Capitulo2/moviles}
-\subfile{Capitulo2/ambientes}
 \subfile{Capitulo2/comparacion}
 
 % Capitulo3
 \include{Capitulo3/capitulo3}
-\include{Capitulo3/requerimientos}
+\subfile{Capitulo3/herramientas}
+\subfile{Capitulo3/requerimientos}
+\subfile{Capitulo3/funcionales}
+\subfile{Capitulo3/no_funcionales}
+\subfile{Capitulo3/reglas_de_negocio}
 
 % Capitulo4
 \include{Capitulo4/capitulo4}
@@ -43,5 +49,10 @@
 \nocite{*}
 \bibliographystyle{ieeetr}
 \bibliography{Referencias/referencias.bib}
+
+\begin{appendices}
+    \include{ApendiceA/apendiceA}
+    \include{ApendiceA/glosario}
+\end{appendices}
 
 \end{document}
