@@ -2,11 +2,11 @@
 \usepackage[utf8]{inputenc}
 \usepackage[spanish,mexico]{babel}
 \usepackage{subfiles}
-\usepackage[nottoc]{tocbibind}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
 \usepackage{graphicx}
 \usepackage{capt-of}
 \usepackage{amsmath}
-\usepackage{tabularx}
+\usepackage{tabu}
 \usepackage{titling}
 \usepackage{hyperref}
 \usepackage[toc,page]{appendix}
@@ -48,12 +48,12 @@
 
 % Referencias
 \nocite{*}
-\bibliographystyle{ieeetr}
+\bibliographystyle{IEEEtran}
 \bibliography{Referencias/referencias.bib}
 
-\begin{appendices}
-    \include{ApendiceA/apendiceA}
-    \include{ApendiceA/glosario}
-\end{appendices}
+%\begin{appendices}
+    %\include{ApendiceA/apendiceA}
+    %\include{ApendiceA/glosario}
+%\end{appendices}
 
 \end{document}
