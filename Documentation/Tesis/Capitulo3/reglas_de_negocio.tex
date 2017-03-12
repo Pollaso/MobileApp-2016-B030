@@ -1,1 +1,27 @@
-\subsection{Reglas de Negocio}
+\subsection{Reglas de Negocio} 
+
+  
+  \begin{center}
+   \begin{tabular}[b]{| p{5.5cm} | p{7cm} |}
+     \hline
+     \multicolumn{2}{|c|}{Definiciones} \\ \hline
+    \\ RND01-AM \\ Recepción de resultado & Descripción: El usuario no podrá visualizar el procesamiento del resultado \\ \\ \hline
+    \\ RND02-AM \\ Sms & Descripción: El número telefónico del cual fue registrado el usuario, será al que se le envíe el mensaje \\ \\ \hline
+    \\ RND03-AM \\ Ubicación & Descripción: La aplicación tendrá el permiso del usuario para mantener activado su GPS \\ \\ \hline
+    \\ RND04-AM \\ Estadísticas & Descripción: Se pasarán el id del usuario, su porcentaje de alcohol detectado (y la ubicación del usuario) a una tabla, la cual será transparente para el usuario \\ \\ \hline
+   \end{tabular}
+ \end{center}
+   
+  
+  \begin{center}
+   \begin{tabular}{|p{5.5cm}|p{7cm}|}
+     \hline
+     \multicolumn{2}{|c|}{Restricciones} \\ \hline
+     \\ RNR01-G \\ Dispositivo & Descripción: Sólo para dispositivos celulares \\ \\ \hline
+     \\ RNR02-DDa \\ Toma de muestra & Descripción: La toma de la muestra se obtiene una vez que se haga contacto con el dispositivo \\ \\ \hline
+     \\ RNR03-AM \\ Datos & Descripción: No se podrá omitir ningun dato solicitado; así como cumplir con el tipo de dato y la longitud mínima solicitada \\ \\ \hline
+     \\ RNR04-AM \\ Información obligatorio & Descripción: Los datos requeridos serán: \\ \\ \hline
+     \\ RNR05-AM \\ Recepción de resultado & Descripción: Se guardará en una tabla de la Base de Datos, el resultado y el porcentaje de alcohol obtenido \\ \\ \hline
+     
+   \end{tabular}
+ \end{center}  
