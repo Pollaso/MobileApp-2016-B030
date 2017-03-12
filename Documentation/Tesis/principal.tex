@@ -11,6 +11,7 @@
 \usepackage{hyperref}
 \usepackage[toc,page]{appendix}
 \usepackage{color}
+\usepackage[toc]{glossaries}
 
 \begin{document}
 \renewcommand{\bibname}{Referencias}
@@ -22,7 +23,6 @@
 % Índice de figuras y tablas
 \listoffigures
 \listoftables
-\makeglossaries
 
 % Capitulo 1: Planteamiento del Problema
 \include{Capitulo1/capitulo1}
@@ -52,9 +52,10 @@
 \bibliographystyle{IEEEtran}
 \bibliography{Referencias/referencias.bib}
 
+%\printglossaries
 %\begin{appendices}
-    %\include{ApendiceA/apendiceA}
-    %\include{ApendiceA/glosario}
+%	\include{ApendiceA/apendiceA}
+%	\include{ApendiceA/glosario}
 %\end{appendices}
 
 \end{document}

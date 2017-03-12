@@ -5,11 +5,11 @@ definir y controlar aquello que se realizará y aquello que no.
 	\subsubsection{Funcionalidades contempladas}
 	Tomando en consideración los objetivos del proyecto, el alcance del proyecto se verá limitado a los siguientes puntos: \par
 		\begin{itemize}
-			 \item {\textbf{Pruebas de alcoholemia} \par En este trabajo terminal se creará un dispositivo electrónico mediante el cual se puedan medir los niveles de alcohol en la sangre usando el sensor propuesto en el análisis de hardware.}
-			 \item {\textbf{Aplicación Móvil} \par La funcionalidad de la aplicación móvil se verá restringida a la comunicación entre el conductor y su contacto de emergencia, el cual puede ser uno de los diferentes tipos de usuarios.}
-			 \item {\textbf{Localización} \par Mediante el uso del GPS, que se encuentra integrado en el celular, se podrá detectar la ubicación actual del usuario y de esta forma, envíar la dirección de forma textual y las coordenadas mediante una liga de Google Maps a su contacto de emergencia.}
-			 \item {\textbf{Comunicación inalámbrica} \par La comunicación entre el dispositivo móvil y el dispositivo de detección se realizará mediante Bluetooth, usando la aplicación instalada en el celular.}
- 			\item {\textbf{Comunicación con el usuario} \par El mensaje que contendrá los niveles de alcohol en la persona y su ubicacion actual serán enviados usando \textcolor{red}{mensajes SMS/redes sociales.}}
+			\item {\textbf{Pruebas de alcoholemia} \par En este trabajo terminal se creará un dispositivo electrónico mediante el cual se puedan medir los niveles de alcohol en la sangre usando el sensor propuesto en el análisis de hardware.}
+			\item {\textbf{Aplicación Móvil} \par La funcionalidad de la aplicación móvil se verá restringida a la comunicación entre el conductor y su contacto de emergencia, el cual puede ser uno de los diferentes tipos de usuarios.}
+			\item {\textbf{Localización} \par Mediante el uso del GPS, que se encuentra integrado en el celular, se podrá detectar la ubicación actual del usuario y de esta forma, envíar la dirección de forma textual y las coordenadas mediante una liga de Google Maps a su contacto de emergencia.}
+			\item {\textbf{Comunicación inalámbrica} \par La comunicación entre el dispositivo móvil y el dispositivo de detección se realizará mediante Bluetooth, usando la aplicación instalada en el celular.}
+ 			\item {\textbf{Comunicación con el usuario} \par El mensaje que contendrá los niveles de alcohol en la persona y su ubicacion actual serán enviados usando mensajes SMS.}
  			\item{\textbf{Sincronización con el actuador} \par El dispositivo de detección estará sincronizado con el actuador, el cual nos permitirá bloquear el encendido del vehículo.}
 		\end{itemize}
 	\subsubsection{Funcionalidades no contempladas}
@@ -21,5 +21,27 @@ definir y controlar aquello que se realizará y aquello que no.
 		\end{itemize}
 \subsection{Definición de Actores}
 	\subsubsection{Administrador}
-	Descripción: 
+	Descripción: Sera aquel que registre en la base de datos un catálogo de automóviles para que el usuario pueda elegir al registrarse, registrar un catálogo de números de serie de los dispositivos de detección y bloqueo y administrar los usuarios activos o inactivos. \par
+	Funciones:
+	\begin{itemize}
+		\item Eliminar y activar o desactivar usuarios.
+		\item Añadir y eliminar automóviles y números de serie del catalogo.
+	\end{itemize}
 	\subsubsection{Usuario}
+	Descripción: Sera aquella persona que al registrarse vinculara su dispositivo móvil con el número de serie del dispositivo de detección y bloqueo adquirido. \par
+	Funciones:
+	\begin{itemize}
+		\item Modificación de datos personales.
+		\item Realizar la prueba de detección de alcohol.
+		\item Registrar contactos de emergencia.
+		\item Registrar ususarios bajo su cuenta.
+		\item Registrar vehículos con dispositivo de detección y bloqueo.
+		\item Modificar porcetajes de alcohol permitidos para los usuarios registrados a su cuenta.
+	\end{itemize}
+	\subsubsection{Subusuario}
+	Descripción: Este tipo de usuario será registrado por un superusuario el cual tendrá control de los permisos con los que contará el subusuario. \par
+	Funciones:
+	\begin{itemize}
+		\item Modificación de datos personales.
+	\end{itemize}
+	
