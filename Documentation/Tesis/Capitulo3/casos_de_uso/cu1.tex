@@ -1,0 +1,98 @@
+\subsection{Caso de uso 1 - Iniciar Sesión }
+\subsubsection{Resumen}
+Este caso de uso permite al actor ingresar al sistema proporcionando su nombre de usuario y contraseña y con ello realizar las funciones correspondientes a su perfil.\subsubsection{Descripción}
+
+\begin{center}  
+   \begin{tabular}{| p{3.5cm} | p{11.5cm} |}
+        \hline
+			\multicolumn{2}{|c |}{\large{Caso de uso 1 Iniciar sesión }}
+     \\ 	\hline
+     \textbf{Versión } & 
+     0.1
+     \\  \hline 
+     \textbf{Autor } &
+
+     \\  \hline
+     \textbf{Operación }&
+      
+     \\  \hline
+     \textbf{Revisado por}& 
+
+      \\  \hline
+     \textbf{Correcciones }& 
+     
+ 	 \\ \hline
+    \textbf{Estatus }& 
+   Edición
+    \\  \hline  
+    \textbf{Fecha de último estatus }& 
+	18 de mayo de 2014
+   \\ \hline
+	\multicolumn{2}{c |}{\large{Atributos: }}  
+	\\ \hline
+    \textbf{Actor }& 
+	Administrador, Alumno y Profesor. 
+   \\ \hline	
+       \textbf{Propósito }& 
+   Permite a los usuarios registrados ingresar al sistema para que puedan realizar las tareas correspondientes a su perfil. 
+   \\ \hline	
+       \textbf{Entradas}& 
+    \begin{itemize}
+    	\item Nombre de usuario: Se escribe con el teclado
+    \end{itemize}
+   \\ \hline	
+       \textbf{Salidas	 }& 
+    
+   \\ \hline	
+       \textbf{Precondiciones  }& 
+    \begin{itemize}
+    	\item \textbf{Interna: } El actor debe estar registrado en el sistema
+    \end{itemize}
+   \\ \hline	
+    \textbf{Postcondiciones  }& 
+    \begin{itemize}
+    	\item El actor podrá realizar las funciones correspondientes a su perfil a través de los siguientes menás: 
+    		\begin{itemize}
+    			\item Para el actor Administrador se mostrarán los menós; MN 7 Menú lateral administrador y MN8 Menú superior administrador.
+    		\end{itemize}
+    \end{itemize}
+   \\ \hline	
+         \end{tabular}
+   \newpage
+      \begin{tabular}{| p{3.5cm} | p{11.5cm} |}   
+   \hline    
+    \textbf{Reglas de negocio }& 
+    \begin{itemize}
+    	\item RN10-Información correcta: Verifica que la información introducida por el actor sea correcta.
+    \end{itemize}
+   \\ \hline	
+       \textbf{Mensajes }& 
+ 	\begin{itemize}
+    \item MSG3-Hay campos obligatorios en blanco, por favor completa los datos obligatorios: el usuario ha dejado algún campo marcado como obligatorio en blanco.
+	\end{itemize}
+   \\ \hline	   
+    \textbf{Tipo }& 
+    Primario 
+   \\ \hline	    
+\end{tabular}
+ \end{center}
+	\newpage
+\subsubsection{Trayectorias de caso uso}
+	
+	\textbf{	\large{Trayectoria principal}} \\ 
+		\begin{enumerate}
+				\item  { \includegraphics[scale=.08]{Capitulo3/img/proceso.png}}
+        		\item {\includegraphics[scale=.18]{Capitulo3/img/actor.png} }
+			\textit{-- Fin de caso de uso}			
+				\\	
+		\end{enumerate}
+		
+		\textbf{	\large{Trayectoria alternativa A}} \\  
+		\\
+		\textbf{Condición: }
+		\\	
+
+\subsubsection{Puntos de extensión }
+\textbf{Causa de la extensión:} El usuario selecciono \textit{ ¿Has olvidado tu contraseña?} \\
+\textbf{Región de la trayectoria: } Trayectoria alternativa D \\
+\textbf{Extiende a: CU 1.1 Contraseña olvidada}\\ 
