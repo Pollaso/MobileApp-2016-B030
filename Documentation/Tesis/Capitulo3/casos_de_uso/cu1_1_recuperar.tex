@@ -1,0 +1,119 @@
+\subsection{Caso de uso 1.1: Recuperar contraseña} \label{cu1_1}
+\subsubsection{Resumen}
+Este caso de uso permite al actor ingresar una dirección de correo electrónico con la cual podrá recuperar su contraseña.
+\subsubsection{Descripción}
+\begingroup
+\setlength{\LTleft}{-10cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{center}
+    \addtocounter{table}{-1}
+    \captionof{table}{Caso de uso 1.1: Recuperar contraseña} \label{tab:cu1_1_tab}
+	\begin{longtable}{| p{3.5cm} | p{11.5cm} |}
+      	\hline
+      		\textbf{Versión} &  0.1 \\
+        \hline 
+       		\textbf{Autor} & Juan Gerardo Diaz Rodarte\\
+        \hline
+          \textbf{Estatus} & Edición \\
+        \hline  
+          \textbf{Fecha de último estatus} & 25 de marzo de 2017 \\
+        \hline
+      \multicolumn{2}{|c|}{\large{Atributos}} \\
+        \hline
+          \textbf{Actor} & Usuario y Sub-Usuario. \\
+        \hline	
+          \textbf{Propósito} & Permite a los actores registrados ingresar al sistema. \\
+        \hline
+          \textbf{Disparador} & Al presionar el botón BTN en la vista IU Registrate o IU Iniciar sesión. \\
+        \hline	
+          \textbf{Entradas} & 
+            \begin{itemize}
+              \item Correo electrónico: Se escribe con el teclado.
+            \end{itemize} \\
+        \hline	
+          \textbf{Salidas} & 
+            \begin{itemize}
+              \item Interna: Se mostrará el mensaje MSG que indica que el correo ha sido enviado.
+            \end{itemize} \\
+        \hline	
+          \textbf{Precondiciones}& 
+            \begin{itemize}
+              \item \textbf{Interna:} El actor debe estar registrado en el sistema.
+            \end{itemize} \\
+        \hline	
+          \textbf{Postcondiciones} & 
+            \begin{itemize}
+              \item \textbf{Interna:} Un correo electrónico será enviado al actor con el cual podrá recuperar su contraseña.
+            \end{itemize} \\
+       \hline    
+          \textbf{Reglas de negocio} \\
+       \hline
+          \textbf{Mensajes} & \\
+       \hline
+          \textbf{Tipo} & Secundario \\
+       \hline	    
+  \end{longtable}
+\end{center}
+\endgroup
+
+\subsubsection{Trayectorias del caso de uso}
+\textbf{Trayectoria principal}
+\begin{enumerate}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa a la aplicación móvil.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Inicio.}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{¿Has olvidado tu contraseña}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} El actor ingresa una dirección de correo electrónico.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida. \hyperref[cu1_1_ta_a]{[Trayectoria alternativa A]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo electrónico cumpla con la RNO. \hyperref[cu1_1_ta_b]{[Trayectoria alternativa B]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo eletrónico coincida con alguna cuenta registrada en el sistema. \hyperref[cu1_1_ta_c]{[Trayectoria alternativa C]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el correo electrónico ha sido enviado exitosamente.}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/proceso.png} Se redirecciona a la vista de inicio de sesión IU Iniciar sesión.} \\
+  \textit{Fin de caso de uso} \\	
+\end{enumerate}
+
+\textbf{Trayectoria alternativa A} \phantomsection\label{cu1_1_ta_a} \\
+\textbf{Condición:} El actor no proporcionó la información requerida.\\
+ \begin{enumerate}[label=A\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el actor ha dejado campos en blanco.}
+    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa B} \phantomsection\label{cu1_1_ta_b}\\
+\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la RNO.\\
+ \begin{enumerate}[label=B\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que la dirección de correo electrónico no es válida.}
+    \item {Continua en el paso 4 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa C} \phantomsection\label{cu1_1_ta_c}\\
+\textbf{Condición:} No se encontró alguna cuenta relacionada con la dirección de correo electrónico ingresada.\\
+ \begin{enumerate}[label=C\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el actor ha ingresado datos incorrectos en alguno de los campos.}
+    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa E} \phantomsection\label{cu1_1_ta_e}\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Eres nuevo?}.\\
+ \begin{enumerate}[label=E\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu2]{CU 2 Registrarse}} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa I} \phantomsection\label{cu1_1_ta_i}\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Ya tienes una cuenta?}.\\
+ \begin{enumerate}[label=I\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el\hyperref[cu1]{ CU 1 Iniciar sesión.}} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\subsubsection{Puntos de extensión}
+\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Eres nuevo?} \\
+\textbf{Región de la trayectoria:} \hyperref[cu1_1_ta_e]{Trayectoria alternativa E} \\
+\textbf{Extiende a:} \hyperref[cu1_1]{CU 2 Registrarse} \\ \par
+
+\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Ya tienes una cuenta?} \\
+\textbf{Región de la trayectoria:} \hyperref[cu1_1_ta_i]{Trayectoria alternativa I} \\
+\textbf{Extiende a:} \hyperref[cu1]{CU 1 Iniciar sesión}

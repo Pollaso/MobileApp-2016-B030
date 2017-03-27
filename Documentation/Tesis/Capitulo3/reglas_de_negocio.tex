@@ -1,24 +1,56 @@
-\subsection{Reglas de Negocio} 
+\section{Reglas de negocio}
+\subsection{Definiciones}
   \begin{center}
-   \begin{tabular}[b]{| p{5.5cm} | p{7cm} |}
+   \begin{tabular}{|p{2cm}|p{3.5cm}|p{7cm}|}
      \hline
-     \multicolumn{2}{|c|}{Definiciones} \\ \hline
-    \\ RND01-AM \\ Recepción de resultado & Descripción: El usuario no podrá visualizar el procesamiento del resultado. \\ \\ \hline
-    \\ RND02-AM \\ Sms & Descripción: El número telefónico con el cual fue registrado el usuario, será al que se le envíe el mensaje. \\ \\ \hline
-    \\ RND03-AM \\ Ubicación & Descripción: La aplicación tendrá el permiso del usuario para mantener activado su GPS. \\ \\ \hline
-    \\ RND04-AM \\ Estadísticas & Descripción: Se registrará el id del usuario, su porcentaje de alcohol detectado y la ubicación del usuario en una tabla, la cual será transparente para el usuario. \\ \\ \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+           AM & RND01: Recepción de resultado &  El usuario no podrá visualizar el procesamiento del resultado. \\ \hline
+           AM & RND02: Sms &  El número telefónico con el cual fue registrado el usuario, será al que se le envíe el mensaje. \\ \hline
+           AM & RND03: Ubicación &  La aplicación tendrá el permiso del usuario para mantener activado su GPS. \\ \hline
+           AM & RND04: Estadísticas &  Se registrará el id del usuario, su porcentaje de alcohol detectado y la ubicación del usuario en una tabla, la cual será transparente para el usuario. \\ \\ \hline
    \end{tabular}
+   \captionof{table}{Definiciones} \label{tab:rnd}
  \end{center}
-   
-  
+
+\subsection{Restricciones}
   \begin{center}
-   \begin{tabular}{|p{5.5cm}|p{7cm}|}
+   \begin{tabular}{|p{2cm}|p{3.5cm}|p{7cm}|}
      \hline
-     \multicolumn{2}{|c|}{Restricciones} \\ \hline
-     \\ RNR01-G \\ Dispositivo & Descripción: Sólo para dispositivos celulares. \\ \\ \hline
-     \\ RNR02-DDa \\ Toma de muestra & Descripción: La toma de la muestra se obtiene al hacer contacto con el dispositivo. \\ \\ \hline
-     \\ RNR03-AM \\ Datos & Descripción: No se podrá omitir ningun dato solicitado; así como cumplir con el tipo de dato y la longitud mínima solicitada. \\ \\ \hline
-     \\ RNR04-AM \\ Información obligatorio & Descripción: Los datos requeridos serán: \\ \\ \hline
-     \\ RNR05-AM \\ Recepción de resultado & Descripción: Se guardará en una tabla de la Base de Datos, el resultado y el porcentaje de alcohol obtenido. \\ \\ \hline     
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+           AM & RNR 01: Dispositivo &  Sólo para dispositivos celulares. \\ \hline
+           DDA & RNR 02: Toma de muestra &  La toma de la muestra se obtiene al hacer contacto con el dispositivo. \\ \hline
+           AM & RNR 03: Recepción de resultado &  Se guardará en una tabla de la Base de Datos, el resultado y el porcentaje de alcohol
+ obtenido. \\ \hline
+         \phantomsection\label{rnl_01} AM & RNR 04: Campos obligatorios & Todos los campos obligatorios deben estar llenos. \\ \hline
+         \phantomsection\label{rnl_02} AM & RNR 05: Información correcta & La información ingresada por el actor debe corresponder a aquella almacenada en el sistema. \\ \hline
+     	     
    \end{tabular}
+   \captionof{table}{Restricciones} \label{tab:rnr}
  \end{center}  
+%!"\#\textbackslash\^\_`\{\}\mid\sim\textdollar\%\&'()\ast+,-./:;<=>?@
+\subsection{Limitaciones}
+  \begin{center}
+   \begin{tabular}{|p{2cm}|p{3.5cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+	\phantomsection\label{rnl_} AM & RNL 01: Símbolos & Los símbolos válidos que se pueden usar al generar una contraseña son !''\#\textbackslash\^\_`\{\}\textdollar\%\&'()+,-./:;<=>?@$\mid\sim\ast$. \\ \hline
+   \end{tabular}
+      \captionof{table}{Limitaciones} \label{tab:rnl}
+ \end{center}
+ 
+\subsection{Reglas de validación}
+  \begin{center}
+   \begin{tabular}{|p{2cm}|p{3.5cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+	\phantomsection\label{rnv_01} AM & RNV 01: Dirección de correo electrónico válido  &  La dirección de correo electrónico debe tener mínimo 6 carácteres, puntos o alfanúmericos, seguido de un arroba (@) y alguno de los dominios válidos. \\ \hline
+	\phantomsection\label{rnv_02} AM & RNV 02: Contraseña válida &  La contraseña debe ser de una longitud mínima de 8 carácteres y tener como mínimo una letra mayúscula, una minúscula, un número y un símbolo válido de acuerdo a la RNL . \\ \hline
+   \end{tabular}
+      \captionof{table}{Reglas de validación} \label{tab:rnv}
+ \end{center}
+ 
+\subsection{Permisos}
+
+ \subsection{Evaluación}
+ 
+ \subsection{Reglas de proceso}
