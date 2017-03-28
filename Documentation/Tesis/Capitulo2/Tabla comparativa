@@ -1,0 +1,18 @@
+En nuestro proceso de desarrollo hemos encontrado algunos proyectos con caracteristicas o algunos objetivos similares.
+A continuacion se muestra la tabla comparativa de los proyectos  (\ref{tabla:sencilla}):
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{Deteccion de alcoholemia} \\ \hline
+Primero & Segundo & tercero & Nuestro \\
+\hline \hline
+España & Madrid \\ \hline
+España & Sevilla \\ \hline
+Francia & París \\ \hline
+\end{tabular}
+\caption{Tabla Comparativa.}
+\label{tabla:sencilla}
+\end{center}
+\end{table}
