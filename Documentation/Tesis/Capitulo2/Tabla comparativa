@@ -6,11 +6,11 @@ A continuacion se muestra la tabla comparativa de los proyectos  (\ref{tabla:sen
 \begin{tabular}{|c|c|}
 \hline
 \multicolumn{2}{|c|}{Deteccion de alcoholemia} \\ \hline
-Primero & Segundo & tercero & Nuestro \\
+Primero & Segundo & tercero & 2016-B030 \\
 \hline \hline
-España & Madrid \\ \hline
-España & Sevilla \\ \hline
-Francia & París \\ \hline
+España & Madrid & Tercero &  nuestro\\ \hline
+España & Sevilla & Tercero & nuestro \\ \hline
+Francia & París & tercero & nuestro\\ \hline
 \end{tabular}
 \caption{Tabla Comparativa.}
 \label{tabla:sencilla}
