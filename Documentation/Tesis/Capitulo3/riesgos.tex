@@ -1,2 +1,79 @@
-\subsection{Análisis de Riesgos}
+\documentclass{article}
+\usepackage[utf8]{inputenc}
 
+\title{Análisis de riesgos}
+\date{March 2017}
+
+\begin{document}
+
+\maketitle
+
+Se tomaron en cuenta algunos riesgos que pueden llegar a presentarse durante la realización del proyecto, los cuales podrían atrasar el tiempo de entrega y la finalización del mismo, por lo cual se decide tomar las siguientes medidas para poder evitarlo ó reducir los efectos secundarios si llegasen a ocurrir. \\
+
+A continuación se presentan las tablas de Clasificación de riesgos y Valoración de riesgos que serán utilizadas posteriormente para analizar cada riesgo que se presenta y así poder obtener un plan de control.
+
+\begin{center}
+\begin{table}[!htb]
+\centering
+\begin{tabular}{|p{4cm}|p{4cm}|p{5cm}|}
+    \hline
+    \centering {\bfseries Probabilidad de Riesgo}  & \centering {\bfseries Nivel} & {\bfseries Descripción} \\ \hline
+    \centering Baja & \centering 1 & Puede ser probable sólo bajo algunas circunstancias difíciles de conjuntar.\\ \hline
+    \centering Media & \centering 2 & Tiene un mayor nivel de posibilidad, cuando se han logrado objetivos pero no se esperaban ciertos resultados.\\ \hline
+    \centering Alta & \centering 3 & La amenza es muy grande y hay pocas formas de evitarla sin que provoque un daño al sistema en cualquier etapa de desarrollo\\
+    \hline
+\end{tabular}
+\caption{Clasificación de Riesgos}
+\label{tabla:pobconlimsincolo}
+\end{table}
+\end{center}
+
+\hfill \break \hfill \break \hfill \break \hfill \break
+
+\begin{center}
+\begin{table}[!htb]
+\centering
+\begin{tabular}{|p{5cm}|p{7cm}|}
+    \hline
+    \centering {\bfseries Clasificación}  & {\bfseries Descripción} \\ \hline
+    \centering A & Se requieren mejorar los controles de riesgo existentes \\ \hline
+    \centering B & Se requiere implantar nuevos controles de riesgo \\ \hline
+    \centering C & Temporización de riesgos \\
+    \hline
+\end{tabular}
+\caption{Valoración de Riesgos}
+\label{tabla:pobconlimsincolo}
+\end{table}
+\end{center}
+
+A continuación se muestran los riesgos detectados durante este Proyecto, así como la clasificación y la evluación de riesgos correspondientes y el plan de control que se decide tomar en caso de que alguno suceda.
+
+\begin{center}
+\begin{table}[!htb]
+\centering
+\begin{tabular}{|p{4cm}|p{2cm}|p{2cm}|p{5cm}|}
+    \hline
+    \centering {\bfseries Tipo de Riesgo}  & \centering {\bfseries CR} & \centering {\bfseries VR} & {\bfseries Plan de Control} \\ \hline
+    
+    \centering Diseño del sensor & \centering 2 & \centering B & Al diseñar el sensor puede que este no pueda obtener de forma eficiente el nivel de etanol en la persona, por lo cual se optaría por el uso de otros sensores ya hechos para medir los niveles de alcohol de una persona.\\ \hline
+    
+    \centering Pruebas del circuito diseñado sobre distintas partes del automóvil & \centering 1 & \centering A & Se probará el sensor en diversas partes para ver como es que reacciona de acuerdo a las diversas condiciones que puediesen aparecer y los resultados que se obtendrían.\\ \hline
+    
+    \centering Integración de todos los componentes & \centering 3 & \centering A & Se irán integrando los componentes desde el principio para que al final del proyecto, no ocurra que algún módulo fallo y así evitar este problema.\\ \hline
+    
+    \centering Conexión Aplicación-Bluetooth & \centering 2 & \centering C & De acuerdo a un identificador que se otorgará a cada sub-usuario es como se dispone para hacer la conexión Bluetooth-Aplicación y no se conecte con otros dispositivos.\\ \hline
+    
+    \centering Actuador & \centering 2 & \centering C & Definir el actuador correcto para que no sea tan invasivo en el carro y se haga el menor daño posible al mismo.\\ \hline
+    
+    \centering GPS apagado & \centering 3 & \centering B & Definir una función que pueda mantener el GPS activado para poder obtener en cualquier momento la ubicación de la persona que se podría encontrar alcoholizada.\\ \hline
+    
+    \centering Manipulación de sensor & \centering 3 & \centering B & Se realizarán iteraciones cada prolongado tiempo para que el sensor siempre esté detectando los niveles de alcohol y en cualquier momento percatarse si ya no se encuentra en condiciones de continuar conduciendo.\\ \hline
+
+\end{tabular}
+\caption{Plan de contingencia}
+\label{tabla:pobconlimsincolo}
+\end{table}
+\end{center}
+
+
+\end{document}
