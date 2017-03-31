@@ -1,0 +1,45 @@
+\BOOKMARK [0][-]{chapter.1}{Planteamiento del Problema}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Introducci\363n}{chapter.1}% 2
+\BOOKMARK [1][-]{section.1.2}{Objetivo}{chapter.1}% 3
+\BOOKMARK [2][-]{subsection.1.2.1}{Objetivo General}{section.1.2}% 4
+\BOOKMARK [2][-]{subsection.1.2.2}{Objetivos Particulares}{section.1.2}% 5
+\BOOKMARK [1][-]{section.1.3}{Justificaci\363n}{chapter.1}% 6
+\BOOKMARK [1][-]{section.1.4}{Resultados Esperados}{chapter.1}% 7
+\BOOKMARK [0][-]{chapter.2}{Estado del Arte}{}% 8
+\BOOKMARK [1][-]{section.2.1}{Antecedentes}{chapter.2}% 9
+\BOOKMARK [2][-]{subsection.2.1.1}{Alcoholemia}{section.2.1}% 10
+\BOOKMARK [2][-]{subsection.2.1.2}{Formas de An\341lisis de Alcoholemia}{section.2.1}% 11
+\BOOKMARK [1][-]{section.2.2}{Comparaci\363n con Otros Proyectos}{chapter.2}% 12
+\BOOKMARK [0][-]{chapter.3}{An\341lisis}{}% 13
+\BOOKMARK [1][-]{section.3.1}{An\341lisis de Herramientas}{chapter.3}% 14
+\BOOKMARK [2][-]{subsection.3.1.1}{Herramientas para Entorno en Software}{section.3.1}% 15
+\BOOKMARK [1][-]{section.3.2}{Requerimientos del Sistema}{chapter.3}% 16
+\BOOKMARK [2][-]{subsection.3.2.1}{Alcance}{section.3.2}% 17
+\BOOKMARK [2][-]{subsection.3.2.2}{Definici\363n de Actores}{section.3.2}% 18
+\BOOKMARK [2][-]{subsection.3.2.3}{Requerimientos Funcionales}{section.3.2}% 19
+\BOOKMARK [2][-]{subsection.3.2.4}{Requerimientos No Funcionales}{section.3.2}% 20
+\BOOKMARK [1][-]{section.3.3}{An\341lisis de Riesgos}{chapter.3}% 21
+\BOOKMARK [1][-]{section.3.4}{Diagramas de Casos de Uso}{chapter.3}% 22
+\BOOKMARK [2][-]{subsection.3.4.1}{Diagrama CU Usuario}{section.3.4}% 23
+\BOOKMARK [2][-]{subsection.3.4.2}{Diagrama CU Sub-Usuario}{section.3.4}% 24
+\BOOKMARK [2][-]{subsection.3.4.3}{Diagrama CU Administrador}{section.3.4}% 25
+\BOOKMARK [1][-]{section.3.5}{Casos de Uso}{chapter.3}% 26
+\BOOKMARK [2][-]{subsection.3.5.1}{Caso de uso 1: Iniciar sesi\363n}{section.3.5}% 27
+\BOOKMARK [2][-]{subsection.3.5.2}{Caso de uso 1.1: Recuperar contrase\361a}{section.3.5}% 28
+\BOOKMARK [2][-]{subsection.3.5.3}{Caso de uso 2: Registrarse}{section.3.5}% 29
+\BOOKMARK [2][-]{subsection.3.5.4}{Caso de uso 2.1: Confirmar cuenta}{section.3.5}% 30
+\BOOKMARK [1][-]{section.3.6}{Reglas de negocio}{chapter.3}% 31
+\BOOKMARK [2][-]{subsection.3.6.1}{Definiciones}{section.3.6}% 32
+\BOOKMARK [2][-]{subsection.3.6.2}{Restricciones}{section.3.6}% 33
+\BOOKMARK [2][-]{subsection.3.6.3}{Limitaciones}{section.3.6}% 34
+\BOOKMARK [2][-]{subsection.3.6.4}{Reglas de validaci\363n}{section.3.6}% 35
+\BOOKMARK [2][-]{subsection.3.6.5}{Permisos}{section.3.6}% 36
+\BOOKMARK [2][-]{subsection.3.6.6}{Evaluaci\363n}{section.3.6}% 37
+\BOOKMARK [2][-]{subsection.3.6.7}{Reglas de proceso}{section.3.6}% 38
+\BOOKMARK [1][-]{section.3.7}{Mensajes}{chapter.3}% 39
+\BOOKMARK [2][-]{subsection.3.7.1}{Errores}{section.3.7}% 40
+\BOOKMARK [2][-]{subsection.3.7.2}{Advertencias}{section.3.7}% 41
+\BOOKMARK [2][-]{subsection.3.7.3}{Confirmaciones}{section.3.7}% 42
+\BOOKMARK [2][-]{subsection.3.7.4}{Notificaciones}{section.3.7}% 43
+\BOOKMARK [0][-]{chapter.4}{Marco Te\363rico}{}% 44
+\BOOKMARK [0][-]{chapter*.64}{Referencias}{}% 45

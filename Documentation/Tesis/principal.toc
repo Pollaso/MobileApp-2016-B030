@@ -1,0 +1,72 @@
+\select@language {spanish}
+\contentsline {chapter}{\numberline {1}Planteamiento del Problema}{5}{chapter.1}
+\contentsline {section}{\numberline {1.1}Introducci\IeC {\'o}n}{6}{section.1.1}
+\contentsline {section}{\numberline {1.2}Objetivo}{6}{section.1.2}
+\contentsline {subsection}{\numberline {1.2.1}Objetivo General}{6}{subsection.1.2.1}
+\contentsline {subsection}{\numberline {1.2.2}Objetivos Particulares}{6}{subsection.1.2.2}
+\contentsline {section}{\numberline {1.3}Justificaci\IeC {\'o}n}{7}{section.1.3}
+\contentsline {section}{\numberline {1.4}Resultados Esperados}{7}{section.1.4}
+\contentsline {chapter}{\numberline {2}Estado del Arte}{9}{chapter.2}
+\contentsline {section}{\numberline {2.1}Antecedentes}{10}{section.2.1}
+\contentsline {subsection}{\numberline {2.1.1}Alcoholemia}{10}{subsection.2.1.1}
+\contentsline {subsection}{\numberline {2.1.2}Formas de An\IeC {\'a}lisis de Alcoholemia}{11}{subsection.2.1.2}
+\contentsline {subsubsection}{\numberline {2.1.2.1}An\IeC {\'a}lisis de Alcohol en la Sangre}{11}{subsubsection.2.1.2.1}
+\contentsline {subsubsection}{\numberline {2.1.2.2}An\IeC {\'a}lisis de Alcohol en la Saliva}{12}{subsubsection.2.1.2.2}
+\contentsline {subsubsection}{\numberline {2.1.2.3}An\IeC {\'a}lisis de Alcohol en el Aliento}{12}{subsubsection.2.1.2.3}
+\contentsline {subsubsection}{\numberline {2.1.2.4}An\IeC {\'a}lisis de Alcohol en la Orina}{12}{subsubsection.2.1.2.4}
+\contentsline {subsubsection}{\numberline {2.1.2.5}An\IeC {\'a}lisis de Alcohol en la Cabello}{13}{subsubsection.2.1.2.5}
+\contentsline {section}{\numberline {2.2}Comparaci\IeC {\'o}n con Otros Proyectos}{13}{section.2.2}
+\contentsline {chapter}{\numberline {3}An\IeC {\'a}lisis}{15}{chapter.3}
+\contentsline {section}{\numberline {3.1}An\IeC {\'a}lisis de Herramientas}{16}{section.3.1}
+\contentsline {subsection}{\numberline {3.1.1}Herramientas para Entorno en Software}{16}{subsection.3.1.1}
+\contentsline {subsubsection}{\numberline {3.1.1.1}Android Studio}{16}{subsubsection.3.1.1.1}
+\contentsline {section}{\numberline {3.2}Requerimientos del Sistema}{16}{section.3.2}
+\contentsline {subsection}{\numberline {3.2.1}Alcance}{16}{subsection.3.2.1}
+\contentsline {subsubsection}{\numberline {3.2.1.1}Funcionalidades contempladas}{16}{subsubsection.3.2.1.1}
+\contentsline {subsubsection}{\numberline {3.2.1.2}Funcionalidades no contempladas}{17}{subsubsection.3.2.1.2}
+\contentsline {subsection}{\numberline {3.2.2}Definici\IeC {\'o}n de Actores}{18}{subsection.3.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.1}Administrador}{18}{subsubsection.3.2.2.1}
+\contentsline {subsubsection}{\numberline {3.2.2.2}Usuario}{18}{subsubsection.3.2.2.2}
+\contentsline {subsubsection}{\numberline {3.2.2.3}Subusuario}{18}{subsubsection.3.2.2.3}
+\contentsline {subsection}{\numberline {3.2.3}Requerimientos Funcionales}{18}{subsection.3.2.3}
+\contentsline {subsection}{\numberline {3.2.4}Requerimientos No Funcionales}{19}{subsection.3.2.4}
+\contentsline {section}{\numberline {3.3}An\IeC {\'a}lisis de Riesgos}{21}{section.3.3}
+\contentsline {section}{\numberline {3.4}Diagramas de Casos de Uso}{24}{section.3.4}
+\contentsline {subsection}{\numberline {3.4.1}Diagrama CU Usuario}{24}{subsection.3.4.1}
+\contentsline {subsection}{\numberline {3.4.2}Diagrama CU Sub-Usuario}{25}{subsection.3.4.2}
+\contentsline {subsection}{\numberline {3.4.3}Diagrama CU Administrador}{25}{subsection.3.4.3}
+\contentsline {section}{\numberline {3.5}Casos de Uso}{26}{section.3.5}
+\contentsline {subsection}{\numberline {3.5.1}Caso de uso 1: Iniciar sesi\IeC {\'o}n}{26}{subsection.3.5.1}
+\contentsline {subsubsection}{\numberline {3.5.1.1}Resumen}{26}{subsubsection.3.5.1.1}
+\contentsline {subsubsection}{\numberline {3.5.1.2}Descripci\IeC {\'o}n}{26}{subsubsection.3.5.1.2}
+\contentsline {subsubsection}{\numberline {3.5.1.3}Trayectorias del caso de uso}{27}{subsubsection.3.5.1.3}
+\contentsline {subsubsection}{\numberline {3.5.1.4}Puntos de extensi\IeC {\'o}n}{29}{subsubsection.3.5.1.4}
+\contentsline {subsection}{\numberline {3.5.2}Caso de uso 1.1: Recuperar contrase\IeC {\~n}a}{31}{subsection.3.5.2}
+\contentsline {subsubsection}{\numberline {3.5.2.1}Resumen}{31}{subsubsection.3.5.2.1}
+\contentsline {subsubsection}{\numberline {3.5.2.2}Descripci\IeC {\'o}n}{31}{subsubsection.3.5.2.2}
+\contentsline {subsubsection}{\numberline {3.5.2.3}Trayectorias del caso de uso}{32}{subsubsection.3.5.2.3}
+\contentsline {subsubsection}{\numberline {3.5.2.4}Puntos de extensi\IeC {\'o}n}{34}{subsubsection.3.5.2.4}
+\contentsline {subsection}{\numberline {3.5.3}Caso de uso 2: Registrarse}{35}{subsection.3.5.3}
+\contentsline {subsubsection}{\numberline {3.5.3.1}Resumen}{35}{subsubsection.3.5.3.1}
+\contentsline {subsubsection}{\numberline {3.5.3.2}Descripci\IeC {\'o}n}{35}{subsubsection.3.5.3.2}
+\contentsline {subsubsection}{\numberline {3.5.3.3}Trayectorias del caso de uso}{36}{subsubsection.3.5.3.3}
+\contentsline {subsubsection}{\numberline {3.5.3.4}Puntos de extensi\IeC {\'o}n}{39}{subsubsection.3.5.3.4}
+\contentsline {subsection}{\numberline {3.5.4}Caso de uso 2.1: Confirmar cuenta}{40}{subsection.3.5.4}
+\contentsline {subsubsection}{\numberline {3.5.4.1}Resumen}{40}{subsubsection.3.5.4.1}
+\contentsline {subsubsection}{\numberline {3.5.4.2}Descripci\IeC {\'o}n}{40}{subsubsection.3.5.4.2}
+\contentsline {subsubsection}{\numberline {3.5.4.3}Trayectorias del caso de uso}{40}{subsubsection.3.5.4.3}
+\contentsline {section}{\numberline {3.6}Reglas de negocio}{42}{section.3.6}
+\contentsline {subsection}{\numberline {3.6.1}Definiciones}{42}{subsection.3.6.1}
+\contentsline {subsection}{\numberline {3.6.2}Restricciones}{42}{subsection.3.6.2}
+\contentsline {subsection}{\numberline {3.6.3}Limitaciones}{42}{subsection.3.6.3}
+\contentsline {subsection}{\numberline {3.6.4}Reglas de validaci\IeC {\'o}n}{43}{subsection.3.6.4}
+\contentsline {subsection}{\numberline {3.6.5}Permisos}{43}{subsection.3.6.5}
+\contentsline {subsection}{\numberline {3.6.6}Evaluaci\IeC {\'o}n}{43}{subsection.3.6.6}
+\contentsline {subsection}{\numberline {3.6.7}Reglas de proceso}{43}{subsection.3.6.7}
+\contentsline {section}{\numberline {3.7}Mensajes}{44}{section.3.7}
+\contentsline {subsection}{\numberline {3.7.1}Errores}{44}{subsection.3.7.1}
+\contentsline {subsection}{\numberline {3.7.2}Advertencias}{44}{subsection.3.7.2}
+\contentsline {subsection}{\numberline {3.7.3}Confirmaciones}{44}{subsection.3.7.3}
+\contentsline {subsection}{\numberline {3.7.4}Notificaciones}{45}{subsection.3.7.4}
+\contentsline {chapter}{\numberline {4}Marco Te\IeC {\'o}rico}{46}{chapter.4}
+\contentsline {chapter}{Referencias}{47}{chapter*.64}
