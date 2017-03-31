@@ -46,3 +46,32 @@ Proponen solo un bloque (sin mencionar que tipo) & Proponen un tablero de intera
 \label{tabla:sencilla}
 \end{center}
 \end{table}
+
+
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{Comparacion sensores infrarrojos} \\ \hline
+Sensores infrarrojos \\
+\hline \hline
+Sensor GP2D12 & Sensor GP2D02 & Sensor CNY70\\ \hline
+El GP2D12 tiene una interfaz analogica de la señal de salida & El GP2D02 tiene una interfaz digital de la señal de salida & Es un sensor con una fuente de luz (diodo emisor) y detector (fototransistor)  integrados en un mismo encapsulado \\ \hline
+GP2D12 tiene una frecuencia de refresco de unos 40 ms & GP2D02 tiene una frecuencia de refresco de unos 75ms  & Distancia de deteccion de 0.3 a 5mm \\ \hline
+Dispone de un emisor de luz infrarroja colimada y de un PSD (Position Sensing Device) que constituye el receptor & Dispone de un emisor de luz infrarroja colimada y de un PSD (Position Sensing Device) que constituye el receptor  & Este sensor no se utiliza habitualmente para medir distancias, pero si funciona bien para detectar el "color" de un objeto (distinguir blanco/negro en aplicaciones para el seguimiento de linea )  \\ \hline
+
+En su utilizacion es recomendable utilizar un condensador de desacoplo de unos 22uf, con el proposito de reducir los ruidos en la señal de alimentacion como consecuencia de la emision infrarroja & ----------- &----------\\ \hline
+
+
+\end{tabular}
+\caption{Tabla Comparativa.}
+\label{tabla:sencilla}
+\end{center}
+\end{table}
+
+
+
+
+
+
