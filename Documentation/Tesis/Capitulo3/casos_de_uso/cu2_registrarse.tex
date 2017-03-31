@@ -16,7 +16,7 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
         \hline
           \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} & 25 de marzo de 2017 \\
+          \textbf{Fecha de último estatus} & 30 de marzo de 2017 \\
         \hline
       \multicolumn{2}{|c|}{\large{Atributos}} \\
         \hline
@@ -34,6 +34,7 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
               \item \textbf{Nombre(s)}: Se escribe con el teclado.
               \item \textbf{Apellido Paterno}: Se escribe con el teclado.
               \item \textbf{Apellido Materno}: Se escribe con el teclado.
+              \item \textbf{Telefóno}: Se ingresa el código de país con un selector y el número con el teclado.
               \item \textbf{Fecha de nacimiento}: Se selecciona una fecha de un calendario virtual.
             \end{itemize} \\
         \hline	
@@ -66,12 +67,12 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
 \textbf{Trayectoria principal}
 \begin{enumerate}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil, en el caso del administrador ingresa al portal web mediante una dirección eletrónica.}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la pantalla IU Inicio.}
-  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{¿Eres nuevo?}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la pantalla IU Registro.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Inicio. \hyperref[cu2_ta_a]{[Trayectoria alternativa A]}}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{¿Eres nuevo aquí?}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Registro.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa los campos requeridos.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón para solicitar su registro al sistema.}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \hyperref[rno_01]{RNO 01}. \hyperref[cu2_ta_a]{[Trayectoria alternativa A]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \hyperref[rnr_04]{RNR 04}. \hyperref[cu2_ta_a]{[Trayectoria alternativa A]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo electrónico cumpla con la RNO. \hyperref[cu2_ta_b]{[Trayectoria alternativa B]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña cumpla con la RNO. \hyperref[cu2_ta_c]{[Trayectoria alternativa C]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña de confirmación coincida con la contrasea ingresada. \hyperref[cu2_ta_d]{[Trayectoria alternativa D]}}
@@ -79,8 +80,17 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la RNO. \hyperref[cu2_ta_g]{[Trayectoria alternativa G]} \hyperref[cu2_ta_h]{[Trayectoria alternativa H]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la RNO. \hyperref[cu2_ta_g]{[Trayectoria alternativa G]} \hyperref[cu2_ta_h]{[Trayectoria alternativa H]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje MSG que indica el registro exitoso al sistema.}
-  \item {\includegraphics[scale=.1]{Capitulo3/img/proceso.png} Se redirecciona a la pantalla IU Confirma tu cuenta.}\\
+  \item {\includegraphics[scale=.1]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Confirma tu cuenta.}\\
   \textit{Fin de caso de uso} \\	
+\end{enumerate}
+
+\textbf{Trayectoria alternativa A} \phantomsection\label{cu2_ta_a} \\
+\textbf{Condición:} El actor presiona la opción de \textit{Iniciar sesión}.\\
+ \begin{enumerate}[label=A\arabic*]
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Iniciar sesión.}
+    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa A} \phantomsection\label{cu2_ta_a} \\

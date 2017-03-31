@@ -15,7 +15,7 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
         \hline
           \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} & 25 de marzo de 2017 \\
+          \textbf{Fecha de último estatus} & 29 de marzo de 2017 \\
         \hline
       \multicolumn{2}{|c|}{\large{Atributos}} \\
         \hline
@@ -52,10 +52,18 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
        \hline
          \textbf{Reglas de negocio} & 
          	\begin{itemize}
-         	  \item {\hyperref[rnl_01]{RNO 01: Información correcta}}
+         	  \item {\hyperref[rnr_04]{RNR 04: Campos obligatorios}}
+         	  \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
+         	  \item {\hyperref[rnr_02]{RNE 02: Dirección de correo electrónico válido}}
+         	  \item {\hyperref[rnr_03]{RNE 03: Contraseña válida}}
 	 \end{itemize} \\
        \hline
-         \textbf{Mensajes} & \\
+         \textbf{Mensajes} & 
+         	\begin{itemize}
+         	  \item {\hyperref[msje_01]{MSJE 01: Datos inválidos}}
+         	  \item {\hyperref[msje_02]{MSJE 02: Correo electrónico inválido}}
+         	  \item {\hyperref[msja_01]{MSJA 01: Campos en blanco}}
+	 \end{itemize} \\
        \hline
          \textbf{Tipo} & Primario \\
     \hline	    
@@ -68,66 +76,77 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
 \begin{enumerate}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil, en el caso del administrador ingresa al portal web mediante una dirección eletrónica.}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Index para el administrador y IU Inicio para los demás actores.}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Iniciar sesión.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el la dirección de correo electrónico y contraseña en los campos correspondientes.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón para solicitar ingresar al sistema.}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \hyperref[rnl_04]{RNR 04}. \hyperref[cu1_ta_a]{[Trayectoria alternativa A]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo eletrónico y la contraseña coincidan con aquellos datos registrados en el sistema. \hyperref[cu1_ta_b]{[Trayectoria alternativa B]} \hyperref[cu1_ta_c]{[Trayectoria alternativa C]} \hyperref[cu1_ta_d]{[Trayectoria alternativa D]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo eletrónico y la contraseña sean válidos de acuerdo a las reglas de negocio correspondientes. \hyperref[cu1_ta_b]{[Trayectoria alternativa B]} \hyperref[cu1_ta_c]{[Trayectoria alternativa C]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo eletrónico y la contraseña coincidan con aquellos datos registrados en el sistema. \hyperref[cu1_ta_d]{[Trayectoria alternativa D]} \hyperref[cu1_ta_e]{[Trayectoria alternativa E]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista de inicio correspondiente al actor.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Hacer uso del sistema.}\\
   \textit{Fin de caso de uso} \\	
 \end{enumerate}
 
 \textbf{Trayectoria alternativa A} \phantomsection\label{cu1_ta_a} \\
-\textbf{Condición:} El actor no proporcionó la información requerida, rompiendo la regla de negocio \hyperref[rnl_01]{RNL 01}.\\
+\textbf{Condición:} El actor no proporcionó la información requerida, rompiendo la regla de negocio \hyperref[rnr_04]{RNR 04}.\\
  \begin{enumerate}[label=A\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el actor ha dejado campos en blanco.}
-    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msja_01]{MSJA 01}, indicando que el actor ha dejado campos en blanco.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{Trayectoria alternativa B} \phantomsection\label{cu1_1_ta_b}\\
-\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la regla de negocio \hyperref[rnv_01]{RNV 01}.\\
+\textbf{Trayectoria alternativa B} \phantomsection\label{cu1_ta_b}\\
+\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la regla de negocio \hyperref[rne_02]{RNE 02}.\\
  \begin{enumerate}[label=B\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que la dirección de correo electrónico no es válida.}
-    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_02]{MSJE 02}, indicando que la dirección de correo electrónico no es válida.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa C} \phantomsection\label{cu1_ta_c}\\
-\textbf{Condición:} No se encontró alguna cuenta relacionada con la dirección de correo electrónico ingresada.\\
+\textbf{Condición:} El actor ingreso una contraseña incorrecta que no cumple con la regla de negocio \hyperref[rne_03]{RNE 03}.\\
  \begin{enumerate}[label=C\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el actor ha ingresado datos incorrectos en alguno de los campos.}
-    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa D} \phantomsection\label{cu1_ta_d}\\
-\textbf{Condición:} El actor ingreso una contraseña incorrecta.\\
+\textbf{Condición:} No se encontró alguna cuenta relacionada con la dirección de correo electrónico ingresada de acuerdo a la regla de negocio \hyperref[rne_01]{RNE 01}.\\
  \begin{enumerate}[label=D\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el actor ha ingresado datos incorrectos.}
-    \item {Continua en el paso 3 de la trayectoria principal.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos en alguno de los campos.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa E} \phantomsection\label{cu1_ta_e}\\
-\textbf{Condición:} El actor selecciono la opción de \textit{¿Has olvidado tu contraseña?}.\\
+\textbf{Condición:} La contraseña ingresada no corresponde a la cuenta de la dirección de correo electrónico ingresada de acuerdo a la regla de negocio \hyperref[rne_01]{RNE 01}.\\
  \begin{enumerate}[label=E\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu1_1]{CU 1.1 Recuperar contraseña}} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos en alguno de los campos.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa F} \phantomsection\label{cu1_ta_f}\\
-\textbf{Condición:} El actor selecciono la opción de \textit{¿Eres nuevo?}.\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Has olvidado tu contraseña?}.\\
  \begin{enumerate}[label=F\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu1_1]{CU 1.1 Recuperar contraseña}} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa G} \phantomsection\label{cu1_ta_g}\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Eres nuevo aquí?}.\\
+ \begin{enumerate}[label=G\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu2]{CU 2 Registrarse}} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \subsubsection{Puntos de extensión}
 \noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Has olvidado tu contraseña?} \\
-\textbf{Región de la trayectoria:} \hyperref[cu1_ta_e]{Trayectoria alternativa E} \\
+\textbf{Región de la trayectoria:} \hyperref[cu1_ta_f]{Trayectoria alternativa F} \\
 \textbf{Extiende a:} \hyperref[cu1_1]{CU 1.1 Recuperar contraseña} \\ \par
 
-\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Eres nuevo?} \\
-\textbf{Región de la trayectoria:} \hyperref[cu1_ta_f]{Trayectoria alternativa F} \\
+\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Eres nuevo aquí?} \\
+\textbf{Región de la trayectoria:} \hyperref[cu1_ta_G]{Trayectoria alternativa G} \\
 \textbf{Extiende a:} \hyperref[cu2]{CU 2 Registrarse}
