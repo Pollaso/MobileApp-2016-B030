@@ -1,0 +1,67 @@
+\documentclass[fontsize=11pt, paper=A4, pagesize=auto, oneside]{book}
+\usepackage[utf8]{inputenc}
+\usepackage[spanish,mexico]{babel}
+\usepackage{subfiles}
+\usepackage[nottoc,notlot,notlof]{tocbibind}
+\usepackage{graphicx}
+\usepackage{capt-of}
+\usepackage{amsmath}
+\usepackage{tabu}
+\usepackage{titling}
+\usepackage[hidelinks]{hyperref}
+\usepackage[toc,page]{appendix}
+\usepackage{color}
+\usepackage{enumitem}
+\usepackage[toc]{glossaries}
+\usepackage{caption}
+\usepackage[utf8]{inputenc}
+
+\begin{document}
+	\renewcommand{\bibname}{Referencias}
+	\setcounter{secnumdepth}{5}
+	
+	\include{Portada/portada}
+	
+	\tableofcontents
+	% Índice de figuras y tablas
+	\listoffigures
+	\listoftables
+	
+	% Capitulo 1: Planteamiento del Problema
+	\include{Capitulo1/capitulo1}
+	\subfile{Capitulo1/introduccion}
+	\subfile{Capitulo1/objetivo}
+	\subfile{Capitulo1/justificacion}
+	\subfile{Capitulo1/resultados}
+	
+	% Capitulo 2: Estado del Arte
+	\include{Capitulo2/capitulo2}
+	\subfile{Capitulo2/alcoholemia}
+	\subfile{Capitulo2/comparacion}
+	
+	% Capitulo3
+	\include{Capitulo3/capitulo3}
+	\subfile{Capitulo3/herramientas}
+	\subfile{Capitulo3/requerimientos}
+	\subfile{Capitulo3/funcionales}
+	\subfile{Capitulo3/no_funcionales}
+	\subfile{Capitulo3/riesgos}
+	\subfile{Capitulo3/diagramas_casos_de_uso}
+	\subfile{Capitulo3/casos_de_uso}
+	\subfile{Capitulo3/reglas_de_negocio}
+	\subfile{Capitulo3/mensajes}
+	
+	% Capitulo4
+	\include{Capitulo4/capitulo4}
+	
+	% Referencias
+	\nocite{*}
+	\bibliographystyle{IEEEtran}
+	\bibliography{Referencias/referencias.bib}
+	
+	%\printglossaries
+	%\begin{appendices}
+	%	\include{ApendiceA/apendiceA}
+	%	\include{ApendiceA/glosario}
+	%\end{appendices}
+\end{document}

@@ -1,0 +1,65 @@
+\subsection{Caso de uso : } \label{cu}
+\subsubsection{Resumen}
+\subsubsection{Descripción}
+\begingroup
+\setlength{\LTleft}{-10cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{center}
+  \captionof{table}{} \label{tab:cu_tab}
+  \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
+        \hline
+        \textbf{Versión} &  \\
+        \hline 
+        \textbf{Autor} & \\
+        \hline
+          \textbf{Estatus} & \\
+        \hline  
+          \textbf{Fecha de último estatus} &  \\
+        \hline
+      \multicolumn{2}{c |}{\large{Atributos:}} \\
+        \hline
+          \textbf{Actor}  &  \\
+        \hline  
+          \textbf{Propósito} &  \\
+        \hline
+          \textbf{Disparador} & \\
+        \hline  
+          \textbf{Entradas} & \\
+        \hline  
+          \textbf{Salidas} &  \\
+        \hline  
+          \textbf{Precondiciones} & \\
+        \hline  
+          \textbf{Postcondiciones} & \\
+        \hline
+          \textbf{Reglas de negocio} & \\
+        \hline
+          \textbf{Mensajes} & \\
+        \hline
+          \textbf{Tipo} & \\
+        \hline      
+  \end{longtable}
+\end{center}
+\endgroup
+
+\subsubsection{Trayectorias del caso de uso}
+\textbf{Trayectoria principal}
+\begin{enumerate}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
+  \textit{Fin de caso de uso} \\  
+\end{enumerate}
+
+\textbf{Trayectoria alternativa} \phantomsection\label{cu_ta_} \\
+\textbf{Condición:} \\
+ \begin{enumerate}[label=\arabic*]
+    \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
+    \item {Continua en el paso 4 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\subsubsection{Puntos de extensión}
+\noindent \textbf{Causa de la extensión:} \\
+\textbf{Región de la trayectoria:} \hyperref[cu_ta_]{Trayectoria alternativa } \\
+\textbf{Extiende a:} \hyperref[cu]{CU}

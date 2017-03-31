@@ -1,0 +1,77 @@
+\section{Comparación con Otros Proyectos}
+Existen diversos trabajos realizados a lo largo del tiempo, con los cuales se ha buscado disminuir el porcentaje de accidentes debido a la alcoholemia, en donde la mayoría se han quedado plasmadas sólo como soluciones propuestas (ver Tabla \ref{tab:comparacion}). En la siguiente sección se desglosan los trabajos académicos similares al propuesto haciendo a su vez una comparación con ellos.
+\begin{table}[ht]
+    \noindent \centering \resizebox{\textwidth}{!}
+    {        
+        \begin{tabular}{|p{4cm}|p{\textwidth}|}
+            \hline
+                SISTEMA & CARACTERÍSTICAS \\
+            \hline
+                Prototipo desarrollado por la compañía Nissan & Este sistema detecta niveles de alcohol mediante el sudor en la palma de la mano usando un sensor posicionado en la palanca de velocidades. Si detecta niveles altos de alcohol el conductor será notificado a través de un locutor y el automóvil quedará totalmente inmovilizado. \cite{drunk_driving_nissan} \\
+            \hline
+                Breathalyzer enabled ignition switch system (UTM) & El sistema es capaz de detectar la concentración de alcohol en el aliento de una persona y desplegar el resultado en términos de BAC (contenido de alcohol en la sangre) en un LCD. De acuerdo a la cantidad, el sistema determinara si se habilitan los circuitos del interruptor de encendido. \cite{breathalyzer_enabled} \\
+            \hline
+                Sistema de Encendido de un Automóvil con Alcoholímetro y Comunicación GSM (ESIME) & El sistema cuenta con un alcoholímetro integrado al sistema de arranque del automóvil para evitar que sea conducido si no cumple el usuario con los niveles permitidos de alcohol. \cite{sistema_de_encendido_esime} \\
+            \hline
+                Sistema de detección de nivel de alcohol en el organismo (ESCOM) & El sistema detecta el estimado del nivel de alcohol en sangre a través del aliento y mediante una aplicación móvil le proporciona al usuario alternativas de transporte seguro, así como sitios y lugares donde pueda disminuir la ingesta de alcohol en el organismo. A su vez envía un mensaje de texto a los contactos que se encuentren en la aplicación proporcionando la ubicación y el estado en que se encuentra la persona. \cite{sistema_de_deteccion_escom} \\
+            \hline
+                Diseño de un Etilímetro, Controlador del Encendido del Vehículo Mediante un Sensor de Aliento en el Tablero (UIDE) & La maqueta cuenta con un dispositivo que mide el alcohol en el cuerpo humano mostrando los resultados obtenidos en una pantalla digital. \cite{diseno_etilimetro_uide} \\
+            \hline
+        \end{tabular}
+    }
+    \captionof{table}{Resumen de productos similares.} \label{tab:comparacion}
+\end{table}
+
+
+En nuestro proceso de desarrollo hemos encontrado algunos proyectos con caracteristicas o algunos objetivos similares.
+A continuacion se muestra la tabla comparativa de los proyectos  (\ref{tabla:sencilla}):
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{Deteccion de alcoholemia} \\ \hline
+Sistema de encendido de un automovil con alcoholimetro y comunicacion GSM & Etilometro & TT2015A-028 & 2016-B030 \\
+\hline \hline
+Proponen el sensor de boquilla & Sensor de gas MQ3 & Deteccion de los niveles de alcohol a traves de la sangre mediante el aliento &  Nosotros proponemos un sensor que calcule la densidad en la sangre diseñando un sensor infrarrojo\\ \hline
+Proponen que su sistema sea para comunicacion GSM & -------- & ---------- & Nuestra propuesta es orientado al sistema operativo android ya que existen muchos usuarios que usan este sistema operativo \\ \hline
+Proponen solo un bloque (sin mencionar que tipo) & Proponen un tablero de interacion  & --------- & Nuestro diseño solo interactual con el usuario una sola vez en la deteccion de sus niveles de alcohol \\ \hline
+----------- & Presentan solo un bloqueo en el auto  & Propone alternativas para trasladarse al usuario & Proponemos a parte del bloqueo en el auto una aplicacion la cual pueda comunicar a los responsables del carro que la persona que esta manejando se encuentra en malas condiciones  \\ \hline
+
+--------- & --------- & Proponen condiciones normales & Proponen la comunicacion a traves de un modulo bluetooth & Se esta contemplando varias situaciones a presentar para que el sistema pueda actuar en diferentes situaciones a traves de un modulo bluetooth\\ \hline
+
+----------- & Proponen una boquilla para la deteccion de alcohol & --------------- & Nuestro sistema propone una mayor higiene por lo cual se propone ocupar sensores infrarrojos que nos garantizara la deteccion de una forma eficiente y segura \\ \hline
+\end{tabular}
+\caption{Tabla Comparativa.}
+\label{tabla:sencilla}
+\end{center}
+\end{table}
+
+
+
+\begin{table}[htbp]
+\begin{center}
+\begin{tabular}{|c|c|}
+\hline
+\multicolumn{2}{|c|}{Comparacion sensores infrarrojos} \\ \hline
+Sensores infrarrojos \\
+\hline \hline
+Sensor GP2D12 & Sensor GP2D02 & Sensor CNY70\\ \hline
+El GP2D12 tiene una interfaz analogica de la señal de salida & El GP2D02 tiene una interfaz digital de la señal de salida & Es un sensor con una fuente de luz (diodo emisor) y detector (fototransistor)  integrados en un mismo encapsulado \\ \hline
+GP2D12 tiene una frecuencia de refresco de unos 40 ms & GP2D02 tiene una frecuencia de refresco de unos 75ms  & Distancia de deteccion de 0.3 a 5mm \\ \hline
+Dispone de un emisor de luz infrarroja colimada y de un PSD (Position Sensing Device) que constituye el receptor & Dispone de un emisor de luz infrarroja colimada y de un PSD (Position Sensing Device) que constituye el receptor  & Este sensor no se utiliza habitualmente para medir distancias, pero si funciona bien para detectar el "color" de un objeto (distinguir blanco/negro en aplicaciones para el seguimiento de linea )  \\ \hline
+
+En su utilizacion es recomendable utilizar un condensador de desacoplo de unos 22uf, con el proposito de reducir los ruidos en la señal de alimentacion como consecuencia de la emision infrarroja & ----------- &----------\\ \hline
+
+
+\end{tabular}
+\caption{Tabla Comparativa.}
+\label{tabla:sencilla}
+\end{center}
+\end{table}
+
+
+
+
+
+

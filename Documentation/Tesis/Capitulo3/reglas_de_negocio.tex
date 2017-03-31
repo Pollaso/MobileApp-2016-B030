@@ -1,0 +1,77 @@
+\section{Reglas de negocio}
+\subsection{Definiciones}
+  \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+           AM & RND01: Recepción de resultado &  El usuario no podrá visualizar el procesamiento del resultado. \\ \hline
+           AM & RND02: Sms &  El número telefónico con el cual fue registrado el usuario, será al que se le envíe el mensaje. \\ \hline
+           AM & RND03: Ubicación &  La aplicación tendrá el permiso del usuario para mantener activado su GPS. \\ \hline
+           AM & RND04: Estadísticas &  Se registrará el id del usuario, su porcentaje de alcohol detectado y la ubicación del usuario en una tabla, la cual será transparente para el usuario. \\ \\ \hline
+   \end{tabular}
+   \captionof{table}{Definiciones} \label{tab:rnd}
+ \end{center}
+
+\subsection{Restricciones}
+  \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+           AM & RNR 01: Dispositivo &  Sólo para dispositivos celulares. \\ \hline
+           DDA & RNR 02: Toma de muestra &  La toma de la muestra se obtiene al hacer contacto con el dispositivo. \\ \hline
+           AM & RNR 03: Recepción de resultado &  Se guardará en una relación de la base de datos, el resultado y el porcentaje de alcohol
+ obtenido. \\ \hline
+         \phantomsection\label{rnr_04} AM & RNR 04: Campos obligatorios & Todos los campos obligatorios deben estar llenos. \\ \hline
+   \end{tabular}
+   \captionof{table}{Restricciones} \label{tab:rnr}
+ \end{center}  
+
+\subsection{Limitaciones}
+  \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+	\phantomsection\label{rnl_01} AM & RNL 01: Símbolos para contraseña & Los símbolos válidos que se pueden usar al generar una contraseña son !''\#\textbackslash\^\_`\{\}\textdollar\%\&'()+,-./:;<=>?@$\mid\sim\ast$. \\ \hline	
+	
+   \end{tabular}
+      \captionof{table}{Limitaciones} \label{tab:rnl}
+ \end{center}
+ 
+\subsection{Reglas de validación}
+  \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+   \end{tabular}
+      \captionof{table}{Reglas de validación} \label{tab:rnrv}
+ \end{center}
+ 
+\subsection{Permisos}
+  \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+   \end{tabular}
+      \captionof{table}{Permisos} \label{tab:rnp}
+ \end{center}
+
+ \subsection{Evaluación}
+   \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+       \phantomsection\label{rne_01} AM & RNE 01: Cuenta válida & Los datos ingresados serán válidados con aquellos en la base de datos. \\ \hline
+       \phantomsection\label{rne_02} AM & RNE 02: Dirección de correo electrónico válido &  La dirección de correo electrónico debe tener mínimo 6 carácteres, puntos o alfanúmericos, seguido de un arroba (@) y el dominio. \\ \hline
+       \phantomsection\label{rne_03} AM & RNE 03: Contraseña válida &  La contraseña debe ser de una longitud mínima de 8 carácteres y tener como mínimo una letra mayúscula, una minúscula, un número y un símbolo válido de acuerdo a la \hyperref[rnl_01]{RNL}. \\ \hline
+   \end{tabular}
+      \captionof{table}{Evaluación} \label{tab:rne}
+ \end{center}
+ 
+ \subsection{Reglas de proceso}
+   \begin{center}
+   \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
+     \hline
+       \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+   \end{tabular}
+      \captionof{table}{Reglas de proceso} \label{tab:rnrp}
+ \end{center}
