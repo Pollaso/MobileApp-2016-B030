@@ -1,42 +1,55 @@
-\subsection{Caso de uso : } \label{cu}
+\subsection{Caso de uso 3: Consultar perfil} \label{cu3}
 \subsubsection{Resumen}
+
 \subsubsection{Descripción}
 \begingroup
 \setlength{\LTleft}{-10cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 \begin{center}
-  \captionof{table}{} \label{tab:cu_tab}
+  \captionof{table}{Caso de uso 3: Consultar perfil} \label{tab:cu3}
   \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
         \hline
-        \textbf{Versión} &  \\
+        \textbf{Versión} &  0.1\\
         \hline 
         \textbf{Autor} & \\
         \hline
-          \textbf{Estatus} & \\
+          \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} &  \\
+          \textbf{Fecha de último estatus} & 31 de marzo de 2017 \\
         \hline
       \multicolumn{2}{c |}{\large{Atributos:}} \\
         \hline
-          \textbf{Actor}  &  \\
+          \textbf{Actor}  &  Usuario y Sub-Usuario\\
         \hline  
-          \textbf{Propósito} &  \\
+          \textbf{Propósito} &  Permite a los actores consultar su perfil \\
         \hline
-          \textbf{Disparador} & \\
+          \textbf{Disparador} & Al presionar el botón BTN en la vista IU Inicio\\
         \hline  
           \textbf{Entradas} & \\
         \hline  
-          \textbf{Salidas} &  \\
+          \textbf{Salidas} &  
+		\begin{itemize}
+	              \item Interna: Se mostrará la IU Perfil
+	        \end{itemize} \\
         \hline  
-          \textbf{Precondiciones} & \\
+          \textbf{Precondiciones} & 
+		\begin{itemize}
+	              \item I\textbf{nterna:} El actor debe estar registrado en el sistema
+	            \end{itemize} \\
         \hline  
-          \textbf{Postcondiciones} & \\
+          \textbf{Postcondiciones} &
+		\begin{itemize}
+	              \item Interna: Se mostrará la IU Perfil con el cual podrá consultar sus datos
+	            \end{itemize} \\
         \hline
-          \textbf{Reglas de negocio} & \\
+          \textbf{Reglas de negocio} & 
+		\begin{itemize}
+	         	  \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
+		 \end{itemize} \\
         \hline
           \textbf{Mensajes} & \\
         \hline
-          \textbf{Tipo} & \\
+          \textbf{Tipo} & Secundario\\
         \hline      
   \end{longtable}
 \end{center}
@@ -45,8 +58,12 @@
 \subsubsection{Trayectorias del caso de uso}
 \textbf{Trayectoria principal}
 \begin{enumerate}
-  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
+ \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Consultar perfil}}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Perfil}
   \textit{Fin de caso de uso} \\  
 \end{enumerate}
 
@@ -60,6 +77,6 @@
 \end{enumerate}
 
 \subsubsection{Puntos de extensión}
-\noindent \textbf{Causa de la extensión:} \\
+\noindent \textbf{Causa de la extensión: El actor, de tipo Usuario o Sub-Usuario, seleccionó \textit{Consultar perfil}} \\
 \textbf{Región de la trayectoria:} \hyperref[cu_ta_]{Trayectoria alternativa } \\
-\textbf{Extiende a:} \hyperref[cu]{CU}
+\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar perfil}
