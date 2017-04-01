@@ -53,9 +53,9 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
          \textbf{Reglas de negocio} & 
          	\begin{itemize}
          	  \item {\hyperref[rnr_04]{RNR 04: Campos obligatorios}}
-         	  \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
-         	  \item {\hyperref[rnr_02]{RNE 02: Dirección de correo electrónico válido}}
-         	  \item {\hyperref[rnr_03]{RNE 03: Contraseña válida}}
+         	  \item {\hyperref[rnr_01]{RNRV 01: Cuenta válida}}
+         	  \item {\hyperref[rnr_02]{RNRV 02: Dirección de correo electrónico válido}}
+         	  \item {\hyperref[rnr_03]{RNRV 03: Contraseña válida}}
 	 \end{itemize} \\
        \hline
          \textbf{Mensajes} & 
@@ -97,7 +97,7 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
 \end{enumerate}
 
 \textbf{Trayectoria alternativa B} \phantomsection\label{cu1_ta_b}\\
-\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la regla de negocio \hyperref[rne_02]{RNE 02}.\\
+\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la regla de negocio \hyperref[rnrv_02]{RNRV 02}.\\
  \begin{enumerate}[label=B\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_02]{MSJE 02}, indicando que la dirección de correo electrónico no es válida.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
@@ -105,7 +105,7 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
 \end{enumerate}
 
 \textbf{Trayectoria alternativa C} \phantomsection\label{cu1_ta_c}\\
-\textbf{Condición:} El actor ingreso una contraseña incorrecta que no cumple con la regla de negocio \hyperref[rne_03]{RNE 03}.\\
+\textbf{Condición:} El actor ingreso una contraseña incorrecta que no cumple con la regla de negocio \hyperref[rnrv_03]{RNRV 03}.\\
  \begin{enumerate}[label=C\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
@@ -113,7 +113,7 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
 \end{enumerate}
 
 \textbf{Trayectoria alternativa D} \phantomsection\label{cu1_ta_d}\\
-\textbf{Condición:} No se encontró alguna cuenta relacionada con la dirección de correo electrónico ingresada de acuerdo a la regla de negocio \hyperref[rne_01]{RNE 01}.\\
+\textbf{Condición:} No se encontró alguna cuenta relacionada con la dirección de correo electrónico ingresada de acuerdo a la regla de negocio \hyperref[rnrv_01]{RNRV 01}.\\
  \begin{enumerate}[label=D\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos en alguno de los campos.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
@@ -121,7 +121,7 @@ Este caso de uso le permite al actor ingresar al sistema proporcionando su nombr
 \end{enumerate}
 
 \textbf{Trayectoria alternativa E} \phantomsection\label{cu1_ta_e}\\
-\textbf{Condición:} La contraseña ingresada no corresponde a la cuenta de la dirección de correo electrónico ingresada de acuerdo a la regla de negocio \hyperref[rne_01]{RNE 01}.\\
+\textbf{Condición:} La contraseña ingresada no corresponde a la cuenta de la dirección de correo electrónico ingresada de acuerdo a la regla de negocio \hyperref[rnrv_01]{RNRV 01}.\\
  \begin{enumerate}[label=E\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos en alguno de los campos.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
