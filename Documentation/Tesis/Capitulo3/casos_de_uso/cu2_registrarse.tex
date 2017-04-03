@@ -35,7 +35,7 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
               \item \textbf{Apellido Paterno}: Se escribe con el teclado.
               \item \textbf{Apellido Materno}: Se escribe con el teclado.
               \item \textbf{Telefóno}: Se ingresa el código de país con un selector y el número con el teclado.
-              \item \textbf{Fecha de nacimiento}: Se selecciona una fecha de un calendario virtual.
+              \item \textbf{Fecha de nacimiento}: Se selecciona el año, mes y día con un selector.
             \end{itemize} \\
         \hline	
           \textbf{Salidas} &  
@@ -53,9 +53,17 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
               \item \textbf{Interna:} Al usuario se le generará una cuenta que necesita ser confirmada.
             \end{itemize} \\
         \hline    
-           \textbf{Reglas de negocio} & \hyperref[]{RNO}\\
+           \textbf{Reglas de negocio} & 
+             \begin{itemize}
+               \item RNL 02: Nombre(s) 
+               \item\hyperref[]{RNO}
+             \end{itemize} \\
         \hline
-           \textbf{Mensajes} & \\
+           \textbf{Mensajes} & 
+              \begin{itemize}
+                 \item \hyperref[msje_04]{MSJE 04: Contraseñas no coinciden}
+                 \item  MSJE 05: Longitud de nombre(s) excedida
+              \end{itemize}\\
         \hline
            \textbf{Tipo} & Primario \\
         \hline	    
@@ -72,13 +80,15 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Registro.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa los campos requeridos.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón para solicitar su registro al sistema.}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \hyperref[rnr_04]{RNR 04}. \hyperref[cu2_ta_a]{[Trayectoria alternativa A]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo electrónico cumpla con la RNO. \hyperref[cu2_ta_b]{[Trayectoria alternativa B]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña cumpla con la RNO. \hyperref[cu2_ta_c]{[Trayectoria alternativa C]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña de confirmación coincida con la contrasea ingresada. \hyperref[cu2_ta_d]{[Trayectoria alternativa D]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el nombre cumpla con la RNO. \hyperref[cu2_ta_e]{[Trayectoria alternativa E]} \hyperref[cu2_ta_f]{[Trayectoria alternativa F]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la RNO. \hyperref[cu2_ta_g]{[Trayectoria alternativa G]} \hyperref[cu2_ta_h]{[Trayectoria alternativa H]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la RNO. \hyperref[cu2_ta_g]{[Trayectoria alternativa G]} \hyperref[cu2_ta_h]{[Trayectoria alternativa H]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \hyperref[rnr_04]{RNR 04}. \hyperref[cu2_ta_b]{[Trayectoria alternativa B]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo electrónico cumpla con la RNO. \hyperref[cu2_ta_c]{[Trayectoria alternativa C]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña cumpla con la RNO. \hyperref[cu2_ta_d]{[Trayectoria alternativa D]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña de confirmación coincida con la contrasea ingresada. \hyperref[cu2_ta_e]{[Trayectoria alternativa E]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el nombre cumpla con la RNO. \hyperref[cu2_ta_f]{[Trayectoria alternativa F]} \hyperref[cu2_ta_g]{[Trayectoria alternativa G]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la RNO. \hyperref[cu2_ta_h]{[Trayectoria alternativa H]} \hyperref[cu2_ta_i]{[Trayectoria alternativa I]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la RNO. \hyperref[cu2_ta_h]{[Trayectoria alternativa H]} \hyperref[cu2_ta_i]{[Trayectoria alternativa I]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el telefóno cumpla con la RN. \hyperref[cu2_ta_j]{[Trayectoria alternativa J]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el telefóno cumpla con la RN. \hyperref[cu2_ta_j]{[Trayectoria alternativa J]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje MSG que indica el registro exitoso al sistema.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Confirma tu cuenta.}\\
   \textit{Fin de caso de uso} \\	
@@ -93,80 +103,96 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{Trayectoria alternativa A} \phantomsection\label{cu2_ta_a} \\
-\textbf{Condición:} El actor no proporcionó la información requerida.\\
- \begin{enumerate}[label=A\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el actor ha dejado campos en blanco.}
-    \item {Continua en el paso 5 de la trayectoria principal.} \\
-    \textit{Fin de trayectoria} \\
-\end{enumerate}
-
-\textbf{Trayectoria alternativa B} \phantomsection\label{cu2_ta_b}\\
-\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la RNO.\\
+\textbf{Trayectoria alternativa B} \phantomsection\label{cu2_ta_b} \\
+\textbf{Condición:} El actor no proporcionó la información requerida, rompiendo la regla de negocio \hyperref[rnr_04]{RNR 04}.\\
  \begin{enumerate}[label=B\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que la dirección de correo electrónico no es válida.}
-    \item {Continua en el paso 5 de la trayectoria principal.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msja_01]{MSJA 01}, indicando que el actor ha dejado campos en blanco.}
+    \item {Continua en el paso 5  de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa C} \phantomsection\label{cu2_ta_c}\\
-\textbf{Condición:} El actor no ingreso una contraseña cumpla con la RNO.\\
+\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la regla de negocio \hyperref[rnrv_02]{RNRV 02}.\\
  \begin{enumerate}[label=C\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que contraseña ingresada no es válida.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_02]{MSJE 02}, indicando que la dirección de correo electrónico no es válida.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa D} \phantomsection\label{cu2_ta_d}\\
-\textbf{Condición:} El acto no ingreso la misma contraseña en los campo \textit{Contraseña} y \textit{Confirmar contraseña} coincidan.\\
+\textbf{Condición:} El actor ingreso una contraseña incorrecta que no cumple con la regla de negocio \hyperref[rnrv_03]{RNRV 03}.\\
  \begin{enumerate}[label=D\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que las contraseñas no coinciden.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_01]{MSJE 01}, indicando que el actor ha ingresado datos incorrectos.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa E} \phantomsection\label{cu2_ta_e}\\
-\textbf{Condición:} El actor no ingreso un nombre que cumpla con la longitud establecida en la RNO .\\
+\textbf{Condición:} El acto no ingreso la misma contraseña en los campo \textit{Contraseña} y \textit{Confirmar contraseña} coincidan.\\
  \begin{enumerate}[label=E\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el nombre sobrepasa la longitud máxima.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_04]{MSJE 04}, indicando que las contraseñas no coinciden.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa F} \phantomsection\label{cu2_ta_f}\\
-\textbf{Condición:} El actor ingreso un nombre que contiene carácteres de tipo númericos.\\
+\textbf{Condición:} El actor no ingreso un nombre que cumpla con la longitud establecida en la \hyperref[rnl_02]{RNL 02}.\\
  \begin{enumerate}[label=F\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que el nombre contiene carácteres de tipo númerico.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_05]{MSJE 05}, indicando que el nombre sobrepasa la longitud máxima.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa G} \phantomsection\label{cu2_ta_g}\\
-\textbf{Condición:} El actor no ingreso un apellido que cumpla con la longitud establecida en la RNO .\\
+\textbf{Condición:} El actor ingreso un nombre que contiene símbolos o carácteres de tipo númericos.\\
  \begin{enumerate}[label=G\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que alguno de los apellidos sobrepasa la longitud máxima.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_06]{MSJE 06}, indicando que el nombre contiene carácteres de tipo númerico o símbolos.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa H} \phantomsection\label{cu2_ta_h}\\
-\textbf{Condición:} El actor ingreso un apellido que contiene carácteres de tipo númericos.\\
+\textbf{Condición:} El actor no ingreso un apellido que cumpla con la longitud establecida en la \hyperref[rnl_03]{RNL 03} .\\
  \begin{enumerate}[label=H\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje MSG, indicando que alguno de los apellidos contiene carácteres de tipo númerico.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_05]{MSJE 05}, indicando que alguno de los apellidos sobrepasa la longitud máxima.}
     \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa I} \phantomsection\label{cu2_ta_i}\\
-\textbf{Condición:} El actor selecciono la opción de \textit{¿Has olvidado tu contraseña?}.\\
+\textbf{Condición:} El actor ingreso un apellido que contiene símbolos o carácteres de tipo númericos.\\
  \begin{enumerate}[label=I\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu1_1]{CU 1.1 Recuperar contraseña}} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_06]{MSJE 06}, indicando que el apellido contiene carácteres de tipo númerico o símbolos.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa J} \phantomsection\label{cu2_ta_j}\\
-\textbf{Condición:} El actor selecciono la opción de \textit{¿Ya tienes una cuenta?}.\\
+\textbf{Condición:} El actor ingreso telefóno que no coincide con la longitud establecida en la \hyperref[rnrv_05]{RNRV 05} y \hyperref[rnrv_06]{RNRV 06}.\\
  \begin{enumerate}[label=J\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_07]{MSJE 07}, indicando que la longitud del número celular es inválida.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa K} \phantomsection\label{cu2_ta_k}\\
+\textbf{Condición:} El actor ingreso una fecha de nacimiento que no cumple con la \hyperref[rnrv_04]{RNRV 08}.\\
+ \begin{enumerate}[label=K\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_07]{MSJE 07}, indicando que la longitud del número celular es inválida.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa } \phantomsection\label{cu2_ta_}\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Has olvidado tu contraseña?}.\\
+ \begin{enumerate}[label=\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu1_1]{CU 1.1 Recuperar contraseña}} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa } \phantomsection\label{cu2_ta_}\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Ya tienes una cuenta?}.\\
+ \begin{enumerate}[label=\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \hyperref[cu1]{CU 1 Iniciar sesión.}}\\
     \textit{Fin de trayectoria} \\
 \end{enumerate}

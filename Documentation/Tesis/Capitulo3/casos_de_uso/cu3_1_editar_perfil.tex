@@ -1,42 +1,55 @@
-\subsection{Caso de uso : } \label{cu}
+\subsection{Caso de uso 3.1: Editar perfil} \label{cu3_1}
 \subsubsection{Resumen}
+
 \subsubsection{Descripción}
 \begingroup
 \setlength{\LTleft}{-10cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 \begin{center}
-  \captionof{table}{} \label{tab:cu_tab}
+  \captionof{table}{Caso de uso 3.1: Editar perfil} \label{tab:cu3_1_tab}
   \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
         \hline
-        \textbf{Versión} &  \\
+        \textbf{Versión} &  0.1\\
         \hline 
         \textbf{Autor} & \\
         \hline
-          \textbf{Estatus} & \\
+          \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} &  \\
+          \textbf{Fecha de último estatus} & 31 de marzo de 2017 \\
         \hline
       \multicolumn{2}{c |}{\large{Atributos:}} \\
         \hline
-          \textbf{Actor}  &  \\
+          \textbf{Actor}  &  Usuario y Sub-Usuario\\
         \hline  
-          \textbf{Propósito} &  \\
+          \textbf{Propósito} &  Permite a los actores editar su perfil \\
         \hline
-          \textbf{Disparador} & \\
+          \textbf{Disparador} & Al presionar el botón BTN en la vista IU Perfil\\
         \hline  
           \textbf{Entradas} & \\
         \hline  
-          \textbf{Salidas} &  \\
+          \textbf{Salidas} &  
+		\begin{itemize}
+	              \item Interna: Se mostrará la IU Editar_Perfil
+	        \end{itemize} \\
         \hline  
-          \textbf{Precondiciones} & \\
+          \textbf{Precondiciones} & 
+		\begin{itemize}
+	              \item I\textbf{nterna:} El actor debe estar registrado en el sistema
+	            \end{itemize} \\
         \hline  
-          \textbf{Postcondiciones} & \\
+          \textbf{Postcondiciones} &
+		\begin{itemize}
+	              \item Interna: Se mostrará la IU Editar_Perfil con el cual podrá modificar alguno de sus datos
+	            \end{itemize} \\
         \hline
-          \textbf{Reglas de negocio} & \\
+          \textbf{Reglas de negocio} & 
+		\begin{itemize}
+	         	  \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
+		 \end{itemize} \\
         \hline
           \textbf{Mensajes} & \\
         \hline
-          \textbf{Tipo} & \\
+          \textbf{Tipo} & Secundario\\
         \hline      
   \end{longtable}
 \end{center}
@@ -45,12 +58,19 @@
 \subsubsection{Trayectorias del caso de uso}
 \textbf{Trayectoria principal}
 \begin{enumerate}
-  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
+ \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Consultar perfil}}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Perfil}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Editar perfil}}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Editar_Perfil}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la información del actor}
   \textit{Fin de caso de uso} \\  
 \end{enumerate}
 
-\textbf{Trayectoria alternativa} \phantomsection\label{cu_ta_} \\
+\textbf{Trayectoria alternativa} \phantomsection\label{cu3_3_ta_} \\
 \textbf{Condición:} \\
  \begin{enumerate}[label=\arabic*]
     \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
@@ -60,6 +80,10 @@
 \end{enumerate}
 
 \subsubsection{Puntos de extensión}
-\noindent \textbf{Causa de la extensión:} \\
-\textbf{Región de la trayectoria:} \hyperref[cu_ta_]{Trayectoria alternativa } \\
-\textbf{Extiende a:} \hyperref[cu]{CU}
+\noindent \textbf{Causa de la extensión: El actor, de tipo Usuario o Sub-Usuario, seleccionó \textit{Consultar perfil}} \\
+\textbf{Región de la trayectoria:} \hyperref[cu3_1_ta_]{Trayectoria alternativa } \\
+\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar perfil}
+
+\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{Editar perfil} \\
+\textbf{Región de la trayectoria:} \hyperref[cu3_1_ta_e]{Trayectoria alternativa e} \\
+\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar Perfil}
