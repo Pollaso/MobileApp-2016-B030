@@ -1,6 +1,6 @@
 \subsection{Caso de uso 3: Consultar perfil} \label{cu3}
 \subsubsection{Resumen}
-
+Este caso de uso le permite al actor consultar los datos de su perfil.
 \subsubsection{Descripción}
 \begingroup
 \setlength{\LTleft}{-10cm plus -1fill}
@@ -11,43 +11,35 @@
         \hline
         \textbf{Versión} &  0.1\\
         \hline 
-        \textbf{Autor} & \\
+        \textbf{Autor} & Juan Gerardo Diaz Rodarte y Jorge Armando Porras Velázquez \\
         \hline
           \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} & 31 de marzo de 2017 \\
+          \textbf{Fecha de último estatus} & 3 de abril de 2017 \\
         \hline
       \multicolumn{2}{c |}{\large{Atributos:}} \\
         \hline
           \textbf{Actor}  &  Usuario y Sub-Usuario\\
         \hline  
-          \textbf{Propósito} &  Permite a los actores consultar su perfil \\
+          \textbf{Propósito} &  Permite a los actores consultar su los datos de su perfil. \\
         \hline
           \textbf{Disparador} & Al presionar el botón BTN en la vista IU Inicio\\
         \hline  
-          \textbf{Entradas} & \\
+          \textbf{Entradas} & No hay entradas. \\
         \hline  
-          \textbf{Salidas} &  
-		\begin{itemize}
-	              \item Interna: Se mostrará la IU Perfil
-	        \end{itemize} \\
+          \textbf{Salidas} &  No hay salidas. \\
         \hline  
           \textbf{Precondiciones} & 
 		\begin{itemize}
-	              \item I\textbf{nterna:} El actor debe estar registrado en el sistema
+	              \item \textbf{Interna:} El actor debe estar registrado en el sistema.
+	              \item \textbf{Interna:} El actor debe haber iniciado sesión en el sistema.
 	            \end{itemize} \\
         \hline  
-          \textbf{Postcondiciones} &
-		\begin{itemize}
-	              \item Interna: Se mostrará la IU Perfil con el cual podrá consultar sus datos
-	            \end{itemize} \\
+          \textbf{Postcondiciones} & No hay postcondiciones. \\
         \hline
-          \textbf{Reglas de negocio} & 
-		\begin{itemize}
-	         	  \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
-		 \end{itemize} \\
+          \textbf{Reglas de negocio} & No hay reglas de negocio para aplicarse en este caso de uso. \\
         \hline
-          \textbf{Mensajes} & \\
+          \textbf{Mensajes} & No hay mensajes que se desplieguen en este caso de uso. \\
         \hline
           \textbf{Tipo} & Secundario\\
         \hline      
@@ -59,28 +51,66 @@
 \textbf{Trayectoria principal}
 \begin{enumerate}
  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Principal.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa sus datos y presiona el botón de Iniciar sesión.}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
-\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
-\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
-\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Consultar perfil}}
-\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Perfil}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Perfil} en el menú lateral MN1.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Perfil. [\ref{cu3_ta_a}] [\ref{cu3_ta_b}]}
   \textit{Fin de caso de uso} \\  
 \end{enumerate}
 
-\textbf{Trayectoria alternativa} \phantomsection\label{cu_ta_} \\
-\textbf{Condición:} \\
- \begin{enumerate}[label=\arabic*]
-    \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
-    \item {Continua en el paso 4 de la trayectoria principal.} \\
+\textbf{\textlabel{Trayectoria alternativa A}{cu3_ta_a}} \\
+\textbf{Condición:} El actor presionó el BTN Editar perfil. \\
+ \begin{enumerate}[label=A\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3_1}}.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\subsubsection{Puntos de extensión}
-\noindent \textbf{Causa de la extensión: El actor, de tipo Usuario o Sub-Usuario, seleccionó \textit{Editar perfil}} \\
-\textbf{Región de la trayectoria:} \hyperref[cu3_ta_]{Trayectoria alternativa } \\
-\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar perfil}
+\textbf{\textlabel{Trayectoria alternativa B}{cu3_ta_b}} \\
+\textbf{Condición:} El actor presionó el BTN Modificar documentos. \\
+ \begin{enumerate}[label=B\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3_2}.}} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
 
-\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{Editar perfil} \\
-\textbf{Región de la trayectoria:} \hyperref[cu3_3_ta_e]{Trayectoria alternativa e} \\
-\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar Perfil}
+\textbf{Trayectoria alternativa C} \phantomsection\label{cu3_ta_c} \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Inicio} en el menú lateral MN1. \\
+ \begin{enumerate}[label=C\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Inicio.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa D} \phantomsection\label{cu3_ta_d} \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Sub-Usuarios} en el menú lateral MN1. \\
+ \begin{enumerate}[label=D\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu4}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa E} \phantomsection\label{cu3_ta_e} \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Alertas} en el menú lateral MN1. \\
+ \begin{enumerate}[label=E\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu5}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa F} \phantomsection\label{cu3_ta_f} \\
+\textbf{Condición:} El actor selecciono la opción de \textit{Agregar contacto de emergencía} del menu emergente MN2. \\
+ \begin{enumerate}[label=F\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3_3}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\subsubsection{Puntos de inclusión}
+\noindent \textbf{Causa de la inclusión: El actor presionó el BTN Editar perfil.} \\
+\textbf{Región de la trayectoria:} \ref{cu3_ta_a}\\
+\textbf{Extiende a:} \textbf{\nameref{cu3_1}}
+
+\noindent \textbf{Causa de la inclusión: El actor presionó el BTN Modificar documentos.} \\
+\textbf{Región de la trayectoria:} \ref{cu3_ta_b} \\
+\textbf{Extiende a:} \textbf{\nameref{cu3_2}}
+
+\subsubsection{Puntos de extensión}
+\noindent \textbf{Causa de la extensión:} El actor selecciono la opción de \textit{Agregar contacto de emergencía} del menu emergente MN2. \\
+\textbf{Región de la trayectoria:} \ref{cu3_ta_f} \\
+\textbf{Extiende a:} \textbf{\ref{cu3_3}}

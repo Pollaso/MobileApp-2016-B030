@@ -1,14 +1,15 @@
 \section{Reglas de negocio}
+Las reglas de negocio nos ayudan a delimitar los objetivos de la aplicación en definiciones, restricciones, límitaciones, etc. con el objetivo de poder implementar el sistema de forma más exitosa. A continuación se presentan dichas reglas, donde AM y DDA son abreviaciones para Aplicación Móvil y Dispositivo de Detección de Alcohol respectivamente.
 \subsection{Definiciones}
 El planteamiento de las funcionalidades y/o modulos con los que contara el sistema con base en los objetivos.
   \begin{center}
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-           AM & RND01: Recepción de resultado &  El usuario no podrá visualizar el procesamiento del resultado. \\ \hline
-           AM & RND02: Sms &  El número telefónico con el cual fue registrado el usuario, será al que se le envíe el mensaje. \\ \hline
-           AM & RND03: Ubicación &  La aplicación tendrá el permiso del usuario para mantener activado su GPS. \\ \hline
-           AM & RND04: Estadísticas &  Se registrará el id del usuario, su porcentaje de alcohol detectado y la ubicación del usuario en una tabla, la cual será transparente para el usuario. \\ \\ \hline
+           AM & \textlabel{RND01: Recepción de resultado}{rnd_01} &  El usuario no podrá visualizar el procesamiento del resultado. \\ \hline
+           AM & \textlabel{RND02: Sms}{rnd_02} &  El número telefónico con el cual fue registrado el usuario, será al que se le envíe el mensaje. \\ \hline
+           AM & \textlabel{RND03: Ubicación}{rnd_03} &  La aplicación tendrá el permiso del usuario para mantener activado su GPS. \\ \hline
+           AM & \textlabel{RND04: Estadísticas}{rnd_04} &  Se registrará el id del usuario, su porcentaje de alcohol detectado y la ubicación del usuario en una tabla, la cual será transparente para el usuario. \\ \\ \hline
    \end{tabular}
    \captionof{table}{Definiciones} \label{tab:rnd}
  \end{center}
@@ -19,9 +20,9 @@ Las limitaciones que tiene el sistema con base en los objetivos.
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-           AM & RNR 01: Dispositivo &  Sólo para dispositivos celulares. \\ \hline
-           DDA & RNR 02: Toma de muestra &  La toma de la muestra se obtiene al hacer contacto con el dispositivo. \\ \hline
-           AM & RNR 03: Recepción de resultado &  Se guardará en una relación de la base de datos, el resultado y el porcentaje de alcohol
+           AM & \textlabel{RNR 01: Dispositivo}{rnr_01} &  Sólo para dispositivos celulares. \\ \hline
+           DDA & \textlabel{RNR 02: Toma de muestra}{rnr_02} &  La toma de la muestra se obtiene al hacer contacto con el dispositivo. \\ \hline
+           AM & \textlabel{RNR 03: Recepción de resultado}{rnr_03} &  Se guardará en una relación de la base de datos, el resultado y el porcentaje de alcohol
  obtenido. \\ \hline
    \end{tabular}
    \captionof{table}{Restricciones} \label{tab:rnr}
@@ -33,12 +34,14 @@ Las límitaciones sirven para acotar ciertas las acciones o los datos que el usu
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-          \phantomsection\label{rnl_01} AM & RNL 01: Campos obligatorios & Todos los campos obligatorios deben estar llenos. \\ \hline
-	\phantomsection\label{rnl_02} AM & RNL 02: Símbolos para contraseña & Los símbolos válidos que se pueden usar al generar una contraseña son !''\#\textbackslash\^\_`\{\}\textdollar\%\&'()+,-./:;<=>?@$\mid\sim\ast$. \\ \hline	
-	\phantomsection\label{rnl_03} AM & RNL 03: Nombre(s) & El nombre o los nombres no pueden tener una longitud mayor a los 50 carácteres.  \\ \hline	
-	\phantomsection\label{rnl_04} AM & RNL 04: Apellidos & Un apellido no puede tener una longitud mayor a los 25 carácteres.  \\ \hline
-	\phantomsection\label{rnl_05} AM & RNL 05: Prefijos telefónicos mundiales & Los prefijos telefónicos mundiales válidos estaran limitados a una lista previamente establecida.  \\ \hline
-	\phantomsection\label{rnl_06} AM & RNL 06: Fecha de nacimiento válida & La edad mínima y máxima seran 15 y 110 años antes de la fecha actual respectivamente. \\ \hline
+          AM & \textlabel{RNL 01: Campos obligatorios}{rnl_01} & Todos los campos obligatorios deben estar llenos. \\ \hline
+	AM & \textlabel{RNL 02: Simbolos para contraseña}{rnl_02} & Los símbolos válidos que se pueden usar al generar una contraseña son !''\#\textbackslash\^\_`\{\}\textdollar\%\&'()+,-./:;<=>?@$\mid\sim\ast$. \\ \hline	
+	AM & \textlabel{RNL 03: Nombre(s) }{rnl_03} & El nombre o los nombres no pueden tener una longitud mayor a los 50 carácteres.  \\ \hline	
+	AM & \textlabel{RNL 04: Apellidos}{rnl_04} & Un apellido no puede tener una longitud mayor a los 25 carácteres.  \\ \hline
+	AM & \textlabel{RNL 05: Prefijos telefónicos mundiales}{rnl_05} & Los prefijos telefónicos mundiales válidos estaran limitados a una lista previamente establecida.  \\ \hline
+	AM & \textlabel{RNL 06: Fecha de nacimiento válida}{rnl_06} & La edad mínima y máxima seran 15 y 110 años antes de la fecha actual respectivamente. \\ \hline
+	AM & \textlabel{RNL 07: Tamaño de documento}{rnl_07} & Un documento no puede estar vacio o pesar más de 5 MiB. \\ \hline
+	AM & \textlabel{RNL 08: Liga electrónica de un documento}{rnl_08} & La liga electrónica para un documento debe de ser de Dropbox o de Google Drive. \\ \hline
    \end{tabular}
       \captionof{table}{Limitaciones} \label{tab:rnl}
  \end{center}
@@ -49,14 +52,16 @@ Las reglas de validación sirven para comprobar que la información ingresada se
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-       \phantomsection\label{rnrv_01} AM & RNRV 01: Cuenta válida & Los datos ingresados serán válidados con aquellos en la base de datos. \\ \hline
-       \phantomsection\label{rnrv_02} AM & RNRV 02: Dirección de correo electrónico válido &  La dirección de correo electrónico debe tener mínimo 6 carácteres, puntos o alfanúmericos, seguido de un arroba (@) y el dominio. \\ \hline
-       \phantomsection\label{rnrv_03} AM & RNRV 03: Contraseña válida &  La contraseña debe ser de una longitud mínima de 8 carácteres y tener como mínimo una letra mayúscula, una minúscula, un número y un símbolo válido de acuerdo a la \hyperref[rnl_01]{RNL}. \\ \hline
-       \phantomsection\label{rnrv_04} AM & RNRV 04: Nombre(s) y Apellidos válidos &  El nombre o los nombres y apelldos deben tener solamente carácteres alfabéticos y cumplir con la longitud establecida en la \hyperref[rnl_02]{RNL 02} y \hyperref[rnl_02]{RNL 03} respectivamente. \\ \hline
-       \phantomsection\label{rnrv_05} AM & RNRV 05: Telefóno méxicano & Un telefóno méxicano esta compuesto de diez dígitos, los primeros dos o tres corresponden al código de larga distancia (LADA) y los demas al telefóno celular.  \\ \hline
-       \phantomsection\label{rnrv_06} AM & RNRV 06: Telefóno estadounidense & Un telefóno estadounidense esta compuesto de diez dígitos, tres corresponden al código de área y los demas al telefóno celular.  \\ \hline
-       \phantomsection\label{rnrv_07} AM & RNRV 07: Prefijo telefónico mundial y telefóno válido & Un telefóno estadounidense esta compuesto de diez dígitos, tres corresponden al código de área y los demas al telefóno celular.  \\ \hline
-       \phantomsection\label{rnrv_08} AM & RNRV 08: Fecha de nacimiento válida & La fecha de nacimiento debe cumplir con la RNL 06.  \\ \hline
+       AM & \textlabel{RNRV 01: Cuenta válida}{rnrv_01} & Los datos ingresados serán válidados con aquellos en la base de datos. \\ \hline
+       AM & \textlabel{RNRV 02: Dirección de correo electrónico válido}{rnrv_02} &  La dirección de correo electrónico debe tener mínimo 6 carácteres, puntos o alfanúmericos, seguido de un arroba (@) y el dominio. \\ \hline
+       AM & \textlabel{RNRV 03: Contraseña válida}{rnrv_03} &  La contraseña debe ser de una longitud mínima de 8 carácteres y tener como mínimo una letra mayúscula, una minúscula, un número y un símbolo válido de acuerdo a la \textbf{\ref{rnl_02}}. \\ \hline
+       AM & \textlabel{RNRV 04: Nombre(s) y Apellidos válidos}{rnrv_04} &  El nombre o los nombres y apelldos deben tener solamente carácteres alfabéticos y cumplir con la longitud establecida en la \textbf{\ref{rnl_03}} y \textbf{\ref{rnl_04}} respectivamente. \\ \hline
+       AM & \textlabel{RNRV 05: Telefóno méxicano válido}{rnrv_05} & Un telefóno méxicano esta compuesto de diez dígitos, los primeros dos o tres corresponden al código de larga distancia (LADA) y los demas al telefóno celular.  \\ \hline
+       AM & \textlabel{RNRV 06: Telefóno estadounidense válido}{rnrv_06} & Un telefóno estadounidense esta compuesto de diez dígitos, tres corresponden al código de área y los demas al telefóno celular.  \\ \hline
+       AM & \textlabel{RNRV 07: Prefijo telefónico mundial y telefóno válido}{rnrv_07} & Un telefóno estadounidense esta compuesto de diez dígitos, tres corresponden al código de área y los demas al telefóno celular.  \\ \hline
+       AM & \textlabel{RNRV 08: Fecha de nacimiento válida}{rnrv_08} & La fecha de nacimiento debe cumplir con la \textbf{\ref{rnl_06}}.  \\ \hline
+       AM & \textlabel{RNRV 09: Códigos de confirmación válidos}{rnrv_09} & El código de confirmación para un correo eletrónico será de 4 digitos alfanúmericos y el de teléfono celular será de acuerdo con el provedor de servicio de confirmación.  \\ \hline
+       AM & \textlabel{RNRV 10: Documentos válidos}{rnrv_10} & Un documento válido debe se cumplir con la \textbf{\ref{rnl_07} y \textbf{\ref{rnl_08}}}.  \\ \hline
    \end{tabular}
       \captionof{table}{Reglas de validación} \label{tab:rnrv}
  \end{center}
@@ -88,8 +93,10 @@ Los permisos necesarios que se necesitarán para ejectuar ciertos procesos en el
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-        AM & RNRP 01: Usuario registrado & Una ves que los datos del usuario sean válidados su cuenta pasara a un estado de `pendiente' con acceso límitado. \\ \hline
-        AM & RNRP 01: Usuario válidado & Cuando el usuario confirme tanto su telefóno como su dirección de correo electrónico su cuenta pasara a un estado de `válida' y se le otorgaran acceso completo al sistema. \\ \hline
+        AM & \textlabel{RNRP 01: Usuario registrado}{rnrp_01} & Una ves que los datos del usuario sean válidados su cuenta pasara a un estado de `pendiente' con acceso límitado. \\ \hline
+        AM & \textlabel{RNRP 02: Correo electrónico válidado}{rnrp_02} & Cuando el usuario confirme su dirección de correo electrónico este pasara a un estado de`válidado'. \\ \hline
+        AM & \textlabel{RNRP 03: Teléfono válidado}{rnrp_03} & Cuando el usuario confirme su telefóno este pasara a un estado de `válidado'. \\ \hline
+        AM & \textlabel{RNRP 05: Usuario válidado}{rnrp_04} & Cuando el usuario confirme tanto su telefóno como su dirección de correo electrónico su cuenta pasara a un estado de `válida' y se le otorgaran acceso completo al sistema. \\ \hline
    \end{tabular}
       \captionof{table}{Reglas de proceso} \label{tab:rnrp}
  \end{center}

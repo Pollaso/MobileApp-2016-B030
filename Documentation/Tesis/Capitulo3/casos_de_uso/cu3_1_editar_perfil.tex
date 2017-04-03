@@ -1,6 +1,6 @@
 \subsection{Caso de uso 3.1: Editar perfil} \label{cu3_1}
 \subsubsection{Resumen}
-
+Este caso de uso le permite al actor editar los datos de su perfil.
 \subsubsection{Descripción}
 \begingroup
 \setlength{\LTleft}{-10cm plus -1fill}
@@ -11,43 +11,76 @@
         \hline
         \textbf{Versión} &  0.1\\
         \hline 
-        \textbf{Autor} & \\
+        \textbf{Autor} & Juan Geraro Diaz Rodarte y Jorge Armando Porras Velázquez \\
         \hline
           \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} & 31 de marzo de 2017 \\
+          \textbf{Fecha de último estatus} &  3 de abril de 2017 \\
         \hline
       \multicolumn{2}{c |}{\large{Atributos:}} \\
         \hline
           \textbf{Actor}  &  Usuario y Sub-Usuario\\
         \hline  
-          \textbf{Propósito} &  Permite a los actores editar su perfil \\
+          \textbf{Propósito} &  Permite a los actores editar su perfi.l \\
         \hline
-          \textbf{Disparador} & Al presionar el botón BTN en la vista IU Perfil\\
+          \textbf{Disparador} & Al presionar el botón BTN Editar Perfil en la vista IU Perfil. \\
         \hline  
-          \textbf{Entradas} & \\
+          \textbf{Entradas} & 
+             \begin{itemize}
+              \item \textbf{Correo electrónico}: Se escribe con el teclado.
+              \item \textbf{Contraseña}: Se escribe con el teclado.
+              \item \textbf{Confirmar contraseña}: Se escribe con el teclado.
+              \item \textbf{Nombre(s)}: Se escribe con el teclado.
+              \item \textbf{Apellido Paterno}: Se escribe con el teclado.
+              \item \textbf{Apellido Materno}: Se escribe con el teclado.
+              \item \textbf{Telefóno}: Se ingresa el código de país con un selector y el número con el teclado.
+              \item \textbf{Fecha de nacimiento}: Se selecciona el año, mes y día con un selector.
+            \end{itemize} \\
         \hline  
           \textbf{Salidas} &  
-		\begin{itemize}
-	              \item Interna: Se mostrará la IU Editar_Perfil
-	        \end{itemize} \\
+  	  \begin{itemize}
+  	    \item \textbf{\ref{msjn_05}}
+	  \end{itemize} \\
         \hline  
           \textbf{Precondiciones} & 
 		\begin{itemize}
-	              \item I\textbf{nterna:} El actor debe estar registrado en el sistema
+	              \item \textbf{Interna:} El actor debe estar registrado en el sistema.
+	              \item \textbf{Interna:} El actor debe haber iniciado sesión en el sistema.
 	            \end{itemize} \\
         \hline  
           \textbf{Postcondiciones} &
-		\begin{itemize}
-	              \item Interna: Se mostrará la IU Editar_Perfil con el cual podrá modificar alguno de sus datos
-	            \end{itemize} \\
+	\begin{itemize}
+              \item \textbf{Interna:} Los cambios realizados por el usuario se guardarán.
+	\end{itemize} \\
         \hline
           \textbf{Reglas de negocio} & 
-		\begin{itemize}
-	         	  \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
-		 \end{itemize} \\
+	\begin{itemize}
+               \item \textbf{\ref{rnl_01}}
+               \item \textbf{\ref{rnl_02}}
+               \item \textbf{\ref{rnl_03}}
+               \item \textbf{\ref{rnl_04}}
+               \item \textbf{\ref{rnl_05}}
+               \item \textbf{\ref{rnl_06}}
+               \item \textbf{\ref{rnrv_02}}
+               \item \textbf{\ref{rnrv_03}}
+               \item \textbf{\ref{rnrv_04}}
+               \item \textbf{\ref{rnrv_05}}
+               \item \textbf{\ref{rnrv_06}}
+               \item \textbf{\ref{rnrv_07}}
+               \item \textbf{\ref{rnrv_08}}
+	 \end{itemize} \\
         \hline
-          \textbf{Mensajes} & \\
+          \textbf{Mensajes} &  
+              \begin{itemize}
+                 \item \textbf{\ref{msja_01}}
+                 \item \textbf{\ref{msje_02}}
+                 \item \textbf{\ref{msje_03}}
+                 \item \textbf{\ref{msje_04}}
+                 \item \textbf{\ref{msje_05}}
+                 \item \textbf{\ref{msje_06}}
+                 \item \textbf{\ref{msje_07}}
+                 \item \textbf{\ref{msje_08}}
+              \end{itemize}\\
         \hline
           \textbf{Tipo} & Secundario\\
         \hline      
@@ -59,31 +92,140 @@
 \textbf{Trayectoria principal}
 \begin{enumerate}
  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil.}
-\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Principal.}
 \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
-\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Consultar perfil}}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el actor la opción de \textit{Consultar perfil}}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Perfil}
-\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Editar perfil}}
-\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Editar_Perfil}
-\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la información del actor}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el actor el BTN Editar Perfil }
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se habilida la opción de IU Editar Perfil}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la información del actor en campos de edición.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor modifica los campos que desea.}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón para guardar sus cambios.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que cumpla con la \textbf{\ref{rnr_04}}. \textbf{\ref{cu3_1_ta_a}}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo electrónico cumpla con la \textbf{\ref{rnrv_02}}. [\ref{cu3_1_ta_b}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña cumpla con la \textbf{\ref{rnrv_03}}. [\ref{cu3_1_ta_c}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña de confirmación coincida con la contrasea ingresada. [\ref{cu3_1_ta_d}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el nombre cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu3_1_ta_e}] [\ref{cu3_1_ta_f}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu3_1_ta_g}] [\ref{cu3_1_ta_h}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu3_1_ta_g}] [\ref{cu3_1_ta_h}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el teléfono sea válido. [\ref{cu3_1_ta_i}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la fecha de nacimiento cumpla con la \textbf{\ref{=rnrv_08}}. [\ref{cu3_1_ta_j}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje \textbf{\ref{msjn_04}} que indica el registro exitoso al sistema.}
   \textit{Fin de caso de uso} \\  
 \end{enumerate}
 
-\textbf{Trayectoria alternativa} \phantomsection\label{cu3_3_ta_} \\
-\textbf{Condición:} \\
- \begin{enumerate}[label=\arabic*]
-    \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
-    \item {Continua en el paso 4 de la trayectoria principal.} \\
+\textbf{\textlabel{Trayectoria alternativa A}{cu3_1_ta_a}} \\
+\textbf{Condición:} El actor no proporcionó la información requerida, rompiendo la regla de negocio \textbf{\ref{rnl_01}}.\\
+ \begin{enumerate}[label=A\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msja_01}}, indicando que el actor ha dejado campos en blanco.}
+    \item {Continua en el paso 10  de la trayectoria principal.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\subsubsection{Puntos de extensión}
-\noindent \textbf{Causa de la extensión: El actor, de tipo Usuario o Sub-Usuario, seleccionó \textit{Consultar perfil}} \\
-\textbf{Región de la trayectoria:} \hyperref[cu3_1_ta_]{Trayectoria alternativa } \\
-\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar perfil}
+\textbf{\textlabel{Trayectoria alternativa B}{cu3_1_ta_b}} \\
+\textbf{Condición:} El actor no ingreso una dirección de correo electrónico que cumpla con la regla de negocio \textbf{\ref{rnrv_02}}.\\
+ \begin{enumerate}[label=B\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_02}}, indicando que la dirección de correo electrónico no es válida.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
 
-\noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{Editar perfil} \\
-\textbf{Región de la trayectoria:} \hyperref[cu3_1_ta_e]{Trayectoria alternativa e} \\
-\textbf{Extiende a:} \hyperref[cu3]{CU 3 Consultar Perfil}
+\textbf{\textlabel{Trayectoria alternativa C}{cu3_1_ta_c}} \\
+\textbf{Condición:} El actor ingreso una contraseña incorrecta que no cumple con la regla de negocio \textbf{\ref{rnrv_03}}.\\
+ \begin{enumerate}[label=C\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_01}}, indicando que el actor ha ingresado datos incorrectos.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa D}{cu3_1_ta_d}} \\
+\textbf{Condición:} El acto no ingreso la misma contraseña en los campo \textit{Contraseña} y \textit{Confirmar contraseña} coincidan.\\
+ \begin{enumerate}[label=D\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_04}}, indicando que las contraseñas no coinciden.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+ 
+\textbf{\textlabel{Trayectoria alternativa E}{cu3_1_ta_e}} \\
+\textbf{Condición:} El actor no ingreso un nombre que cumpla con la longitud establecida en la \textbf{\ref{rnl_03}}.\\
+ \begin{enumerate}[label=E\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_05}}, indicando que el nombre sobrepasa la longitud máxima.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa F}{cu3_1_ta_f}} \\
+\textbf{Condición:} El actor ingreso un nombre que contiene símbolos o carácteres de tipo númericos.\\
+ \begin{enumerate}[label=F\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_06}}, indicando que el nombre contiene carácteres de tipo númerico o símbolos.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa G}{cu3_1_ta_g}} \\
+\textbf{Condición:} El actor no ingreso un apellido que cumpla con la longitud establecida en la \textbf{\ref{rnl_04}} .\\
+ \begin{enumerate}[label=G\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_05}}, indicando que alguno de los apellidos sobrepasa la longitud máxima.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa H}{cu3_1_ta_h}} \\
+\textbf{Condición:} El actor ingreso un apellido que contiene símbolos o carácteres de tipo númericos.\\
+ \begin{enumerate}[label=H\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_06]{MSJE 06}, indicando que el apellido contiene carácteres de tipo númerico o símbolos.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa I}{cu3_1_ta_i}} \\
+\textbf{Condición:} El actor ingreso teléfono que no coincide con la longitud establecida en la \hyperref[rnrv_05]{RNRV 05} y \hyperref[rnrv_06]{RNRV 06} ó \hyperref[rnrv_07]{RNRV 07} .\\
+ \begin{enumerate}[label=I\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_07}}, indicando que la longitud del número celular es inválida.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa J}{cu3_1_ta_j}} \\
+\textbf{Condición:} El actor ingreso una fecha de nacimiento que no cumple con la \textbf{\ref{rnrv_08}}.\\
+ \begin{enumerate}[label=J\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_07}}, indicando que la longitud del número celular es inválida.}
+    \item {Continua en el paso 10 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\    
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa K}{cu3_1_ta_k}} \\
+\textbf{Condición:} El actor presionó el BTN Desactivar cuenta. \\
+ \begin{enumerate}[label=K\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3_1_1}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa L}{cu3_1_ta_l}} \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Inicio} en el menú lateral MN1. \\
+ \begin{enumerate}[label=L\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Inicio.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa M}{cu3_1_ta_m}} \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Perfil} en el menú lateral MN1. \\
+ \begin{enumerate}[label=M\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa N}{cu3_1_ta_n}} \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Sub-Usuarios} en el menú lateral MN1. \\
+ \begin{enumerate}[label=N\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu4}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa O}{cu3_1_ta_o}} \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Alertas} en el menú lateral MN1. \\
+ \begin{enumerate}[label=O\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu5}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}

@@ -1,3 +1,4 @@
+% !TEX encoding = UTF-8 Unicode
 \documentclass[fontsize=11pt, paper=A4, pagesize=auto, oneside]{book}
 \usepackage[utf8]{inputenc}
 \usepackage[spanish,mexico]{babel}
@@ -14,7 +15,14 @@
 \usepackage{enumitem}
 \usepackage[toc]{glossaries}
 \usepackage{caption}
-\usepackage[utf8]{inputenc}
+
+\makeatletter
+\newcommand*{\textlabel}[2]{%
+  \edef\@currentlabel{#1}% Set target label
+  \phantomsection% Correct hyper reference link
+  #1\label{#2}% Print and store label
+}
+\makeatother
 
 \begin{document}
 	\renewcommand{\bibname}{Referencias}
@@ -37,18 +45,18 @@
 	% Capitulo 2: Estado del Arte
 	\include{Capitulo2/capitulo2}
 	\subfile{Capitulo2/alcoholemia}
-	\subfile{Capitulo2/comparacion}
+	%\subfile{Capitulo2/comparacion}
 	
 	% Capitulo3
 	\include{Capitulo3/capitulo3}
 	\subfile{Capitulo3/herramientas}
 	\subfile{Capitulo3/requerimientos}
-	\subfile{Capitulo3/funcionales}
-	\subfile{Capitulo3/no_funcionales}
-	\subfile{Capitulo3/riesgos}
+	\include{Capitulo3/funcionales}
+	\include{Capitulo3/no_funcionales}
+	\include{Capitulo3/riesgos}
 	\subfile{Capitulo3/diagramas_casos_de_uso}
-	\subfile{Capitulo3/casos_de_uso}
-	\subfile{Capitulo3/reglas_de_negocio}
+	\include{Capitulo3/casos_de_uso}
+	\include{Capitulo3/reglas_de_negocio}
 	\subfile{Capitulo3/mensajes}
 	
 	% Capitulo4

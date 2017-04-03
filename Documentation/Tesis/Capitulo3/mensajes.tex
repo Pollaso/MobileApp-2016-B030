@@ -1,18 +1,21 @@
 \section{Mensajes}
-Los mensajes nos ayudaran a informarle al actor de los errores, advertencias, confirmaciones o restricciones. Algunos de los mensajes que se mostraran a continuación contendran palabras en italicas, que seran los parametros que requieren para formarse. Esto con el proposito de poder usar algunos de estos mensajes de forma dinamica y contar con la menor redundancia posible entre el texto similares.
+Los mensajes nos ayudaran a informarle al actor de los errores, advertencias, confirmaciones o restricciones. Algunos de los mensajes que se mostraran a continuación contendran palabras en italicas, que seran los parametros que requieren para formarse. Esto con el proposito de poder usar algunos de estos mensajes de forma dinamica y contar con la menor redundancia posible entre el texto similares.  A continuación se presentan dichos mensajes en forma de tabla, donde AM y DDA son abreviaciones para Aplicación Móvil y Dispositivo de Detección de Alcohol respectivamente.
 \subsection{Errores}
   \begin{center}
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-           \phantomsection\label{msje_01} AM & MSJE 01: Datos inválidos & Los datos ingresados son incorrectos. \\ \hline
-           \phantomsection\label{msje_02} AM & MSJE 02: Correo electrónico inválido & Ingrese un correo electrónico válido. \\ \hline
-           \phantomsection\label{msje_03} AM & MSJE 03: Contraseña inválida & Ingrese una contraseña válida. \\ \hline
-           \phantomsection\label{msje_04} AM & MSJE 04: Contraseñas no coinciden & Las contraseñas no coinciden.\\ \hline
-           \phantomsection\label{msje_05} AM & MSJE 05: Longitud de \textit{campo} excedida & La longitud de \textit{longitud máxima de campo} ha sido excedida. \\ \hline
-           \phantomsection\label{msje_06} AM & MSJE 06: \textit{Campo} contiene símbolos o números & No se puede ingresar carácteres que no sean alfabéticos.\\ \hline
-           \phantomsection\label{msje_07} AM & MSJE 07: Telefóno celular inválido & El telefóno ingresado no coincide los \textit{longitud de número telefónico requerida} dígitos que corresponde al país \textit{nombre del país}.\\ \hline
-           \phantomsection\label{msje_08} AM & MSJE 08: Fecha de nacimiento inválida & No cumples con la edad para ser registrado en esta plataforma.\\ \hline
+           AM & \textlabel{MSJE 01: Datos inválidos}{msje_01} & Los datos ingresados son incorrectos. \\ \hline
+           AM & \textlabel{MSJE 02: Correo electrónico inválido}{msje_02} & Ingrese un correo electrónico válido. \\ \hline
+           AM & \textlabel{MSJE 03: Contraseña inválida}{msje_03} & Ingrese una contraseña válida. \\ \hline
+           AM & \textlabel{MSJE 04: Contraseñas no coinciden}{msje_04} & Las contraseñas no coinciden.\\ \hline
+           AM & \textlabel{MSJE 05: Longitud de [campo] excedida}{msje_05} & La longitud de [longitud máxima de campo] ha sido excedida. \\ \hline
+           AM & \textlabel{MSJE 06: [Campo] contiene simbolos o números}{msje_06} & No se puede ingresar carácteres que no sean alfabéticos.\\ \hline
+           AM & \textlabel{MSJE 07: Telefóno celular inválido}{msje_07} & El telefóno ingresado no coincide los [longitud de número telefónico requerida] dígitos que corresponde al país [nombre del país].\\ \hline
+           AM & \textlabel{MSJE 08: Fecha de nacimiento inválida}{msje_08} & No cumples con la edad para ser registrado en esta plataforma.\\ \hline
+           AM & \textlabel{MSJE 09: Código inválido}{msje_09} & El código ingresado es inválido. Intenta de nuevo.\\ \hline
+           AM & \textlabel{MSJE 10: Documento inválido}{msje_10} & El documento que intenta agregar no cumple con el tamaño adecuado. Intenta de nuevo.\\ \hline
+           AM & \textlabel{MSJE 11: Documento inválido}{msje_11} & El documento que intenta agregar no cuenta con una liga electrónica válida. Intenta de nuevo.\\ \hline
    \end{tabular}
    \captionof{table}{Enfoque} \label{tab:msje}
  \end{center}  
@@ -22,11 +25,7 @@ Los mensajes nos ayudaran a informarle al actor de los errores, advertencias, co
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-       	\phantomsection\label{msja_01} AM & MSJA 01: Campos en blanco & Rellene todos los campos solicitados.\\ \hline
-       	\phantomsection\label{msja_} AM & MSJA 02 & \\ \hline
-       	\phantomsection\label{msja_} AM & MSJA 03 & \\ \hline
-       	\phantomsection\label{msja_} AM & MSJA 04 & \\ \hline
-       	\phantomsection\label{msja_} AM & MSJA 05 & \\ \hline
+       	AM & \textlabel{MSJA 01: Campos en blanco}{msja_01} & Rellene todos los campos solicitados.\\ \hline
    \end{tabular}
    \captionof{table}{Advertencias} \label{tab:msja}
  \end{center}  
@@ -36,11 +35,8 @@ Los mensajes nos ayudaran a informarle al actor de los errores, advertencias, co
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-       \phantomsection\label{msjc_} AM & MSJC 01 & \\ \hline
-       \phantomsection\label{msjc_} AM & MSJC 02 & \\ \hline
-       \phantomsection\label{msjc_} AM & MSJC 03 & \\ \hline
-       \phantomsection\label{msjc_} AM & MSJC 04 & \\ \hline
-       \phantomsection\label{msjc_} AM & MSJC 05 & \\ \hline
+       AM & \textlabel{MSJC 01: Nuevo código}{msjc_01} & ¿Desea recibir un nuevo código de confirmación?\\ \hline
+       AM & \textlabel{MSJC 02: Eliminar documento}{msjc_02} & ¿Desea eliminar el documento [nombre del documento]?\\ \hline
    \end{tabular}
    \captionof{table}{Confirmaciones} \label{tab:msjc}
  \end{center}  
@@ -50,11 +46,14 @@ Los mensajes nos ayudaran a informarle al actor de los errores, advertencias, co
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
-       \phantomsection\label{msjn_01} AM & MSJN 01: Mensaje enviado & Se le ha enviado un correo electrónico para recuperar sus contrasea.  \\ \hline
-       \phantomsection\label{msjn_} AM & MSJN 02 & \\ \hline
-       \phantomsection\label{msjn_} AM & MSJN 03 & \\ \hline
-       \phantomsection\label{msjn_} AM & MSJN 04 & \\ \hline
-       \phantomsection\label{msjn_} AM & MSJN 05 & \\ \hline
+       AM & \textlabel{MSJN 01: Mensaje enviado}{msjn_01} & Se le ha enviado un correo electrónico para recuperar sus contrasea.  \\ \hline
+       AM & \textlabel{MSJN 02: Código enviado}{msjn_02} & Se le ha enviado un nuevo código de confirmación.\\ \hline
+       AM & \textlabel{MSJN 03: Confirmación exitosa}{msjn_03} & Su [medio de comunicación] ha sido confirmado de forma exitosa.\\ \hline
+       AM & \textlabel{MSJN 04: Registro exitoso}{msjn_04} & El registro se ha procesado de forma exitosa. \\ \hline
+       AM & \textlabel{MSJN 05: Cambios guardados}{msjn_05} & Se han guardado de forma exitosa los cambios a su perfil. \\ \hline
+       AM & \textlabel{MSJN 06: Contacto guardado}{msjn_06} & El contacto de emergencia ha sido agregado exitosamente. \\ \hline
+       AM & \textlabel{MSJN 07: [Nombre de documento] agregado}{msjn_07} & El [nombre de documento] ha sido agregado exitosamente. \\ \hline
+       AM & \textlabel{MSJN 08: [Nombre de documento] eliminado}{msjn_08} & El [nombre de documento] ha sido eliminado exitosamente. \\ \hline
    \end{tabular}
    \captionof{table}{Notificaciones} \label{tab:msjn}
  \end{center}  
