@@ -1,0 +1,74 @@
+\subsection{Caso de uso 6.1: Ver alerta} \label{cu6_1}
+\subsubsection{Resumen}
+Este caso de uso le permite al actor consultar una alerta especifica.
+\subsubsection{Descripción}
+\begingroup
+\setlength{\LTleft}{-10cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{center}
+  \captionof{table}{Caso de uso 6.1: Ver alerta} \label{tab:cu6_1}
+  \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
+        \hline
+        \textbf{Versión} &  0.1\\
+        \hline 
+        \textbf{Autor} & Juan Gerardo Diaz Rodarte \\
+        \hline
+          \textbf{Estatus} & Edición \\
+        \hline  
+          \textbf{Fecha de último estatus} & 3 de abril de 2017 \\
+        \hline
+      \multicolumn{2}{c |}{\large{Atributos:}} \\
+        \hline
+          \textbf{Actor}  &  Usuario y Sub-Usuario\\
+        \hline  
+          \textbf{Propósito} &  Permite a los actores consultar una alerta especifica. \\
+        \hline
+          \textbf{Disparador} & Al seleccionar una alerta en la vista IU Alertasl. \\
+        \hline  
+          \textbf{Entradas} & No hay entradas. \\
+        \hline  
+          \textbf{Salidas} &  No hay salidas. \\
+        \hline  
+          \textbf{Precondiciones} & 
+		\begin{itemize}
+	              \item \textbf{Interna:} El actor debe estar registrado en el sistema.
+	              \item \textbf{Interna:} El actor debe haber iniciado sesión en el sistema.
+	            \end{itemize} \\
+        \hline  
+          \textbf{Postcondiciones} & No hay postcondiciones. \\
+        \hline
+          \textbf{Reglas de negocio} & No hay reglas de negocio para aplicarse en este caso de uso. \\
+        \hline
+          \textbf{Mensajes} & No hay mensajes que se desplieguen en este caso de uso. \\
+        \hline
+          \textbf{Tipo} & Secundario\\
+        \hline      
+  \end{longtable}
+\end{center}
+\endgroup
+
+\subsubsection{Trayectorias del caso de uso}
+\textbf{Trayectoria principal}
+\begin{enumerate}
+ \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Principal.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa sus datos y presiona el botón de Iniciar sesión.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Hogar.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Alertas} en el menú lateral MN1.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Alertas.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor selecciona una de las alertas.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la alerta en un cuadro de dialogo.}
+  \textit{Fin de caso de uso} \\  
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa A}{cu6_ta_a}} \\
+\textbf{Condición:} El actor presiona el botón de \textit{Enviar mensaje}. \\
+ \begin{enumerate}[label=A\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu6_1_1}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\subsubsection{Puntos de extensión}
+\noindent \textbf{Causa de la extensión:}  El actor presiona el botón de \textit{Enviar mensaje}. \\
+\textbf{Región de la trayectoria:} \ref{cu6_1_ta_a} \\
+\textbf{Extiende a:} \textbf{\ref{cu6_1_1}}
