@@ -36,6 +36,8 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
               \item \textbf{Apellido Materno}: Se escribe con el teclado.
               \item \textbf{Telefóno}: Se ingresa el código de país con un selector y el número con el teclado.
               \item \textbf{Fecha de nacimiento}: Se selecciona el año, mes y día con un selector.
+              \item \textbf{Clave serial de dispositivo}: Se escribe con el teclado.
+              \item \textbf{Vehículo}: Se selecciona de un selector.
             \end{itemize} \\
         \hline	
           \textbf{Salidas} &  
@@ -61,6 +63,7 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
                \item \textbf{\ref{rnl_04}}
                \item \textbf{\ref{rnl_05}}
                \item \textbf{\ref{rnl_06}}
+               \item \textbf{\ref{rnl_09}}
                \item \textbf{\ref{rnrv_02}}
                \item \textbf{\ref{rnrv_03}}
                \item \textbf{\ref{rnrv_04}}
@@ -68,6 +71,8 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
                \item \textbf{\ref{rnrv_06}}
                \item \textbf{\ref{rnrv_07}}
                \item \textbf{\ref{rnrv_08}}
+               \item \textbf{\ref{rnrv_11}}
+               \item \textbf{\ref{rnrv_12}}
              \end{itemize} \\
         \hline
            \textbf{Mensajes} & 
@@ -98,7 +103,7 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestar la vista IU Registro.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa los campos requeridos.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón para solicitar su registro al sistema.}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \hyperref[rnr_04]{RNR 04}. \hyperref[cu2_ta_b]{[Trayectoria alternativa B]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el usuario haya ingresado la información requerida como establecido en la \textbf{\ref{rnl_01}}. \hyperref[cu2_ta_b]{[Trayectoria alternativa B]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la dirección de correo electrónico cumpla con la \textbf{\ref{rnrv_02}}. \hyperref[cu2_ta_c]{[Trayectoria alternativa C]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña cumpla con la \textbf{\ref{rnrv_03}}. \hyperref[cu2_ta_d]{[Trayectoria alternativa D]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la contraseña de confirmación coincida con la contrasea ingresada. \hyperref[cu2_ta_e]{[Trayectoria alternativa E]}}
@@ -106,13 +111,15 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la \textbf{\ref{rnrv_04}}. \hyperref[cu2_ta_h]{[Trayectoria alternativa H]} \hyperref[cu2_ta_i]{[Trayectoria alternativa I]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la \textbf{\ref{rnrv_04}}. \hyperref[cu2_ta_h]{[Trayectoria alternativa H]} \hyperref[cu2_ta_i]{[Trayectoria alternativa I]}}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el teléfono sea válido. \hyperref[cu2_ta_j]{[Trayectoria alternativa J]}}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la fecha de nacimiento cumpla con la \textbf{\ref{=rnrv_08}}. \hyperref[cu2_ta_k]{[Trayectoria alternativa K]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la fecha de nacimiento cumpla con la \textbf{\ref{rnrv_08}}. \hyperref[cu2_ta_k]{[Trayectoria alternativa K]}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que la clave serial cumpla con la \textbf{\ref{rnrv_11}}. [\textbf{\ref{cu2_ta_l}}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el vehículo seleccionado cumpla con la \textbf{\ref{rnrv_11}}. [\textbf{\ref{cu2_ta_m}}]}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje \textbf{\ref{msjn_04}} que indica el registro exitoso al sistema.}
   \item {\includegraphics[scale=.1]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Confirma tu teléfono.}\\
   \textit{Fin de caso de uso} \\	
 \end{enumerate}
 
-\textbf{Trayectoria alternativa A} \phantomsection\label{cu2_ta_a} \\
+0\textbf{Trayectoria alternativa A} \phantomsection\label{cu2_ta_a} \\
 \textbf{Condición:} El actor presiona la opción de \textit{Iniciar sesión}.\\
  \begin{enumerate}[label=A\arabic*]
   \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
@@ -201,25 +208,41 @@ Este caso de uso le permite al usuario registrarse en el sistema proporcionando 
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{Trayectoria alternativa L} \phantomsection\label{cu2_ta_l}\\
-\textbf{Condición:} El actor selecciono la opción de \textit{¿Has olvidado tu contraseña?}.\\
+\textbf{\textlabel{Trayectoria alternativa L}{cu2_ta_l}}\\
+\textbf{Condición:} El actor ingreso una clave serial que no cumple con la \textbf{\ref{rnrv_11}}.\\
  \begin{enumerate}[label=L\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_12}}, indicando que la longitud del número celular es inválida.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa M}{cu2_ta_m}}\\
+\textbf{Condición:} El actor selecciono un vehículo que no cumple con la \textbf{\ref{rnrv_12}}.\\
+ \begin{enumerate}[label=M\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_13}}, indicando que la longitud del número celular es inválida.}
+    \item {Continua en el paso 5 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{\textlabel{Trayectoria alternativa N}{cu2_ta_n}}\\
+\textbf{Condición:} El actor selecciono la opción de \textit{¿Has olvidado tu contraseña?}.\\
+ \begin{enumerate}[label=N\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \nameref{cu1_1}} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{Trayectoria alternativa M} \phantomsection\label{cu2_ta_m}\\
+\textbf{\textlabel{Trayectoria alternativa O}{cu2_ta_o}}\\
 \textbf{Condición:} El actor selecciono la opción de \textit{¿Ya tienes una cuenta?}.\\
- \begin{enumerate}[label=M\arabic*]
+ \begin{enumerate}[label=O\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \nameref{cu1}}\\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \subsubsection{Puntos de extensión}
 \noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Has olvidado tu contraseña?} \\
-\textbf{Región de la trayectoria:} \hyperref[cu2_ta_l]{Trayectoria alternativa L} \\
+\textbf{Región de la trayectoria:} \textbf{\ref{cu2_ta_n}} \\
 \textbf{Extiende a:} \nameref{cu1_1} \\ \par
 
 \noindent \textbf{Causa de la extensión:} El actor, de tipo de Usuario o Sub-Usuario, selecciono \textit{¿Ya tienes una cuenta?} \\
-\textbf{Región de la trayectoria:} \hyperref[cu2_ta_m]{Trayectoria alternativa M} \\
+\textbf{Región de la trayectoria:} \textbf{\ref{cu2_ta_o}} \\
 \textbf{Extiende a:} \nameref{cu1}

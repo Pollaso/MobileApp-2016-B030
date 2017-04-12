@@ -1,0 +1,83 @@
+\subsection{Caso de uso 8: Consultar catálogo} \label{cu8}
+\subsubsection{Resumen}
+Este caso de uso permite al administrador poder consultar los diferentes catálogos existentes
+\subsubsection{Descripción}
+\begingroup
+\setlength{\LTleft}{-10cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+\begin{center}
+  \captionof{table}{\nameref{cu8}} \label{tab:cu8_tab}
+  \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
+        \hline
+            \textbf{Versión} &  \\
+        \hline 
+            \textbf{Autor} & Juan Gerardo Diaz Rodarte y Jorge Armando Porras Velázquez \\
+        \hline
+           \textbf{Estatus} & \\
+        \hline  
+            \textbf{Fecha de último estatus} &  31 de marzo de 2017\\
+        \hline
+      \multicolumn{2}{c |}{\large{Atributos:}} \\
+        \hline
+          \textbf{Actor}  & Administrador\\
+        \hline  
+          \textbf{Propósito} & Permite al administrador consultar si desea modificar un vehículo o un dispositivo\\
+        \hline
+          \textbf{Disparador} & Al presionar el botón BTN en la vista IU index\\
+        \hline  
+          \textbf{Entradas} & \\
+        \hline  
+          \textbf{Salidas} &  
+              \begin{itemize}
+                  \item Se mostrará la IU Catálogo
+              \end{itemize} \\
+        \hline  
+          \textbf{Precondiciones} & 
+            \begin{itemize}
+                \item \textbf{Interno:} El actor debe ingresar al sistema como administrador
+              \end{itemize} \\
+        \hline  
+          \textbf{Postcondiciones} & \\
+        \hline
+          \textbf{Reglas de negocio} & 
+              \begin{itemize}
+                 \item {\hyperref[rnr_01]{RNE 01: Cuenta válida}}
+              \end{itemize} \\
+        \hline
+          \textbf{Mensajes} & \\
+        \hline
+          \textbf{Tipo} & \\
+        \hline      
+  \end{longtable}
+\end{center}
+\endgroup
+
+\subsubsection{Trayectorias del caso de uso}
+\textbf{Trayectoria principal}
+\begin{enumerate}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el administrador al portal web mediante una dirección eletrónica.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Index para el administrador.}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Presiona el botón de Iniciar sesión.}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Index.}
+  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el administrador el botón \textit{Consultar catálogo}}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Catálogo.}
+  \textit{Fin de caso de uso} \\  
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra las opciones: Modificar vehículos y Modificar dispositivos}
+  \textit{Fin de caso de uso} \\  
+\end{enumerate}
+
+
+\textbf{Trayectoria alternativa} \phantomsection\label{cu_ta_} \\
+\textbf{Condición:} \\
+ \begin{enumerate}[label=\arabic*]
+    \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} }
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png}}
+    \item {Continua en el paso 4 de la trayectoria principal.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+
+\subsubsection{Puntos de extensión}
+\noindent \textbf{Causa de la extensión:} El actor, de tipo administrador, oprimió el botón \textit{Consultar catálogo} \\
+\textbf{Región de la trayectoria:} \hyperref[cu_ta_]{Trayectoria alternativa } \\
+\textbf{Extiende a:} \hyperref[cu7]{CU 7 Consultar catalogos}

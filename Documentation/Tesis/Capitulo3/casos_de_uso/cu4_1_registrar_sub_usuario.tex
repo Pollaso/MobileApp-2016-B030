@@ -6,7 +6,7 @@ En este caso de uso se le permitirá al usuario registrar un sub-usuario bajo su
 \setlength{\LTleft}{-10cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 \begin{center}
-  \captionof{table}{} \label{tab:cu_tab}
+  \captionof{table}{\nameref{cu4_1}} \label{tab:cu4_1_tab}
   \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
         \hline
         \textbf{Versión} &  0.1\\
@@ -27,8 +27,13 @@ En este caso de uso se le permitirá al usuario registrar un sub-usuario bajo su
         \hline  
           \textbf{Entradas} & 
             \begin{itemize}
-	    \item
-	  \end{itemize} \\
+              \item \textbf{Correo electrónico}: Se escribe con el teclado.
+              \item \textbf{Nombre(s)}: Se escribe con el teclado.
+              \item \textbf{Apellido Paterno}: Se escribe con el teclado.
+              \item \textbf{Apellido Materno}: Se escribe con el teclado.
+              \item \textbf{Telefóno}: Se ingresa el código de país con un selector y el número con el teclado.
+              \item \textbf{Fecha de nacimiento}: Se selecciona el año, mes y día con un selector.
+            \end{itemize} \\
         \hline  
           \textbf{Salidas} &  No hay salidas. \\
         \hline  
@@ -69,5 +74,5 @@ En este caso de uso se le permitirá al usuario registrar un sub-usuario bajo su
 
 \subsubsection{Puntos de extensión}
 \noindent \textbf{Causa de la extensión:} \\
-\textbf{Región de la trayectoria:} \hyperref[cu_ta_]{Trayectoria alternativa } \\
-\textbf{Extiende a:} \hyperref[cu]{CU}
+\textbf{Región de la trayectoria:} \\
+\textbf{Extiende a:} 
