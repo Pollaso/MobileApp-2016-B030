@@ -1,0 +1,51 @@
+\section{Bluetooth Hc-05}
+El modulo Bluetooth HC-05 viene configurado para trabajar de dos maneras:
+\begin{itemize}
+    \item \textbf{Maestro:} Este modulo puede conectarse con otros modulos Bluetooth, pero no tiene ninguna función para recordar el último dispositivo esclavo emparejado.
+    \begin{itemize}
+        \item \textbf{Paridad:} El no sólo puede hacer paridad con la dirección Bluetooth especificada, como teléfono celular, adaptador de computadora, dispositivo esclavo, sino también puede buscar y hacer paridad con el dispositivo esclavo de forma automática.
+    \end{itemize}
+    \item \textbf{Esclavo:} Queda escuchando las peticiones de conexión \\
+\end{itemize}
+Y cuenta con las siguientes características: 
+\begin{itemize}
+    \item \textbf{Comunicación multidispositivo:} Sólo hay comunicación punto a punto para los módulos, pero el adaptador puede comunicarse con varios módulos. 
+    \item \textbf{Velocidad de transferencia por defecto:} 9600, 4800-1.3M son configurables.
+    \item \textbf{Consumo:} Durante la paridad, la corriente es fluctuante en el rango de 30-40mA. La corriente media es de aproximadamente 25mA. Después de la paridad, no importa procesar la comunicación o no, la corriente es 8mA. No hay modo de suspensión. Este parámetro es el mismo para todos los módulos Bluetooth.
+\end{itemize}
+
+\\ Los comandos básicos de configuración del módulo son:
+\begin{itemize}
+    \item \textbf{Restablecer el comando de función maestro-esclavo:}
+    \begin{itemize}
+        \item AT+ROLE=0 Se pone en modo esclavo.
+        \item AT+ROLE=1 Se pone en modo maestro.
+    \end{itemize}
+    \item \textbf{Establecer comando de memoria:}
+    \begin{itemize}
+        \item AT+CMODE=0 Se hace la paridad con otro módulo bluetooth al azar.
+        \item AT+CMODE=1 Se hace la paridad con otro módulo bluetooth (dirección específica).
+    \end{itemize}
+    \item \textbf{Restablecer comando de contraseña:} AT+PSWD=XXXX Se ingresa contraseña de 4 dígitos.
+    \item \textbf{Restablecer la velocidad de baudios:} AT+UART== <Param>,<Param2>,<Param3>. 
+    \begin{itemize}
+        \item Param: Velocidad de baudios
+        \item Param2: Bit de parada
+            \begin{itemize}
+                \item 0: 1 bit
+                \item 1: 2 bits
+            \end{itemize}
+        \item Param3: Bit de paridad
+            \begin{itemize}
+                \item 0: Ninguna.
+                \item 1: Paridad impar
+                \item 2: Paridad par
+            \end{itemize}
+    \end{itemize}
+\end{itemize}
+\begin{figure}[h]
+    \centering
+    \includegraphics[height= 5cm]{blue}
+    \caption{Módulo Bluetooth HC-05}
+    \label{fig:mesh1}
+\end{figure}
