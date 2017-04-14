@@ -1,0 +1,164 @@
+\section{Sensor de alcohol MQ-03}
+
+\subsubsection{Caracteristicas}
+Este sensor de alcohol es adecuado para detectar la concentracion de alcohol en su aliento, al igual que su comun alcoholìmetro. Tiene una alta sensibilidad y tiempo de respuesta ràpido.Este sensor proporciona una salida analogica resistiva basado en la concentracion de alcohol. El circuito de excitacion es muy simple, todo lo que se necesita es una resistencia. Una interfazpuede ser un ADC de 0-3.3V.
+En este bloque interno la entrada es el aliento que introduce el usuario y la salida del bloque es un voltaje Vs, que representa el voltaje de salida de esta etapa. Este bloque está conformado por
+un sensor de gas etanol de tipo semiconductor, el cual es el encargado de recoger la muestra
+contenida en el aliento del usuario, y dependiendo de la concentración de alcohol recogido, será la
+cantidad de voltaje de salida. Esto se logra mediante una pasta de óxido de estaño (SnO2) alrededor
+de un filamento de platino, el cual atrapa la moléculas de oxígeno y forma una resistencia eléctrica, al momento de que la moléculas de gas entran en contacto con SnO2, se forma una oxidación de moléculas y por lo tanto la resistencia comienza a bajar, dependiendo de la concentración de
+moléculas de gas etanol en oxidación, será el flujo de voltaje de salida.
+
+
+\begin{center}
+\begin{figure}[h!]
+
+\centering
+\includegraphics[height=5cm]{mq.jpg}
+\centering\caption{MQ03, fuente:\\\url{http://www.dnatechindia.com/MQ3-Alcohol-Sensor.html}}
+\label{fig:mq}
+
+\end{figure}
+\end{center}
+
+\subsection{Especificaciones}
+
+5V DC or AC \\
+Consumo de 750mW \\
+16.8mm de diametro \\
+9.3 de altura \\
+
+\subsection{Diagrama del sensor}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[height=6cm]{diagrama.jpg}
+\caption{MQ03}
+\label{fig:univerise}
+\end{figure}
+El voltaje de salida del sensor (Vo) es directamente proporcional a la concentración de alcohol
+presente en el aire, y en este caso particular en el aire exhalado por el usuario. Dicho voltaje se
+obtiene de la conexión entre el pin 2y la resistencia de carga (RL), este voltaje varía de 0 a 5v.
+Por último la conexión entre los pines 3 y la resistencia de carga se conectan a tierra (GND).
+La vista superior de este sensor se muestra en la figura 1, en la cual se observa la rejilla por la cual el usuario sopla, y se depositan las muestras a procesar \\
+\\
+
+
+\subsubsection{Moduló de bluetooth}
+El módulo de bluetooth HC-05  es el que ofrece una mejor relación de precio y características, ya que es un módulo Maestro-Esclavo, quiere decir que además de recibir conexiones desde una PC o tablet, también es capaz de generar conexiones hacia otros dispositivos bluetooth. Esto nos permite por ejemplo, conectar dos módulos de bluetooth y formar una conexión punto a punto para transmitir datos entre dos microcontroladores o dispositivos. En otro artículo posterior veremos como configurar dos módulos HC-05 para que se enlacen entre ellos y podamos transmitir información de un punto a otro.\\
+El HC-05 tiene un modo de comandos AT que debe activarse mediante un estado alto en el PIN34 mientras se enciende (o se resetea) el módulo. En las versiones para protoboard este pin viene marcado como “Key”. Una vez que estamos en el modo de comandos AT, podemos configurar el módulo bluetooth y cambiar parámetros como el nombre del dispositivo, password, modo maestro/esclavo, etc.
+Para comunicarnos con el módulo y configurarlo, es necesario tener acceso al módulo mediante una interfaz serial. Podemos usar un arduino con un par de cables (aprovechando el puente USB-Serial del Arduino), un kit para XBee o un simple MAX3232 en el puerto serie de la PC.\\
+
+\begin{figure}[h!]
+\centering
+\includegraphics[height=6cm]{blue.jpg}
+\caption{Moduló}
+\label{fig:univerise}
+\end{figure}
+
+
+
+\subsubsection{Diferencias entre modulós}
+
+
+La única diferencia real es el firmware que viene cargado de fábrica.\\
+Existen unos módulos aptos para insertarse en el protoboard que nos permiten una fácil identificación del módulo soldado antes de comprar. En estos módulos, los HC-05 normalmente tienen dos pines extra (además de TX, RX, VCC, GND)  etiquetado como “Key” y “State”. El pin “key” es necesario para entrar al modo de comandos AT en el módulo HC-05 (pin 34) y por lo tanto, solo se instala cuando el módulo de bluetooth a bordo es un HC-05. También podemos identificar si se trata de un HC-05 por la forma en que se identifican con otros dispositivos bluetooth: El HC-05 se identifica como “HC-05”, mientras que el HC-06 se identifica como “Linvor” o “HC-06”.\\
+
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[height=6cm]{diferencia.jpg}
+\caption{Modulós}
+\label{fig:univerise}
+\end{figure}
+
+
+\subsubsection{Interfaz de configuración HC-05}
+
+El puerto serie en modo de configuración para el HC-05 debe configurarse de la siguiente manera: 34800 bps, 8 bits de datos, Sin paridad, Sin control de flujo. Para entrar al modo de comandos AT seguimos los siguientes pasos:\\\\
+Poner a estado alto en el pin 34 (PIO11)\\\\
+Conectar la alimentación del módulo (o resetearlo de preferencia)\\
+Enviar un comando AT\r\n para comprobar que estemos en modo de comando AT\\
+La siguiente lista es una compilación de los comandos que consideramos importantes\\\\
+\begin{itemize}
+    \item AT\r\n      Comando de prueba, debe responder con OK\r\n
+    \item AT+ROLE=1\r\n      Comando para colocar el módulo en modo Maestro (Master)
+    \item AT+ROLE=0\r\n       Comando para colocar el módulo en modo Esclavo (Slave)
+    \item AT+VERSION?\r\n      Obtener la versión del firmware
+    \item AT+UART=115200,1,2\r\n      Configurar el modo de funcionamiento del puerto serie en “modo puente”
+    \item AT+PIO=10,1\r\n      Colocar el pin de IO de propósito general a nivel alto
+\end{itemize}
+
+
+\subsubsection{Interfaz de configuración HC-06}
+
+El HC-06 tiene un firmware distinto y también un funcionamiento distinto en cuanto a su modo de configuración. Para poder configurar el HC-06 es necesario que este NO este emparejado ni siendo usado por ningun dispositivo. De igual forma que el HC-05 es necesario conectarlo a la PC y usar un programa de terminal para darle instrucciones de configuración (Comandos AT), aunque también podemos escribir un programa de arduino o en un microcontrolador para configurarlo.\\\\
+El módulo HC-06 acepta un set muy básico de comandos (algo raros por cierto), que permite pocas configuraciones, pero que sin duda será util para personalizar este económico módulo y configurarlo para satisfacer las necesidades de la aplicación.
+Los comandos que soporta son:
+\begin{itemize}
+    \item Prueba de funcionamiento
+    \begin{itemize}
+    \item Envíar: AT
+    \item Recibe: OK
+\end{itemize}
+    \item Configurar el Baudrate:
+    \begin{itemize}
+    \item Prueba de funcionamiento
+    \item  Envíar: AT+BAUD<Numero>
+    \item El parámetro número es un caracter hexadecimal de ‘1’ a ‘c’ que corresponden a los siguientes Baud Rates: 1=1200, 2=2400, 3=4800, 4=9600, 5=19200, 6=38400, 7=57600, 8=115200, 9=230400, A=460800, B=921600, C=1382400
+    \item Recibe: OK<baudrate>\\
+    
+\end{itemize}
+    
+    \item Configurar el Nombre de dispositivo Bluetooth:
+    
+\begin{itemize}
+
+    \item Envíar: AT+NAME<Nombre>
+    \item Recibe: OKsetname\\\\
+    
+    
+\end{itemize}
+    \item Configurar el código PIN de emparejamiento:
+    
+\begin{itemize}    
+    \item Envíar: AT+PIN<pin de 4 digitos>
+    \item Recibe: OK<pin de 4 digitos>\\
+
+\end{itemize}
+
+    \item Obtener la version del firmware:
+    
+\begin{itemize}  
+     \item Enviar: AT+VERSION
+     \item Recibe: Linvor1.8\\\\
+
+\end{itemize}
+\end{itemize}
+
+\newpage
+\subsection{Comparacion de sensores infrarrojos}
+
+ \begin{longtable}{| p{4cm} | p{4cm} | p{4cm} |}
+\hline
+\hline
+Sensor GP2D12 & GP2D02 & Sensor CNY70 \\
+\hline
+El GP2D12 tiene una interfaz analógica de la señal de salida. & El GP2D02 tiene una interfaz digital de la señal de salida. & Es un sensor con una fuente de luz (diodo emisor) y detector (fototransistor) integrados en un mismo encapsulado.\\
+\hline
+
+GP2D12 tiene una frecuencia de refresco de unos 40ms. & GP2D02 tiene una frecuencia de refresco de unos 75ms. & Distancia de detección de 0.3 a 5mm.
+\hline
+Dispone de un emisor de luz infrarroja colimada y de un PSD (Position Sensing Device) que constituye el receptor. & Dispone de un emisor de luz infrarroja colimada y de un PSD (Position Sensing Device) que constituye el receptor. & Este sensor no se utiliza habitualmente para medir distancias, pero sí funciona bien para detectar el "color" de un objeto (distinguir blanco/negro en aplicaciones para el seguimiento de línea).
+\hline
+En su utilización, es recomendable utilizar un condensador de desacoplo de unos 22uF, con el propósito de reducir los ruidos en la señal de alimentación como consecuencia de la emisión infrarroja. &  &
+\hline
+
+ \end{longtable}
+
+\bibliographystyle{plain}
+\bibliography{references}
+https://www.pololu.com/file/0J310/MQ3.pdf
+http://www.seeedstudio.com/document/pdf/MQ303A.pdf
+\end{document}
