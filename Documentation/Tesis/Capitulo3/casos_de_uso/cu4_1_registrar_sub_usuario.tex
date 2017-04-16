@@ -1,34 +1,47 @@
-\subsection{Caso de uso : } \label{cu}
+\subsection{Caso de uso 4.1: Registrar Sub-Usuario} \label{cu4_1}
 \subsubsection{Resumen}
+En este caso de uso se le permitirá al usuario registrar un sub-usuario bajo su cuenta.
 \subsubsection{Descripción}
 \begingroup
 \setlength{\LTleft}{-10cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 \begin{center}
-  \captionof{table}{} \label{tab:cu_tab}
+  \captionof{table}{\nameref{cu4_1}} \label{tab:cu4_1_tab}
   \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
         \hline
-        \textbf{Versión} &  \\
+        \textbf{Versión} &  0.1\\
         \hline 
-        \textbf{Autor} & \\
+        \textbf{Autor} & Juan Gerardo Diaz Rodarte\\
         \hline
-          \textbf{Estatus} & \\
+          \textbf{Estatus} & Edición \\
         \hline  
-          \textbf{Fecha de último estatus} &  \\
+          \textbf{Fecha de último estatus} & 7 de abril de 2017 \\
         \hline
       \multicolumn{2}{c |}{\large{Atributos:}} \\
         \hline
-          \textbf{Actor}  &  \\
+          \textbf{Actor} & Usuario \\
         \hline  
-          \textbf{Propósito} &  \\
+          \textbf{Propósito} & Permite al usuario registrar a un sub-usuario. \\
         \hline
-          \textbf{Disparador} & \\
+          \textbf{Disparador} & Al presionar el botón de \textit{Registrar Sub-Usuario} del menú emergente MN3. \\
         \hline  
-          \textbf{Entradas} & \\
+          \textbf{Entradas} & 
+            \begin{itemize}
+              \item \textbf{Correo electrónico}: Se escribe con el teclado.
+              \item \textbf{Nombre(s)}: Se escribe con el teclado.
+              \item \textbf{Apellido Paterno}: Se escribe con el teclado.
+              \item \textbf{Apellido Materno}: Se escribe con el teclado.
+              \item \textbf{Telefóno}: Se ingresa el código de país con un selector y el número con el teclado.
+              \item \textbf{Fecha de nacimiento}: Se selecciona el año, mes y día con un selector.
+            \end{itemize} \\
         \hline  
-          \textbf{Salidas} &  \\
+          \textbf{Salidas} &  No hay salidas. \\
         \hline  
-          \textbf{Precondiciones} & \\
+          \textbf{Precondiciones} & 
+	 \begin{itemize}
+	    \item \textbf{Interna:} El actor debe estar registrado en el sistema.
+               \item \textbf{Interna:} El actor debe haber iniciado sesión en el sistema.
+	 \end{itemize} \\
         \hline  
           \textbf{Postcondiciones} & \\
         \hline
@@ -61,5 +74,5 @@
 
 \subsubsection{Puntos de extensión}
 \noindent \textbf{Causa de la extensión:} \\
-\textbf{Región de la trayectoria:} \hyperref[cu_ta_]{Trayectoria alternativa } \\
-\textbf{Extiende a:} \hyperref[cu]{CU}
+\textbf{Región de la trayectoria:} \\
+\textbf{Extiende a:} 

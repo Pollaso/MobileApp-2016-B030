@@ -53,8 +53,8 @@ Este caso de uso le permite al actor consultar los datos de su perfil.
  \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Ingresa el actor a la aplicación móvil.}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Principal.}
 \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa sus datos y presiona el botón de Iniciar sesión.}
-\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Inicio.}
-\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Perfil} en el menú lateral MN1.}
+\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Hogar.}
+\item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Perfil} en el menú lateral \textbf{\nameref{mn01}}.}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Perfil. [\ref{cu3_ta_a}] [\ref{cu3_ta_b}]}
   \textit{Fin de caso de uso} \\  
 \end{enumerate}
@@ -73,31 +73,64 @@ Este caso de uso le permite al actor consultar los datos de su perfil.
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{Trayectoria alternativa C} \phantomsection\label{cu3_ta_c} \\
-\textbf{Condición:} El actor selecciona la opción de \textit{Inicio} en el menú lateral MN1. \\
+\textbf{\textlabel{Trayectoria alternativa C}{cu3_ta_c}} \\
+\textbf{Condición:} El actor presionó el BTN Desactivar cuenta. \\
  \begin{enumerate}[label=C\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Inicio.} \\
+    %\item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3_1_1}}.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje de advertencia \textbf{\ref{msja_02}}.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje de confirmación \textbf{\ref{msjc_03}}.} \\
+    \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor confirma la desactivación de su cuenta. Si el actor cancela se continua con el paso 5 de esta trayectoria.}
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje de notificación \textbf{\ref{msjn_09}}.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se regresa a la vista IU Editar Perfil.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa D} \phantomsection\label{cu3_ta_d} \\
-\textbf{Condición:} El usuario selecciona la opción de \textit{Sub-Usuarios} en el menú lateral MN1. \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Hogar} en el menú lateral \textbf{\nameref{mn01}}. \\
  \begin{enumerate}[label=D\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu4}}.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Hogar.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa E} \phantomsection\label{cu3_ta_e} \\
-\textbf{Condición:} El actor selecciona la opción de \textit{Alertas} en el menú lateral MN1. \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Perfil} en el menú lateral \textbf{\nameref{mn01}}. \\
  \begin{enumerate}[label=E\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu5}}.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3}}.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
 \textbf{Trayectoria alternativa F} \phantomsection\label{cu3_ta_f} \\
-\textbf{Condición:} El actor selecciono la opción de \textit{Agregar contacto de emergencía} del menu emergente MN2. \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Sub-Usuarios} en el menú lateral \textbf{\nameref{mn01}}. \\
  \begin{enumerate}[label=F\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3_3}}.} \\
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu4}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa G} \phantomsection\label{cu3_ta_g} \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Contactos} en el menú lateral \textbf{\nameref{mn01}}. \\
+ \begin{enumerate}[label=G\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu5}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa H} \phantomsection\label{cu3_ta_h} \\
+\textbf{Condición:} El actor selecciona la opción de \textit{Alertas} en el menú lateral \textbf{\nameref{mn01}}. \\
+ \begin{enumerate}[label=H\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu6}}.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa I} \phantomsection\label{cu3_ta_i} \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Acerca de nosotros} en el menú lateral \textbf{\nameref{mn01}}. \\
+ \begin{enumerate}[label=I\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Acerca de nostros.} \\
+    \textit{Fin de trayectoria} \\
+\end{enumerate}
+
+\textbf{Trayectoria alternativa J} \phantomsection\label{cu3_ta_j} \\
+\textbf{Condición:} El usuario selecciona la opción de \textit{Aviso de privacidad} en el menú lateral \textbf{\nameref{mn01}}. \\
+ \begin{enumerate}[label=J\arabic*]
+    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la vista IU Aviso de privacidad.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
@@ -111,6 +144,6 @@ Este caso de uso le permite al actor consultar los datos de su perfil.
 \textbf{Extiende a:} \textbf{\nameref{cu3_2}}
 
 \subsubsection{Puntos de extensión}
-\noindent \textbf{Causa de la extensión:} El actor selecciono la opción de \textit{Agregar contacto de emergencía} del menu emergente MN2. \\
-\textbf{Región de la trayectoria:} \ref{cu3_ta_f} \\
-\textbf{Extiende a:} \textbf{\ref{cu3_3}}
+\noindent \textbf{Causa de la extensión:} El actor selecciono la opción de \textit{Desactivar cuenta} del menu emergente MN2. \\
+\textbf{Región de la trayectoria:} \ref{cu3_ta_c} \\
+\textbf{Extiende a:} \textbf{Caso de uso 3.3: Desactivar Cuenta}

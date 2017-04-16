@@ -42,6 +42,7 @@ Las límitaciones sirven para acotar ciertas las acciones o los datos que el usu
 	AM & \textlabel{RNL 06: Fecha de nacimiento válida}{rnl_06} & La edad mínima y máxima seran 15 y 110 años antes de la fecha actual respectivamente. \\ \hline
 	AM & \textlabel{RNL 07: Tamaño de documento}{rnl_07} & Un documento no puede estar vacio o pesar más de 5 MiB. \\ \hline
 	AM & \textlabel{RNL 08: Liga electrónica de un documento}{rnl_08} & La liga electrónica para un documento debe de ser de Dropbox o de Google Drive. \\ \hline
+	AM & \textlabel{RNL 09: Formato de una clave serial}{rnl_09} & Una clave serial tiene un tamaño de 10 carácteres alfanúmericos. \\ \hline
    \end{tabular}
       \captionof{table}{Limitaciones} \label{tab:rnl}
  \end{center}
@@ -61,7 +62,9 @@ Las reglas de validación sirven para comprobar que la información ingresada se
        AM & \textlabel{RNRV 07: Prefijo telefónico mundial y telefóno válido}{rnrv_07} & Un telefóno estadounidense esta compuesto de diez dígitos, tres corresponden al código de área y los demas al telefóno celular.  \\ \hline
        AM & \textlabel{RNRV 08: Fecha de nacimiento válida}{rnrv_08} & La fecha de nacimiento debe cumplir con la \textbf{\ref{rnl_06}}.  \\ \hline
        AM & \textlabel{RNRV 09: Códigos de confirmación válidos}{rnrv_09} & El código de confirmación para un correo eletrónico será de 4 digitos alfanúmericos y el de teléfono celular será de acuerdo con el provedor de servicio de confirmación.  \\ \hline
-       AM & \textlabel{RNRV 10: Documentos válidos}{rnrv_10} & Un documento válido debe se cumplir con la \textbf{\ref{rnl_07} y \textbf{\ref{rnl_08}}}.  \\ \hline
+       AM & \textlabel{RNRV 10: Documentos válidos}{rnrv_10} & Un documento válido debe se cumplir con la \textbf{\ref{rnl_07}} y \textbf{\ref{rnl_08}}. \\ \hline
+       AM & \textlabel{RNRV 11: Claves seriales de dispositivos válidos}{rnrv_11} & Una clave serial válida debe cumplir con la \textbf{\ref{rnl_09} y coincidir con el correo electrónico con el que esta vínculado}. \\ \hline
+       AM & \textlabel{RNRV 12: Vehiculos válidos}{rnrv_12} & El vehículo debe de coincidir con el dispositivo con el que esta vinculado en la base de datos. \\ \hline
    \end{tabular}
       \captionof{table}{Reglas de validación} \label{tab:rnrv}
  \end{center}
@@ -72,6 +75,7 @@ Los permisos necesarios que se necesitarán para ejectuar ciertos procesos en el
    \begin{tabular}{|p{1.5cm}|p{4cm}|p{7cm}|}
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
+       AM & \textlabel{RNP 01: Permiso para enviar mensajes}{rnp_01} & El usuario al aceptar los términos y condiciones nos otorga el permiso de usar su número  \\ \hline
    \end{tabular}
       \captionof{table}{Permisos} \label{tab:rnp}
  \end{center}
@@ -94,9 +98,9 @@ Los permisos necesarios que se necesitarán para ejectuar ciertos procesos en el
      \hline
        \textbf{Enfoque}&\textbf{Nombre e identificador} & \textbf{Descripción} \\ \hline
         AM & \textlabel{RNRP 01: Usuario registrado}{rnrp_01} & Una ves que los datos del usuario sean válidados su cuenta pasara a un estado de `pendiente' con acceso límitado. \\ \hline
-        AM & \textlabel{RNRP 02: Correo electrónico válidado}{rnrp_02} & Cuando el usuario confirme su dirección de correo electrónico este pasara a un estado de`válidado'. \\ \hline
+        AM & \textlabel{RNRP 02: Correo electrónico válidado}{rnrp_02} & Cuando el usuario confirme su dirección de correo electrónico este pasara a un estado de `válidado'. \\ \hline
         AM & \textlabel{RNRP 03: Teléfono válidado}{rnrp_03} & Cuando el usuario confirme su telefóno este pasara a un estado de `válidado'. \\ \hline
-        AM & \textlabel{RNRP 05: Usuario válidado}{rnrp_04} & Cuando el usuario confirme tanto su telefóno como su dirección de correo electrónico su cuenta pasara a un estado de `válida' y se le otorgaran acceso completo al sistema. \\ \hline
+        AM & \textlabel{RNRP 04: Usuario válidado}{rnrp_04} & Cuando el usuario confirme tanto su telefóno como su dirección de correo electrónico su cuenta pasara a un estado de `válida' y se le otorgaran acceso completo al sistema. \\ \hline
    \end{tabular}
       \captionof{table}{Reglas de proceso} \label{tab:rnrp}
  \end{center}

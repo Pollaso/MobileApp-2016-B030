@@ -1,0 +1,52 @@
+\title{Sensor de alcohol MQ-03}
+
+
+\usepackage{natbib}
+\usepackage{graphicx}
+
+\begin{document}
+
+\maketitle
+
+\section{Caracteristicas}
+Este sensor de alcohol es adecuado para detectar la concentracion de alcohol en su aliento, al igual que su comun alcoholìmetro. Tiene una alta sensibilidad y tiempo de respuesta ràpido.Este sensor proporciona una salida analogica resistiva basado en la concentracion de alcohol. El circuito de excitacion es muy simple, todo lo que se necesita es una resistencia. Una interfazpuede ser un ADC de 0-3.3V.
+En este bloque interno la entrada es el aliento que introduce el usuario y la salida del bloque es un voltaje Vs, que representa el voltaje de salida de esta etapa. Este bloque está conformado por
+un sensor de gas etanol de tipo semiconductor, el cual es el encargado de recoger la muestra
+contenida en el aliento del usuario, y dependiendo de la concentración de alcohol recogido, será la
+cantidad de voltaje de salida. Esto se logra mediante una pasta de óxido de estaño (SnO2) alrededor
+de un filamento de platino, el cual atrapa la moléculas de oxígeno y forma una resistencia eléctrica, al momento de que la moléculas de gas entran en contacto con SnO2, se forma una oxidación de moléculas y por lo tanto la resistencia comienza a bajar, dependiendo de la concentración de
+moléculas de gas etanol en oxidación, será el flujo de voltaje de salida.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[height=5cm]{mq.jpg}
+\caption{MQ03}
+\label{fig:mq}
+\end{figure}
+
+\section{Especificaciones}
+
+5V DC or AC \\
+Consumo de 750mW \\
+16.8mm de diametro \\
+9.3 de altura \\
+
+\section{Diagrama del sensor}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[height=6cm]{diagrama.jpg}
+\caption{MQ03}
+\label{fig:univerise}
+\end{figure}
+El voltaje de salida del sensor (Vo) es directamente proporcional a la concentración de alcohol
+presente en el aire, y en este caso particular en el aire exhalado por el usuario. Dicho voltaje se
+obtiene de la conexión entre el pin 2y la resistencia de carga (RL), este voltaje varía de 0 a 5v.
+Por último la conexión entre los pines 3 y la resistencia de carga se conectan a tierra (GND).
+La vista superior de este sensor se muestra en la figura 1, en la cual se observa la rejilla por la cual el usuario sopla, y se depositan las muestras a procesar
+
+\bibliographystyle{plain}
+\bibliography{references}
+https://www.pololu.com/file/0J310/MQ3.pdf
+http://www.seeedstudio.com/document/pdf/MQ303A.pdf
+\end{document}

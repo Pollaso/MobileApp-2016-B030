@@ -1,4 +1,4 @@
-\subsection{Caso de uso 3.3: Agregar contacto} \label{cu3_3}
+\subsection{Caso de uso 5.1: Agregar contacto} \label{cu5_1}
 \subsubsection{Resumen}
 Este caso de uso le permite al actor agregar un contacto de emergencia.
 \subsubsection{Descripción}
@@ -6,7 +6,7 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
 \setlength{\LTleft}{-10cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 \begin{center}
-  \captionof{table}{Caso de uso 3.3: Agregar contacto} \label{tab:cu3_3_tab}
+  \captionof{table}{Caso de uso 5.1: Agregar contacto} \label{tab:cu5_1_tab}
   \begin{longtable}{| p{3.5cm} | p{11.5cm} |}
         \hline
         \textbf{Versión} &  0.1\\
@@ -88,17 +88,17 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
 \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} Selecciona el usuario la opción de \textit{Agregar usuario}.}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra la IU Agregar usuario.}
 \item {\includegraphics[scale=.1]{Capitulo3/img/actor.png} El actor ingresa toda la información solicitada.}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el cumpla con la \hyperref[rnr_04]{RNR 04}. \textbf{\ref{cu3_3_ta_a}}}
- \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el nombre cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu3_3_ta_b}] [\ref{cu3_3_ta_c}]}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu3_3_ta_d}] [\ref{cu3_3_ta_e}]}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu3_3_ta_d}] [\ref{cu3_3_ta_e}]}
-  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el teléfono sea válido. [\ref{cu3_3_ta_f}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el cumpla con la \hyperref[rnr_04]{RNR 04}. \textbf{\ref{cu5_1_ta_a}}}
+ \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el nombre cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu5_1_ta_b}] [\ref{cu5_1_ta_c}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido paterno cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu5_1_ta_d}] [\ref{cu5_1_ta_e}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el apellido materno cumpla con la \textbf{\ref{rnrv_04}}. [\ref{cu5_1_ta_d}] [\ref{cu5_1_ta_e}]}
+  \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Verifica que el teléfono sea válido. [\ref{cu5_1_ta_f}]}
   \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se muestra el mensaje \textbf{\ref{msjn_06}} que indica el contacto ha sido agregado exitosamente.}
 \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista de IU Editar perfil}
   \textit{Fin de caso de uso} \\  
 \end{enumerate}
 
-\textbf{\textlabel{Trayectoria alternativa A}{cu3_3_ta_a}} \\
+\textbf{\textlabel{Trayectoria alternativa A}{cu5_1_ta_a}} \\
 \textbf{Condición:} El actor no proporcionó la información requerida, rompiendo la regla de negocio \textbf{\ref{rnl_01}}.\\
  \begin{enumerate}[label=A\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msja_01}}, indicando que el actor ha dejado campos en blanco.}
@@ -106,7 +106,7 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{\textlabel{Trayectoria alternativa B}{cu3_3_ta_b}} \\
+\textbf{\textlabel{Trayectoria alternativa B}{cu5_1_ta_b}} \\
 \textbf{Condición:} El actor no ingreso un nombre que cumpla con la longitud establecida en la \textbf{\ref{rnl_03}}.\\
  \begin{enumerate}[label=B\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_05}}, indicando que el nombre sobrepasa la longitud máxima.}
@@ -114,7 +114,7 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{\textlabel{Trayectoria alternativa C}{cu3_3_ta_c}} \\
+\textbf{\textlabel{Trayectoria alternativa C}{cu5_1_ta_c}} \\
 \textbf{Condición:} El actor ingreso un nombre que contiene símbolos o carácteres de tipo númericos.\\
  \begin{enumerate}[label=C\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_06}}, indicando que el nombre contiene carácteres de tipo númerico o símbolos.}
@@ -122,7 +122,7 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{\textlabel{Trayectoria alternativa D}{cu3_3_ta_d}} \\
+\textbf{\textlabel{Trayectoria alternativa D}{cu5_1_ta_d}} \\
 \textbf{Condición:} El actor no ingreso un apellido que cumpla con la longitud establecida en la \textbf{\ref{rnl_04}} .\\
  \begin{enumerate}[label=D\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_05}}, indicando que alguno de los apellidos sobrepasa la longitud máxima.}
@@ -130,7 +130,7 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{\textlabel{Trayectoria alternativa E}{cu3_3_ta_e}} \\
+\textbf{\textlabel{Trayectoria alternativa E}{cu5_1_ta_e}} \\
 \textbf{Condición:} El actor ingreso un apellido que contiene símbolos o carácteres de tipo númericos.\\
  \begin{enumerate}[label=E\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \hyperref[msje_06]{MSJE 06}, indicando que el apellido contiene carácteres de tipo númerico o símbolos.}
@@ -138,38 +138,10 @@ Este caso de uso le permite al actor agregar un contacto de emergencia.
     \textit{Fin de trayectoria} \\
 \end{enumerate}
 
-\textbf{\textlabel{Trayectoria alternativa F}{cu3_3_ta_f}} \\
+\textbf{\textlabel{Trayectoria alternativa F}{cu5_1_ta_f}} \\
 \textbf{Condición:} El actor ingreso teléfono que no coincide con la longitud establecida en la \hyperref[rnrv_05]{RNRV 05} y \hyperref[rnrv_06]{RNRV 06} ó \hyperref[rnrv_07]{RNRV 07} .\\
  \begin{enumerate}[label=F\arabic*]
     \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Muestra el mensaje \textbf{\ref{msje_07}}, indicando que la longitud del número celular es inválida.}
     \item {Continua en el paso 9 de la trayectoria principal.} \\
-    \textit{Fin de trayectoria} \\
-\end{enumerate}
-
-\textbf{\textlabel{Trayectoria alternativa G}{cu3_3_ta_g}} \\
-\textbf{Condición:} El actor selecciona la opción de \textit{Inicio} en el menú lateral MN1. \\
- \begin{enumerate}[label=G\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se redirecciona a la vista IU Inicio.} \\
-    \textit{Fin de trayectoria} \\
-\end{enumerate}
-
-\textbf{\textlabel{Trayectoria alternativa H}{cu3_3_ta_h}} \\
-\textbf{Condición:} El actor selecciona la opción de \textit{Perfil} en el menú lateral MN1. \\
- \begin{enumerate}[label=H\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu3}}.} \\
-    \textit{Fin de trayectoria} \\
-\end{enumerate}
-
-\textbf{\textlabel{Trayectoria alternativa I}{cu3_3_ta_i}} \\
-\textbf{Condición:} El usuario selecciona la opción de \textit{Sub-Usuarios} en el menú lateral MN1. \\
- \begin{enumerate}[label=I\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu4}}.} \\
-    \textit{Fin de trayectoria} \\
-\end{enumerate}
-
-\textbf{\textlabel{Trayectoria alternativa J}{cu3_3_ta_j}} \\
-\textbf{Condición:} El actor selecciona la opción de \textit{Alertas} en el menú lateral MN1. \\
- \begin{enumerate}[label=J\arabic*]
-    \item {\includegraphics[scale=.05]{Capitulo3/img/proceso.png} Se ejecuta el \textbf{\nameref{cu5}}.} \\
     \textit{Fin de trayectoria} \\
 \end{enumerate}

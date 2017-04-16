@@ -1,0 +1,243 @@
+\chapter{Microcontrolador}
+\pagenumbering{arabic}
+ Los microcontroladores son circuitos integrados que son capaces de ejecutar ordenes que fueron grabadas en su memoria. Un microcontrolador está constituido en su interior por las tres principales unidades funcionales de una computadora, las cuales son: 
+ \begin{itemize}
+ \item Unidad central de procesamiento (CPU)
+ \item Memoria 
+ \begin{itemize}
+     \item RAM
+     \item ROM 
+ \end{itemize}
+\item Periféricos de entrada y salida.
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=5cm]{micro_esq1}
+    \caption{Composición de un microcontrolador}
+    \label{fig:mesh1}
+\end{figure}
+
+\section{Arquitectura de los microcontroladores}
+Existen dos formas en que se interconecta el CPU con sus periféricos para formar lo que se conoce como arquitecura interna: 
+ \begin{itemize}
+     \item Von Neumann
+     \item Harvard 
+\end{itemize}
+
+\subsection{Arquitectura Von Neumann}
+Utiliza una memoria única para instrucciones y datos, esto significa que con un mismo bus de direcciones se localizan(redireccionan) instrucciones y datos y que por un único bus de datos transitan tanto instrucciones como datos. Las memorias RAM y ROM forman un conjunto único para el cual la CPU emite señales de control, de dirección y datos[3] \\
+
+Las principales desventajas de esta arquitectura son las siguientes:
+\begin{itemize}
+    \item Se genera un cuello de botella debido a la cantidad de datos por procesar, ya que el bus de datos debe compartirse con los datos y las instrucciones[2]
+    \item Las instrucciones deben ser enviadas en varias partes, por lo cual el sistema resulta lento[2]
+\end{itemize}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[heigth=6cm]{Von}
+    \caption{Arquitectura Von Neumann}
+    \label{fig:mesh1}
+\end{figure}
+
+\subsection{Arquitectura Harvard}
+Utiliza memorias separadas para instrucciones y datos. La memoria de programa tiene su bus de direcciones(instrucciones), su propio bus de datos y su bus de control; por otra parte la memoria de de datos tiene sus propios buses de direcciones, datos y control, independientes de los buses de la memoria del programa.[3] \\
+
+Las principales ventajas de esta arquitectura son las siguientes:
+\begin{itemize}
+    \item Aprovecha el tiempo de ciclo de máquina ya que el ancho de bus de instrucciones no está limitado por el de datos[2]
+    \item El procesador puede recibir instrucciones por caminos diferentes[2]
+    \item Desaparece la necesidad de minimizar el número de terminales de la CPU[2]
+\end{itemize}
+
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[heigth=6cm]{Harvard}
+    \caption{Arquitectura Harvard}
+    \label{fig:mesh1}
+\end{figure}
+
+Existen dos orientaciones en cuanto a la arquitectura y funcionalidad de los procesadores actuales:
+
+\begin{itemize}
+    \item \textbf{CISC:} Grupo de computadoras de instrucciones complejas. Tiene un repertorio grande de instrucciones que pueden ser incluso complejas y que requieren varios ciclos de máquina por instrucción[4]
+    
+    \item \textbf{RISC:} Grupo de computadoras de instrucciones reducidas. Dispone de un repertorio de instrucciones reducidas(sencillas) que trabajan a alta velocidad, además que se puede lograr que todas las instrucciones tengan la misma longitud y sean ejecutadas en un ciclo de máquina[4]
+\end{itemize}
+
+\section{CPU}
+Es el "cerebro" del microcontrolador. Esta unidad trae las instrucciones del programa, una a una, desde la memoria donde están almacenadas, las interpreta(descodifica) y hace que se ejecuten. Dispone de diferentes registros, algunos de propósito general y otros para propósitos específicos[3]\\
+Entre estos últimos están:
+\begin{itemize}
+    \item \textbf{Registro de instrucción:} Almacena la instrucción que está siendo ejecutada por el CPU.[3]
+    \item \textbf{Acumulador:} Registro asociado a las operaciones aritméticas y lógicas que se pueden realizar en la ALU.[3]
+    \item \textbf{Registro de estado:} Agrupa los bits indicadores de las características del resultado de las operaciones aritméticas y lógicas realizadas en la ALU.[3]
+    \item \textbf{Contador de programa:} Registro de la CPU donde se almacenan direcciones de instrucciones. Cada vez que la CPU busca una instruccion en la memoria, aumenta el contador de programa.[3]
+    \item \textbf{Registro de direccion de datos:} Almacena direcciones de datos situados en la memoria. Es indispoensable para el direccionamiento indirecto de datos en la memoria. [3]
+    \item \textbf{Puntero de pila:} Almacena direcciones de datos en la pila.[3]
+\end{itemize}
+
+\section{Memoria}
+Los microcontroladores tienen una memoria en la que almacenan los datos y otra en la que almacenan las instrucciones. Ambas de se caracterizan por ser de acceso aleatorio, es decir, el tiempo que se tarda en escribir o leer cualquier posición de la memoria es el mismo independiente de su situación física.[5]\\
+Las memorias se pueden clasificar en Memorias volátiles y no volátiles.
+\subsection{Memorias volátiles}
+Son aquellas cuyo contenido puede alterarse ante una falta de alimentación[4]\\
+Vienen en varios tipos cuya utilidad depende de la aplicación, RAM, DPRAM y VRAM.
+\subsubsection{RAM}
+El contenido de la memoria puede ser alterado por el procesador en un proceso de escritura y puede ser leído en proceso de escritura y todo ello a alta velicidad.[4]
+A su vez existen dos tipos de memorias RAM:
+    \begin{itemize}
+        \item \textbf{SRAM:} Mantienen su contenido sin alteración mientras la alimentación se halle conectada.
+        
+        \item \textbf{DRAM:} El contenido debe ser actualizado cada cierto tiempo para que el contenido no se altere.
+    \end{itemize}
+    
+\subsubsection{DPRAM}
+Dual Ported RAM. Permite que varias lecturas o escrituras ocurran al mismo tiempo, o casi al mismo tiempo, a diferencia de la RAM de un sólo puerto que sólo permite un acceso a la vez.[4]
+
+\subsubsection{VRAM}
+Video Random Access Memory. Utiliza el controlador gráfico para poder manejar toda la información visual que manda la CPU[4]
+
+\subsection{Memorias no volátiles}
+Son aquellas cuyo contenido permanece inalterado aún cuando la memoria se quede sin alimentación.[4]
+A su vez se dividen memoria ROM y EAROM.
+\subsubsection{ROM}
+Las memorias ROM se clasifican a su vez de la siguiente manera:
+\begin{itemize}
+    \item \textbf{PROM:} Son memorias que pueden ser grabadas por el usuario, pero que no pueden ser borradas ni vueltas a grabar.[4]
+    
+    \item \textbf{EPROM:} Son aquellas memorias que pueden ser grabadas y borradas por el usuario. Podemos encontrar dos versiones:
+    \begin{itemize}
+        \item \textbf{UVEPROM:} Ultra Violet Erasable PROM. 
+        \item \textbf{OTP:} One Time Programmable
+    \end{itemize}
+    Pueden ser borradas por la exposición a la luz ultravioleta. A veces las OTP no pueden ser borradas.[4]
+\end{itemize}
+
+\subsubsection{EAROM}
+Encontramos dos variadedas: 
+\begin{itemize}
+    \item \textbf{FLASH:} Son aquellas cuyo contenido puede ser alterado por el mismo circuito en que están siendo utilizadas, pero para ello tiene que ser parcialmente borrada en ciertas áreas o bloques. Pueden ser borrdas en una sola operación, lo cual las hace más veloces que EEPROM.[4]
+    
+    \item \textbf{EEPROM:} Electrically Erasable PROM. Pueden ser borradas y grabdas dirección por dirección
+    \begin{itemize}
+        \item \textbf{Acceso paralelo:} Se reciben o envían los datos en una sola operación.
+    
+        \item \textbf{Acceso serie:} Los datos se reciben o envían uno a uno.
+    \end{itemize}
+\end{itemize}
+
+\section{Periféricos de entrada y salida}
+A las unidades que funcionan como interfaz entre el mundo externo y el procesador se les llama periféricos. Los periféricos se comunican con el procesador mediante los buses de dirección de datos y las señales de control.[2]\\ Existen dos formas de transmitir información:
+\begin{itemize}
+    \item \textbf{Paralelo:} Utilizan todas las lineas de comunicación del bus de datos, y no requiere realizar ningún sincronismo entre el periférico y el procesador.[2]
+    \item \textbf{Serie:} Hace la transformación de paralelo a serie y transmite el byte, bit por bit. Este tipo de transmición necesita un sincronismo entre el procesador y el periférico[2]
+\end{itemize}
+Los periféricos pueden clasificarse de forma general:
+\begin{itemize}
+    \item \textbf{De entrada:} Se ocupan de codificar los mensajes o señales para que el procesador pueda interpretarlos[2]
+    \item \textbf{De salida:} Permiten observar los resultados arrojados por el procesador de una manera más comoda.[2]
+\end{itemize}
+
+
+\chapter{Bluetoot}
+Bluetooth es una especificación para el uso de comunicaciones de radio de baja potencia a teléfonos inalámbricos, computadoras y otros dispositivos inalámbricos de red a distancias cortas. La tecnología de Bluetooth fue diseñada principalmente para soportar redes inalámbricas simples de dispositivos y periféricos, que incluye teléfonos celulares, PDAs y auriculares inalámbricos[13]
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[height=9cm]{arq_blue}
+    \caption{Arquitectura Bluetooth}
+\end{figure}
+
+\section{Arquitectura Bluetooth}
+
+\subsection{Capa de radio}
+La unidad RF realiza las funciones correspondientes a la capa física. El transceptor de RF salta a través de los canales disponibles de una manera aleatoria, que se conoce como espectro de dispersión de saltos de frecuencia, esto reduce la interferencia desde y hacia otros sistemas operativos.[6]
+
+\subsection{Capa de base banda}
+La capa de control de enlace es responsable de administrar la detección de dispositivos, establecer conexiones y una vez conectada, manteniendo los diversos enlaces en el aire. Lo hace a través de un conjunto de máquinas de estado, que impulsan la banda base a través de las siguientes etapas para establecer enlace:
+\begin{itemize}
+    \item El anfitrión solicita una consulta
+    \item La consulta se envía utilizando la secuencia de salto de consulta
+\end{itemize}
+
+\subsection{Capa de gestor de enlaces}
+El host impulsa un dispositivo Bluetooth a través de comandos HCI, pero es el Administrador de vínculos que traduce esos comandos en operaciones a nivel de banda base, administrando las siguientes operaciones[7]:
+\begin{itemize}
+    \item Configurar el enlace incluyendo el control de los conmutadores maestro / esclavo
+    \item Establecimiento de conexión síncrona (voz) y enlaces asíncronos sin conexión (datos)
+    \item Control de los modos de prueba
+\end{itemize}
+
+\subsection{Host Controller Interface}
+Es una interfaz de comandos para el controlador de banda base y el gestor de enlaces que proporciona un método uniforme de acceso a las capacidades de banda base bluetooth[6]
+
+\subsection{Capa L2CAP}
+El gestor de canales es responsable de crear, gestionar y destruir canales L2CAP para el transporte de protocolos de servicio y flujos de datos de aplicaciones, crea los canales L2CAP, a través de los cuales se comunican las aplicaciones que se ejecutan en dichos dispositivos, colabora con el gestor local de Link para crear nuevos enlaces lógicos si es necesario y configurarlos en consecuencia\\
+
+El gestor de recursos se ocupa de ordenar la sumisión de unidades de datos de protocolo a la banda de base y supervisar la programación entre canales para garantizar que se respetan los compromisos de calidad de servicio[6]
+
+\section{Protocolos de comunicación}
+Se deben establecer diferentes tipos de enlaces entre dispositivos Bluetooth.Hay dos tipos de enlaces físicos entre dispositivos: 
+\begin{itemize}
+    \item \textbf{Orientado a la conexión síncrona(SCO):} Es un enlace simétrico punto a punto entre un maestro y un único esclavo. Este enlace funciona como un enlace de conmutación de circuitos usando intervalos de tiempo reservados a intervalos fijos. Un maestro y un esclavo pueden soportar hasta tres enlaces SCO simultáneos. Un enlace SCO enlaza principalmente las transmisiones de voz a una velocidad de 64 Kbps.[8]
+    \item \textbf{Sin conexión asincrónica(ACL):} Es un enlace conmutado por paquetes utilizado para transmisiones de datos. A veces llamado enlace punto a multipunto, el enlace ACL es de un maestro a todos los esclavos que participan en la piconet. Un piconet puede soportar sólo un enlace ACL único entre un maestro y hasta siete esclavos. En los intervalos de tiempo no reservados para los enlaces SCO, el maestro puede establecer una ACL y transferir datos a cualquier esclavo[8]
+
+\end{itemize}
+
+
+\chapter{Sensor de alcohol}
+
+
+\section{Alcoholimetro}
+Es un dispositivo que te permite determinar el nivel de alcohol que circula en tu sangre, a través de la cantidad de alcohol en el aire de tu aliento. Existe una gran variedad de dispositivos en el mercado, cada uno utiliza un método diferente para medir la cantidad de alcohol en tu aliento, las máquinas pueden ser manuales o electrónicas.[11] \\
+Para determinar si un alcoholímetro cumple con los niveles de calidad, se analizan los siguientes aspectos:
+\begin{itemize}
+    \item \textbf{Sensor:} Al realizar pruebas se observa el comportamiento de los sensores. Los sensores electroquímicos tienen en cuenta la temperatura ambiente y la humedad relativa. Aquellos que no estén provistos por estos, harán mediciones con una precisión ligeramente inferior[12]
+    \item \textbf{Precisión:} Es la clave de la fiabilidad. La exactitud de los resultados es primordial. De esa exactitud y precisión dependerá que la persona sometida a la prueba sea sancionada, pierda puntos o incluso incurra en un delito.[12]
+    \item \textbf{Sensibilidad:} Es un factor importante para determinar la calidad del producto. A mayor sensibilidad, mayor precisión. Y cuanto mayor sea la sensibilidad, el coste de mantenimiento será inferior.[12]
+    \item \textbf{Tiempo de respuesta:} El tiempo que tarda en mostrar el resultado tras desarrollarse una prueba de alcoholemia también es una característica importante. Entre menos tiempo más test de alcoholemia se podrán realizar[12]
+    \item \textbf{Autonomía:} La autonomía o consumo energético también dice mucho del mismo. Cuanto mayor autonomía tenga, mayor será valorado.[12]
+    \item \textbf{Resultados:} Debe tenerse en cuenta la tasa de alcoholemia permitida en el país fabricante y la del país en el que se use.[12]
+\end{itemize}
+
+\section{Efectos del alcohol en el organismo}
+El alcohol tiene efectos en los órganos de los sentidos, haciendo que disminuya la precisión en la interpretación de sensaciones. Por combinación de los efectos sobre el cerebro y los órganos de los sentidos, la velocidad de respuesta a los estímulos externos disminuye de marcadamente. Es demasiado peligroso conducir un vehículo u operar alguna maquinaria cuando se esta alcoholizado, porque el individuo no puede responder apropiadamente a los estímulos que recibe. [9] \\
+La siguiente tabla muestra las reacciones típicas de los individuos según los nívles sanguíneos de alcohol:
+\begin{center}
+\begin{table}[!htb]
+\centering
+\begin{tabular}{|p{3cm}|p{8cm}|}
+    \hline
+    \centering  \textbf{Nivel} & \textbf{Comportamiento} \\ \hline
+     \centering 0.02 & Aumento leve en el estado de ánimo \\ \hline
+     \centering 0.04 & Relajación \\ \hline
+     \centering 0.06 & Juicio alterado \\ & Irracional \\ & Desinhibición \\ \hline
+     \centering 0.08 & Alteración de la coordinación \\ & Pobre respuesta a estímulos \\ & Reflejos disminuidos \\ & Desinhibición mayor \\ \hline
+     \centering 0.10 & Deterioro del tiempo de reacción y del control \\ & Legalmente ebrio\\ \hline
+     \centering 0.12 & Vómito \\ & Todo lo anterior de forma mayor \\ \hline
+     \centering 0.15 & Balance y movimiento severamente alterados \\ \hline
+     \centering 0.20 & Disminución del dolor y sensaciones \\ & Muy pobre respuesta a estímulos \\ \hline
+     \centering 0.30 & Se puede perder la conciencia \\ \hline
+     \centering 0.40 & Perdida de conciencia, anestesia \\ \hline
+     \centering 0.50 & Muerte \\ 
+    \hline
+\end{tabular}
+\caption{Efectos del alcohol}
+\end{table}
+\end{center}
+
+2.- Benchimol Daniel, "Microcontroladores. Funcionamiento, programación y aplicaciones prácticas", RedUSERS, Primera edición, pp. 92-97, 2011.
+3.- Pérez Fernando E, Areny Ramon P., "Microcontroladores: Fundamentos y aplicaciones con PIC", Marcombo, Primera edición, pp. 14-16, 2007.
+4.- Izaguirre Aitzol Z., Cuéllar Armando A., "Sistema de procesamiento digital", Delta publicaciones, Primera edición, pp. 69-70, 2008.
+5.- Pérez Enrique M, Fuertes Luis M, Ferreira Luis F, Matos Emilio M, "Microcontroladores PIC. Sistema integrado de aprendizaje", Marcombo, Tercera editorial, pp. 34-35, 2007.
+6.- Misic Jelena, Misic Vojislav B., "Performance modeling and analisis of bluetooth networks", Auerbach Publications, pp. 1-5, 2006.
+7.- Bray Jennifer, Sturman Charles F, "Bluetooth 1.1 Connect without cables", Prentice Hall, Segunda edición, pp 41-45.
+8.- Olenewa Jorge L, "Guide to wireless communications", Cengage Learning, Tercera edición, pp. 172, 2014
+9.- Elizondo Leticia. "Cuidemos nuestra salud", Limusa, Primera edición, pp. 153 ,2001.
+10.- Elizondo Luz Leticia. "Principios básicos de la salud", Limusa, Primera edición, pp.72, 2005.
+11.- FarmaBionics. Alcoholímetro México. México.  www.alcoholimetromexico.com.mx
+12.- Consumer Design Products (2016) Blog Especializdo en Alcohlímetros. España. www.alcoholimetro.com
+13.- Hall Anthony, "10 important things you need to know about Bluetooth", pp.3, 2015.
