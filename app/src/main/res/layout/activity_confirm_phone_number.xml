@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    android:orientation="vertical"
+    tools:context="ipn.mobileapp.Model.Activities.ConfirmPhoneNumber">
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="25dp" />
+
+    <EditText
+        android:id="@+id/confirmation_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:hint="@string/txtv_confirmation_code"
+        android:inputType="number"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding" />
+
+    <Button
+        android:id="@+id/btn_confirm_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:text="@string/txtv_confirmation_code" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_resend_code"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:text="@string/btn_resend_code" />
+</LinearLayout>

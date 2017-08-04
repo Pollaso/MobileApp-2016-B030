@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="ipn.mobileapp.Model.Activities.ProfileActivity">
+
+    <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/sv_profile_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:requiresFadingEdge="vertical"
+        android:scrollbars="vertical"
+        tools:context="ipn.mobileapp.Model.Activities.ProfileActivity">
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:id="@+id/layout_edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <ImageButton
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/ic_circle_account_light" />
+
+            <EditText
+                android:id="@+id/et_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/txtv_email_hint"
+                android:inputType="textEmailAddress"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <EditText
+                android:id="@+id/et_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/txtv_password_hint"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <EditText
+                android:id="@+id/et_confirm_password"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/txtv_confirm_password_hint"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <EditText
+                android:id="@+id/et_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/txtv_name_hint"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <EditText
+                android:id="@+id/et_last_name_father"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/txtv_last_name_father_hint"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <EditText
+                android:id="@+id/et_last_name_mother"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:enabled="false"
+                android:hint="@string/txtv_last_name_mother_hint"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:context="ipn.mobileapp.Model.Activities.RegisterActivity">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/txtv_country_calling_code"
+                    android:maxLength="3"
+                    android:paddingLeft="@dimen/txtv_edit_text_padding"
+                    android:textSize="20sp" />
+
+                <EditText
+                    android:id="@+id/txtv_cellular"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:hint="@string/txtv_cellular_hint"
+                    android:inputType="phone"
+                    android:paddingBottom="@dimen/txtv_bottom_padding"
+                    android:paddingTop="@dimen/txtv_bottom_padding" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtv_calendar"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtv_calendar_hint"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingLeft="@dimen/txtv_edit_text_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding"
+                android:textSize="18sp" />
+
+            <Spinner
+                android:id="@+id/txtv_vehicle"
+                style="@style/spinner_style"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:entries="@array/s_valid_vehicles"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingLeft="20dp"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+
+            <TextView
+                android:id="@+id/txtv_registration_plates"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtv_registration_plates"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingLeft="@dimen/txtv_edit_text_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/txtv_serial_key"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtv_serial_key"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingLeft="@dimen/txtv_edit_text_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding"
+                android:textSize="18sp" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <LinearLayout
+        android:id="@+id/layout_modify_documents"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:background="@drawable/ic_add_document_dark" />
+
+        <EditText
+            android:id="@+id/et_document_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/et_document_name"
+            android:paddingBottom="@dimen/txtv_bottom_padding"
+            android:paddingTop="@dimen/txtv_bottom_padding" />
+
+        <EditText
+            android:id="@+id/et_document_path"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:hint="@string/et_document_path" />
+
+        <Button
+            android:id="@+id/imageButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center|right"
+            android:text="@string/btn_add_document" />
+    </LinearLayout>
+
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtn_save_changes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="15dp"
+        android:src="@drawable/ic_save_white"
+        android:tag="modify"
+        android:visibility="gone" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtn_add_vehicle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="15dp"
+        android:fadingEdgeLength="150dp"
+        android:requiresFadingEdge="vertical"
+        android:src="@drawable/ic_vehicle_white" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtn_modify_documents"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:onClick="activateSaveButton"
+        android:src="@drawable/ic_document"
+        android:tag="modify"
+        app:layout_anchor="@id/fbtn_add_vehicle"
+        app:layout_anchorGravity="top" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fbtn_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:onClick="activateSaveButton"
+        android:src="@drawable/ic_edit"
+        android:tag="edit"
+        app:layout_anchor="@id/fbtn_modify_documents"
+        app:layout_anchorGravity="top" />
+
+</android.support.design.widget.CoordinatorLayout>
