@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+
+    <color name="btn_focused">#A7FFEB</color>
+    <color name="btn_pressed">#69F0AE</color>
+
+    <color name="alert_handled">#28ff4d</color>
+    <color name="alert_unhandled">#980000</color>
+    <color name="alert_pending">#d2d200</color>
+</resources>
+

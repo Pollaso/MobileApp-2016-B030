@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DACBA</string>
+    <string name="app_title">Sistema Móvil de Detección de Alcohol en Conductores, con Bloquero Automotriz</string>
+
+    <!--Activity titles-->
+    <string name="title_activity_home">Hogar</string>
+    <string name="title_activity_login">Iniciar sesión</string>
+    <string name="title_activity_register">Registrate</string>
+    <string name="title_activity_forgot_password">Restablecer contraseña</string>
+    <string name="title_activity_confirm_phone_number">Confirmar teléfono celular</string>
+    <string name="title_activity_profile">Perfil</string>
+    <string name="title_activity_edit_profile">Editar perfil</string>
+    <string name="title_activity_documents">Documentos</string>
+    <string name="title_activity_contacts">Contactos</string>
+    <string name="title_activity_sub_users">Sub-Usuarios</string>
+    <string name="title_activity_alerts">Alertas</string>
+
+    <!--Fragment titles-->
+    <string name="title_fragment_about_us">Acerca de nosotros</string>
+    <string name="title_fragment_terms">Términos y condiciones</string>
+    <string name="title_fragment_privacy">Aviso de privacidad</string>
+
+    <!--Dialog titles-->
+    <string name="title_dialog_alerts">Alerta</string>
+    <string name="title_dialog_add_contact">Agregar contacto</string>
+    <string name="title_dialog_edit_contact">Editar contacto</string>
+    <string name="title_dialog_register_sub_user">Registrar sub-usuario</string>
+    <string name="title_dialog_add_vehicle">Agregar vehículo</string>
+
+    <!--Home screen project description-->
+    <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
+
+    <!--Button names-->
+    <string name="btn_login_name">Inicia sesión</string>
+    <string name="btn_register_name">Registrate</string>
+    <string name="btn_register_new_user_name">¿Eres nuevo aquí?</string>
+    <string name="btn_already_have_an_account">¿Ya tienes una cuenta?</string>
+    <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
+    <string name="btn_get_new_password">Obtener nueva contraseña</string>
+    <string name="btn_confirm_code">Confirmar teléfono</string>
+    <string name="btn_resend_code">Reenviar código</string>
+    <string name="btn_cancel">Cancelar</string>
+    <string name="btn_send_message">Enviar mensaje</string>
+    <string name="btn_save_changes">Guardar cambios</string>
+    <string name="btn_add_document">Elegir documento</string>
+    <string name="btn_save_contact">Guardar contacto</string>
+    <string name="btn_register_sub_user">Registrar Sub-Usuario</string>
+    <string name="btn_add_vehicle">Guardar vehículo</string>
+
+    <!--TextView names-->
+    <string name="txtv_email_hint">Correo electrónico</string>
+    <string name="txtv_password_hint">Contraseña</string>
+    <string name="txtv_confirm_password_hint">Confirmar contraseña</string>
+    <string name="txtv_name_hint">Nombre(s)</string>
+    <string name="txtv_last_name_father_hint">Apellido Paterno</string>
+    <string name="txtv_last_name_mother_hint">Apellido Materno</string>
+    <string name="txtv_cellular_hint">Teléfono celular</string>
+    <string name="txtv_calendar_hint">Fecha de nacimiento</string>
+    <string name="txtv_confirmation_code">Código de confirmación</string>
+    <string name="txtv_serial_key">Clave serial del dispositivo</string>
+    <string name="txtv_registration_plates">Matrícula automovilística</string>
+    <string name="stx_vehicle">Vehículo</string>
+
+    <!--Checkbox text-->
+    <string name="chck_accept_terms">Acepto los</string>
+
+    <!--EditText hints-->
+    <string name="et_message">Escriba su mensaje abajo</string>
+    <string name="et_document_name">Nombre del documento</string>
+    <string name="et_document_path">Ruta del documento</string>
+
+    <!--Prefijos telefónicos mundiales-->
+    <string name="txtv_country_calling_code">PTM</string>
+    <string-array name="s_country_names">
+        <item>MX</item>
+        <item>USA</item>
+    </string-array>
+
+    <string-array name="s_country_codes">
+        <item>+52</item>
+        <item>+1</item>
+    </string-array>
+
+    <string-array name="s_valid_vehicles">
+        <item>Jetta 2010</item>
+    </string-array>
+
+    <!--Navigation menu-->
+    <string name="nav_menu_home">Hogar</string>
+    <string name="nav_menu_profile">Perfil</string>
+    <string name="nav_menu_sub_users">Sub-Usuarios</string>
+    <string name="nav_menu_contacts">Contactos</string>
+    <string name="nav_menu_alerts">Alertas</string>
+    <string name="nav_menu_other_section">Otros</string>
+    <string name="nav_menu_about_us">Acerca de nosotros</string>
+    <string name="nav_menu_privacy">Aviso de privacidad</string>
+    <string name="nav_menu_logout">Cerrar sesión</string>
+
+    <!--Sub-User Popup Menu-->
+    <string name="sub_user_menu_add">Registar Sub-Usaurio</string>
+
+    <!--Profile Popup Menu-->
+    <string name="mn_profile_deactivate">Desactivar cuenta</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_example">Example action</string>
+
+    <string name="action_settings">Settings</string>
+
+    <!--Notification messages-->
+    <string name="msj_phone_confirmed">Tu teléfono ha sido confirmado</string>
+    <string name="msj_resend_code">El nuevo código ha sido enviado</string>
+    <string name="msj_alert_sent">El mensaje a sido enviado</string>
+    <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
+    <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
+    <string name="msj_successful_registration">El registro se ha realizado de forma exitosa</string>
+    <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
+    <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa.</string>
+
+    <!--Error messages-->
+
+    <!--Examples-->
+    <string name="example_contact_01">Nombre del contacto\n+52 00 0000 0000</string>
+    <string name="example_contact_02">Nombre del contacto\n+52 000 000 0000</string>
+    <string name="example_contact_03">Nombre del contacto\n+1 000 000 0000</string>
+    <string name="example_sub_user">Nombre del sub-usuario\n+52 00 0000 0000\nVehículo\nÙltimo nivel de alcohol: 0.00</string>
+    <string name="example_handled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
+    <string name="example_pending_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
+    <string name="example_unhandled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
+
+    <!--Configuration for servlets-->
+    <string-array name="localhost">
+        <item>http</item>
+        <item>10.0.0.12</item>
+        <item>8080</item>
+        <item>/WebPortal</item>
+    </string-array>
+
+    <string-array name="server">
+        <item>http</item>
+        <item>10.0.0.12</item>
+        <item>8080</item>
+        <item>/WebPortal</item>
+    </string-array>
+
+    <string-array name="servlets">
+        <item>/Login</item>
+        <item>/Register</item>
+    </string-array>
+</resources>

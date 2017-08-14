@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DACBA</string>
+    <string name="app_title">Sistema Móvil de Detección de Alcohol en Conductores, con Bloquero Automotriz</string>
+
+    <!--Activity titles-->
+    <string name="title_activity_home">Inicio</string>
+    <string name="title_activity_login">Iniciar sesión</string>
+    <string name="title_activity_register">Registrate</string>
+
+    <!--Button names-->
+    <string name="btn_login_name">Inicia sesión</string>
+    <string name="btn_register_name">Registrate</string>
+    <string name="btn_register_new_user_name">¿Eres nuevo aquí?</string>
+
+    <!--TextView names-->
+    <string name="txtv_email_hint">Correo electrónico</string>
+    <string name="txtv_password_hint">Contraseña</string>
+    <string name="txtv_confirm_password_hint">Confirmar contraseña</string>
+    <string name="txtv_name_hint">Nombre(s)</string>
+    <string name="txtv_last_name_father_hint">Apellido Paterno</string>
+    <string name="txtv_last_name_mother_hint">Apellido Materno</string>
+    <string name="txtv_cellular_hint">Telefóno celular</string>
+    <string name="txtv_calendar_hint">Fecha de nacimiento</string>
+
+    <!--Prefijos telefónicos mundiales-->
+    <string name="txtv_country_calling_code">PTM</string>
+
+    <!--Notification messages-->
+
+    <!--Error messages-->
+</resources>

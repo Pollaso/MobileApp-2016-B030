@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context="ipn.mobileapp.view.activities.LoginActivity">
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:hint="@string/txtv_email_hint"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:hint="@string/txtv_password_hint"
+        android:inputType="textPassword"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:typeface="normal" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center|top"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:text="@string/btn_login_name" />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/btn_forgot_password"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:text="@string/btn_forgot_password" />
+
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center"
+        android:paddingBottom="@dimen/txtv_bottom_padding"
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:text="@string/btn_register_new_user_name" />
+</LinearLayout>

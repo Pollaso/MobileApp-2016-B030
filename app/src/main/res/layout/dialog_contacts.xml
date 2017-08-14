@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/sv_profile_scroll"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:requiresFadingEdge="vertical"
+    android:scrollbars="vertical">
+
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:orientation="vertical"
+        android:padding="@dimen/activity_horizontal_margin">
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/txtv_name_hint"
+            android:paddingBottom="@dimen/txtv_bottom_padding"
+            android:paddingTop="@dimen/txtv_bottom_padding" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/txtv_last_name_father_hint"
+            android:paddingBottom="@dimen/txtv_bottom_padding"
+            android:paddingTop="@dimen/txtv_bottom_padding" />
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/txtv_last_name_mother_hint"
+            android:paddingBottom="@dimen/txtv_bottom_padding"
+            android:paddingTop="@dimen/txtv_bottom_padding" />
+
+        <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            tools:context="ipn.mobileapp.view.activities.RegisterActivity">
+
+            <Spinner
+                android:id="@+id/txs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:entries="@array/s_country_names" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtv_country_calling_code"
+                android:maxLength="3"
+                android:textSize="20sp" />
+
+            <EditText
+                android:id="@+id/txtv_cellular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/txtv_cellular_hint"
+                android:inputType="phone"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/btn_save_edit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </LinearLayout>
+</ScrollView>

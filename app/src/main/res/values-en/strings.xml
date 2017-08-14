@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--<string name="app_name">DACAL</string>-->
+    <!--<string name="app_title">Mobile System for Detection of Alcohol in Conductors, with Automotive Lock</string>-->
+
+    <!--&lt;!&ndash;Strings related to home&ndash;&gt;-->
+    <!--<string name="title_activity_home"></string>-->
+    <!--<string name="btn_login_name">Log in</string>-->
+    <!--<string name="btn_register_new_user_name">Are you new here?</string>-->
+
+    <!--&lt;!&ndash; Strings related to login &ndash;&gt;-->
+    <!--<string name="title_activity_login">Log in</string>-->
+
+    <!--&lt;!&ndash;Country Calling Codes&ndash;&gt;-->
+    <!--<string name="txtv_country_calling_code">CCC</string>-->
+
+</resources>
