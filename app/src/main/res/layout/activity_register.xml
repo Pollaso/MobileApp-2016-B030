@@ -6,7 +6,7 @@
     android:fillViewport="true"
     android:requiresFadingEdge="vertical"
     android:scrollbars="vertical"
-    tools:context="ipn.mobileapp.Model.Activities.RegisterActivity">
+    tools:context="ipn.mobileapp.presenter.activities.RegisterActivity">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -16,8 +16,15 @@
         android:focusableInTouchMode="true"
         android:orientation="vertical">
 
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Usuario"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <EditText
+            android:id="@+id/et_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_email_hint"
@@ -26,37 +33,47 @@
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@+id/et_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_password_hint"
+            android:inputType="textVisiblePassword"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@+id/et_confirm_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_confirm_password_hint"
+            android:inputType="textVisiblePassword"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_name_hint"
+            android:inputType="text"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@+id/et_paternal_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_last_name_father_hint"
+            android:inputType="text"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@+id/et_maternal_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_last_name_mother_hint"
+            android:inputType="text"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -65,7 +82,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            tools:context="ipn.mobileapp.Model.Activities.RegisterActivity">
+            tools:context="ipn.mobileapp.presenter.activities.RegisterActivity">
 
             <Spinner
                 android:id="@+id/txs"
@@ -81,7 +98,7 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/txtv_cellular"
+                android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txtv_cellular_hint"
@@ -114,27 +131,24 @@
                 android:src="@drawable/ic_more_dark_grey" />
         </LinearLayout>
 
-        <Spinner
-            android:id="@+id/txtv_vehicle"
-            style="@style/spinner_style"
+        <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:entries="@array/s_valid_vehicles"
-            android:paddingBottom="@dimen/txtv_bottom_padding"
-            android:paddingLeft="20dp"
-            android:paddingTop="@dimen/txtv_bottom_padding" />
+            android:text="Vehículo"
+            android:textSize="25dp"
+            android:textStyle="bold" />
 
         <EditText
-            android:id="@+id/txtv_registration_plates"
+            android:id="@+id/et_car_plates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/txtv_registration_plates"
+            android:hint="@string/txtv_car_plates"
             android:maxLength="10"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
-            android:id="@+id/txtv_serial_key"
+            android:id="@+id/et_serial_key"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_serial_key"
@@ -147,17 +161,18 @@
             android:orientation="horizontal">
 
             <CheckBox
+                android:id="@+id/cb_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
                 android:text="@string/chck_accept_terms" />
 
             <TextView
+                android:id="@+id/txtv_terms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
-                android:text="@string/title_fragment_terms"
                 android:textSize="@dimen/alert_text_preview" />
         </LinearLayout>
 

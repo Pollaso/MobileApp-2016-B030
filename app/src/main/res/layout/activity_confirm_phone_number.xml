@@ -8,7 +8,7 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="ipn.mobileapp.Model.Activities.ConfirmPhoneNumber">
+    tools:context="ipn.mobileapp.presenter.activities.ConfirmPhoneNumber">
 
     <Space
         android:layout_width="match_parent"

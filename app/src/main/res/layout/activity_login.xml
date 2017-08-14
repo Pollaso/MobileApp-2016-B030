@@ -7,9 +7,10 @@
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="ipn.mobileapp.Model.Activities.LoginActivity">
+    tools:context="ipn.mobileapp.presenter.activities.LoginActivity">
 
     <EditText
+        android:id="@+id/et_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"
@@ -18,6 +19,7 @@
         android:paddingTop="@dimen/txtv_bottom_padding" />
 
     <EditText
+        android:id="@+id/et_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center|top"

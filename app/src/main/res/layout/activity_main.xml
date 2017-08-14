@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="ipn.mobileapp.Model.Activities.HomeActivity">
+    tools:context="ipn.mobileapp.presenter.activities.HomeActivity">
 
     <ImageView
         android:id="@+id/img_title"

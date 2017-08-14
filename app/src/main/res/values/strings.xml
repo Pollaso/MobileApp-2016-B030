@@ -59,7 +59,7 @@
     <string name="txtv_calendar_hint">Fecha de nacimiento</string>
     <string name="txtv_confirmation_code">Código de confirmación</string>
     <string name="txtv_serial_key">Clave serial del dispositivo</string>
-    <string name="txtv_registration_plates">Matrícula automovilística</string>
+    <string name="txtv_car_plates">Matrícula automovilística</string>
     <string name="stx_vehicle">Vehículo</string>
 
     <!--Checkbox text-->
@@ -134,20 +134,23 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.0.12</item>
+        <item>10.0.0.6</item>
         <item>8080</item>
-        <item>/WebPortal</item>
+        <item></item>
     </string-array>
 
     <string-array name="server">
         <item>http</item>
         <item>10.0.0.12</item>
         <item>8080</item>
-        <item>/WebPortal</item>
+        <item></item>
     </string-array>
 
     <string-array name="servlets">
-        <item>/Login</item>
-        <item>/Register</item>
+        <item>Login</item>
+        <item>Register</item>
     </string-array>
+
+    <string name="localhost_terms">http://10.0.0.6:8080/Terms.jsp</string>
+    <string name="server_terms"></string>
 </resources>
