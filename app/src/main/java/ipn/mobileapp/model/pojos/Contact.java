@@ -1,9 +1,8 @@
-package ipn.mobileapp.Controller;
+package ipn.mobileapp.model.pojos;
 
-import java.net.URI;
 import java.util.List;
 
-class Contact {
+public class Contact {
     private String photo;
     private String id;
     private String firstName;

@@ -1,4 +1,4 @@
-package ipn.mobileapp.Model.Enums;
+package ipn.mobileapp.model.enums;
 
 public enum RequestType {
     GET,

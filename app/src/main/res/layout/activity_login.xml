@@ -7,7 +7,7 @@
     android:focusableInTouchMode="true"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context="ipn.mobileapp.Model.Activities.LoginActivity">
+    tools:context="ipn.mobileapp.view.activities.LoginActivity">
 
     <EditText
         android:layout_width="match_parent"

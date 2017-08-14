@@ -1,6 +1,5 @@
-package ipn.mobileapp.Model.Activities;
+package ipn.mobileapp.view.activities;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.view.LayoutInflater;
@@ -11,8 +10,8 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-import ipn.mobileapp.Controller.ContactsManager;
-import ipn.mobileapp.Model.Components.ContactDialog;
+import ipn.mobileapp.model.ContactsManager;
+import ipn.mobileapp.view.dialogs.ContactDialog;
 import ipn.mobileapp.R;
 
 public class ContactsActivity extends BaseActivity {
@@ -20,7 +19,7 @@ public class ContactsActivity extends BaseActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        LayoutInflater inflater = (LayoutInflater)this.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater)this.getSystemService(LAYOUT_INFLATER_SERVICE);
 
         View contentView = inflater.inflate(R.layout.activity_contacts, null, false);
         drawer.addView(contentView, 0);

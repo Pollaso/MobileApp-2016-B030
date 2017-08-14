@@ -1,9 +1,8 @@
-package ipn.mobileapp.Controller;
+package ipn.mobileapp.model;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;
 import android.content.ContentResolver;
-import android.content.ContentValues;
 import android.content.Context;
 import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
@@ -18,6 +17,8 @@ import java.util.List;
 import android.provider.ContactsContract;
 import android.database.Cursor;
 import android.net.Uri;
+
+import ipn.mobileapp.model.pojos.Contact;
 
 public class ContactsManager {
     Uri CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;

@@ -1,4 +1,4 @@
-package ipn.mobileapp.Model.Activities;
+package ipn.mobileapp.view.activities;
 
 import android.content.Context;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 
-import ipn.mobileapp.Model.Components.SubUserDialog;
+import ipn.mobileapp.view.dialogs.SubUserDialog;
 import ipn.mobileapp.R;
 
 public class SubUsersActivity extends BaseActivity {

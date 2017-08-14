@@ -1,4 +1,4 @@
-package ipn.mobileapp.Model.Components;
+package ipn.mobileapp.view.dialogs;
 
 import android.app.DatePickerDialog;
 import android.app.Dialog;

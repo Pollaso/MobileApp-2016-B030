@@ -1,10 +1,9 @@
-package ipn.mobileapp.Model.Activities;
+package ipn.mobileapp.view.activities;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.view.ScrollingView;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,7 +13,7 @@ import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.Toast;
 
-import ipn.mobileapp.Model.Components.VehicleDialog;
+import ipn.mobileapp.view.dialogs.VehicleDialog;
 import ipn.mobileapp.R;
 
 public class ProfileActivity extends BaseActivity {

@@ -1,4 +1,4 @@
-package ipn.mobileapp.Model.Activities;
+package ipn.mobileapp.view.activities;
 
 import android.app.Activity;
 import android.os.Bundle;

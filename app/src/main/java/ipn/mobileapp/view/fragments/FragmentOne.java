@@ -1,4 +1,4 @@
-package ipn.mobileapp.Model.Activities;
+package ipn.mobileapp.view.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

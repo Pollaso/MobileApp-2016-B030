@@ -16,19 +16,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".Model.Activities.HomeActivity"
+            android:name=".view.activities.HomeActivity"
             android:label="@string/title_activity_home" />
         <activity
-            android:name=".Model.Activities.LoginActivity"
+            android:name=".view.activities.LoginActivity"
             android:label="@string/title_activity_login" />
         <activity
-            android:name=".Model.Activities.RegisterActivity"
+            android:name=".view.activities.RegisterActivity"
             android:label="@string/title_activity_register" />
-        <activity android:name=".Model.Activities.ConfirmEmailActivity" />
+        <activity android:name=".view.activities.ConfirmEmailActivity" />
         <activity
-            android:name=".Model.Activities.ConfirmPhoneNumber"
+            android:name=".view.activities.ConfirmPhoneNumber"
             android:label="@string/title_activity_confirm_phone_number" />
-        <activity android:name=".Model.Activities.MainActivity">
+        <activity android:name=".view.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -36,22 +36,22 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".Model.Activities.SubUsersActivity"
+            android:name=".view.activities.SubUsersActivity"
             android:label="@string/title_activity_sub_users" />
         <activity
-            android:name=".Model.Activities.BaseActivity"
+            android:name=".view.activities.BaseActivity"
             android:label="Base" />
         <activity
-            android:name=".Model.Activities.ProfileActivity"
+            android:name=".view.activities.ProfileActivity"
             android:label="@string/title_activity_profile" />
         <activity
-            android:name=".Model.Activities.ContactsActivity"
+            android:name=".view.activities.ContactsActivity"
             android:label="@string/title_activity_contacts" />
         <activity
-            android:name=".Model.Activities.AlertsActivity"
+            android:name=".view.activities.AlertsActivity"
             android:label="@string/title_activity_alerts" />
         <activity
-            android:name=".Model.Activities.ForgotPasswordActivity"
+            android:name=".view.activities.ForgotPasswordActivity"
             android:label="@string/title_activity_forgot_password"></activity>
     </application>
 

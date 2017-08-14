@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="ipn.mobileapp.Model.Activities.ProfileActivity">
+    tools:context="ipn.mobileapp.view.activities.ProfileActivity">
 
     <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:tools="http://schemas.android.com/tools"
@@ -14,7 +14,7 @@
         android:fillViewport="true"
         android:requiresFadingEdge="vertical"
         android:scrollbars="vertical"
-        tools:context="ipn.mobileapp.Model.Activities.ProfileActivity">
+        tools:context="ipn.mobileapp.view.activities.ProfileActivity">
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:tools="http://schemas.android.com/tools"
@@ -92,7 +92,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                tools:context="ipn.mobileapp.Model.Activities.RegisterActivity">
+                tools:context="ipn.mobileapp.view.activities.RegisterActivity">
 
                 <TextView
                     android:layout_width="wrap_content"

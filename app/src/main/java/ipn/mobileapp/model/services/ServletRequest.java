@@ -1,4 +1,4 @@
-package ipn.mobileapp.Model.Services;
+package ipn.mobileapp.model.services;
 
 import android.content.Context;
 
@@ -20,8 +20,8 @@ import java.net.URI;
 import java.net.URISyntaxException;
 import java.util.Map;
 
-import ipn.mobileapp.Model.Enums.RequestType;
-import ipn.mobileapp.Model.Enums.Servlets;
+import ipn.mobileapp.model.enums.RequestType;
+import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.R;
 
 /**

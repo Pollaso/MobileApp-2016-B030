@@ -1,23 +1,14 @@
-package ipn.mobileapp.Model.Activities;
+package ipn.mobileapp.view.activities;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
-import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
-import android.text.format.Time;
 import android.view.View;
 import android.widget.Button;
-import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageButton;
-import android.widget.TextView;
 
-import ipn.mobileapp.Model.Components.DatePickerFragment;
+import ipn.mobileapp.view.dialogs.DatePickerFragment;
 import ipn.mobileapp.R;
 
 public class RegisterActivity extends AppCompatActivity {

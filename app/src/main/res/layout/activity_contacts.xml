@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:foregroundGravity="bottom|right"
     android:orientation="horizontal"
-    tools:context="ipn.mobileapp.Model.Activities.ContactsActivity">
+    tools:context="ipn.mobileapp.view.activities.ContactsActivity">
 
     <ScrollView
         android:layout_width="match_parent"
