@@ -27,6 +27,7 @@
     <string name="title_dialog_edit_contact">Editar contacto</string>
     <string name="title_dialog_register_sub_user">Registrar sub-usuario</string>
     <string name="title_dialog_add_vehicle">Agregar vehículo</string>
+    <string name="title_dialog_forgot_password">Restablecer contraseña</string>
 
     <!--Home screen project description-->
     <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
@@ -38,6 +39,7 @@
     <string name="btn_already_have_an_account">¿Ya tienes una cuenta?</string>
     <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
     <string name="btn_get_new_password">Obtener nueva contraseña</string>
+    <string name="btn_send_instructions">Enviar instruciones</string>
     <string name="btn_confirm_code">Confirmar teléfono</string>
     <string name="btn_resend_code">Reenviar código</string>
     <string name="btn_cancel">Cancelar</string>
@@ -119,6 +121,7 @@
     <string name="msj_successful_registration">El registro se ha realizado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
     <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa.</string>
+    <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas al correo ingresado.</string>
 
     <!--Error messages-->
 

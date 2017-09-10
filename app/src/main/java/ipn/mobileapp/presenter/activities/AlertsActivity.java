@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.ImageButton;
 
 
-import ipn.mobileapp.presenter.dialogs.AlertDialog;
+import ipn.mobileapp.presenter.dialogs.SMSAlertDialog;
 import ipn.mobileapp.R;
 
 public class AlertsActivity extends BaseActivity {
@@ -23,7 +23,7 @@ public class AlertsActivity extends BaseActivity {
         drawer.addView(contentView, 0);
 
         ImageButton alertPreview = (ImageButton) findViewById(R.id.alert_preview);
-        alertPreview.setOnClickListener(new AlertDialog(this));
+        alertPreview.setOnClickListener(new SMSAlertDialog(this));
     }
 
     @Override

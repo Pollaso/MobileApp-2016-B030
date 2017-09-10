@@ -51,9 +51,6 @@
         <activity
             android:name=".presenter.activities.AlertsActivity"
             android:label="@string/title_activity_alerts" />
-        <activity
-            android:name=".presenter.activities.ForgotPasswordActivity"
-            android:label="@string/title_activity_forgot_password"></activity>
     </application>
 
 </manifest>

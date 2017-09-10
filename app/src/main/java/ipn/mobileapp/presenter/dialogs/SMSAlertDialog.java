@@ -11,10 +11,10 @@ import android.widget.Toast;
 
 import ipn.mobileapp.R;
 
-public class AlertDialog implements View.OnClickListener {
+public class SMSAlertDialog implements View.OnClickListener {
     private Context context;
 
-    public AlertDialog(Context context)
+    public SMSAlertDialog(Context context)
     {
         this.context = context;
     }

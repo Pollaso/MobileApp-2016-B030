@@ -17,6 +17,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.presenter.dialogs.ForgotPasswordDialog;
 import okhttp3.Request;
 
 public class LoginActivity extends AppCompatActivity {
@@ -76,12 +77,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        btnForgotPassword.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getBaseContext(), ForgotPasswordActivity.class);
-                startActivity(intent);
-            }
-        });
+        btnForgotPassword.setOnClickListener(new ForgotPasswordDialog(this));
     }
 }
