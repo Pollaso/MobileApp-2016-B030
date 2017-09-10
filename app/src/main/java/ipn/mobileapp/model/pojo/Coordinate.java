@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.pojos;
+package ipn.mobileapp.model.pojo;
 
 public class Coordinate {
 	private double longitude;

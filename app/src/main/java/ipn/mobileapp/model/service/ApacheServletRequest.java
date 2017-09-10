@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.services;
+package ipn.mobileapp.model.service;
 
 import android.content.Context;
 
@@ -46,7 +46,7 @@ public class ApacheServletRequest {
     }
 
     public URI create(Servlets servlet, Map<String, JSONObject> params) throws URISyntaxException {
-        URI uri = null;
+        URI uri;
         String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.ordinal()];
 
         URIBuilder uriBuilder = new URIBuilder();

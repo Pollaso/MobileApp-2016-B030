@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.services;
+package ipn.mobileapp.model.service;
 
 import android.content.Context;
 

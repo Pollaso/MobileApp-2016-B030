@@ -18,7 +18,7 @@ import android.provider.ContactsContract;
 import android.database.Cursor;
 import android.net.Uri;
 
-import ipn.mobileapp.model.pojos.Contact;
+import ipn.mobileapp.model.pojo.Contact;
 
 public class ContactsManager {
     Uri CONTENT_URI = ContactsContract.Contacts.CONTENT_URI;

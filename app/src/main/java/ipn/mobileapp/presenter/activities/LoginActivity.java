@@ -15,8 +15,8 @@ import java.util.Map;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.pojos.User;
-import ipn.mobileapp.model.services.ServletRequest;
+import ipn.mobileapp.model.pojo.User;
+import ipn.mobileapp.model.service.ServletRequest;
 import okhttp3.Request;
 
 public class LoginActivity extends AppCompatActivity {

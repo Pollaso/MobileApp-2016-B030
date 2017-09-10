@@ -1,13 +1,8 @@
-package ipn.mobileapp.model.pojos;
+package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
 
 import java.sql.Date;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 public class BACTest {
 	private Date ocurrence;

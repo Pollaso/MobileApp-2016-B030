@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.pojos;
+package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
 
