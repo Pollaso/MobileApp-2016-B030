@@ -82,12 +82,9 @@ public class ServletRequest {
             sslContext.init(null, null, null);
             OkHttpClient client = new OkHttpClient().newBuilder().followRedirects(false).sslSocketFactory(sslContext.getSocketFactory()).build();
             Response response = client.newCall(request).execute();
-            result = response.body().string();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (KeyManagementException e) {
+            if (response.isSuccessful())
+                result = response.body().string();
+        } catch (Exception e) {
             e.printStackTrace();
         }
 

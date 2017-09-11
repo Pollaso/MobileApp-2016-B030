@@ -33,8 +33,9 @@ public class User {
 
     @Override
     public String toString() {
-        Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create();
-        return gson.toJson(this);
+        if(birthdate != null)
+            new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().toJson(this);
+        return new Gson().toJson(this);
     }
 
     public String get_id() {

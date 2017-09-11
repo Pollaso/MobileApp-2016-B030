@@ -152,6 +152,7 @@
     <string-array name="servlets">
         <item>Login</item>
         <item>Register</item>
+        <item>ForgotPassword</item>
     </string-array>
 
     <string name="localhost_terms">http://10.0.0.6:8080/Terms.jsp</string>

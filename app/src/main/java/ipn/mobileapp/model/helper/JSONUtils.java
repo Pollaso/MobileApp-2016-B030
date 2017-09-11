@@ -6,10 +6,9 @@ import com.google.gson.JsonSyntaxException;
 public final class JSONUtils {
     private static final Gson gson = new Gson();
 
-    private JSONUtils() {
-    }
-
     public static boolean isValidJSON(String json) {
+        if (json == null)
+            return false;
         try {
             gson.fromJson(json, Object.class);
             return true;
