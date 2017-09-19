@@ -39,7 +39,7 @@ public class ServletRequest {
         port = Integer.parseInt(confValues[2]);
     }
 
-    public Request create(Servlets servlet, RequestType requestType, Map<String, String> params) {
+    public Request buildRequest(Servlets servlet, RequestType requestType, Map<String, String> params) {
         HttpUrl url = null;
         String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.ordinal()];
 
@@ -73,21 +73,18 @@ public class ServletRequest {
         return requestBuilder.build();
     }
 
-    public String execute(Request request) {
-        String result = null;
+    public OkHttpClient buildClient() {
+        OkHttpClient client = null;
 
         SSLContext sslContext;
         try {
             sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, null, null);
-            OkHttpClient client = new OkHttpClient().newBuilder().followRedirects(false).sslSocketFactory(sslContext.getSocketFactory()).build();
-            Response response = client.newCall(request).execute();
-            if (response.isSuccessful())
-                result = response.body().string();
+            client = new OkHttpClient().newBuilder().followRedirects(false).sslSocketFactory(sslContext.getSocketFactory()).build();
         } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return result;
+        return client;
     }
 }

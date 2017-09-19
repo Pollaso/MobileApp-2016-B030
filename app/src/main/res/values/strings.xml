@@ -118,12 +118,19 @@
     <string name="msj_alert_sent">El mensaje a sido enviado</string>
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
-    <string name="msj_successful_registration">El registro se ha realizado de forma exitosa</string>
+    <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
-    <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa.</string>
-    <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas al correo ingresado.</string>
+    <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa</string>
+    <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
 
     <!--Error messages-->
+    <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
+
+    <!--Warning messages-->
+    <string name="warning_internet">No cuenta con una conexión a internet</string>
+    <string name="warning_register_user">Ya existe una cuenta registrada con esos datos</string>
+    <string name="warning_register_vehicle">El vehículo que intento registrar le pertenece a otro usuario</string>
+    <string name="warning_register_email">El correo con la contraseña temporal no se pudo enviar</string>
 
     <!--Examples-->
     <string name="example_contact_01">Nombre del contacto\n+52 00 0000 0000</string>

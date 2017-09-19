@@ -54,14 +54,14 @@ public class LoginActivity extends AppCompatActivity {
 
                         ServletRequest request = new ServletRequest(getBaseContext());
                         Request builtRequest = null;
-                        builtRequest = request.create(Servlets.LOGIN, RequestType.GET, params);
+                        builtRequest = request.buildRequest(Servlets.LOGIN, RequestType.GET, params);
                         String response = null;
-                        if (builtRequest != null)
-                            response = request.execute(builtRequest);
+                        /*if (builtRequest != null)
+                            response = request.buildClient(builtRequest);
                         if (response != null) {
                             user = new Gson().fromJson(response, User.class);
                             System.out.println(user.toString());
-                        }
+                        }*/
                     }
                 }).start();
                 //Intent intent = new Intent(getBaseContext(), HomeActivity.class);
