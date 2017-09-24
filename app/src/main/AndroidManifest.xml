@@ -39,7 +39,9 @@
         </activity>
         <activity
             android:name=".presenter.activities.SubUsersActivity"
-            android:label="@string/title_activity_sub_users" />
+            android:label="@string/title_activity_sub_users">
+
+        </activity>
         <activity
             android:name=".presenter.activities.BaseActivity"
             android:label="Base" />

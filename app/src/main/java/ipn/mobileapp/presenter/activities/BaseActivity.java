@@ -10,12 +10,18 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.dao.Database;
+import ipn.mobileapp.model.service.SharedPreferencesManager;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     protected DrawerLayout drawer;
     private LinearLayout navHeader;
+
+    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private long backPressed;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +43,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private void setNavigation() {
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+        navHeader = (LinearLayout) navigationView.findViewById(R.id.nav_header);
     }
 
     @Override
@@ -54,8 +61,16 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START))
             drawer.closeDrawer(GravityCompat.START);
-        else
-            super.onBackPressed();
+        else {
+            if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                finish();
+                System.exit(0);
+            } else {
+                Toast.makeText(BaseActivity.this, "Presione el botón de regresar de nuevo para cerrar la aplicación", Toast.LENGTH_SHORT).show();
+            }
+
+            backPressed = System.currentTimeMillis();
+        }
     }
 
 
@@ -91,19 +106,31 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(getBaseContext(), HomeActivity.class);
                 break;
             case R.id.nav_menu_logout:
+                logout();
                 intent = new Intent(getBaseContext(), MainActivity.class);
                 break;
         }
 
+        drawer.closeDrawer(GravityCompat.START);
+        finish();
         startActivity(intent);
 
 //        if (fragment != null) {
 //            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
 //            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
 //        }
-        drawer.closeDrawer(GravityCompat.START);
 
         return false;
+    }
+
+    public void logout() {
+        Database database = new Database(BaseActivity.this);
+        database.open();
+        database.clear();
+        database.close();
+
+        SharedPreferencesManager manager = new SharedPreferencesManager(BaseActivity.this, "currentUser");
+        manager.clear();
     }
 }
 

@@ -4,19 +4,22 @@ import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Html;
 import android.text.format.Time;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,12 +40,13 @@ import java.util.Map;
 import ipn.mobileapp.debug.DebugMode;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.helper.JSONUtils;
 import ipn.mobileapp.model.pojo.Device;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.pojo.Vehicle;
-import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.presenter.validation.TextValidator;
+import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.OkHttpClient;
@@ -50,20 +54,24 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class RegisterActivity extends AppCompatActivity {
-    private ImageButton ibtnBirthdate;
+    private EditText etEmail;
+    private EditText etPassword;
+    private EditText etConfirmPassword;
+    private EditText etName;
+    private EditText etPaternalSurname;
+    private EditText etMaternalSurname;
+    private Spinner spnrCountryCode;
+    private TextView tvCountryCodeNumber;
+    private EditText etPhoneNumber;
+    private ImageButton imgBtnBirthdate;
+    private TextView tvBirthdate;
+    private EditText etCarPlates;
+    private EditText etSerialKey;
+    private TextView tvTerms;
+    private CheckBox cbTerms;
+
     private Button btnLogin;
     private Button btnRegister;
-    private TextView birthdate;
-    private TextView terms;
-    private EditText email;
-    private EditText password;
-    private EditText confirmPassword;
-    private EditText name;
-    private EditText paternalSurname;
-    private EditText maternalSurname;
-    private EditText phoneNumber;
-    private EditText carPlates;
-    private EditText serialKey;
 
     private User user;
     private Vehicle vehicle;
@@ -78,39 +86,56 @@ public class RegisterActivity extends AppCompatActivity {
         vehicle = new Vehicle();
         device = new Device();
 
-        setButtons();
-        setTerms();
         getComponents();
+        setComponentAttributes();
+        setTerms();
     }
 
-    public void setTerms() {
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == 999) {
+            Time today = new Time(Time.getCurrentTimezone());
+            today.setToNow();
+            today.year -= getResources().getInteger(R.integer.legal_permit_age);
+
+            DatePickerDialog datePicker = new DatePickerDialog(this, dateSetListener, today.year, today.month, today.monthDay);
+            datePicker.getDatePicker().setMaxDate(today.toMillis(false));
+            return datePicker;
+        }
+        return null;
+    }
+
+    private void setTerms() {
         String htmlUrl = "<a 'href='" + getResources().getString(DebugMode.ON ? R.string.localhost_terms : R.string.server_terms) + "'>Términos y Condiciones</a>";
-        terms = (TextView) findViewById(R.id.txtv_terms);
-        terms.setClickable(true);
-        terms.setMovementMethod(LinkMovementMethod.getInstance());
-        terms.setText(Html.fromHtml(htmlUrl));
+
+        tvTerms.setClickable(true);
+        tvTerms.setMovementMethod(LinkMovementMethod.getInstance());
+        tvTerms.setText(Html.fromHtml(htmlUrl));
     }
 
     private void getComponents() {
-        birthdate = (TextView) findViewById(R.id.txtv_birthdate);
-
-        email = (EditText) findViewById(R.id.et_email);
-        password = (EditText) findViewById(R.id.et_password);
-        confirmPassword = (EditText) findViewById(R.id.et_confirm_password);
-        name = (EditText) findViewById(R.id.et_name);
-        paternalSurname = (EditText) findViewById(R.id.et_paternal_surname);
-        maternalSurname = (EditText) findViewById(R.id.et_maternal_surname);
-        phoneNumber = (EditText) findViewById(R.id.et_phone_number);
-
-        carPlates = (EditText) findViewById(R.id.et_car_plates);
-        serialKey = (EditText) findViewById(R.id.et_serial_key);
-    }
-
-    private void setButtons() {
         btnLogin = (Button) findViewById(R.id.btn_login);
         btnRegister = (Button) findViewById(R.id.btn_register);
-        ibtnBirthdate = (ImageButton) findViewById(R.id.ib_birthdate);
+        imgBtnBirthdate = (ImageButton) findViewById(R.id.ib_birthdate);
 
+        etEmail = (EditText) findViewById(R.id.et_email);
+        etPassword = (EditText) findViewById(R.id.et_password);
+        etConfirmPassword = (EditText) findViewById(R.id.et_confirm_password);
+        etName = (EditText) findViewById(R.id.et_name);
+        etPaternalSurname = (EditText) findViewById(R.id.et_paternal_surname);
+        etMaternalSurname = (EditText) findViewById(R.id.et_maternal_surname);
+        spnrCountryCode = (Spinner) findViewById(R.id.s_country_code);
+        tvCountryCodeNumber = (TextView) findViewById(R.id.txtv_country_code);
+        etPhoneNumber = (EditText) findViewById(R.id.et_phone_number);
+        tvBirthdate = (TextView) findViewById(R.id.txtv_birthdate);
+
+        etCarPlates = (EditText) findViewById(R.id.et_car_plates);
+        etSerialKey = (EditText) findViewById(R.id.et_serial_key);
+        tvTerms = (TextView) findViewById(R.id.txtv_terms);
+        cbTerms = (CheckBox) findViewById(R.id.cb_terms);
+    }
+
+    private void setComponentAttributes() {
         btnLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,45 +146,153 @@ public class RegisterActivity extends AppCompatActivity {
 
         btnRegister.setOnClickListener(register);
 
-        ibtnBirthdate.setOnClickListener(new View.OnClickListener() {
+        imgBtnBirthdate.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 showDialog(999);
             }
         });
+
+        final Validator validator = new Validator(this);
+        final TextView[] fields = new TextView[]{etEmail, etPassword, etConfirmPassword, etName, etPaternalSurname, etMaternalSurname, tvCountryCodeNumber, etPhoneNumber, tvBirthdate, etCarPlates, etSerialKey};
+
+        etEmail.addTextChangedListener(new TextValidator(etEmail) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidEmail(text))
+                    etEmail.setError(getString(R.string.warning_email));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etPassword.addTextChangedListener(new TextValidator(etPassword) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidPassword(text))
+                    etPassword.setError(getString(R.string.warning_password));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etConfirmPassword.addTextChangedListener(new TextValidator(etConfirmPassword) {
+            @Override
+            public void validate(TextView textView, String text) {
+                final String passwordStr = etPassword.getText().toString();
+                if (!passwordStr.equals(text))
+                    etConfirmPassword.setError(getString(R.string.warning_password_matches));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etName.addTextChangedListener(new TextValidator(etName) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidName(text))
+                    etName.setError(getString(R.string.warning_name));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etPaternalSurname.addTextChangedListener(new TextValidator(etPaternalSurname) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidLastName(text))
+                    etPaternalSurname.setError(getString(R.string.warning_surname));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etMaternalSurname.addTextChangedListener(new TextValidator(etMaternalSurname) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidLastName(text))
+                    etMaternalSurname.setError(getString(R.string.warning_surname));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        spnrCountryCode.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                tvCountryCodeNumber.setText(getResources().getStringArray(R.array.s_country_codes)[position]);
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+        etPhoneNumber.addTextChangedListener(new TextValidator(etPhoneNumber) {
+            @Override
+            public void validate(TextView textView, String text) {
+                final String phone = tvCountryCodeNumber.getText().toString() + text;
+                if (!validator.isValidPhone(phone))
+                    etPhoneNumber.setError(getString(R.string.warning_phone_number));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etCarPlates.addTextChangedListener(new TextValidator(etCarPlates) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidCarPlates(text))
+                    etCarPlates.setError(getString(R.string.warning_car_plates));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
+        etSerialKey.addTextChangedListener(new TextValidator(etSerialKey) {
+            @Override
+            public void validate(TextView textView, String text) {
+                if (!validator.isValidUUID(text))
+                    etSerialKey.setError(getString(R.string.warning_serial_key));
+                else
+                    btnRegister.setEnabled(validator.validateFields(fields));
+            }
+        });
     }
 
     private void createUser() {
-        user.setEmail(email.getText().toString());
-        if (!password.getText().toString().equals(confirmPassword.getText().toString()))
-            return;
-        user.setPassword(password.getText().toString());
-        user.setName(name.getText().toString());
-        user.setPaternalSurname(paternalSurname.getText().toString());
-        user.setMaternalSurname(maternalSurname.getText().toString());
-        user.setPhoneNumber(phoneNumber.getText().toString());
+        user.setEmail(etEmail.getText().toString());
+        user.setPassword(etPassword.getText().toString());
+        user.setName(etName.getText().toString());
+        user.setPaternalSurname(etPaternalSurname.getText().toString());
+        user.setMaternalSurname(etMaternalSurname.getText().toString());
+        user.setPhoneNumber(etPhoneNumber.getText().toString());
         user.setRole(User.USER_ROLE);
 
-        device.setSerialKey(serialKey.getText().toString());
-        vehicle.setCarPlates(carPlates.getText().toString());
+        device.setSerialKey(etSerialKey.getText().toString());
+        vehicle.setCarPlates(etCarPlates.getText().toString());
         vehicle.setDevice(device);
         Collection<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(vehicle);
         user.setVehicles(vehicles);
     }
 
-    @Override
-    protected Dialog onCreateDialog(int id) {
-        if (id == 999) {
-            Time today = new Time(Time.getCurrentTimezone());
-            today.setToNow();
-            int year = today.year;
-            int month = today.month;
-            int day = today.weekDay;
-
-            return new DatePickerDialog(this, dateSetListener, year, month, day);
-        }
-        return null;
+    private void displayResults(final String response) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                if (response != null) {
+                    JsonObject json = (JsonObject) new JsonParser().parse(response);
+                    if (json.has("data")) {
+                        User user = new Gson().fromJson(json.getAsJsonObject("data"), User.class);
+                        //Write to UserDAO
+                        SharedPreferences.Editor editor = getSharedPreferences("currentUser", MODE_PRIVATE).edit();
+                        editor.clear();
+                        editor.putString("_id", user.get_id());
+                        editor.commit();
+                        Toast.makeText(RegisterActivity.this, getString(R.string.msj_successful_registration), Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(getBaseContext(), ConfirmPhoneNumber.class);
+                        startActivity(intent);
+                    } else if (json.has("warnings")) {
+                        JsonObject warnings = json.getAsJsonObject("warnings");
+                        String message = warnings.has("user") ? getString(R.string.warning_register_user) : getString(R.string.warning_register_vehicle);
+                        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
+                    }
+                } else
+                    Toast.makeText(RegisterActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     private DatePickerDialog.OnDateSetListener dateSetListener = new DatePickerDialog.OnDateSetListener() {
@@ -173,15 +306,20 @@ public class RegisterActivity extends AppCompatActivity {
             //Formatter formatter = s new Formatter(Resources.getSystem().getConfiguration().locale);
             Formatter formatter = new Formatter(new Locale("es", "ES"));
             formatter.format("%tB %td %tY", calendar, calendar, calendar);
-            birthdate.setText(formatter.toString());
+            tvBirthdate.setText(formatter.toString());
         }
     };
 
     private Button.OnClickListener register = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if (!cbTerms.isChecked()) {
+                tvTerms.requestFocus();
+                tvTerms.setError(getString(R.string.warning_terms));
+            }
+
             createUser();
-            Map<String, String> params = new HashMap<>();
+            Map<String, String> params = new ArrayMap<>();
             params.put("user", user.toString());
 
             ServletRequest request = new ServletRequest(getBaseContext());
@@ -198,64 +336,11 @@ public class RegisterActivity extends AppCompatActivity {
                     displayResults(response.body().string());
                 }
             });
-            ///OkHttpSyncHandler handle = new OkHttpSyncHandler(client);
-            //handle.execute(builtRequest);
         }
     };
 
 
-    public void displayResults(final String response) {
-        new Handler(Looper.getMainLooper()).post(new Runnable() {
-            @Override
-            public void run() {
-                if (response != null) {
-                    JsonObject json = (JsonObject) new JsonParser().parse(response);
-                    if (json.has("data")) {
-                        User user = new Gson().fromJson(json.getAsJsonObject("data"), User.class);
-                        //Write to UserDAO
-                        user.setPassword(null);
-                        SharedPreferences.Editor editor = getSharedPreferences("currentUser", MODE_PRIVATE).edit();
-                        editor.clear();
-                        editor.putString("user", json.getAsJsonObject("data").getAsString());
-                        editor.commit();
-                        Toast.makeText(RegisterActivity.this, getString(R.string.msj_successful_registration), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getBaseContext(), ConfirmPhoneNumber.class);
-                        startActivity(intent);
-                    } else if (json.has("warnings")) {
-                        JsonObject warnings = json.getAsJsonObject("warnings");
-                        String message = warnings.has("user") ? getString(R.string.warning_register_user) : getString(R.string.warning_register_vehicle);
-                        Toast.makeText(RegisterActivity.this, message, Toast.LENGTH_SHORT).show();
-                    }
-                } else
-                    Toast.makeText(RegisterActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
 
-    private class OkHttpSyncHandler extends AsyncTask<Request, Void, String> {
-
-        OkHttpClient client;
-
-        public OkHttpSyncHandler(OkHttpClient client) {
-            this.client = client;
-        }
-
-        @Override
-        protected String doInBackground(Request... params) {
-            try {
-                Response response = client.newCall(params[0]).execute();
-                return response.body().string();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String s) {
-            displayResults(s);
-        }
-    }
 }
 
 

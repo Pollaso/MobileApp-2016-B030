@@ -29,6 +29,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/txtv_email_hint"
             android:inputType="textEmailAddress"
+            android:maxLength="@integer/email_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -37,7 +38,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_password_hint"
-            android:inputType="textVisiblePassword"
+            android:inputType="textPassword"
+            android:maxLength="@integer/password_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -46,7 +48,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_confirm_password_hint"
-            android:inputType="textVisiblePassword"
+            android:inputType="textPassword"
+            android:maxLength="@integer/password_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -56,6 +59,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/txtv_name_hint"
             android:inputType="text"
+            android:maxLength="@integer/name_surname_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -65,6 +69,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/txtv_last_name_father_hint"
             android:inputType="text"
+            android:maxLength="@integer/name_surname_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -74,6 +79,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/txtv_last_name_mother_hint"
             android:inputType="text"
+            android:maxLength="@integer/name_surname_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -85,12 +91,13 @@
             tools:context="ipn.mobileapp.presenter.activities.RegisterActivity">
 
             <Spinner
-                android:id="@+id/txs"
+                android:id="@+id/s_country_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/s_country_names" />
 
             <TextView
+                android:id="@+id/txtv_country_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/txtv_country_calling_code"
@@ -103,6 +110,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/txtv_cellular_hint"
                 android:inputType="phone"
+                android:maxLength="@integer/phone_number_length"
                 android:paddingBottom="@dimen/txtv_bottom_padding"
                 android:paddingTop="@dimen/txtv_bottom_padding" />
         </LinearLayout>
@@ -143,7 +151,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_car_plates"
-            android:maxLength="10"
+            android:maxLength="@integer/car_plates_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -152,20 +160,22 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_serial_key"
+            android:maxLength="@integer/serial_key_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:id="@+id/layout_terms">
 
             <CheckBox
                 android:id="@+id/cb_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
-                android:text="@string/chck_accept_terms" />
+                android:text="@string/chck_terms" />
 
             <TextView
                 android:id="@+id/txtv_terms"
@@ -173,7 +183,9 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="2dp"
-                android:textSize="@dimen/alert_text_preview" />
+                android:textSize="@dimen/alert_text_preview"
+                android:focusable="true"
+                android:focusableInTouchMode="true"/>
         </LinearLayout>
 
         <Button
@@ -182,7 +194,8 @@
             android:layout_height="wrap_content"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding"
-            android:text="@string/btn_register_name" />
+            android:text="@string/btn_register_name"
+            android:enabled="false"/>
 
         <Button
             android:id="@+id/btn_login"

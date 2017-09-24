@@ -33,7 +33,7 @@
     <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
 
     <!--Button names-->
-    <string name="btn_login_name">Inicia sesión</string>
+    <string name="btn_login_name">Iniciar sesión</string>
     <string name="btn_register_name">Registrate</string>
     <string name="btn_register_new_user_name">¿Eres nuevo aquí?</string>
     <string name="btn_already_have_an_account">¿Ya tienes una cuenta?</string>
@@ -62,10 +62,10 @@
     <string name="txtv_confirmation_code">Código de confirmación</string>
     <string name="txtv_serial_key">Clave serial del dispositivo</string>
     <string name="txtv_car_plates">Matrícula automovilística</string>
-    <string name="stx_vehicle">Vehículo</string>
+    <string name="txtv_terms">Al registrar a este usuario usted acepta los </string>
 
     <!--Checkbox text-->
-    <string name="chck_accept_terms">Acepto los</string>
+    <string name="chck_terms">Acepto los</string>
 
     <!--EditText hints-->
     <string name="et_message">Escriba su mensaje abajo</string>
@@ -119,6 +119,7 @@
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
     <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
+    <string name="msj_sub_user_registered">El subusuario has sido registraado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
     <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa</string>
     <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
@@ -127,10 +128,21 @@
     <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
 
     <!--Warning messages-->
+    <string name="warning_login_user">No existe una cuenta registrada a ese correo</string>
+    <string name="warning_login_password">La contraseña es incorrecta</string>
     <string name="warning_internet">No cuenta con una conexión a internet</string>
     <string name="warning_register_user">Ya existe una cuenta registrada con esos datos</string>
     <string name="warning_register_vehicle">El vehículo que intento registrar le pertenece a otro usuario</string>
     <string name="warning_register_email">El correo con la contraseña temporal no se pudo enviar</string>
+    <string name="warning_serial_key">Ingrese una clave serial válida</string>
+    <string name="warning_car_plates">Ingrese la mátricula automovilística sin espacios o guiones</string>
+    <string name="warning_email">Ingrese un correo electrónico válido</string>
+    <string name="warning_name">Ingrese un nombre válido</string>
+    <string name="warning_surname">Ingrese un apellido válido</string>
+    <string name="warning_password">Ingrese una contraseña que contenga mínimo una letra minúscula y mayúscula, un caracter especial y un número y de una longitud de 8 caracteres</string>
+    <string name="warning_password_matches">Las contraseñs no coinciden</string>
+    <string name="warning_phone_number">Ingrese un teléfono celular válido</string>
+    <string name="warning_terms">Por favor, indique que ha leído y está de acuerdo con los Términos y Condiciones</string>
 
     <!--Examples-->
     <string name="example_contact_01">Nombre del contacto\n+52 00 0000 0000</string>
@@ -162,6 +174,14 @@
         <item>ForgotPassword</item>
     </string-array>
 
+    <!--URL for terms-->
     <string name="localhost_terms">http://10.0.0.6:8080/Terms.jsp</string>
     <string name="server_terms"></string>
+
+    <!--Regex for validations-->
+    <string name="uuid_regex">^[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}$</string>
+    <string name="password_regex">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&amp;+=])(?=\\S+$).{7,50}$</string>
+    <string name="name_regex">^\\p{L}+[\\p{L}\\p{Zs}]{0,50}$</string>
+    <string name="last_name_regex">^\\p{L}+[\\p{L}\\p{Zs}\\p{Pd}\\p{Pi}]{0,50}$</string>
+    <string name="car_plate_regex">^[\\p{L}\\p{N}]{3,10}$</string>
 </resources>
