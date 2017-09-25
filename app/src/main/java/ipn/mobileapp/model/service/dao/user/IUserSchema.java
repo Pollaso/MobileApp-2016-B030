@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.dao.user;
+package ipn.mobileapp.model.service.dao.user;
 
 public interface IUserSchema {
     String USER_TABLE = "users";

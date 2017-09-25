@@ -8,6 +8,14 @@
     android:orientation="horizontal"
     tools:context="ipn.mobileapp.presenter.activities.ContactsActivity">
 
+    <TextView
+        android:id="@+id/tv_empty_sub_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/msj_no_sub_users"
+        android:textSize="@dimen/tv_msg"
+        android:visibility="gone"/>
 
     <ListView
         android:id="@+id/lv_sub_users"

@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.dao.user;
+package ipn.mobileapp.model.service.dao.user;
 
 import java.util.List;
 

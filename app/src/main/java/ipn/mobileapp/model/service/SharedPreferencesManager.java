@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.SharedPreferences;
 
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 public class SharedPreferencesManager {
@@ -14,11 +13,32 @@ public class SharedPreferencesManager {
         sharedPreferences = context.getSharedPreferences(preferencesFileName, Context.MODE_PRIVATE);
     }
 
-    public void clear(){
+    public void clear() {
         sharedPreferences.edit().clear().commit();
     }
 
-    public void putValue(Map<String, Object> params, boolean clear) {
+    public void putValue(String key, Object value, boolean clear) {
+        final SharedPreferences.Editor editor = sharedPreferences.edit();
+        if (clear)
+            editor.clear();
+
+        if (value instanceof String)
+            editor.putString(key, value.toString());
+        else if (value instanceof Set)
+            editor.putStringSet(key, (Set<String>) value);
+        else if (value instanceof Integer)
+            editor.putInt(key, (Integer) value);
+        else if (value instanceof Long)
+            editor.putLong(key, (Long) value);
+        else if (value instanceof Float)
+            editor.putFloat(key, (Float) value);
+        else if (value instanceof Boolean)
+            editor.putBoolean(key, (Boolean) value);
+
+        editor.commit();
+    }
+
+    public void putValues(Map<String, Object> params, boolean clear) {
         final SharedPreferences.Editor editor = sharedPreferences.edit();
         if (clear)
             editor.clear();
@@ -40,9 +60,9 @@ public class SharedPreferencesManager {
         editor.commit();
     }
 
-    public Object getValue(String key, Class<?> type){
+    public Object getValue(String key, Class<?> type) {
         Object value = null;
-        if(type == String.class)
+        if (type == String.class)
             value = sharedPreferences.getString(key, null);
         else if (type == Set.class)
             value = sharedPreferences.getStringSet(key, null);

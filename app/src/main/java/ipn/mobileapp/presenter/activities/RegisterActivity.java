@@ -24,16 +24,18 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Formatter;
-import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
 
@@ -44,7 +46,9 @@ import ipn.mobileapp.model.pojo.Device;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.pojo.Vehicle;
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
@@ -275,14 +279,31 @@ public class RegisterActivity extends AppCompatActivity {
                 if (response != null) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
-                        User user = new Gson().fromJson(json.getAsJsonObject("data"), User.class);
-                        //Write to UserDAO
-                        SharedPreferences.Editor editor = getSharedPreferences("currentUser", MODE_PRIVATE).edit();
-                        editor.clear();
-                        editor.putString("_id", user.get_id());
-                        editor.commit();
+                        User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
+
+                        /* Using OrmLite */
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        try {
+                            final Dao<User, String> userDao = databaseHelper.getUserDao();
+                            userDao.create(user);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            databaseHelper.close();
+                        }
+
+                        /* Using SQLite
+                        Database database = new Database(LoginActivity.this);
+                        database.open();
+                        Database.userDao.insert(user);
+                        database.close();*/
+
+                        SharedPreferencesManager manager = new SharedPreferencesManager(RegisterActivity.this, "currentUser");
+                        manager.putValue("_id", user.get_id(), true);
+
                         Toast.makeText(RegisterActivity.this, getString(R.string.msj_successful_registration), Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(getBaseContext(), ConfirmPhoneNumber.class);
+                        /*Intent intent = new Intent(getBaseContext(), ConfirmPhoneNumber.class);*/
+                        Intent intent = new Intent(getBaseContext(), HomeActivity.class);
                         startActivity(intent);
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");

@@ -119,10 +119,11 @@
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
     <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
-    <string name="msj_sub_user_registered">El subusuario has sido registraado de forma exitosa</string>
+    <string name="msj_sub_user_registered">El subusuario has sido registrado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
     <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa</string>
     <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
+    <string name="msj_no_sub_users">No tiene ningún subusuario registrado</string>
 
     <!--Error messages-->
     <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
@@ -184,4 +185,10 @@
     <string name="name_regex">^\\p{L}+[\\p{L}\\p{Zs}]{0,50}$</string>
     <string name="last_name_regex">^\\p{L}+[\\p{L}\\p{Zs}\\p{Pd}\\p{Pi}]{0,50}$</string>
     <string name="car_plate_regex">^[\\p{L}\\p{N}]{3,10}$</string>
+
+    <!--Shared Preferences filenames-->
+    <string name="current_user_filename">currentUser</string>
+
+    <!--Database attributes-->
+    <string name="database_name">dacba</string>
 </resources>

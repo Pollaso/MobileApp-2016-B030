@@ -25,18 +25,19 @@
                 android:padding="@dimen/alert_padding">
 
                 <ImageButton
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center"
                     android:id="@+id/alert_preview"
-                    android:background="@drawable/ic_alert_unhandled" />
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center"
+                    android:background="@drawable/ic_alert_unhandled"
+                    android:contentDescription="" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/alert_text_preview"
                     android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/example_unhandled_alert" />
+                    android:text="@string/example_unhandled_alert"
+                    android:textSize="@dimen/alert_text_preview" />
             </LinearLayout>
 
             <LinearLayout
@@ -49,14 +50,15 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_alert_pending" />
+                    android:background="@drawable/ic_alert_pending"
+                    android:contentDescription="" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/alert_text_preview"
                     android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/example_pending_alert" />
+                    android:text="@string/example_pending_alert"
+                    android:textSize="@dimen/alert_text_preview" />
             </LinearLayout>
 
             <LinearLayout
@@ -69,14 +71,15 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_alert_handled" />
+                    android:background="@drawable/ic_alert_handled"
+                    android:contentDescription="" />
 
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textSize="@dimen/alert_text_preview"
                     android:padding="@dimen/activity_horizontal_margin"
-                    android:text="@string/example_handled_alert" />
+                    android:text="@string/example_handled_alert"
+                    android:textSize="@dimen/alert_text_preview" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

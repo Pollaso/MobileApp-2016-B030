@@ -24,10 +24,6 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.R;
 
-/**
- * Created by GERARDO-LAP on 9/3/2017.
- */
-
 public class ApacheServletRequest {
     private String scheme;
     private String host;

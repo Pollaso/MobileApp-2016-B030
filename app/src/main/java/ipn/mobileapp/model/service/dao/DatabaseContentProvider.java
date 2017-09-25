@@ -1,4 +1,4 @@
-package ipn.mobileapp.model;
+package ipn.mobileapp.model.service.dao;
 
 import android.content.ContentValues;
 import android.database.Cursor;

@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.dao.user;
+package ipn.mobileapp.model.service.dao.user;
 
 import android.content.ContentValues;
 import android.database.Cursor;
@@ -6,10 +6,11 @@ import android.database.sqlite.SQLiteConstraintException;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
 
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 
-import ipn.mobileapp.model.DatabaseContentProvider;
+import ipn.mobileapp.model.service.dao.DatabaseContentProvider;
 import ipn.mobileapp.model.pojo.User;
 
 public class UserDao extends DatabaseContentProvider
@@ -111,13 +112,58 @@ public class UserDao extends DatabaseContentProvider
 
     @Override
     protected User cursorToEntity(Cursor cursor) {
-        return null;
+        User user = new User();
+
+        if (cursor != null) {
+            if (cursor.getColumnIndex(COLUMN_ID) != -1) {
+                user.set_id(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)));
+            }
+            if (cursor.getColumnIndex(COLUMN_EMAIL) != -1) {
+                user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
+            }
+            if (cursor.getColumnIndex(COLUMN_PROFILE_IMAGE) != -1) {
+                user.setProfileImage(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PROFILE_IMAGE)));
+            }
+            if (cursor.getColumnIndex(COLUMN_NAME) != -1) {
+                user.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
+            }
+            if (cursor.getColumnIndex(COLUMN_PATERNAL_SURNAME) != -1) {
+                user.setPaternalSurname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PATERNAL_SURNAME)));
+            }
+            if (cursor.getColumnIndex(COLUMN_MATERNAL_SURNAME) != -1) {
+                user.setMaternalSurname(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_MATERNAL_SURNAME)));
+            }
+            if (cursor.getColumnIndex(COLUMN_PHONE_NUMBER) != -1) {
+                user.setPhoneNumber(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PHONE_NUMBER)));
+            }
+            if (cursor.getColumnIndex(COLUMN_BIRTHDATE) != -1) {
+                user.setBirthdate(Date.valueOf(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_BIRTHDATE))));
+            }
+            if (cursor.getColumnIndex(COLUMN_ROLE) != -1) {
+                user.setRole(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ROLE)));
+            }
+            if (cursor.getColumnIndex(COLUMN_USER_ID) != -1)
+                user.setUserId(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_ID)));
+        }
+        if (cursor.getColumnIndex(COLUMN_ENABLED) != -1) {
+            user.setEnabled(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ENABLED)) > 0 ? true : false);
+        }
+        return user;
     }
 
     private ContentValues setContentValue(User user) {
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, user.get_id());
         values.put(COLUMN_EMAIL, user.getEmail());
+        values.put(COLUMN_PROFILE_IMAGE, user.getProfileImage());
+        values.put(COLUMN_NAME, user.getName());
+        values.put(COLUMN_PATERNAL_SURNAME, user.getPaternalSurname());
+        values.put(COLUMN_MATERNAL_SURNAME, user.getMaternalSurname());
+        values.put(COLUMN_PHONE_NUMBER, user.getPhoneNumber());
+        values.put(COLUMN_BIRTHDATE, String.valueOf(user.getBirthdate()));
+        values.put(COLUMN_ROLE, user.getRole());
+        values.put(COLUMN_USER_ID, user.getUserId());
+        values.put(COLUMN_ENABLED, user.isEnabled());
 
         return values;
     }

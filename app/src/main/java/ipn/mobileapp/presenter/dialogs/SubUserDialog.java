@@ -21,9 +21,11 @@ import android.widget.Toast;
 import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.IOException;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.Formatter;
 import java.util.Locale;
@@ -33,6 +35,7 @@ import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.User;
+import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
@@ -173,6 +176,7 @@ public class SubUserDialog implements View.OnClickListener {
     }
 
     private void processResults(final String response) {
+        dialog.dismiss();
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
@@ -180,8 +184,24 @@ public class SubUserDialog implements View.OnClickListener {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
                         User user = new Gson().fromJson(json.getAsJsonObject("data"), User.class);
-                        //Write to SubUserDAO
-                        user.setPassword(null);
+
+                        /* Using OrmLite */
+                        DatabaseHelper databaseHelper = new DatabaseHelper(context.getApplicationContext());
+                        try {
+                            final Dao<User, String> userDao = databaseHelper.getUserDao();
+                            userDao.create(user);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            databaseHelper.close();
+                        }
+
+                        /* Using SQLite
+                        Database database = new Database(LoginActivity.this);
+                        database.open();
+                        Database.userDao.insert(user);
+                        database.close();*/
+
                         Toast.makeText(context, context.getString(R.string.msj_sub_user_registered), Toast.LENGTH_SHORT).show();
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");
@@ -254,7 +274,6 @@ public class SubUserDialog implements View.OnClickListener {
                     processResults(response.body().string());
                 }
             });
-            dialog.dismiss();
         }
     };
 }

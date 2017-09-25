@@ -1,12 +1,12 @@
-package ipn.mobileapp.model.dao;
+package ipn.mobileapp.model.service.dao;
 
 import android.content.Context;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
-import ipn.mobileapp.model.dao.user.IUserSchema;
-import ipn.mobileapp.model.dao.user.UserDao;
+import ipn.mobileapp.model.service.dao.user.IUserSchema;
+import ipn.mobileapp.model.service.dao.user.UserDao;
 
 public class Database {
     private static final String DATABASE_NAME = "dacba";

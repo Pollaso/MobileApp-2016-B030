@@ -136,6 +136,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0"
+                android:contentDescription=""
                 android:src="@drawable/ic_more_dark_grey" />
         </LinearLayout>
 
@@ -165,10 +166,10 @@
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <LinearLayout
+            android:id="@+id/layout_terms"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:id="@+id/layout_terms">
+            android:orientation="horizontal">
 
             <CheckBox
                 android:id="@+id/cb_terms"
@@ -182,20 +183,20 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:paddingLeft="2dp"
-                android:textSize="@dimen/alert_text_preview"
                 android:focusable="true"
-                android:focusableInTouchMode="true"/>
+                android:focusableInTouchMode="true"
+                android:paddingLeft="2dp"
+                android:textSize="@dimen/alert_text_preview" />
         </LinearLayout>
 
         <Button
             android:id="@+id/btn_register"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:enabled="false"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding"
-            android:text="@string/btn_register_name"
-            android:enabled="false"/>
+            android:text="@string/btn_register_name" />
 
         <Button
             android:id="@+id/btn_login"

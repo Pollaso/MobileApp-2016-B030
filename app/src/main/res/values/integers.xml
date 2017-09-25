@@ -14,4 +14,7 @@
 
     <!--Length for Device fields-->
     <integer name="serial_key_length">32</integer>
+
+    <!--Navigation View Menu Indexes-->
+    <integer name="sub_user_menu_item_index">2</integer>
 </resources>

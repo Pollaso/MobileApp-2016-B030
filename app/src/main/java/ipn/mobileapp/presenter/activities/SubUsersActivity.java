@@ -7,10 +7,21 @@ import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.ListView;
+import android.widget.TextView;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.SelectArg;
+import com.j256.ormlite.stmt.Where;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import ipn.mobileapp.model.pojo.User;
+import ipn.mobileapp.model.service.DatabaseHelper;
+import ipn.mobileapp.model.service.SharedPreferencesManager;
+import ipn.mobileapp.model.service.dao.user.IUserSchema;
 import ipn.mobileapp.presenter.adapter.SubUserAdapter;
 import ipn.mobileapp.presenter.dialogs.SubUserDialog;
 import ipn.mobileapp.R;
@@ -20,6 +31,8 @@ public class SubUsersActivity extends BaseActivity {
 
     private ListView lvSubUsers;
     private FloatingActionButton addSubUser;
+
+    private ArrayList<User> subUsers;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +53,40 @@ public class SubUsersActivity extends BaseActivity {
     }
 
     private void setComponentAttributes() {
-        ArrayList<User> users = new ArrayList<>();
-        SubUserAdapter adapter = new SubUserAdapter(this, R.layout.listview_sub_user_item, users);
+        subUsers = getSubUsers();
+
+        if (subUsers == null)
+            subUsers = new ArrayList<>();
+
+        SubUserAdapter adapter = new SubUserAdapter(this, R.layout.listview_sub_user_item, subUsers);
         lvSubUsers.setAdapter(adapter);
+        if (lvSubUsers.getCount() == 0)
+            findViewById(R.id.tv_empty_sub_users).setVisibility(View.VISIBLE);
         addSubUser.setOnClickListener(new SubUserDialog(this));
+    }
+
+    public ArrayList<User> getSubUsers() {
+        ArrayList<User> subUsers = null;
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        try {
+            SharedPreferencesManager manager = new SharedPreferencesManager(SubUsersActivity.this, getString(R.string.current_user_filename));
+
+            final Dao<User, String> userDao = databaseHelper.getUserDao();
+            QueryBuilder<User, String> queryBuilder = userDao.queryBuilder();
+            SelectArg selectArg = new SelectArg();
+            selectArg.setValue(manager.getValue("_id", String.class));
+            Where<User, String> where = queryBuilder.where();
+            where.eq(IUserSchema.COLUMN_USER_ID, selectArg);
+            PreparedQuery<User> preparedQuery = queryBuilder.prepare();
+            subUsers = (ArrayList<User>) userDao.query(preparedQuery);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            databaseHelper.close();
+        }
+
+        return subUsers;
     }
 
     @Override

@@ -4,7 +4,6 @@ import android.content.Context;
 import android.util.Patterns;
 import android.widget.TextView;
 
-import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 

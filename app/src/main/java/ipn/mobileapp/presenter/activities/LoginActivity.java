@@ -15,17 +15,21 @@ import android.widget.Toast;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import com.j256.ormlite.android.apptools.OpenHelperManager;
+import com.j256.ormlite.dao.Dao;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Map;
 
 import ipn.mobileapp.R;
-import ipn.mobileapp.model.dao.Database;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.User;
+import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
+//import ipn.mobileapp.model.service.dao.Database;
 import ipn.mobileapp.presenter.dialogs.ForgotPasswordDialog;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
@@ -50,6 +54,12 @@ public class LoginActivity extends AppCompatActivity {
         etPassword = (EditText) findViewById(R.id.et_password);
         getComponents();
         setComponentAttributes();
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        OpenHelperManager.releaseHelper();
     }
 
     private void getComponents() {
@@ -96,15 +106,23 @@ public class LoginActivity extends AppCompatActivity {
                     if (json.has("data")) {
                         User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
 
-                        Database database = new Database(LoginActivity.this);
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        try {
+                            final Dao<User, String> userDao = databaseHelper.getUserDao();
+                            userDao.create(user);
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            databaseHelper.close();
+                        }
+
+                        /*Database database = new Database(LoginActivity.this);
                         database.open();
-                        database.userDao.insert(user);
-                        database.close();
+                        Database.userDao.insert(user);
+                        database.close();*/
 
                         SharedPreferencesManager manager = new SharedPreferencesManager(LoginActivity.this, "currentUser");
-                        Map<String, Object> params = new ArrayMap<>();
-                        params.put("_id", user.get_id());
-                        manager.putValue(params, true);
+                        manager.putValue("_id", user.get_id(), true);
 
                         Class redirection = user.isEnabled() ? HomeActivity.class : ConfirmPhoneNumber.class;
                         Intent intent = new Intent(getBaseContext(), redirection);

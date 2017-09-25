@@ -2,27 +2,48 @@ package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.j256.ormlite.field.DataType;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
-import java.sql.Date;
+
 import java.util.Collection;
+import java.util.Date;
 
-public class User {
+import ipn.mobileapp.model.service.dao.user.IUserSchema;
+
+import static ipn.mobileapp.model.service.dao.user.IUserSchema.USER_TABLE;
+
+@DatabaseTable(tableName = USER_TABLE)
+public class User implements IUserSchema{
     public final static String USER_ROLE = "USER";
     public final static String SUBUSER_ROLE = "SUB";
-    public final static String ADMIN_ROLE = "ADMIN";
 
+    @DatabaseField(columnName = COLUMN_ID, id = true)
     private String _id;
+    @DatabaseField(columnName = COLUMN_EMAIL, unique = true)
     private String email;
     private String password;
+    @DatabaseField(columnName = COLUMN_PROFILE_IMAGE)
     private String profileImage;
+    @DatabaseField(columnName = COLUMN_NAME)
     private String name;
+    @DatabaseField(columnName = COLUMN_PATERNAL_SURNAME)
     private String paternalSurname;
+    @DatabaseField(columnName = COLUMN_MATERNAL_SURNAME)
     private String maternalSurname;
+    @DatabaseField(columnName = COLUMN_PHONE_NUMBER, unique = true)
     private String phoneNumber;
+    @DatabaseField(columnName = COLUMN_BIRTHDATE, dataType = DataType.DATE_STRING)
     private Date birthdate;
+    @DatabaseField(columnName = COLUMN_ROLE)
     private String role;
+    @DatabaseField(columnName = COLUMN_USER_ID, columnDefinition = "STRING REFERENCES users(_id)")
     private String userId;
+    @DatabaseField(columnName = COLUMN_ENABLED, dataType = DataType.BOOLEAN_INTEGER)
     private boolean enabled;
+
+    private Collection<User> subUsers = null;
     private Collection<Vehicle> vehicles = null;
     private Collection<Document> documents = null;
     private Collection<Contact> contacts = null;
@@ -36,6 +57,10 @@ public class User {
         if(birthdate != null)
             return new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().toJson(this);
         return new Gson().toJson(this);
+    }
+
+    public void set_id(String _id) {
+        this._id = _id;
     }
 
     public String get_id() {

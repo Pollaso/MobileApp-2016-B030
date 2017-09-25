@@ -12,7 +12,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.User;

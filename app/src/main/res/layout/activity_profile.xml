@@ -30,7 +30,8 @@
                 android:layout_width="50dp"
                 android:layout_height="50dp"
                 android:layout_gravity="center"
-                android:background="@drawable/ic_circle_account_light" />
+                android:background="@drawable/ic_circle_account_light"
+                android:contentDescription="" />
 
             <EditText
                 android:id="@+id/et_email"
@@ -167,7 +168,8 @@
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"
-            android:background="@drawable/ic_add_document_dark" />
+            android:background="@drawable/ic_add_document_dark"
+            android:contentDescription="" />
 
         <EditText
             android:id="@+id/et_document_name"

@@ -13,11 +13,13 @@ import android.widget.LinearLayout;
 import android.widget.Toast;
 
 import ipn.mobileapp.R;
-import ipn.mobileapp.model.dao.Database;
+import ipn.mobileapp.model.service.DatabaseHelper;
+import ipn.mobileapp.model.service.dao.Database;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     protected DrawerLayout drawer;
+    private NavigationView navigationView;
     private LinearLayout navHeader;
 
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
@@ -30,7 +32,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        setNavigation();
+        setNavigationView();
         setDrawerLayout();
     }
 
@@ -40,10 +42,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         toggle.syncState();
     }
 
-    private void setNavigation() {
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+    private void setNavigationView() {
+        navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
-        navHeader = (LinearLayout) navigationView.findViewById(R.id.nav_header);
+
+        /*SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
+        Database database = new Database(this).open();
+        User user = database.userDao.findById((String) manager.getValue("_id", String.class));
+        if (user.getRole().equals(User.SUBUSER_ROLE))
+            navigationView.getMenu().getItem(getResources().getInteger(R.integer.sub_user_menu_item_index)).setEnabled(false);*/
+
+        navHeader = (LinearLayout) navigationView.getHeaderView(0);
     }
 
     @Override
@@ -79,13 +88,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         int id = item.getItemId();
 
         Intent intent = null;
-//        android.support.v4.app.Fragment fragment = null;
+        /*android.support.v4.app.Fragment fragment = null;*/
 
         switch (id) {
             case R.id.nav_menu_home:
                 intent = new Intent(getBaseContext(), HomeActivity.class);
-//                fragment = new FragmentOne();
-//                getSupportActionBar().setTitle("Fragmento Home");
+                /*fragment = new FragmentOne();
+                getSupportActionBar().setTitle("Fragmento Home");*/
                 break;
             case R.id.nav_menu_profile:
                 intent = new Intent(getBaseContext(), ProfileActivity.class);
@@ -115,19 +124,16 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         finish();
         startActivity(intent);
 
-//        if (fragment != null) {
-//            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
-//            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
-//        }
+        /*if (fragment != null) {
+            android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
+        }*/
 
         return false;
     }
 
     public void logout() {
-        Database database = new Database(BaseActivity.this);
-        database.open();
-        database.clear();
-        database.close();
+        getApplicationContext().deleteDatabase(getString(R.string.database_name));
 
         SharedPreferencesManager manager = new SharedPreferencesManager(BaseActivity.this, "currentUser");
         manager.clear();

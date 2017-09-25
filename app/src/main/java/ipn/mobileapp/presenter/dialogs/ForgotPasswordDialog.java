@@ -110,15 +110,15 @@ public class ForgotPasswordDialog implements View.OnClickListener {
     private Button.OnClickListener forgotPassword = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            dialog.hide();
+
             if (!new NetworkUtils(context).hasNetworkConnection()) {
                 Toast.makeText(context, context.getString(R.string.warning_internet), Toast.LENGTH_SHORT).show();
-                processResults(null);
-            }
-            User user = new User();
-            String email = etEmail.getText().toString();
-            if (email.equalsIgnoreCase(""))
                 return;
-            user.setEmail(email);
+            }
+
+            User user = new User();
+            user.setEmail(etEmail.getText().toString());
             Map<String, String> params = new HashMap<>();
             params.put("user", user.toString());
 
