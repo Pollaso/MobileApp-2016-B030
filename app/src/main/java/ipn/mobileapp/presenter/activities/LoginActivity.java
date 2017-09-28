@@ -124,7 +124,7 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferencesManager manager = new SharedPreferencesManager(LoginActivity.this, "currentUser");
                         manager.putValue("_id", user.get_id(), true);
 
-                        Class redirection = user.isEnabled() ? HomeActivity.class : ConfirmPhoneNumber.class;
+                        Class redirection = user.isEnabled() ? HomeActivity.class : ConfirmPhoneActivity.class;
                         Intent intent = new Intent(getBaseContext(), redirection);
                         finish();
                         startActivity(intent);

@@ -8,19 +8,20 @@
     android:focusable="true"
     android:focusableInTouchMode="true"
     android:orientation="vertical"
-    tools:context="ipn.mobileapp.presenter.activities.ConfirmPhoneNumber">
+    tools:context="ipn.mobileapp.presenter.activities.ConfirmPhoneActivity">
 
     <Space
         android:layout_width="match_parent"
         android:layout_height="25dp" />
 
     <EditText
-        android:id="@+id/confirmation_code"
+        android:id="@+id/et_confirmation_code"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="top|center"
         android:hint="@string/txtv_confirmation_code"
         android:inputType="number"
+        android:maxLength="@integer/confirmation_code_length"
         android:paddingBottom="@dimen/txtv_bottom_padding"
         android:paddingTop="@dimen/txtv_bottom_padding" />
 

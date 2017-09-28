@@ -8,6 +8,7 @@
     <integer name="password_length">50</integer>
     <integer name="name_surname_length">50</integer>
     <integer name="phone_number_length">22</integer>
+    <integer name="confirmation_code_length">6</integer>
 
     <!--Length for Vehicle fields-->
     <integer name="car_plates_length">10</integer>

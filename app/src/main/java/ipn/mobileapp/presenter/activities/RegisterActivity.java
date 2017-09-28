@@ -302,7 +302,7 @@ public class RegisterActivity extends AppCompatActivity {
                         manager.putValue("_id", user.get_id(), true);
 
                         Toast.makeText(RegisterActivity.this, getString(R.string.msj_successful_registration), Toast.LENGTH_SHORT).show();
-                        /*Intent intent = new Intent(getBaseContext(), ConfirmPhoneNumber.class);*/
+                        /*Intent intent = new Intent(getBaseContext(), ConfirmPhoneActivity.class);*/
                         Intent intent = new Intent(getBaseContext(), HomeActivity.class);
                         startActivity(intent);
                     } else if (json.has("warnings")) {

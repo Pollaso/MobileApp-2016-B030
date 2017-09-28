@@ -124,9 +124,11 @@
     <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa</string>
     <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
     <string name="msj_no_sub_users">No tiene ningún subusuario registrado</string>
+    <string name="msj_confirmation_sms_sent">Se le ha enviado un mensaje de texto con su código de confirmación</string>
 
     <!--Error messages-->
     <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
+    <string name="error_confirmation_sms">Ocurrío un error al enviarle el mensaje de texto, intentelo de nuevo</string>
 
     <!--Warning messages-->
     <string name="warning_login_user">No existe una cuenta registrada a ese correo</string>
@@ -144,6 +146,8 @@
     <string name="warning_password_matches">Las contraseñs no coinciden</string>
     <string name="warning_phone_number">Ingrese un teléfono celular válido</string>
     <string name="warning_terms">Por favor, indique que ha leído y está de acuerdo con los Términos y Condiciones</string>
+    <string name="warning_confirmation_code">La longitud del código de confirmación no es válida</string>
+
 
     <!--Examples-->
     <string name="example_contact_01">Nombre del contacto\n+52 00 0000 0000</string>
@@ -173,6 +177,7 @@
         <item>Login</item>
         <item>Register</item>
         <item>ForgotPassword</item>
+        <item>VerifyPhone</item>
     </string-array>
 
     <!--URL for terms-->

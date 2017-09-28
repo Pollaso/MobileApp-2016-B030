@@ -46,8 +46,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-        /*SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        Database database = new Database(this).open();
+        SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
+        /*Database database = new Database(this).open();
         User user = database.userDao.findById((String) manager.getValue("_id", String.class));
         if (user.getRole().equals(User.SUBUSER_ROLE))
             navigationView.getMenu().getItem(getResources().getInteger(R.integer.sub_user_menu_item_index)).setEnabled(false);*/
