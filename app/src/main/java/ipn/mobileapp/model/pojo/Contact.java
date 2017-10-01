@@ -3,6 +3,7 @@ package ipn.mobileapp.model.pojo;
 import com.google.gson.Gson;
 
 public class Contact {
+    private String contactId;
     private String phoneNumber;
     private String name;
     private String paternalSurname;
@@ -16,6 +17,14 @@ public class Contact {
     @Override
     public String toString() {
         return new Gson().toJson(this);
+    }
+
+    public String getContactId() {
+        return contactId;
+    }
+
+    public void setContactId(String contactId) {
+        this.contactId = contactId;
     }
 
     public String getPhoneNumber() {

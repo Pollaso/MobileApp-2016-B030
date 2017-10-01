@@ -9,6 +9,7 @@
     android:scrollbars="vertical">
 
     <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/lnr_lyout_contact_fields"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:focusable="true"
@@ -16,24 +17,41 @@
         android:orientation="vertical"
         android:padding="@dimen/activity_horizontal_margin">
 
+        <TextView
+            android:id="@+id/tv_delete_contact"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/tv_delete_contact"
+            android:textSize="@dimen/tv_msg"
+            android:visibility="gone" />
+
         <EditText
+            android:id="@id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_name_hint"
+            android:inputType="text"
+            android:maxLength="@integer/name_surname_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@+id/et_paternal_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_last_name_father_hint"
+            android:inputType="text"
+            android:maxLength="@integer/name_surname_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
+            android:id="@+id/et_maternal_surname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_last_name_mother_hint"
+            android:inputType="text"
+            android:maxLength="@integer/name_surname_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -45,12 +63,13 @@
             tools:context="ipn.mobileapp.presenter.activities.RegisterActivity">
 
             <Spinner
-                android:id="@+id/txs"
+                android:id="@+id/s_country_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:entries="@array/s_country_names" />
 
             <TextView
+                android:id="@+id/txtv_country_code"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:hint="@string/txtv_country_calling_code"
@@ -58,18 +77,36 @@
                 android:textSize="20sp" />
 
             <EditText
-                android:id="@+id/txtv_cellular"
+                android:id="@+id/et_phone_number"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/txtv_cellular_hint"
                 android:inputType="phone"
+                android:maxLength="@integer/phone_number_length"
                 android:paddingBottom="@dimen/txtv_bottom_padding"
                 android:paddingTop="@dimen/txtv_bottom_padding" />
         </LinearLayout>
 
-        <Button
-            android:id="@+id/btn_save_edit"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding"
+                android:text="@string/btn_cancel" />
+
+            <Button
+                android:id="@+id/btn_save_contact"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

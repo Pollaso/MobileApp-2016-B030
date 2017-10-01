@@ -44,6 +44,7 @@ public class SubUsersActivity extends BaseActivity {
     private ListView lvSubUsers;
     private FloatingActionButton addSubUser;
     private View contentView;
+    private TextView tvEmpty;
 
     private ArrayList<User> subUsers;
 
@@ -72,20 +73,18 @@ public class SubUsersActivity extends BaseActivity {
 
         SubUserAdapter adapter = new SubUserAdapter(this, R.layout.listview_sub_user_item, subUsers);
         lvSubUsers.setAdapter(adapter);
-        TextView tvEmpty = (TextView) findViewById(R.id.tv_empty_list_view);
-        tvEmpty.setText(R.string.msj_no_sub_users);
-        if (lvSubUsers.getCount() == 0)
-            tvEmpty.setVisibility(View.VISIBLE);
-        else
+        if (lvSubUsers.getCount() != 0)
             tvEmpty.setVisibility(View.GONE);
     }
 
     private void getComponents() {
         lvSubUsers = (ListView) findViewById(R.id.lv_items);
         addSubUser = (FloatingActionButton) findViewById(R.id.fltng_btn_add_item);
+        tvEmpty = (TextView) findViewById(R.id.tv_empty_list_view);
     }
 
     private void setComponentAttributes() {
+        tvEmpty.setText(R.string.msj_no_sub_users);
         addSubUser.setOnClickListener(new SubUserDialog(this, dismissRegisterDialog));
     }
 

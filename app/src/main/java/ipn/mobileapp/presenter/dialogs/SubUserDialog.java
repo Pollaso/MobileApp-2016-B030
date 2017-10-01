@@ -200,7 +200,7 @@ public class SubUserDialog implements View.OnClickListener {
                     if (json.has("data")) {
                         User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
 
-                        /* Using OrmLite */
+                        /* Using OrmLite
                         DatabaseHelper databaseHelper = new DatabaseHelper(context.getApplicationContext());
                         try {
                             final Dao<User, String> userDao = databaseHelper.getUserDao();
@@ -209,13 +209,7 @@ public class SubUserDialog implements View.OnClickListener {
                             e.printStackTrace();
                         } finally {
                             databaseHelper.close();
-                        }
-
-                        /* Using SQLite
-                        Database database = new Database(LoginActivity.this);
-                        database.open();
-                        Database.userDao.insert(user);
-                        database.close();*/
+                        }*/
 
                         Toast.makeText(context, context.getString(R.string.msj_sub_user_registered), Toast.LENGTH_LONG).show();
                     } else if (json.has("warnings")) {

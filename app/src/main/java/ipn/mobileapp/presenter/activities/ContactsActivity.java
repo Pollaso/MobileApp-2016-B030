@@ -49,6 +49,7 @@ public class ContactsActivity extends BaseActivity {
     private ListView lvContacts;
     private FloatingActionButton addContact;
     private View contentView;
+    private TextView tvEmpty;
 
     private ArrayList<Contact> contacts;
 
@@ -77,20 +78,18 @@ public class ContactsActivity extends BaseActivity {
 
         ContactAdapter adapter = new ContactAdapter(this, R.layout.listview_contact_item, contacts, dismissDialog);
         lvContacts.setAdapter(adapter);
-        TextView tvEmpty = (TextView) findViewById(R.id.tv_empty_list_view);
-        tvEmpty.setText(R.string.msj_no_emergency_contacts);
-        if (lvContacts.getCount() == 0)
-            tvEmpty.setVisibility(View.VISIBLE);
-        else
+        if (lvContacts.getCount() != 0)
             tvEmpty.setVisibility(View.GONE);
     }
 
     private void getComponents() {
         lvContacts = (ListView) findViewById(R.id.lv_items);
         addContact = (FloatingActionButton) findViewById(R.id.fltng_btn_add_item);
+        tvEmpty = (TextView) findViewById(R.id.tv_empty_list_view);
     }
 
     private void setComponentAttributes() {
+        tvEmpty.setText(R.string.msj_no_emergency_contacts);
         addContact.setOnClickListener(new ContactDialog(this, null, dismissDialog));
     }
 

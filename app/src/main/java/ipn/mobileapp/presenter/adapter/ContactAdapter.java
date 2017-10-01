@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -44,6 +45,11 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         ImageButton imgBtnEditContact = (ImageButton) convertView.findViewById(R.id.img_btn_edit_contact);
         imgBtnEditContact.setOnClickListener(new ContactDialog(context, contact, dismissListener));
+
+        ImageButton imgDeleteContact = (ImageButton) convertView.findViewById(R.id.img_btn_delete_contact);
+        Contact delete = new Contact();
+        delete.setContactId(contact.getContactId());
+        imgDeleteContact.setOnClickListener(new ContactDialog(context, delete, dismissListener));
 
         TextView tvContactName = (TextView) convertView.findViewById(R.id.tv_contact_name);
         String fullName = contact.getName() + " " + contact.getPaternalSurname() + " " + contact.getMaternalSurname();
