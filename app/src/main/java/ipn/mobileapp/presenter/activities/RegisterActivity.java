@@ -42,6 +42,7 @@ import java.util.Map;
 import ipn.mobileapp.debug.DebugMode;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
+import ipn.mobileapp.model.helper.JsonUtils;
 import ipn.mobileapp.model.pojo.Device;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.pojo.Vehicle;
@@ -261,7 +262,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.setName(etName.getText().toString());
         user.setPaternalSurname(etPaternalSurname.getText().toString());
         user.setMaternalSurname(etMaternalSurname.getText().toString());
-        user.setPhoneNumber(etPhoneNumber.getText().toString());
+        user.setPhoneNumber(tvCountryCodeNumber.getText().toString() + etPhoneNumber.getText().toString());
         user.setRole(User.USER_ROLE);
 
         device.setSerialKey(etSerialKey.getText().toString());
@@ -276,7 +277,7 @@ public class RegisterActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (response != null) {
+                if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
                         User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
@@ -302,8 +303,8 @@ public class RegisterActivity extends AppCompatActivity {
                         manager.putValue("_id", user.get_id(), true);
 
                         Toast.makeText(RegisterActivity.this, getString(R.string.msj_successful_registration), Toast.LENGTH_SHORT).show();
-                        /*Intent intent = new Intent(getBaseContext(), ConfirmPhoneActivity.class);*/
-                        Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                        Intent intent = new Intent(getBaseContext(), ConfirmPhoneActivity.class);
+                        finish();
                         startActivity(intent);
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");

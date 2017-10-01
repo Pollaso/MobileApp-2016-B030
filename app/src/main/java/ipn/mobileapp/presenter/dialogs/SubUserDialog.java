@@ -2,6 +2,8 @@ package ipn.mobileapp.presenter.dialogs;
 
 import android.app.DatePickerDialog;
 import android.content.Context;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Handler;
 import android.os.Looper;
@@ -9,6 +11,7 @@ import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
 import android.text.format.Time;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -19,6 +22,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.j256.ormlite.dao.Dao;
@@ -34,9 +38,12 @@ import java.util.Map;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
+import ipn.mobileapp.model.helper.JsonUtils;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.presenter.activities.ConfirmPhoneActivity;
+import ipn.mobileapp.presenter.activities.SubUsersActivity;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
@@ -50,6 +57,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class SubUserDialog implements View.OnClickListener {
     private Context context;
     private AlertDialog dialog;
+    private DialogInterface.OnDismissListener dismissListener;
 
     private EditText etEmail;
     private EditText etName;
@@ -66,8 +74,9 @@ public class SubUserDialog implements View.OnClickListener {
 
     private User subUser;
 
-    public SubUserDialog(Context context) {
+    public SubUserDialog(Context context, DialogInterface.OnDismissListener dismissListener) {
         this.context = context;
+        this.dismissListener = dismissListener;
         subUser = new User();
     }
 
@@ -76,7 +85,6 @@ public class SubUserDialog implements View.OnClickListener {
         createDialog();
         getComponents();
         setComponentAttributes();
-        v.invalidate();
     }
 
     private void createDialog() {
@@ -84,6 +92,7 @@ public class SubUserDialog implements View.OnClickListener {
                 .setView(R.layout.dialog_sub_users)
                 .setTitle(context.getString(R.string.title_dialog_register_sub_user))
                 .setCancelable(true)
+                .setOnDismissListener(dismissListener)
                 .create();
         dialog.show();
     }
@@ -172,6 +181,12 @@ public class SubUserDialog implements View.OnClickListener {
                     btnRegisterSubUser.setEnabled(validator.validateFields(fields));
             }
         });
+        tvBirthdate.addTextChangedListener(new TextValidator(tvBirthdate) {
+            @Override
+            public void validate(TextView textView, String text) {
+                btnRegisterSubUser.setEnabled(validator.validateFields(fields));
+            }
+        });
         imgBtnBirthdate.setOnClickListener(datePicker);
     }
 
@@ -180,10 +195,10 @@ public class SubUserDialog implements View.OnClickListener {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (response != null) {
+                if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
-                        User user = new Gson().fromJson(json.getAsJsonObject("data"), User.class);
+                        User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
 
                         /* Using OrmLite */
                         DatabaseHelper databaseHelper = new DatabaseHelper(context.getApplicationContext());
@@ -202,7 +217,7 @@ public class SubUserDialog implements View.OnClickListener {
                         Database.userDao.insert(user);
                         database.close();*/
 
-                        Toast.makeText(context, context.getString(R.string.msj_sub_user_registered), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(context, context.getString(R.string.msj_sub_user_registered), Toast.LENGTH_LONG).show();
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");
                         if (warnings.has("user"))
@@ -219,7 +234,7 @@ public class SubUserDialog implements View.OnClickListener {
         subUser.setName(etName.getText().toString());
         subUser.setPaternalSurname(etPaternalSurname.getText().toString());
         subUser.setMaternalSurname(etMaternalSurname.getText().toString());
-        subUser.setPhoneNumber(etPhoneNumber.getText().toString());
+        subUser.setPhoneNumber(tvCountryCodeNumber.getText().toString() + etPhoneNumber.getText().toString());
         subUser.setRole(User.SUBUSER_ROLE);
         SharedPreferences sharedPreferences = context.getSharedPreferences("currentUser", MODE_PRIVATE);
         subUser.setUserId(sharedPreferences.getString("_id", null));

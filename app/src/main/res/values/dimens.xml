@@ -11,7 +11,7 @@
 
     <dimen name="txtv_edit_text_padding">4dp</dimen>
 
-    <dimen name="tv_msg">20sp</dimen>
+    <dimen name="tv_msg">15sp</dimen>
 
     <!-- Per the design guidelines, navigation drawers should be between 240dp and 320dp:
          https://developer.android.com/design/patterns/navigation-drawer.html -->

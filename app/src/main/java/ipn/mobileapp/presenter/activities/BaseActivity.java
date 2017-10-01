@@ -9,13 +9,27 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.support.v4.widget.DrawerLayout;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.j256.ormlite.dao.Dao;
+import com.j256.ormlite.stmt.PreparedQuery;
+import com.j256.ormlite.stmt.QueryBuilder;
+import com.j256.ormlite.stmt.SelectArg;
+import com.j256.ormlite.stmt.Where;
+
+import java.sql.SQLException;
+import java.util.ArrayList;
+
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.dao.Database;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
+import ipn.mobileapp.model.service.dao.user.IUserSchema;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     protected DrawerLayout drawer;
@@ -46,11 +60,23 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+        View header = navigationView.getHeaderView(0);
+        ImageView ivProfileImage= (ImageView) header.findViewById(R.id.header_profile_picture);
+        TextView tvHeaderName = (TextView)header.findViewById(R.id.header_name);
+        TextView tvHeaderEmail= (TextView)header.findViewById(R.id.header_email);
+
         SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        /*Database database = new Database(this).open();
-        User user = database.userDao.findById((String) manager.getValue("_id", String.class));
-        if (user.getRole().equals(User.SUBUSER_ROLE))
-            navigationView.getMenu().getItem(getResources().getInteger(R.integer.sub_user_menu_item_index)).setEnabled(false);*/
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        try {
+            final Dao<User, String> userDao = databaseHelper.getUserDao();
+            User user = userDao.queryForId((String)manager.getValue("_id", String.class));
+            tvHeaderName.setText(user.getName());
+            tvHeaderEmail.setText(user.getEmail());
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            databaseHelper.close();
+        }
 
         navHeader = (LinearLayout) navigationView.getHeaderView(0);
     }

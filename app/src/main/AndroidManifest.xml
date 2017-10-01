@@ -30,18 +30,17 @@
         <activity
             android:name=".presenter.activities.ConfirmPhoneActivity"
             android:label="@string/title_activity_confirm_phone_number">
+        </activity>
+        <activity android:name=".presenter.activities.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".presenter.activities.MainActivity">
-        </activity>
         <activity
             android:name=".presenter.activities.SubUsersActivity"
             android:label="@string/title_activity_sub_users">
-
         </activity>
         <activity
             android:name=".presenter.activities.BaseActivity"

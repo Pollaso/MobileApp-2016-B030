@@ -1,4 +1,4 @@
-package ipn.mobileapp.model;
+package ipn.mobileapp.model.service;
 
 import android.content.ContentProviderOperation;
 import android.content.ContentProviderResult;

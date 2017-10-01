@@ -14,20 +14,17 @@ import android.widget.Toast;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.SelectArg;
-import com.j256.ormlite.stmt.Where;
+import com.j256.ormlite.stmt.UpdateBuilder;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
+import ipn.mobileapp.model.helper.JsonUtils;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;
@@ -46,11 +43,16 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
     private Button btnConfirmCode;
     private Button btnResendCode;
 
+    private String confirmationId;
+    private String _id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_confirm_phone);
+
+        SharedPreferencesManager manager = new SharedPreferencesManager(ConfirmPhoneActivity.this, getString(R.string.current_user_filename));
+        _id = (String) manager.getValue("_id", String.class);
 
         requestConfirmationCode(false);
 
@@ -76,14 +78,7 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
             }
         });
 
-        btnConfirmCode.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getBaseContext(), getResources().getString(R.string.msj_phone_confirmed), Toast.LENGTH_LONG).show();
-                /*Intent intent = new Intent(getBaseContext(), HomeActivity.class);
-                startActivity(intent);*/
-            }
-        });
+        btnConfirmCode.setOnClickListener(confirmCode);
 
         btnResendCode.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,11 +92,12 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (response != null) {
+                if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
-                    if (json.get("data").getAsBoolean())
-                        Toast.makeText(ConfirmPhoneActivity.this, message, Toast.LENGTH_SHORT).show();
-                    else if (json.has("errors") && json.getAsJsonObject("warnings").get("smsError").getAsBoolean()) {
+                    if (json.has("data")) {
+                        confirmationId = json.get("data").getAsString();
+                        Toast.makeText(ConfirmPhoneActivity.this, message, Toast.LENGTH_LONG).show();
+                    } else if (json.has("errors") && json.getAsJsonObject("errors").get("smsError").getAsBoolean()) {
                         Toast.makeText(ConfirmPhoneActivity.this, getString(R.string.error_confirmation_sms), Toast.LENGTH_SHORT).show();
                     }
                 } else
@@ -111,9 +107,6 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
     }
 
     private void requestConfirmationCode(final boolean resend) {
-        SharedPreferencesManager manager = new SharedPreferencesManager(ConfirmPhoneActivity.this, getString(R.string.current_user_filename));
-        String _id = (String) manager.getValue("_id", String.class);
-
         Map<String, String> params = new HashMap<>();
         params.put("_id", _id);
 
@@ -133,10 +126,74 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
         });
     }
 
+    private void confirmCodeResults(final String response) {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                if (response != null && JsonUtils.isValidJson(response)) {
+                    JsonObject json = (JsonObject) new JsonParser().parse(response);
+                    if (json.has("data")) {
+                        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+                        try {
+                            final Dao<User, String> userDao = databaseHelper.getUserDao();
+                            UpdateBuilder<User, String> updateBuilder = userDao.updateBuilder();
+                            updateBuilder.updateColumnValue(IUserSchema.COLUMN_ENABLED, json.get("data").getAsBoolean());
+                            updateBuilder.where().eq(IUserSchema.COLUMN_ID, _id);
+                            updateBuilder.update();
+                        } catch (SQLException e) {
+                            e.printStackTrace();
+                        } finally {
+                            databaseHelper.close();
+                        }
+
+                        Toast.makeText(ConfirmPhoneActivity.this, getString(R.string.msj_phone_confirmed), Toast.LENGTH_LONG).show();
+
+                        Intent intent = new Intent(getBaseContext(), HomeActivity.class);
+                        finish();
+                        startActivity(intent);
+                    } else if (json.has("warnings")) {
+                        JsonObject warnings = json.getAsJsonObject("warnings");
+                        String message = null;
+                        if (warnings.has("codeNotFound"))
+                            message = getString(R.string.warning_confirmation_code_not_found);
+                        else if (warnings.has("usedCode"))
+                            message = getString(R.string.warning_confirmation_code_used);
+                        else if (warnings.has("notCurrentCode"))
+                            message = getString(R.string.warning_confirmation_code_not_current);
+                        Toast.makeText(ConfirmPhoneActivity.this, message, Toast.LENGTH_SHORT).show();
+                    } else
+                        Toast.makeText(ConfirmPhoneActivity.this, getString(R.string.error_phone_confirmation), Toast.LENGTH_SHORT).show();
+                } else
+                    Toast.makeText(ConfirmPhoneActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
     private Button.OnClickListener confirmCode = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            JsonObject json = new JsonObject();
+            json.addProperty("confirmationId", confirmationId);
+            json.addProperty("code", etConfirmationCode.getText().toString());
+            json.addProperty("userId", _id);
 
+            Map<String, String> params = new HashMap<>();
+            params.put("smsCode", json.toString());
+
+            ServletRequest request = new ServletRequest(ConfirmPhoneActivity.this);
+            Request builtRequest = request.buildRequest(Servlets.VERIFY_PHONE, RequestType.POST, params);
+            OkHttpClient client = request.buildClient();
+            client.newCall(builtRequest).enqueue(new Callback() {
+                @Override
+                public void onFailure(Call call, IOException e) {
+                    confirmCodeResults(null);
+                }
+
+                @Override
+                public void onResponse(Call call, Response response) throws IOException {
+                    confirmCodeResults(response.body().string());
+                }
+            });
         }
     };
 

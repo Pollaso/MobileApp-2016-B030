@@ -4,6 +4,8 @@ public enum Servlets {
     LOGIN,
     REGISTER,
     FORGOT_PASSWORD,
-    VERIFY_PHONE
+    VERIFY_PHONE,
+    USER,
+    EMERGENCY_CONTACT
 }
 

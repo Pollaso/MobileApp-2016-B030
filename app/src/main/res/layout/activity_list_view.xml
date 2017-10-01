@@ -9,21 +9,20 @@
     tools:context="ipn.mobileapp.presenter.activities.ContactsActivity">
 
     <TextView
-        android:id="@+id/tv_empty_sub_users"
+        android:id="@+id/tv_empty_list_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="@string/msj_no_sub_users"
         android:textSize="@dimen/tv_msg"
         android:visibility="gone"/>
 
     <ListView
-        android:id="@+id/lv_sub_users"
+        android:id="@+id/lv_items"
         android:layout_width="match_parent"
         android:layout_height="match_parent"></ListView>
 
     <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fltng_btn_register_sub_user"
+        android:id="@+id/fltng_btn_add_item"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
