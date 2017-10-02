@@ -66,21 +66,10 @@ public class ContactDialog implements View.OnClickListener {
         this.context = context;
         this.dismissListener = dismissListener;
         udMode = contact != null;
-        if (udMode) {
-            mode = Crud.DELETE;
-            Field[] fields = contact.getClass().getDeclaredFields();
-            for (int i = 1; i < fields.length; i++)
-                if (fields[i] != null)
-                    mode = Crud.UPDATE;
-        }
+        if (udMode)
+            mode = checkForNull(contact) ? Crud.UPDATE : Crud.DELETE;
         this.contact = udMode ? contact : new Contact();
     }
-
-    /*ContactsManager contactsManager = new ContactsManager(this);
-        contactsManager.getContacts();
-        List<String> phone = new ArrayList<String>();
-        phone.add("+19095985621");
-        contactsManager.addContact("Benjamin", "Clementine", "", phone);*/
 
     @Override
     public void onClick(View v) {
@@ -209,6 +198,7 @@ public class ContactDialog implements View.OnClickListener {
         } else {
             for (TextView field : fields)
                 field.setVisibility(View.GONE);
+            spnrCountryCode.setVisibility(View.GONE);
             tvDeleteContact.setVisibility(View.VISIBLE);
         }
     }
@@ -222,7 +212,9 @@ public class ContactDialog implements View.OnClickListener {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
                         //Contact contact = new Gson().fromJson(json.get("data").getAsString(), Contact.class);
-                        String message = udMode ? context.getString(R.string.msj_contact_saved) : context.getString(R.string.msj_contact_added);
+                        String message = context.getString(R.string.msj_contact_added);
+                        if (udMode)
+                            message = mode == Crud.UPDATE ? context.getString(R.string.msj_contact_saved) : context.getString(R.string.msj_contact_deleted);
                         Toast.makeText(context, message, Toast.LENGTH_LONG).show();
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");
@@ -235,22 +227,38 @@ public class ContactDialog implements View.OnClickListener {
         });
     }
 
+    private boolean checkForNull(Contact contact) {
+        if (contact.getName() != null)
+            return true;
+        if (contact.getPaternalSurname() != null)
+            return true;
+        if (contact.getMaternalSurname() != null)
+            return true;
+        if (contact.getPhoneNumber() != null)
+            return true;
+        return false;
+    }
+
     private Button.OnClickListener saveContact = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            contact.setProfileImage(null);
             if (!udMode) {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("currentUser", MODE_PRIVATE);
                 contact.setUserId(sharedPreferences.getString("_id", null));
             }
 
-            ArrayList<Contact> contacts = new ArrayList<>();
-            contacts.add(contact);
+            ArrayList<Object> contacts = new ArrayList<>();
+            Object param = mode == Crud.DELETE ? contact.getContactId() : contact;
+            contacts.add(param);
             Map<String, String> params = new ArrayMap<>();
-            params.put("emergencyContacts", new Gson().toJson(contacts));
+            String parameterName = mode != Crud.DELETE ? "emergencyContacts" : "contactIds";
+            params.put(parameterName, new Gson().toJson(contacts));
 
             ServletRequest request = new ServletRequest(context);
-            Request builtRequest = request.buildRequest(Servlets.EMERGENCY_CONTACT, udMode ? RequestType.PUT : RequestType.POST, params);
+            RequestType type = RequestType.POST;
+            if (udMode)
+                type = mode == Crud.UPDATE ? RequestType.PUT : RequestType.DELETE;
+            Request builtRequest = request.buildRequest(Servlets.EMERGENCY_CONTACT, type, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {
                 @Override

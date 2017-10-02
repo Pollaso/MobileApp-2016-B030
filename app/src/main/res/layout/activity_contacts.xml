@@ -24,8 +24,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_contacts"
                 android:drawableRight="@drawable/ic_edit_black"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:text="@string/example_contact_01" />
+                android:padding="@dimen/activity_horizontal_margin" />
 
             <Space
                 android:layout_width="match_parent"
@@ -36,8 +35,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_contacts"
                 android:drawableRight="@drawable/ic_edit_black"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:text="@string/example_contact_02" />
+                android:padding="@dimen/activity_horizontal_margin" />
 
             <Space
                 android:layout_width="match_parent"
@@ -48,8 +46,7 @@
                 android:layout_height="wrap_content"
                 android:background="@drawable/border_contacts"
                 android:drawableRight="@drawable/ic_edit_black"
-                android:padding="@dimen/activity_horizontal_margin"
-                android:text="@string/example_contact_03" />
+                android:padding="@dimen/activity_horizontal_margin" />
         </LinearLayout>
     </ScrollView>
 

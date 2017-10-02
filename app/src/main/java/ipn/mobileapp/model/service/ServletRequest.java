@@ -56,6 +56,9 @@ public class ServletRequest {
         url = urlBuilder.build();
 
         Request.Builder requestBuilder = new Request.Builder().url(url);
+        if(requestType == RequestType.DELETE)
+            requestBuilder.delete();
+
         if (body != null) {
             switch (requestType) {
                 case POST:

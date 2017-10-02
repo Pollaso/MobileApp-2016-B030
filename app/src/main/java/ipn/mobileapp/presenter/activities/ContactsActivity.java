@@ -80,6 +80,8 @@ public class ContactsActivity extends BaseActivity {
         lvContacts.setAdapter(adapter);
         if (lvContacts.getCount() != 0)
             tvEmpty.setVisibility(View.GONE);
+        else
+            tvEmpty.setVisibility(View.VISIBLE);
     }
 
     private void getComponents() {

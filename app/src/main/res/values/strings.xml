@@ -121,6 +121,7 @@
     <string name="msj_alert_sent">El mensaje a sido enviado</string>
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
+    <string name="msj_contact_deleted">El contacto ha sido eliminado exitosamente</string>
     <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
     <string name="msj_sub_user_registered">El subusuario has sido registrado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
@@ -158,10 +159,6 @@
     <string name="warning_contact_not_inserted">No se puedo registrar ese contacto de emergencia, verifique los datos e inténtelo de nuevo</string>
 
     <!--Examples-->
-    <string name="example_contact_01">Nombre del contacto\n+52 00 0000 0000</string>
-    <string name="example_contact_02">Nombre del contacto\n+52 000 000 0000</string>
-    <string name="example_contact_03">Nombre del contacto\n+1 000 000 0000</string>
-    <string name="example_sub_user">Nombre del sub-usuario\n+52 00 0000 0000\nVehículo\nÙltimo nivel de alcohol: 0.00</string>
     <string name="example_handled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
     <string name="example_pending_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
     <string name="example_unhandled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
@@ -169,7 +166,7 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.0.6</item>
+        <item>10.0.0.12</item>
         <item>8080</item>
         <item></item>
     </string-array>
