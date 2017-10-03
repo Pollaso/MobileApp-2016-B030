@@ -21,17 +21,12 @@ import com.google.gson.reflect.TypeToken;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
 import java.util.Map;
 
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.helper.JsonUtils;
+import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
-import ipn.mobileapp.model.pojo.User;
-import ipn.mobileapp.model.service.ContactsManager;
-import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.presenter.adapter.ContactAdapter;

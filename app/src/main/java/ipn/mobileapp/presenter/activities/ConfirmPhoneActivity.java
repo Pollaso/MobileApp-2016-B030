@@ -24,7 +24,7 @@ import java.util.Map;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.helper.JsonUtils;
+import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.ServletRequest;

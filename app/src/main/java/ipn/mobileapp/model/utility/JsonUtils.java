@@ -1,4 +1,4 @@
-package ipn.mobileapp.model.helper;
+package ipn.mobileapp.model.utility;
 
 import com.google.gson.Gson;
 import com.google.gson.JsonSyntaxException;

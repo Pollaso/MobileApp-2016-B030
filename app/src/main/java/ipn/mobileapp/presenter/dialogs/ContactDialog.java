@@ -11,7 +11,6 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -22,14 +21,16 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.sql.Array;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Map;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.Crud;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.helper.JsonUtils;
+import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.presenter.validation.TextValidator;
@@ -66,8 +67,13 @@ public class ContactDialog implements View.OnClickListener {
         this.context = context;
         this.dismissListener = dismissListener;
         udMode = contact != null;
-        if (udMode)
+        if (udMode) {
             mode = checkForNull(contact) ? Crud.UPDATE : Crud.DELETE;
+            /*ArrayList<Class> validTypes = new ArrayList<>();
+            validTypes.add(String.class);
+            String [] skippedFields = context.getResources().getStringArray(R.array.contact_skip_fields);
+            mode = contact.hasNullFields(new ArrayList<>(Arrays.asList(skippedFields)), validTypes) ? Crud.UPDATE : Crud.DELETE;*/
+        }
         this.contact = udMode ? contact : new Contact();
     }
 

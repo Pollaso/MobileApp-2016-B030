@@ -20,7 +20,7 @@ import java.util.Map;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.helper.NetworkUtils;
+import ipn.mobileapp.model.helper.NetworkHelper;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.presenter.validation.TextValidator;
@@ -112,7 +112,7 @@ public class ForgotPasswordDialog implements View.OnClickListener {
         public void onClick(View v) {
             dialog.hide();
 
-            if (!new NetworkUtils(context).hasNetworkConnection()) {
+            if (!new NetworkHelper(context).hasNetworkConnection()) {
                 Toast.makeText(context, context.getString(R.string.warning_internet), Toast.LENGTH_SHORT).show();
                 return;
             }

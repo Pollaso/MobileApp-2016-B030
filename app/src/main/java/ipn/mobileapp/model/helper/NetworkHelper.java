@@ -4,10 +4,10 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 
-public class NetworkUtils {
+public class NetworkHelper {
     private Context context;
 
-    public NetworkUtils(Context context){
+    public NetworkHelper(Context context){
         this.context = context;
     }
 
