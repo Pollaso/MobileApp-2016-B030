@@ -166,7 +166,8 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.3.2</item> //MEmu 10.0.3.2
+        <item>10.0.3.2</item>
+        //MEmu 10.0.3.2
         <item>8080</item>
         <item></item>
     </string-array>
@@ -185,6 +186,7 @@
         <item>VerifyPhone</item>
         <item>User</item>
         <item>EmergencyContact</item>
+        <item>Alert</item>
     </string-array>
 
     <!--URL for terms-->
@@ -203,4 +205,9 @@
 
     <!--Database attributes-->
     <string name="database_name">dacba</string>
+
+    <string-array name="contact_skip_fields">
+        <item>contactId</item>
+        <item>profileImage</item>
+    </string-array>
 </resources>
