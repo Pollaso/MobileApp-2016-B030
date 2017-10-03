@@ -10,7 +10,7 @@
         android:orientation="horizontal">
 
         <ImageButton
-            android:id="@+id/alert_preview"
+            android:id="@+id/img_btn_alert_preview"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_gravity="center"

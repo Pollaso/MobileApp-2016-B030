@@ -166,7 +166,7 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.0.12</item>
+        <item>10.0.3.2</item> //MEmu 10.0.3.2
         <item>8080</item>
         <item></item>
     </string-array>
@@ -184,7 +184,8 @@
         <item>ForgotPassword</item>
         <item>VerifyPhone</item>
         <item>User</item>
-        <item>EmergencyContact</item>
+        <item>EmergencyContact</item>D
+        <item>Alert</item>
     </string-array>
 
     <!--URL for terms-->
