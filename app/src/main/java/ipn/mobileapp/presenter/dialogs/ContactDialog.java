@@ -20,10 +20,7 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
-import java.lang.reflect.Field;
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Map;
 
 import ipn.mobileapp.R;
@@ -54,7 +51,7 @@ public class ContactDialog implements View.OnClickListener {
     private Spinner spnrCountryCode;
     private TextView tvCountryCodeNumber;
     private EditText etPhoneNumber;
-    private TextView tvDeleteContact;
+    private TextView tvMsjContact;
 
     private Button btnSaveContact;
     private Button btnCancel;
@@ -62,19 +59,23 @@ public class ContactDialog implements View.OnClickListener {
     private Contact contact;
     private Crud mode;
     private Boolean udMode;
+    private Boolean cancelable = true;
 
     public ContactDialog(Context context, Contact contact, DialogInterface.OnDismissListener dismissListener) {
         this.context = context;
         this.dismissListener = dismissListener;
         udMode = contact != null;
-        if (udMode) {
-            mode = checkForNull(contact) ? Crud.UPDATE : Crud.DELETE;
-            /*ArrayList<Class> validTypes = new ArrayList<>();
-            validTypes.add(String.class);
-            String [] skippedFields = context.getResources().getStringArray(R.array.contact_skip_fields);
-            mode = contact.hasNullFields(new ArrayList<>(Arrays.asList(skippedFields)), validTypes) ? Crud.UPDATE : Crud.DELETE;*/
-        }
+        if (udMode) mode = checkForNull(contact) ? Crud.UPDATE : Crud.DELETE;
         this.contact = udMode ? contact : new Contact();
+    }
+
+    public ContactDialog(Context context, Contact contact, DialogInterface.OnDismissListener dismissListener, boolean cancelable) {
+        this.context = context;
+        this.dismissListener = dismissListener;
+        udMode = contact != null;
+        if (udMode) mode = checkForNull(contact) ? Crud.UPDATE : Crud.DELETE;
+        this.contact = udMode ? contact : new Contact();
+        this.cancelable = cancelable;
     }
 
     @Override
@@ -93,7 +94,7 @@ public class ContactDialog implements View.OnClickListener {
         dialog = new AlertDialog.Builder(context)
                 .setView(R.layout.dialog_contacts)
                 .setTitle(title)
-                .setCancelable(true)
+                .setCancelable(cancelable)
                 .setOnDismissListener(dismissListener)
                 .create();
         dialog.show();
@@ -109,7 +110,7 @@ public class ContactDialog implements View.OnClickListener {
         spnrCountryCode = (Spinner) dialog.findViewById(R.id.s_country_code);
         tvCountryCodeNumber = (TextView) dialog.findViewById(R.id.txtv_country_code);
         etPhoneNumber = (EditText) dialog.findViewById(R.id.et_phone_number);
-        tvDeleteContact = (TextView) dialog.findViewById(R.id.tv_delete_contact);
+        tvMsjContact = (TextView) dialog.findViewById(R.id.tv_msj_contact);
     }
 
     private void setComponentAttributes() {
@@ -120,12 +121,16 @@ public class ContactDialog implements View.OnClickListener {
 
         btnSaveContact.setText(saveContactBtnText);
         btnSaveContact.setOnClickListener(saveContact);
-        btnCancel.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
+        if (cancelable)
+            btnCancel.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    dialog.dismiss();
+                }
+            });
+        else {
+            btnCancel.setVisibility(View.GONE);
+        }
 
         if (udMode && mode == Crud.UPDATE) {
             etName.setText(contact.getName());
@@ -205,7 +210,7 @@ public class ContactDialog implements View.OnClickListener {
             for (TextView field : fields)
                 field.setVisibility(View.GONE);
             spnrCountryCode.setVisibility(View.GONE);
-            tvDeleteContact.setVisibility(View.VISIBLE);
+            tvMsjContact.setVisibility(View.VISIBLE);
         }
     }
 

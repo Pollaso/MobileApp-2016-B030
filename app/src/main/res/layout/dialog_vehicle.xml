@@ -2,9 +2,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:focusable="true"
     android:focusableInTouchMode="true"
+    android:orientation="vertical"
     android:padding="@dimen/activity_horizontal_margin">
 
     <Spinner
@@ -15,10 +15,11 @@
         android:entries="@array/s_valid_vehicles"
         android:paddingBottom="@dimen/txtv_bottom_padding"
         android:paddingLeft="20dp"
-        android:paddingTop="@dimen/txtv_bottom_padding" />
+        android:paddingTop="@dimen/txtv_bottom_padding"
+        android:visibility="gone" />
 
     <EditText
-        android:id="@+id/txtv_registration_plates"
+        android:id="@+id/et_registration_plates"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/txtv_car_plates"
@@ -27,16 +28,29 @@
         android:paddingTop="@dimen/txtv_bottom_padding" />
 
     <EditText
-        android:id="@+id/txtv_serial_key"
+        android:id="@+id/et_serial_key"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/txtv_serial_key"
         android:paddingBottom="@dimen/txtv_bottom_padding"
         android:paddingTop="@dimen/txtv_bottom_padding" />
 
-    <Button
-        android:id="@+id/btn_add_vehicle"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/btn_add_vehicle"/>
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_cancel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_cancel" />
+
+        <Button
+            android:id="@+id/btn_save_vehicle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_save_vehicle" />
+    </LinearLayout>
 </LinearLayout>

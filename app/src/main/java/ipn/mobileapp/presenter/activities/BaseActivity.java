@@ -128,6 +128,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_menu_sub_users:
                 intent = new Intent(getBaseContext(), SubUsersActivity.class);
                 break;
+            case R.id.nav_menu_vehicles:
+                intent = new Intent(getBaseContext(), VehiclesActivity.class);
+                break;
             case R.id.nav_menu_contacts:
                 intent = new Intent(getBaseContext(), ContactsActivity.class);
                 break;

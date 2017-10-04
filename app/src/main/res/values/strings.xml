@@ -13,6 +13,7 @@
     <string name="title_activity_edit_profile">Editar perfil</string>
     <string name="title_activity_documents">Documentos</string>
     <string name="title_activity_contacts">Contactos</string>
+    <string name="title_activity_vehicles">Vehículos</string>
     <string name="title_activity_sub_users">Sub-Usuarios</string>
     <string name="title_activity_alerts">Alertas</string>
 
@@ -28,6 +29,8 @@
     <string name="title_dialog_delete_contact">Eliminar contacto</string>
     <string name="title_dialog_register_sub_user">Registrar sub-usuario</string>
     <string name="title_dialog_add_vehicle">Agregar vehículo</string>
+    <string name="title_dialog_edit_vehicle">Editar vehículo</string>
+    <string name="title_dialog_delete_vehicle">Eliminar vehículo</string>
     <string name="title_dialog_forgot_password">Restablecer contraseña</string>
 
     <!--Home screen project description-->
@@ -50,7 +53,7 @@
     <string name="btn_save_contact">Guardar contacto</string>
     <string name="btn_delete">Eliminar</string>
     <string name="btn_register_sub_user">Registrar Sub-Usuario</string>
-    <string name="btn_add_vehicle">Guardar vehículo</string>
+    <string name="btn_save_vehicle">Guardar vehículo</string>
 
     <!--TextView names-->
     <string name="txtv_email_hint">Correo electrónico</string>
@@ -95,6 +98,7 @@
     <string name="nav_menu_home">Hogar</string>
     <string name="nav_menu_profile">Perfil</string>
     <string name="nav_menu_sub_users">Sub-Usuarios</string>
+    <string name="nav_menu_vehicles">Vehículos</string>
     <string name="nav_menu_contacts">Contactos</string>
     <string name="nav_menu_alerts">Alertas</string>
     <string name="nav_menu_other_section">Otros</string>
@@ -116,6 +120,7 @@
     <string name="action_settings">Settings</string>
 
     <!--Notification messages-->
+    <string name="msj_need_one_contact">Necesita mínimo un contacto registrado</string>
     <string name="msj_phone_confirmed">Tu teléfono ha sido confirmado</string>
     <string name="msj_resend_code">El nuevo código ha sido enviado</string>
     <string name="msj_alert_sent">El mensaje a sido enviado</string>
@@ -125,10 +130,14 @@
     <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
     <string name="msj_sub_user_registered">El subusuario has sido registrado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
-    <string name="msj_vehicle_saved">El vehículo ha sido agregado de forma exitosa</string>
+    <string name="msj_vehicle_added">El vehículo ha sido agregado de forma exitosa</string>
+    <string name="msj_vehicle_saved">Los cambios al vehículo han sido guardados exitosamente</string>
+    <string name="msj_vehicle_deleted">El vehículo ha sido eliminado exitosamente</string>
     <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
     <string name="msj_no_sub_users">No tiene ningún subusuario registrado</string>
     <string name="msj_no_emergency_contacts">No tiene ningún contacto de emergencia registrado</string>
+    <string name="msj_no_alerts">No ha recibíido ninguna alerta</string>
+    <string name="msj_no_vehicles">No tiene ningún vehículo registrado</string>
     <string name="msj_confirmation_sms_sent">Se le ha enviado un mensaje de texto con su código de confirmación</string>
 
     <!--Error messages-->
@@ -157,6 +166,7 @@
     <string name="warning_confirmation_code_used">El código de confirmación ingresado ya fue usado previamente</string>
     <string name="warning_confirmation_code_not_current">El código de confirmación ingresado no corresponde con el más actual, ingrese el último que le haya llegado</string>
     <string name="warning_contact_not_inserted">No se puedo registrar ese contacto de emergencia, verifique los datos e inténtelo de nuevo</string>
+    <string name="warning_vehicle_not_inserted">No se puedo registrar ese vehículo, verifique los datos e inténtelo de nuevo</string>
 
     <!--Examples-->
     <string name="example_handled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
@@ -187,6 +197,7 @@
         <item>User</item>
         <item>EmergencyContact</item>
         <item>Alert</item>
+        <item>Vehicle</item>
     </string-array>
 
     <!--URL for terms-->

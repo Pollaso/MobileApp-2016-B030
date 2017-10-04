@@ -10,6 +10,7 @@ import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -75,8 +76,13 @@ public class ContactsActivity extends BaseActivity {
         lvContacts.setAdapter(adapter);
         if (lvContacts.getCount() != 0)
             tvEmpty.setVisibility(View.GONE);
-        else
+        else {
             tvEmpty.setVisibility(View.VISIBLE);
+
+            Button registerFirstContact = new Button(this);
+            registerFirstContact.setOnClickListener(new ContactDialog(this, null, dismissDialog, false));
+            registerFirstContact.performClick();
+        }
     }
 
     private void getComponents() {

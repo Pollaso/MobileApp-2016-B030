@@ -11,6 +11,10 @@
             android:id="@+id/nav_menu_sub_users"
             android:title="@string/nav_menu_sub_users" />
         <item
+            android:id="@+id/nav_menu_vehicles"
+            android:title="@string/nav_menu_vehicles"
+            />
+        <item
             android:id="@+id/nav_menu_contacts"
             android:title="@string/nav_menu_contacts" />
         <item

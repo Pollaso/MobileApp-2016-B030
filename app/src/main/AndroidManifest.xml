@@ -52,6 +52,9 @@
             android:name=".presenter.activities.ContactsActivity"
             android:label="@string/title_activity_contacts" />
         <activity
+            android:name=".presenter.activities.VehiclesActivity"
+            android:label="@string/title_activity_vehicles" />
+        <activity
             android:name=".presenter.activities.AlertsActivity"
             android:label="@string/title_activity_alerts" />
     </application>
