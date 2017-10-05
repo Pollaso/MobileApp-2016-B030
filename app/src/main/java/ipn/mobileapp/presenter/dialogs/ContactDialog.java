@@ -259,7 +259,7 @@ public class ContactDialog implements View.OnClickListener {
             }
 
             ArrayList<Object> contacts = new ArrayList<>();
-            Object param = mode == Crud.DELETE ? contact.getContactId() : contact;
+            Object param = mode == Crud.DELETE ? contact.getId() : contact;
             contacts.add(param);
             Map<String, String> params = new ArrayMap<>();
             String parameterName = mode != Crud.DELETE ? "emergencyContacts" : "contactIds";
@@ -269,7 +269,7 @@ public class ContactDialog implements View.OnClickListener {
             RequestType type = RequestType.POST;
             if (udMode)
                 type = mode == Crud.UPDATE ? RequestType.PUT : RequestType.DELETE;
-            Request builtRequest = request.buildRequest(Servlets.EMERGENCY_CONTACT, type, params);
+            Request builtRequest = request.buildRequest(Servlets.CONTACT, type, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {
                 @Override

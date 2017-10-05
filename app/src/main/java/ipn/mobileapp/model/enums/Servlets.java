@@ -6,7 +6,7 @@ public enum Servlets {
     FORGOT_PASSWORD,
     VERIFY_PHONE,
     USER,
-    EMERGENCY_CONTACT,
+    CONTACT,
     ALERT,
     VEHICLE
 }

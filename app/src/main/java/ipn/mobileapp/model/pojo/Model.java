@@ -2,14 +2,13 @@ package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
 
-public class CarModel {
-    private String carModelId;
-    private String carImage;
+public class Model {
+    private String id;
     private String model;
     private String manufacturer;
     private int year;
 
-    public CarModel() {
+    public Model() {
     }
 
     @Override
@@ -17,20 +16,12 @@ public class CarModel {
         return new Gson().toJson(this);
     }
 
-    public String getCarModelId() {
-        return carModelId;
+    public String getId() {
+        return id;
     }
 
-    public void setCarModelId(String carModelId) {
-        this.carModelId = carModelId;
-    }
-
-    public String getCarImage() {
-        return carImage;
-    }
-
-    public void setCarImage(String carImage) {
-        this.carImage = carImage;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getModel() {

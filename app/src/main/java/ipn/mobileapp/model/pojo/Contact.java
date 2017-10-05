@@ -3,16 +3,14 @@ package ipn.mobileapp.model.pojo;
 import com.google.gson.Gson;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 
 public class Contact {
-    private String contactId;
+    private String id;
     private String phoneNumber;
     private String name;
     private String paternalSurname;
     private String maternalSurname;
-    private String profileImage;
     private String userId;
 
     public Contact() {
@@ -34,12 +32,12 @@ public class Contact {
         return true;
     }
 
-    public String getContactId() {
-        return contactId;
+    public String getId() {
+        return id;
     }
 
-    public void setContactId(String contactId) {
-        this.contactId = contactId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getPhoneNumber() {
@@ -72,14 +70,6 @@ public class Contact {
 
     public void setMaternalSurname(String maternalSurname) {
         this.maternalSurname = maternalSurname;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
     }
 
     public String getUserId() {

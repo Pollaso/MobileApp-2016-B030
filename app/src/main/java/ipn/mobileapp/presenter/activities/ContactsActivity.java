@@ -102,7 +102,7 @@ public class ContactsActivity extends BaseActivity {
         params.put("id", id);
 
         ServletRequest request = new ServletRequest(ContactsActivity.this);
-        Request builtRequest = request.buildRequest(Servlets.EMERGENCY_CONTACT, RequestType.GET, params);
+        Request builtRequest = request.buildRequest(Servlets.CONTACT, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {
             @Override

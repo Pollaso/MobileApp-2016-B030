@@ -121,9 +121,6 @@ public class UserDao extends DatabaseContentProvider
             if (cursor.getColumnIndex(COLUMN_EMAIL) != -1) {
                 user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
             }
-            if (cursor.getColumnIndex(COLUMN_PROFILE_IMAGE) != -1) {
-                user.setProfileImage(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_PROFILE_IMAGE)));
-            }
             if (cursor.getColumnIndex(COLUMN_NAME) != -1) {
                 user.setName(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_NAME)));
             }
@@ -155,7 +152,6 @@ public class UserDao extends DatabaseContentProvider
         ContentValues values = new ContentValues();
         values.put(COLUMN_ID, user.get_id());
         values.put(COLUMN_EMAIL, user.getEmail());
-        values.put(COLUMN_PROFILE_IMAGE, user.getProfileImage());
         values.put(COLUMN_NAME, user.getName());
         values.put(COLUMN_PATERNAL_SURNAME, user.getPaternalSurname());
         values.put(COLUMN_MATERNAL_SURNAME, user.getMaternalSurname());

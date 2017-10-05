@@ -3,7 +3,7 @@ package ipn.mobileapp.model.pojo;
 import com.google.gson.Gson;
 
 public class Location {
-	private String locationId;
+	private String id;
 	private String division;
 	private String state;
 	private String country;
@@ -16,12 +16,12 @@ public class Location {
 		return new Gson().toJson(this);
 	}
 
-	public String getLocationId() {
-		return locationId;
+	public String getId() {
+		return id;
 	}
 
-	public void setLocationId(String locationId) {
-		this.locationId = locationId;
+	public void setId(String id) {
+		this.id = id;
 	}
 
 	public String getDivision() {

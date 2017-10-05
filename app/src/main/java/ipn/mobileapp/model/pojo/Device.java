@@ -9,11 +9,6 @@ public class Device {
     private String serialKey;
     private String version;
 
-    public Device(JSONObject json) throws JSONException {
-        serialKey = json.getString("serialKey");
-        version = json.has("version") ? json.getString("version") : null;
-    }
-
     public Device() {
     }
 

@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 public class Vehicle {
     private String carPlates;
     private String registryNumber;
-    private CarModel carModel;
+    private Model model;
     private String owner;
     private String user;
     private Device device;
@@ -34,12 +34,12 @@ public class Vehicle {
         this.registryNumber = registryNumber;
     }
 
-    public CarModel getCarModel() {
-        return carModel;
+    public Model getModel() {
+        return model;
     }
 
-    public void setCarModel(CarModel carModel) {
-        this.carModel = carModel;
+    public void setModel(Model model) {
+        this.model = model;
     }
 
     public String getOwner() {

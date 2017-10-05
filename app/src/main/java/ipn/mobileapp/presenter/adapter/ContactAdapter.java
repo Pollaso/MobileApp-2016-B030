@@ -9,16 +9,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.Contact;
-import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.presenter.dialogs.ContactDialog;
 
 public class ContactAdapter extends ArrayAdapter<Contact> {
@@ -48,7 +45,7 @@ public class ContactAdapter extends ArrayAdapter<Contact> {
 
         ImageButton imgDeleteContact = (ImageButton) convertView.findViewById(R.id.img_btn_delete_contact);
         Contact delete = new Contact();
-        delete.setContactId(contact.getContactId());
+        delete.setId(contact.getId());
         imgDeleteContact.setOnClickListener(new ContactDialog(context, delete, dismissListener));
 
         TextView tvContactName = (TextView) convertView.findViewById(R.id.tv_contact_name);

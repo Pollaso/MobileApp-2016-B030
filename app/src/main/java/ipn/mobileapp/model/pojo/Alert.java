@@ -5,7 +5,7 @@ import com.google.gson.Gson;
 import java.sql.Date;
 
 public class Alert {
-    private String alertId;
+    private String id;
     private String senderName;
     private String senderPhone;
     private Date dateSent;
@@ -19,12 +19,12 @@ public class Alert {
         return new Gson().toJson(this);
     }
 
-    public String getAlertId() {
-        return alertId;
+    public String getId() {
+        return id;
     }
 
-    public void setAlertId(String alertId) {
-        this.alertId = alertId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSenderName() {

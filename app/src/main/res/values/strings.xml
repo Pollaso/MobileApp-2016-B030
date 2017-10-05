@@ -195,7 +195,7 @@
         <item>ForgotPassword</item>
         <item>VerifyPhone</item>
         <item>User</item>
-        <item>EmergencyContact</item>
+        <item>Contact</item>
         <item>Alert</item>
         <item>Vehicle</item>
     </string-array>
@@ -218,7 +218,7 @@
     <string name="database_name">dacba</string>
 
     <string-array name="contact_skip_fields">
-        <item>contactId</item>
+        <item>id</item>
         <item>profileImage</item>
     </string-array>
 </resources>

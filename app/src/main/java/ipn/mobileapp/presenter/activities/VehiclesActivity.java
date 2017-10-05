@@ -10,7 +10,6 @@ import android.support.v4.util.ArrayMap;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,13 +28,11 @@ import ipn.mobileapp.model.enums.Crud;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.Contact;
-import ipn.mobileapp.model.pojo.Device;
 import ipn.mobileapp.model.pojo.Vehicle;
 import ipn.mobileapp.model.service.ServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.presenter.adapter.VehicleAdapter;
-import ipn.mobileapp.presenter.dialogs.ContactDialog;
 import ipn.mobileapp.presenter.dialogs.VehicleDialog;
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -69,25 +66,10 @@ public class VehiclesActivity extends BaseActivity {
 
         getComponents();
         setComponentAttributes();
-        setListView();
-        //getVehicles();
+        getVehicles();
     }
 
     private void setListView() {
-        ArrayList<Vehicle> vehicles = new ArrayList<>();
-        Vehicle vehicle = new Vehicle();
-        Device device = new Device();
-        device.setSerialKey("8226ae66a8ad11e7854b18dbf220a6c1");
-        vehicle.setCarPlates("TICTAC");
-        vehicle.setDevice(device);
-        vehicles.add(vehicle);
-
-        vehicle = new Vehicle();
-        device.setSerialKey("b26a5282a8ad11e7854b18dbf220a6c1");
-        vehicle.setDevice(device);
-        vehicle.setCarPlates("POLLASO");
-        vehicles.add(vehicle);
-
         if (vehicles == null)
             vehicles = new ArrayList<>();
 
@@ -116,7 +98,7 @@ public class VehiclesActivity extends BaseActivity {
         params.put("id", id);
 
         ServletRequest request = new ServletRequest(VehiclesActivity.this);
-        Request builtRequest = request.buildRequest(Servlets.EMERGENCY_CONTACT, RequestType.GET, params);
+        Request builtRequest = request.buildRequest(Servlets.CONTACT, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {
             @Override
@@ -156,7 +138,6 @@ public class VehiclesActivity extends BaseActivity {
         menu.clear();
         return super.onPrepareOptionsMenu(menu);
     }
-
 
 
     private DialogInterface.OnDismissListener dismissDialog = new DialogInterface.OnDismissListener() {

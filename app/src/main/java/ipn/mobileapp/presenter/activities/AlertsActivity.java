@@ -66,6 +66,9 @@ public class AlertsActivity extends BaseActivity {
     }
 
     private void setListView() {
+        ArrayList<Alert> alerts = new ArrayList<>();
+        Alert alert = new Alert();
+
         if (alerts == null)
             alerts = new ArrayList<>();
 

@@ -4,7 +4,7 @@ import com.google.gson.Gson;
 
 import java.sql.Date;
 
-public class BACTest {
+public class AlcoholTest {
 	private Date ocurrence;
 	private Coordinate coordinate;
 	private double alcoholicState;

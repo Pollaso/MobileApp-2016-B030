@@ -24,8 +24,6 @@ public class User implements IUserSchema{
     @DatabaseField(columnName = COLUMN_EMAIL, unique = true)
     private String email;
     private String password;
-    @DatabaseField(columnName = COLUMN_PROFILE_IMAGE)
-    private String profileImage;
     @DatabaseField(columnName = COLUMN_NAME)
     private String name;
     @DatabaseField(columnName = COLUMN_PATERNAL_SURNAME)
@@ -47,7 +45,7 @@ public class User implements IUserSchema{
     private Collection<Vehicle> vehicles = null;
     private Collection<Document> documents = null;
     private Collection<Contact> contacts = null;
-    private Collection<BACTest> bacTests = null;
+    private Collection<AlcoholTest> alcoholTests = null;
 
     public User() {
     }
@@ -81,14 +79,6 @@ public class User implements IUserSchema{
 
     public void setPassword(String password) {
         this.password = password;
-    }
-
-    public String getProfileImage() {
-        return profileImage;
-    }
-
-    public void setProfileImage(String profileImage) {
-        this.profileImage = profileImage;
     }
 
     public String getName() {
@@ -179,11 +169,19 @@ public class User implements IUserSchema{
         this.contacts = contacts;
     }
 
-    public Collection<BACTest> getBacTests() {
-        return bacTests;
+    public Collection<AlcoholTest> getAlcoholTests() {
+        return alcoholTests;
     }
 
-    public void setBacTests(Collection<BACTest> bacTests) {
-        this.bacTests = bacTests;
+    public void setAlcoholTests(Collection<AlcoholTest> alcoholTests) {
+        this.alcoholTests = alcoholTests;
+    }
+
+    public Collection<User> getSubUsers() {
+        return subUsers;
+    }
+
+    public void setSubUsers(Collection<User> subUsers) {
+        this.subUsers = subUsers;
     }
 }
