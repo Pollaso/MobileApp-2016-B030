@@ -22,29 +22,40 @@
             android:orientation="horizontal">
 
             <ImageButton
-                android:id="@+id/alert_location"
+                android:id="@+id/img_btn_location"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:background="@drawable/ic_location"
                 android:contentDescription="" />
 
-            <TextView
-                android:id="@+id/alert_information"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/example_unhandled_alert" />
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_alert_user_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/alert_text_preview" />
+
+                <TextView
+                    android:id="@+id/tv_alert_date"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/alert_text_preview" />
+
+                <TextView
+                    android:id="@+id/tv_alert_bac"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/alert_text_preview" />
+            </LinearLayout>
         </LinearLayout>
-        <!--<ImageButton-->
-        <!--android:id="@+id/alert_cancel"-->
-        <!--android:layout_width="15dp"-->
-        <!--android:layout_height="15dp"-->
-        <!--android:background="@drawable/ic_cancel"-->
-        <!--android:layout_alignParentTop="true"-->
-        <!--android:layout_alignParentEnd="true" />-->
 
         <EditText
-            android:id="@+id/alert_message"
+            android:id="@+id/et_message"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:layout_alignParentStart="true"
@@ -54,12 +65,27 @@
             android:inputType="textShortMessage"
             android:textSize="15sp" />
 
-        <Button
-            android:id="@+id/alert_send_message"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_alignParentStart="true"
-            android:layout_below="@+id/alert_message"
-            android:text="@string/btn_send_message" />
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingBottom="@dimen/txtv_bottom_padding"
+                android:paddingTop="@dimen/txtv_bottom_padding"
+                android:text="@string/btn_cancel" />
+
+            <Button
+                android:id="@+id/btn_send_message"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_below="@+id/alert_message"
+                android:text="@string/btn_send_message" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

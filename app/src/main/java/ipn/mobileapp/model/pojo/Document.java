@@ -1,60 +1,64 @@
 package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.annotations.Expose;
+
+import java.io.File;
 
 public class Document {
-	private String id;
-	private String name;
-	private String source;
-	private String userId;
-	private boolean valid;
+    private String id;
+    private String name;
+    private String source;
+    private String userId;
+    private boolean valid;
 
-	public Document() {
-	}
+    public Document() {
+    }
 
-	@Override
-	public String toString() {
-		return new Gson().toJson(this);
-	}
+    @Override
+    public String toString() {
+        return new Gson().toJson(this);
+    }
 
-	public String getId() {
-		return id;
-	}
+    public String getId() {
+        return id;
+    }
 
-	public void setId(String id) {
-		this.id = id;
-	}
+    public void setId(String id) {
+        this.id = id;
+    }
 
-	public String getName() {
-		return name;
-	}
+    public String getName() {
+        return name;
+    }
 
-	public void setName(String name) {
-		this.name = name;
-	}
+    public void setName(String name) {
+        this.name = name;
+    }
 
-	public String getSource() {
-		return source;
-	}
+    public String getSource() {
+        return source;
+    }
 
-	public void setSource(String source) {
-		this.source = source;
-	}
+    public void setSource(String source) {
+        this.source = source;
+    }
 
-	public String getUserId() {
-		return userId;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public boolean isValid() {
-		return valid;
-	}
+    public boolean isValid() {
+        return valid;
+    }
 
-	public void setValid(boolean valid) {
-		this.valid = valid;
-	}
+    public void setValid(boolean valid) {
+        this.valid = valid;
+    }
 
 }

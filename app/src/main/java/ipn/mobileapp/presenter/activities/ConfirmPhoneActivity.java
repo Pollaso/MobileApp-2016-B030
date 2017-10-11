@@ -27,7 +27,7 @@ import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.model.service.dao.user.IUserSchema;
 import ipn.mobileapp.presenter.validation.TextValidator;
@@ -44,7 +44,7 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
     private Button btnResendCode;
 
     private String confirmationId;
-    private String _id;
+    private String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +52,7 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
         setContentView(R.layout.activity_confirm_phone);
 
         SharedPreferencesManager manager = new SharedPreferencesManager(ConfirmPhoneActivity.this, getString(R.string.current_user_filename));
-        _id = (String) manager.getValue("_id", String.class);
+        id = (String) manager.getValue("id", String.class);
 
         requestConfirmationCode(false);
 
@@ -108,9 +108,9 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
 
     private void requestConfirmationCode(final boolean resend) {
         Map<String, String> params = new HashMap<>();
-        params.put("_id", _id);
+        params.put("id", id);
 
-        ServletRequest request = new ServletRequest(ConfirmPhoneActivity.this);
+        OkHttpServletRequest request = new OkHttpServletRequest(ConfirmPhoneActivity.this);
         Request builtRequest = request.buildRequest(Servlets.VERIFY_PHONE, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {
@@ -138,7 +138,7 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
                             final Dao<User, String> userDao = databaseHelper.getUserDao();
                             UpdateBuilder<User, String> updateBuilder = userDao.updateBuilder();
                             updateBuilder.updateColumnValue(IUserSchema.COLUMN_ENABLED, json.get("data").getAsBoolean());
-                            updateBuilder.where().eq(IUserSchema.COLUMN_ID, _id);
+                            updateBuilder.where().eq(IUserSchema.COLUMN_ID, id);
                             updateBuilder.update();
                         } catch (SQLException e) {
                             e.printStackTrace();
@@ -175,12 +175,12 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
             JsonObject json = new JsonObject();
             json.addProperty("confirmationId", confirmationId);
             json.addProperty("code", etConfirmationCode.getText().toString());
-            json.addProperty("userId", _id);
+            json.addProperty("userId", id);
 
             Map<String, String> params = new HashMap<>();
             params.put("smsCode", json.toString());
 
-            ServletRequest request = new ServletRequest(ConfirmPhoneActivity.this);
+            OkHttpServletRequest request = new OkHttpServletRequest(ConfirmPhoneActivity.this);
             Request builtRequest = request.buildRequest(Servlets.VERIFY_PHONE, RequestType.POST, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {

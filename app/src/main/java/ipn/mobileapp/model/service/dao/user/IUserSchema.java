@@ -2,9 +2,8 @@ package ipn.mobileapp.model.service.dao.user;
 
 public interface IUserSchema {
     String USER_TABLE = "users";
-    String COLUMN_ID = "_id";
+    String COLUMN_ID = "id";
     String COLUMN_EMAIL = "email";
-    String COLUMN_PROFILE_IMAGE = "profileImage";
     String COLUMN_NAME = "name";
     String COLUMN_PATERNAL_SURNAME = "paternal_surname";
     String COLUMN_MATERNAL_SURNAME = "maternal_surname";
@@ -17,7 +16,6 @@ public interface IUserSchema {
             + " ("
             + COLUMN_ID + " TEXT NOT NULL PRIMARY KEY, "
             + COLUMN_EMAIL + " TEXT NOT NULL UNIQUE, "
-            + COLUMN_PROFILE_IMAGE + " TEXT NOT NULL, "
             + COLUMN_NAME + " TEXT NOT NULL, "
             + COLUMN_PATERNAL_SURNAME + " TEXT NOT NULL, "
             + COLUMN_MATERNAL_SURNAME + " TEXT NOT NULL, "
@@ -29,5 +27,5 @@ public interface IUserSchema {
             + "FOREIGN KEY(" + COLUMN_USER_ID + ") REFERENCES " + USER_TABLE + "(" + COLUMN_ID + ")"
             + ")";
 
-    String[] USER_COLUMNS = new String[]{COLUMN_ID, COLUMN_EMAIL, COLUMN_PROFILE_IMAGE, COLUMN_NAME, COLUMN_PATERNAL_SURNAME, COLUMN_MATERNAL_SURNAME, COLUMN_PHONE_NUMBER, COLUMN_BIRTHDATE, COLUMN_ROLE, COLUMN_USER_ID, COLUMN_ENABLED};
+    String[] USER_COLUMNS = new String[]{COLUMN_ID, COLUMN_EMAIL, COLUMN_NAME, COLUMN_PATERNAL_SURNAME, COLUMN_MATERNAL_SURNAME, COLUMN_PHONE_NUMBER, COLUMN_BIRTHDATE, COLUMN_ROLE, COLUMN_USER_ID, COLUMN_ENABLED};
 }

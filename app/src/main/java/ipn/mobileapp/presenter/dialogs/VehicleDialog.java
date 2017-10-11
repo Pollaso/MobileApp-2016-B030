@@ -13,12 +13,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Map;
 
 import ipn.mobileapp.R;
@@ -27,7 +25,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.Device;
 import ipn.mobileapp.model.pojo.Vehicle;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
@@ -114,11 +112,9 @@ public class VehicleDialog implements View.OnClickListener {
                     dialog.dismiss();
                 }
             });
-        else
-            btnCancel.setVisibility(View.GONE);
 
         if (udMode && mode == Crud.UPDATE) {
-            etRegistrationPlates.setText(vehicle.getCarPlates());
+            etRegistrationPlates.setText(vehicle.getLicensePlate());
             etSerialKey.setText(vehicle.getDevice().getSerialKey());
         }
 
@@ -132,7 +128,7 @@ public class VehicleDialog implements View.OnClickListener {
                     if (!validator.isValidCarPlates(text))
                         etRegistrationPlates.setError(context.getString(R.string.warning_car_plates));
                     else {
-                        vehicle.setCarPlates(text);
+                        vehicle.setLicensePlate(text);
                         btnSave.setEnabled(validator.validateFields(fields));
                     }
                 }
@@ -185,17 +181,17 @@ public class VehicleDialog implements View.OnClickListener {
         public void onClick(View v) {
             if (!udMode) {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("currentUser", MODE_PRIVATE);
-                vehicle.setOwner(sharedPreferences.getString("_id", null));
+                vehicle.setOwner(sharedPreferences.getString("id", null));
             }
 
-            ArrayList<Object> vehicles = new ArrayList<>();
-            Object param = mode == Crud.DELETE ? vehicle.getOwner() : vehicle;
-            vehicles.add(param);
             Map<String, String> params = new ArrayMap<>();
-            String parameterName = mode != Crud.DELETE ? "vehicles" : "ownerIds";
-            params.put(parameterName, new Gson().toJson(vehicles));
+            if (mode == Crud.DELETE) {
+                params.put("id", vehicle.getId());
+                params.put("ownerId", vehicle.getOwner());
+            }else
+                params.put("vehicle", vehicle.toString());
 
-            ServletRequest request = new ServletRequest(context);
+            OkHttpServletRequest request = new OkHttpServletRequest(context);
             RequestType type = RequestType.POST;
             if (udMode)
                 type = (mode == Crud.UPDATE) ? RequestType.PUT : RequestType.DELETE;

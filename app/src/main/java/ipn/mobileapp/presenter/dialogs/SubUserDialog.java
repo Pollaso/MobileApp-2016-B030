@@ -35,7 +35,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.User;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
@@ -81,7 +81,7 @@ public class SubUserDialog implements View.OnClickListener {
 
     private void createDialog() {
         dialog = new AlertDialog.Builder(context)
-                .setView(R.layout.dialog_sub_users)
+                .setView(R.layout.dialog_sub_user)
                 .setTitle(context.getString(R.string.title_dialog_register_sub_user))
                 .setCancelable(true)
                 .setOnDismissListener(dismissListener)
@@ -192,17 +192,6 @@ public class SubUserDialog implements View.OnClickListener {
                     if (json.has("data")) {
                         User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
 
-                        /* Using OrmLite
-                        DatabaseHelper databaseHelper = new DatabaseHelper(context.getApplicationContext());
-                        try {
-                            final Dao<User, String> userDao = databaseHelper.getUserDao();
-                            userDao.create(user);
-                        } catch (SQLException e) {
-                            e.printStackTrace();
-                        } finally {
-                            databaseHelper.close();
-                        }*/
-
                         Toast.makeText(context, context.getString(R.string.msj_sub_user_registered), Toast.LENGTH_LONG).show();
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");
@@ -223,7 +212,7 @@ public class SubUserDialog implements View.OnClickListener {
         subUser.setPhoneNumber(tvCountryCodeNumber.getText().toString() + etPhoneNumber.getText().toString());
         subUser.setRole(User.SUBUSER_ROLE);
         SharedPreferences sharedPreferences = context.getSharedPreferences("currentUser", MODE_PRIVATE);
-        subUser.setUserId(sharedPreferences.getString("_id", null));
+        subUser.setUserId(sharedPreferences.getString("id", null));
     }
 
     private ImageButton.OnClickListener datePicker = new View.OnClickListener() {
@@ -261,7 +250,7 @@ public class SubUserDialog implements View.OnClickListener {
             Map<String, String> params = new ArrayMap<>();
             params.put("user", subUser.toString());
 
-            ServletRequest request = new ServletRequest(context);
+            OkHttpServletRequest request = new OkHttpServletRequest(context);
             Request builtRequest = request.buildRequest(Servlets.REGISTER, RequestType.POST, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {

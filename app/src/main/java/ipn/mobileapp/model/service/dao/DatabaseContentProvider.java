@@ -24,10 +24,9 @@ public abstract class DatabaseContentProvider {
 
     public Cursor query(String tableName, String[] columns,
                         String selection, String[] selectionArgs, String sortOrder) {
-        final Cursor cursor = database.query(tableName, columns,
-                selection, selectionArgs, null, null, sortOrder);
 
-        return cursor;
+        return database.query(tableName, columns,
+                selection, selectionArgs, null, null, sortOrder);
     }
 
     public Cursor query(String tableName, String[] columns,

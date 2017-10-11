@@ -10,6 +10,7 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.support.ConnectionSource;
 import com.j256.ormlite.table.TableUtils;
 
+import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.pojo.User;
 
 public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
@@ -19,6 +20,7 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
     private Context context;
 
     private Dao<User, String> userDao = null;
+    private Dao<Contact, String> contactDao = null;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,6 +56,17 @@ public class DatabaseHelper extends OrmLiteSqliteOpenHelper {
         if (null == userDao) {
             try {
                 userDao = getDao(User.class);
+            } catch (java.sql.SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return userDao;
+    }
+
+    public Dao<User, String> getContactDao() {
+        if (null == contactDao) {
+            try {
+                contactDao = getDao(Contact.class);
             } catch (java.sql.SQLException e) {
                 e.printStackTrace();
             }

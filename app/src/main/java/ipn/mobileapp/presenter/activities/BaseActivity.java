@@ -1,6 +1,7 @@
 package ipn.mobileapp.presenter.activities;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -16,18 +17,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.j256.ormlite.dao.Dao;
-import com.j256.ormlite.stmt.PreparedQuery;
-import com.j256.ormlite.stmt.QueryBuilder;
-import com.j256.ormlite.stmt.SelectArg;
-import com.j256.ormlite.stmt.Where;
+import com.j256.ormlite.stmt.UpdateBuilder;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
-import ipn.mobileapp.model.service.dao.Database;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.model.service.dao.user.IUserSchema;
 
@@ -35,9 +31,16 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     protected DrawerLayout drawer;
     private NavigationView navigationView;
     private LinearLayout navHeader;
+    private Menu navMenu;
 
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long backPressed;
+
+    protected static User user;
+
+    protected static String id;
+    protected static String userId;
+    protected static boolean isSubUser = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,8 +49,50 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
+        SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
+        if (id == null)
+            id = (String) manager.getValue("id", String.class);
+        if (user == null)
+            getUser();
+        if (isSubUser && user == null)
+            userId = (String) manager.getValue("userId", String.class);
+
         setNavigationView();
         setDrawerLayout();
+    }
+
+    protected void getUser() {
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        try {
+            final Dao<User, String> userDao = databaseHelper.getUserDao();
+            user = userDao.queryForId(id);
+            if (user.getRole().equals(User.SUBUSER_ROLE))
+                isSubUser = true;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            databaseHelper.close();
+        }
+    }
+
+    protected void setUser(User user) {
+        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
+        try {
+            final Dao<User, String> userDao = databaseHelper.getUserDao();
+            UpdateBuilder<User, String> updateBuilder = userDao.updateBuilder();
+            updateBuilder.updateColumnValue(IUserSchema.COLUMN_EMAIL, user.getEmail());
+            updateBuilder.updateColumnValue(IUserSchema.COLUMN_NAME, user.getName());
+            updateBuilder.updateColumnValue(IUserSchema.COLUMN_PATERNAL_SURNAME, user.getPaternalSurname());
+            updateBuilder.updateColumnValue(IUserSchema.COLUMN_MATERNAL_SURNAME, user.getMaternalSurname());
+            updateBuilder.updateColumnValue(IUserSchema.COLUMN_BIRTHDATE, user.getBirthdate());
+            updateBuilder.where().eq(IUserSchema.COLUMN_ID, id);
+            updateBuilder.update();
+            this.user = user;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } finally {
+            databaseHelper.close();
+        }
     }
 
     private void setDrawerLayout() {
@@ -61,24 +106,17 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
 
         View header = navigationView.getHeaderView(0);
-        ImageView ivProfileImage= (ImageView) header.findViewById(R.id.header_profile_picture);
-        TextView tvHeaderName = (TextView)header.findViewById(R.id.header_name);
-        TextView tvHeaderEmail= (TextView)header.findViewById(R.id.header_email);
-
-        SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        DatabaseHelper databaseHelper = new DatabaseHelper(getApplicationContext());
-        try {
-            final Dao<User, String> userDao = databaseHelper.getUserDao();
-            User user = userDao.queryForId((String)manager.getValue("_id", String.class));
-            tvHeaderName.setText(user.getName());
-            tvHeaderEmail.setText(user.getEmail());
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            databaseHelper.close();
-        }
+        ImageView ivProfileImage = (ImageView) header.findViewById(R.id.header_profile_picture);
+        TextView tvHeaderName = (TextView) header.findViewById(R.id.header_name);
+        TextView tvHeaderEmail = (TextView) header.findViewById(R.id.header_email);
+        tvHeaderName.setText(user.getName());
+        tvHeaderEmail.setText(user.getEmail());
 
         navHeader = (LinearLayout) navigationView.getHeaderView(0);
+        navMenu = navigationView.getMenu();
+        MenuItem menuItem = navMenu.getItem(getResources().getInteger(R.integer.sub_user_menu_item_index));
+        if (user.getRole().equals(User.SUBUSER_ROLE))
+            menuItem.setVisible(false);
     }
 
     @Override
@@ -116,6 +154,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = null;
         /*android.support.v4.app.Fragment fragment = null;*/
 
+        boolean finish = true;
         switch (id) {
             case R.id.nav_menu_home:
                 intent = new Intent(getBaseContext(), HomeActivity.class);
@@ -138,10 +177,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent(getBaseContext(), AlertsActivity.class);
                 break;
             case R.id.nav_menu_about_us:
+                finish = false;
                 intent = new Intent(getBaseContext(), HomeActivity.class);
                 break;
             case R.id.nav_menu_privacy:
-                intent = new Intent(getBaseContext(), HomeActivity.class);
+                finish = false;
+                intent = new Intent(Intent.ACTION_VIEW);
+                intent.setData(Uri.parse(getString(R.string.localhost_terms)));
                 break;
             case R.id.nav_menu_logout:
                 logout();
@@ -150,7 +192,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
 
         drawer.closeDrawer(GravityCompat.START);
-        finish();
+        if (finish)
+            finish();
         startActivity(intent);
 
         /*if (fragment != null) {
@@ -161,7 +204,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         return false;
     }
 
-    public void logout() {
+    protected void logout() {
         getApplicationContext().deleteDatabase(getString(R.string.database_name));
 
         SharedPreferencesManager manager = new SharedPreferencesManager(BaseActivity.this, "currentUser");

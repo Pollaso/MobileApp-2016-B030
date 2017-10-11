@@ -27,7 +27,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.User;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.presenter.adapter.SubUserAdapter;
 import ipn.mobileapp.presenter.dialogs.SubUserDialog;
@@ -60,7 +60,7 @@ public class SubUsersActivity extends BaseActivity {
         drawer.addView(contentView, 0);
 
         SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        id = (String) manager.getValue("_id", String.class);
+        id = (String) manager.getValue("id", String.class);
 
         getComponents();
         setComponentAttributes();
@@ -93,7 +93,7 @@ public class SubUsersActivity extends BaseActivity {
         params.put("expression", SELECT_ALL);
         params.put("id", id);
 
-        ServletRequest request = new ServletRequest(SubUsersActivity.this);
+        OkHttpServletRequest request = new OkHttpServletRequest(SubUsersActivity.this);
         Request builtRequest = request.buildRequest(Servlets.USER, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {

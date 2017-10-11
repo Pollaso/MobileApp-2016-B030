@@ -5,7 +5,8 @@
 
     <!--Length for User fields-->
     <integer name="email_length">50</integer>
-    <integer name="password_length">50</integer>
+    <integer name="password_min_length">8</integer>
+    <integer name="password_max_length">50</integer>
     <integer name="name_surname_length">50</integer>
     <integer name="phone_number_length">22</integer>
     <integer name="confirmation_code_length">6</integer>
@@ -18,4 +19,9 @@
 
     <!--Navigation View Menu Indexes-->
     <integer name="sub_user_menu_item_index">2</integer>
+
+    <!--User update type-->
+    <integer name="update_update_details">0</integer>
+    <integer name="update_change_password">1</integer>
+    <integer name="update_disable">2</integer>
 </resources>

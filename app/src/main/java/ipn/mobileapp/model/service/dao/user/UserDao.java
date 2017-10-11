@@ -77,7 +77,7 @@ public class UserDao extends DatabaseContentProvider
 
     @Override
     public boolean update(User user) {
-        final String selectionArgs[] = {user.get_id()};
+        final String selectionArgs[] = {user.getId()};
         final String selection = COLUMN_ID + " = ?";
         ContentValues values = setContentValue(user);
         try {
@@ -116,7 +116,7 @@ public class UserDao extends DatabaseContentProvider
 
         if (cursor != null) {
             if (cursor.getColumnIndex(COLUMN_ID) != -1) {
-                user.set_id(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)));
+                user.setId(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_ID)));
             }
             if (cursor.getColumnIndex(COLUMN_EMAIL) != -1) {
                 user.setEmail(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_EMAIL)));
@@ -143,14 +143,14 @@ public class UserDao extends DatabaseContentProvider
                 user.setUserId(cursor.getString(cursor.getColumnIndexOrThrow(COLUMN_USER_ID)));
         }
         if (cursor.getColumnIndex(COLUMN_ENABLED) != -1) {
-            user.setEnabled(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ENABLED)) > 0 ? true : false);
+            user.setEnabled(cursor.getInt(cursor.getColumnIndexOrThrow(COLUMN_ENABLED)) > 0);
         }
         return user;
     }
 
     private ContentValues setContentValue(User user) {
         ContentValues values = new ContentValues();
-        values.put(COLUMN_ID, user.get_id());
+        values.put(COLUMN_ID, user.getId());
         values.put(COLUMN_EMAIL, user.getEmail());
         values.put(COLUMN_NAME, user.getName());
         values.put(COLUMN_PATERNAL_SURNAME, user.getPaternalSurname());

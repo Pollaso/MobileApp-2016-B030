@@ -24,6 +24,8 @@
 
     <!--Dialog titles-->
     <string name="title_dialog_alerts">Alerta</string>
+    <string name="title_dialog_add_document">Agregar documento</string>
+    <string name="title_dialog_edit_document">Editar documento</string>
     <string name="title_dialog_add_contact">Agregar contacto</string>
     <string name="title_dialog_edit_contact">Editar contacto</string>
     <string name="title_dialog_delete_contact">Eliminar contacto</string>
@@ -32,6 +34,7 @@
     <string name="title_dialog_edit_vehicle">Editar vehículo</string>
     <string name="title_dialog_delete_vehicle">Eliminar vehículo</string>
     <string name="title_dialog_forgot_password">Restablecer contraseña</string>
+    <string name="title_dialog_change_password">Change contraseña</string>
 
     <!--Home screen project description-->
     <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
@@ -49,11 +52,12 @@
     <string name="btn_cancel">Cancelar</string>
     <string name="btn_send_message">Enviar mensaje</string>
     <string name="btn_save_changes">Guardar cambios</string>
-    <string name="btn_add_document">Elegir documento</string>
+    <string name="btn_add_document">Guardar documento</string>
     <string name="btn_save_contact">Guardar contacto</string>
     <string name="btn_delete">Eliminar</string>
     <string name="btn_register_sub_user">Registrar Sub-Usuario</string>
     <string name="btn_save_vehicle">Guardar vehículo</string>
+    <string name="btn_view_document">Abrir documento actual</string>
 
     <!--TextView names-->
     <string name="txtv_email_hint">Correo electrónico</string>
@@ -70,13 +74,17 @@
     <string name="txtv_terms">Al registrar a este usuario usted acepta los </string>
     <string name="tv_delete_contact">¿Desea eliminar el contacto?</string>
 
+    <!--TextView label Names-->
+    <string name="tv_label_user">Usuario</string>
+    <string name="tv_label_vehicle">Vehículo</string>
+
     <!--Checkbox text-->
     <string name="chck_terms">Acepto los</string>
 
     <!--EditText hints-->
     <string name="et_message">Escriba su mensaje abajo</string>
     <string name="et_document_name">Nombre del documento</string>
-    <string name="et_document_path">Ruta del documento</string>
+    <string name="et_document_path">Ruta local del documento</string>
 
     <!--Prefijos telefónicos mundiales-->
     <string name="txtv_country_calling_code">PTM</string>
@@ -110,7 +118,8 @@
     <string name="sub_user_menu_add">Registar Sub-Usaurio</string>
 
     <!--Profile Popup Menu-->
-    <string name="mn_profile_deactivate">Desactivar cuenta</string>
+    <string name="mn_item_profile_deactivate">Desactivar cuenta</string>
+    <string name="mn_item_change_password">Cambiar contraseña</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -129,16 +138,19 @@
     <string name="msj_contact_deleted">El contacto ha sido eliminado exitosamente</string>
     <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
     <string name="msj_sub_user_registered">El subusuario has sido registrado de forma exitosa</string>
-    <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, pongase en contacto con nosotros en </string>
+    <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, inicie sesión y confirme nuevamente su teléfono celular</string>
     <string name="msj_vehicle_added">El vehículo ha sido agregado de forma exitosa</string>
     <string name="msj_vehicle_saved">Los cambios al vehículo han sido guardados exitosamente</string>
     <string name="msj_vehicle_deleted">El vehículo ha sido eliminado exitosamente</string>
     <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
+    <string name="msj_change_password">Su contraseña ha sido actualizada</string>
+    <string name="msj_profile_changes">Sus datos de perfil han sido actualizados</string>
     <string name="msj_no_sub_users">No tiene ningún subusuario registrado</string>
     <string name="msj_no_emergency_contacts">No tiene ningún contacto de emergencia registrado</string>
-    <string name="msj_no_alerts">No ha recibíido ninguna alerta</string>
+    <string name="msj_no_alerts">No ha recibído ninguna alerta</string>
     <string name="msj_no_vehicles">No tiene ningún vehículo registrado</string>
     <string name="msj_confirmation_sms_sent">Se le ha enviado un mensaje de texto con su código de confirmación</string>
+    <string name="msj_change_phone_numer">Si desea cambiar su teléfono celular, póngase en contacto con el equipo de soporte</string>
 
     <!--Error messages-->
     <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
@@ -147,7 +159,7 @@
 
     <!--Warning messages-->
     <string name="warning_login_user">No existe una cuenta registrada a ese correo</string>
-    <string name="warning_login_password">La contraseña es incorrecta</string>
+    <string name="warning_wrong_password">La contraseña es incorrecta</string>
     <string name="warning_internet">No cuenta con una conexión a internet</string>
     <string name="warning_register_user">Ya existe una cuenta registrada con esos datos</string>
     <string name="warning_register_vehicle">El vehículo que intento registrar le pertenece a otro usuario</string>
@@ -157,7 +169,8 @@
     <string name="warning_email">Ingrese un correo electrónico válido</string>
     <string name="warning_name">Ingrese un nombre válido</string>
     <string name="warning_surname">Ingrese un apellido válido</string>
-    <string name="warning_password">Ingrese una contraseña que contenga mínimo una letra minúscula y mayúscula, un caracter especial y un número y de una longitud de 8 caracteres</string>
+    <string name="warning_input_length">Este campo debe tener una longitud de mínimo # caracteres</string>
+    <string name="warning_password">Ingrese una contraseña que contenga mínimo una letra minúscula y mayúscula, un carácter especial y un número y de una longitud de 8 caracteres</string>
     <string name="warning_password_matches">Las contraseñs no coinciden</string>
     <string name="warning_phone_number">Ingrese un teléfono celular válido</string>
     <string name="warning_terms">Por favor, indique que ha leído y está de acuerdo con los Términos y Condiciones</string>
@@ -165,8 +178,8 @@
     <string name="warning_confirmation_code_not_found">El código de confirmación ingresado no existe o ya expiró</string>
     <string name="warning_confirmation_code_used">El código de confirmación ingresado ya fue usado previamente</string>
     <string name="warning_confirmation_code_not_current">El código de confirmación ingresado no corresponde con el más actual, ingrese el último que le haya llegado</string>
-    <string name="warning_contact_not_inserted">No se puedo registrar ese contacto de emergencia, verifique los datos e inténtelo de nuevo</string>
-    <string name="warning_vehicle_not_inserted">No se puedo registrar ese vehículo, verifique los datos e inténtelo de nuevo</string>
+    <string name="warning_contact_not_inserted">No se pudo registrar ese contacto de emergencia, verifique los datos e inténtelo de nuevo</string>
+    <string name="warning_vehicle_not_inserted">No se pudo registrar ese vehículo, verifique los datos e inténtelo de nuevo</string>
 
     <!--Examples-->
     <string name="example_handled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
@@ -176,14 +189,14 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.3.2</item>
-        //MEmu 10.0.3.2
+        <item>10.0.0.6</item>
+        <!--MEmu 10.0.3.2-->
         <item>8080</item>
         <item></item>
     </string-array>
 
     <string-array name="server">
-        <item>http</item>
+        <item>https</item>
         <item>10.0.0.12</item>
         <item>8080</item>
         <item></item>
@@ -198,6 +211,7 @@
         <item>Contact</item>
         <item>Alert</item>
         <item>Vehicle</item>
+        <item>Document</item>
     </string-array>
 
     <!--URL for terms-->
@@ -217,8 +231,17 @@
     <!--Database attributes-->
     <string name="database_name">dacba</string>
 
+
     <string-array name="contact_skip_fields">
         <item>id</item>
         <item>profileImage</item>
+    </string-array>
+
+    <string-array name="alcohol_effects">
+        <item>-Alguna discapacidad en la coordinación motriz y la habilidad de pensar\n-Locuacidad\n-Relajación</item>
+        <item>-Concentración y juicio deteriorado\n-Desinhibición sexual</item>
+        <item>-Discurso limitado\n-Inestabilidad\n-Nausea\n-Visión doble\n-Incremento en ritmo cardiaco\n-Somnolencia\n-Comportamiento agresivo y antisocial</item>
+        <item>-Extremadamente somnoliento\n-Pérdida de memoria\n-Vomito\n-Respiración fuerte</item>
+        <item>-Respiración ralentizada, superﬁcial o parada\n-Coma\n-Muerte</item>
     </string-array>
 </resources>

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -27,7 +27,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Alert;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.presenter.adapter.AlertAdapter;
 import ipn.mobileapp.R;
@@ -58,17 +58,24 @@ public class AlertsActivity extends BaseActivity {
         drawer.addView(contentView, 0);
 
         SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        id = (String) manager.getValue("_id", String.class);
+        id = (String) manager.getValue("id", String.class);
 
         getComponents();
         setComponentAttributes();
         getAlerts();
+        //setListView();
+
+        /*SmsManager smsManager = SmsManager.getDefault();
+        ArrayList<String> parts = smsManager.divideMessage("DACBA:\n" +
+                "Gerardo Diaz Rodarte tiene un porcentaje de alcohol en sangre de 300.0:\n" +
+                "-Concentración y juicio deteriorado\n" +
+                "-Desinhibición sexual\n" +
+                "El usuario se encuentra ubicado en:\n" +
+                "https://maps.google.com/?q=19.408195,-99.062418");
+        smsManager.sendMultipartTextMessage("+525519718397", null, parts, null, null);*/
     }
 
     private void setListView() {
-        ArrayList<Alert> alerts = new ArrayList<>();
-        Alert alert = new Alert();
-
         if (alerts == null)
             alerts = new ArrayList<>();
 
@@ -96,7 +103,7 @@ public class AlertsActivity extends BaseActivity {
         params.put("expression", SELECT_ALL);
         params.put("id", id);
 
-        ServletRequest request = new ServletRequest(AlertsActivity.this);
+        OkHttpServletRequest request = new OkHttpServletRequest(AlertsActivity.this);
         Request builtRequest = request.buildRequest(Servlets.ALERT, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {
@@ -121,7 +128,7 @@ public class AlertsActivity extends BaseActivity {
                     if (json.has("data")) {
                         TypeToken type = new TypeToken<ArrayList<Alert>>() {
                         };
-                        alerts = new Gson().fromJson(json.get("data").getAsString(), type.getType());
+                        alerts = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create().fromJson(json.get("data").getAsString(), type.getType());
                     } else if (json.has("warnings")) {
                         alerts = null;
                     }
@@ -131,7 +138,7 @@ public class AlertsActivity extends BaseActivity {
             }
         });
     }
-    
+
     @Override
     public boolean onPrepareOptionsMenu(Menu menu) {
         menu.clear();

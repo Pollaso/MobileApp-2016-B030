@@ -3,9 +3,8 @@ package ipn.mobileapp.model.pojo;
 import com.google.gson.Gson;
 
 public class Vehicle {
-    private String carPlates;
-    private String registryNumber;
-    private Model model;
+    private String id;
+    private String licensePlate;
     private String owner;
     private String user;
     private Device device;
@@ -18,28 +17,12 @@ public class Vehicle {
         return new Gson().toJson(this);
     }
 
-    public String getCarPlates() {
-        return carPlates;
+    public String getLicensePlate() {
+        return licensePlate;
     }
 
-    public void setCarPlates(String carPlates) {
-        this.carPlates = carPlates;
-    }
-
-    public String getRegistryNumber() {
-        return registryNumber;
-    }
-
-    public void setRegistryNumber(String registryNumber) {
-        this.registryNumber = registryNumber;
-    }
-
-    public Model getModel() {
-        return model;
-    }
-
-    public void setModel(Model model) {
-        this.model = model;
+    public void setLicensePlate(String licensePlate) {
+        this.licensePlate = licensePlate;
     }
 
     public String getOwner() {
@@ -66,5 +49,12 @@ public class Vehicle {
         this.device = device;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
 }
 

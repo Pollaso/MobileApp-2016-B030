@@ -19,7 +19,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Usuario"
+            android:text="@string/tv_label_user"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -39,7 +39,7 @@
             android:layout_height="wrap_content"
             android:hint="@string/txtv_password_hint"
             android:inputType="textPassword"
-            android:maxLength="@integer/password_length"
+            android:maxLength="@integer/password_max_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
@@ -49,12 +49,12 @@
             android:layout_height="wrap_content"
             android:hint="@string/txtv_confirm_password_hint"
             android:inputType="textPassword"
-            android:maxLength="@integer/password_length"
+            android:maxLength="@integer/password_max_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"
             android:paddingTop="@dimen/txtv_bottom_padding" />
 
         <EditText
-            android:id="@id/et_name"
+            android:id="@+id/et_name"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/txtv_name_hint"
@@ -97,12 +97,12 @@
                 android:entries="@array/s_country_names" />
 
             <TextView
-                android:id="@+id/txtv_country_code"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="@string/txtv_country_calling_code"
-                android:maxLength="3"
-                android:textSize="20sp" />
+            android:id="@+id/txtv_country_code"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/txtv_country_calling_code"
+            android:maxLength="3"
+            android:textSize="20sp" />
 
             <EditText
                 android:id="@+id/et_phone_number"
@@ -112,7 +112,8 @@
                 android:inputType="phone"
                 android:maxLength="@integer/phone_number_length"
                 android:paddingBottom="@dimen/txtv_bottom_padding"
-                android:paddingTop="@dimen/txtv_bottom_padding" />
+                android:paddingTop="@dimen/txtv_bottom_padding"
+                />
         </LinearLayout>
 
         <LinearLayout
@@ -143,7 +144,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Vehículo"
+            android:text="@string/tv_label_vehicle"
             android:textSize="25dp"
             android:textStyle="bold" />
 
@@ -151,6 +152,7 @@
             android:id="@+id/et_car_plates"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:inputType="textCapCharacters"
             android:hint="@string/txtv_car_plates"
             android:maxLength="@integer/car_plates_length"
             android:paddingBottom="@dimen/txtv_bottom_padding"

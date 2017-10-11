@@ -32,8 +32,8 @@ public class SubUserAdapter extends ArrayAdapter<User> {
         User user = getItem(position);
 
         if (convertView == null) {
-            LayoutInflater inflator = LayoutInflater.from(context);
-            convertView = inflator.inflate(resource, parent, false);
+            LayoutInflater inflater = LayoutInflater.from(context);
+            convertView = inflater.inflate(resource, parent, false);
         }
 
         ImageView ivProfileImage = (ImageView) convertView.findViewById(R.id.iv_profile_image);

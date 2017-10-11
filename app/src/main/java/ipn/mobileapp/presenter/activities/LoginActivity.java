@@ -27,9 +27,10 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 //import ipn.mobileapp.model.service.dao.Database;
+import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.presenter.dialogs.ForgotPasswordDialog;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
@@ -101,7 +102,7 @@ public class LoginActivity extends AppCompatActivity {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (response != null) {
+                if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
                         User user = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().fromJson(json.get("data").getAsString(), User.class);
@@ -116,13 +117,10 @@ public class LoginActivity extends AppCompatActivity {
                             databaseHelper.close();
                         }
 
-                        /*Database database = new Database(LoginActivity.this);
-                        database.open();
-                        Database.userDao.insert(user);
-                        database.close();*/
-
                         SharedPreferencesManager manager = new SharedPreferencesManager(LoginActivity.this, "currentUser");
-                        manager.putValue("_id", user.get_id(), true);
+                        manager.putValue("id", user.getId(), true);
+                        if (user.getRole().equals(User.SUBUSER_ROLE))
+                            manager.putValue("userId", user.getUserId(), true);
 
                         Class redirection = user.isEnabled() ? HomeActivity.class : ConfirmPhoneActivity.class;
                         Intent intent = new Intent(getBaseContext(), redirection);
@@ -130,7 +128,7 @@ public class LoginActivity extends AppCompatActivity {
                         startActivity(intent);
                     } else if (json.has("warnings")) {
                         JsonObject warnings = json.getAsJsonObject("warnings");
-                        String message = warnings.has("user") ? getString(R.string.warning_login_user) : getString(R.string.warning_login_password);
+                        String message = warnings.has("user") ? getString(R.string.warning_login_user) : getString(R.string.warning_wrong_password);
                         Toast.makeText(LoginActivity.this, message, Toast.LENGTH_SHORT).show();
                     }
                 } else
@@ -147,7 +145,7 @@ public class LoginActivity extends AppCompatActivity {
             user.setPassword(etPassword.getText().toString());
             Map<String, String> params = new ArrayMap<>();
             params.put("user", user.toString());
-            ServletRequest request = new ServletRequest(getBaseContext());
+            OkHttpServletRequest request = new OkHttpServletRequest(getBaseContext());
             Request builtRequest = request.buildRequest(Servlets.LOGIN, RequestType.GET, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {

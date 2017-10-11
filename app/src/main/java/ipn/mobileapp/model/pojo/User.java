@@ -15,12 +15,12 @@ import ipn.mobileapp.model.service.dao.user.IUserSchema;
 import static ipn.mobileapp.model.service.dao.user.IUserSchema.USER_TABLE;
 
 @DatabaseTable(tableName = USER_TABLE)
-public class User implements IUserSchema{
+public class User implements IUserSchema {
     public final static String USER_ROLE = "USER";
     public final static String SUBUSER_ROLE = "SUB";
 
     @DatabaseField(columnName = COLUMN_ID, id = true)
-    private String _id;
+    private String id;
     @DatabaseField(columnName = COLUMN_EMAIL, unique = true)
     private String email;
     private String password;
@@ -36,7 +36,7 @@ public class User implements IUserSchema{
     private Date birthdate;
     @DatabaseField(columnName = COLUMN_ROLE)
     private String role;
-    @DatabaseField(columnName = COLUMN_USER_ID, columnDefinition = "STRING REFERENCES users(_id)")
+    @DatabaseField(columnName = COLUMN_USER_ID, columnDefinition = "STRING REFERENCES users(id)")
     private String userId;
     @DatabaseField(columnName = COLUMN_ENABLED, dataType = DataType.BOOLEAN_INTEGER)
     private boolean enabled;
@@ -52,17 +52,17 @@ public class User implements IUserSchema{
 
     @Override
     public String toString() {
-        if(birthdate != null)
+        if (birthdate != null)
             return new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").setDateFormat("yyyy-MM-dd").create().toJson(this);
         return new Gson().toJson(this);
     }
 
-    public void set_id(String _id) {
-        this._id = _id;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String get_id() {
-        return _id;
+    public String getId() {
+        return id;
     }
 
     public String getEmail() {
@@ -183,5 +183,9 @@ public class User implements IUserSchema{
 
     public void setSubUsers(Collection<User> subUsers) {
         this.subUsers = subUsers;
+    }
+
+    public boolean compareDetails(User user) {
+        return this.email.equals(user.getEmail()) && this.name.equals(user.getName()) && this.paternalSurname.equals(user.getPaternalSurname()) && this.maternalSurname.equals(getMaternalSurname()) && this.birthdate.equals(user.getBirthdate());
     }
 }

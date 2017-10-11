@@ -28,7 +28,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.presenter.adapter.ContactAdapter;
 import ipn.mobileapp.presenter.dialogs.ContactDialog;
@@ -61,7 +61,7 @@ public class ContactsActivity extends BaseActivity {
         drawer.addView(contentView, 0);
 
         SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        id = (String) manager.getValue("_id", String.class);
+        id = (String) manager.getValue("id", String.class);
 
         getComponents();
         setComponentAttributes();
@@ -101,7 +101,7 @@ public class ContactsActivity extends BaseActivity {
         params.put("expression", SELECT_ALL);
         params.put("id", id);
 
-        ServletRequest request = new ServletRequest(ContactsActivity.this);
+        OkHttpServletRequest request = new OkHttpServletRequest(ContactsActivity.this);
         Request builtRequest = request.buildRequest(Servlets.CONTACT, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {

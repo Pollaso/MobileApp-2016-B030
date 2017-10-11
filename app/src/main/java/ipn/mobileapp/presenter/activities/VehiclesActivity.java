@@ -27,10 +27,8 @@ import ipn.mobileapp.R;
 import ipn.mobileapp.model.enums.Crud;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.pojo.Vehicle;
-import ipn.mobileapp.model.service.ServletRequest;
-import ipn.mobileapp.model.service.SharedPreferencesManager;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.presenter.adapter.VehicleAdapter;
 import ipn.mobileapp.presenter.dialogs.VehicleDialog;
@@ -50,8 +48,6 @@ public class VehiclesActivity extends BaseActivity {
 
     private ArrayList<Vehicle> vehicles;
 
-    private String id;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,9 +56,6 @@ public class VehiclesActivity extends BaseActivity {
 
         contentView = inflater.inflate(R.layout.activity_list_view, null, false);
         drawer.addView(contentView, 0);
-
-        SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
-        id = (String) manager.getValue("_id", String.class);
 
         getComponents();
         setComponentAttributes();
@@ -95,10 +88,12 @@ public class VehiclesActivity extends BaseActivity {
     public void getVehicles() {
         Map<String, String> params = new ArrayMap<>();
         params.put("expression", SELECT_ALL);
-        params.put("id", id);
+        params.put("owner", id);
+        if (isSubUser)
+            params.put("id", userId);
 
-        ServletRequest request = new ServletRequest(VehiclesActivity.this);
-        Request builtRequest = request.buildRequest(Servlets.CONTACT, RequestType.GET, params);
+        OkHttpServletRequest request = new OkHttpServletRequest(VehiclesActivity.this);
+        Request builtRequest = request.buildRequest(Servlets.VEHICLE, RequestType.GET, params);
         OkHttpClient client = request.buildClient();
         client.newCall(builtRequest).enqueue(new Callback() {
             @Override
@@ -120,7 +115,7 @@ public class VehiclesActivity extends BaseActivity {
                 if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
-                        TypeToken type = new TypeToken<ArrayList<Contact>>() {
+                        TypeToken type = new TypeToken<ArrayList<Vehicle>>() {
                         };
                         vehicles = new Gson().fromJson(json.get("data").getAsString(), type.getType());
                     } else if (json.has("warnings")) {
@@ -139,13 +134,10 @@ public class VehiclesActivity extends BaseActivity {
         return super.onPrepareOptionsMenu(menu);
     }
 
-
     private DialogInterface.OnDismissListener dismissDialog = new DialogInterface.OnDismissListener() {
         @Override
         public void onDismiss(DialogInterface dialog) {
             getVehicles();
         }
     };
-
-
 }

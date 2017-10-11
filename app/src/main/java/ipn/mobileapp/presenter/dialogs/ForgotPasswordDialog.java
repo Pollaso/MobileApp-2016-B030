@@ -22,7 +22,8 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.helper.NetworkHelper;
 import ipn.mobileapp.model.pojo.User;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
+import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
@@ -92,7 +93,7 @@ public class ForgotPasswordDialog implements View.OnClickListener {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                if (response != null) {
+                if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.get("data").getAsBoolean())
                         Toast.makeText(context, context.getString(R.string.msj_forgot_password), Toast.LENGTH_SHORT).show();
@@ -122,7 +123,7 @@ public class ForgotPasswordDialog implements View.OnClickListener {
             Map<String, String> params = new HashMap<>();
             params.put("user", user.toString());
 
-            ServletRequest request = new ServletRequest(context);
+            OkHttpServletRequest request = new OkHttpServletRequest(context);
             Request builtRequest = request.buildRequest(Servlets.FORGOT_PASSWORD, RequestType.POST, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {

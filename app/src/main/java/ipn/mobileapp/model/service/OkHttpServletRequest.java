@@ -1,15 +1,24 @@
 package ipn.mobileapp.model.service;
 
 import android.content.Context;
+import android.webkit.MimeTypeMap;
 
+import java.io.BufferedOutputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.OutputStream;
+import java.io.PrintStream;
 import java.util.Map;
 
 import javax.net.ssl.SSLContext;
 
 import ipn.mobileapp.debug.DebugMode;
+import ipn.mobileapp.model.pojo.Document;
 import okhttp3.FormBody;
 import okhttp3.HttpUrl;
 import okhttp3.MediaType;
+import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
@@ -18,7 +27,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.R;
 
-public class ServletRequest {
+public class OkHttpServletRequest {
     private static final MediaType JSON = MediaType.parse("application/json; charset=utf-8");
 
     private String scheme;
@@ -26,7 +35,7 @@ public class ServletRequest {
     private int port;
     private Context context;
 
-    public ServletRequest(Context context) {
+    public OkHttpServletRequest(Context context) {
         this.context = context;
         int resourceId = (DebugMode.ON ? R.array.localhost : R.array.server);
         String[] confValues = this.context.getResources().getStringArray(resourceId);
@@ -37,7 +46,7 @@ public class ServletRequest {
 
     public Request buildRequest(Servlets servlet, RequestType requestType, Map<String, String> params) {
         HttpUrl url = null;
-        String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.ordinal()];
+        String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.getValue()];
 
         HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host).port(port).addPathSegment(servletPath);
         RequestBody body = null;
@@ -56,7 +65,7 @@ public class ServletRequest {
         url = urlBuilder.build();
 
         Request.Builder requestBuilder = new Request.Builder().url(url);
-        if(requestType == RequestType.DELETE)
+        if (requestType == RequestType.DELETE)
             requestBuilder.delete();
 
         if (body != null) {
@@ -70,6 +79,37 @@ public class ServletRequest {
             }
         }
         return requestBuilder.build();
+    }
+
+    public String buildUrl(Servlets servlet) {
+        String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.getValue()];
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host).port(port).addPathSegment(servletPath);
+        HttpUrl url = urlBuilder.build();
+        return url.toString();
+    }
+
+    public Request buildRequest(Servlets servlet, RequestType requestType, Map<String, String> params, File file) {
+        String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.getValue()];
+
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host).port(port).addPathSegment(servletPath);
+        HttpUrl url = urlBuilder.build();
+
+        okhttp3.MultipartBody.Builder multipartBodyBuilder = new okhttp3.MultipartBody.Builder();
+        multipartBodyBuilder.setType(okhttp3.MultipartBody.FORM);
+        if (params != null) {
+            for (Map.Entry<String, String> entry : params.entrySet()) {
+                multipartBodyBuilder.addFormDataPart(entry.getKey(), entry.getValue());
+            }
+        }
+
+        MediaType type = MediaType.parse(getMimeType(file.getPath()));
+        multipartBodyBuilder.addFormDataPart(
+                "file",
+                file.getName(),
+                okhttp3.RequestBody.create(type, file)
+        );
+        Request.Builder requestBuilder = new Request.Builder().url(url);
+        return requestBuilder.post(multipartBodyBuilder.build()).build();
     }
 
     public OkHttpClient buildClient() {
@@ -86,4 +126,14 @@ public class ServletRequest {
 
         return client;
     }
+
+    private String getMimeType(String url) {
+        String type = null;
+        String extension = MimeTypeMap.getFileExtensionFromUrl(url);
+        if (extension != null) {
+            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
+        }
+        return type;
+    }
+
 }

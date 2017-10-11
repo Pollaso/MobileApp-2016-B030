@@ -2,6 +2,7 @@ package ipn.mobileapp.presenter.adapter;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.graphics.drawable.Drawable;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -41,7 +42,24 @@ public class AlertAdapter extends ArrayAdapter<Alert> {
         }
 
         ImageButton imgBtnAlertPreview = (ImageButton) convertView.findViewById(R.id.img_btn_alert_preview);
-        imgBtnAlertPreview.setOnClickListener(new SMSAlertDialog(context));
+        Drawable imgBtnIcon;
+        switch (alert.getAlertState()) {
+            case Alert.NEW:
+                imgBtnIcon = context.getResources().getDrawable(R.drawable.ic_alert_new);
+                break;
+            case Alert.PENDING:
+                imgBtnIcon = context.getResources().getDrawable(R.drawable.ic_alert_pending);
+                break;
+            case Alert.ANSWERED:
+                imgBtnIcon = context.getResources().getDrawable(R.drawable.ic_alert_answered);
+                break;
+            default:
+                imgBtnIcon = null;
+                break;
+        }
+        if (imgBtnIcon != null)
+            imgBtnAlertPreview.setBackground(imgBtnIcon);
+        imgBtnAlertPreview.setOnClickListener(new SMSAlertDialog(context, alert, dismissListener));
 
         TextView tvAlertUserName = (TextView) convertView.findViewById(R.id.tv_alert_user_name);
         tvAlertUserName.setText(alert.getSenderName());

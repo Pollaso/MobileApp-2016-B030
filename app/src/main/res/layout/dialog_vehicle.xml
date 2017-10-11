@@ -22,6 +22,7 @@
         android:id="@+id/et_registration_plates"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="textCapCharacters"
         android:hint="@string/txtv_car_plates"
         android:maxLength="10"
         android:paddingBottom="@dimen/txtv_bottom_padding"

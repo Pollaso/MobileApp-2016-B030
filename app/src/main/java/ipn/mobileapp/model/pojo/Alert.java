@@ -1,17 +1,23 @@
 package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
+import com.google.gson.annotations.JsonAdapter;
+import com.google.gson.annotations.SerializedName;
 
 import java.sql.Date;
 
 public class Alert {
+    public static final int NEW = 0;
+    public static final int PENDING = 1;
+    public static final int ANSWERED = 2;
+
     private String id;
     private String senderName;
     private String senderPhone;
     private Date dateSent;
     private double alcoholicState;
     private Coordinate coordinate;
-    private String alertState;
+    private int alertState;
     private String userId;
 
     @Override
@@ -67,11 +73,11 @@ public class Alert {
         this.coordinate = coordinate;
     }
 
-    public String getAlertState() {
+    public int getAlertState() {
         return alertState;
     }
 
-    public void setAlertState(String alertState) {
+    public void setAlertState(int alertState) {
         this.alertState = alertState;
     }
 

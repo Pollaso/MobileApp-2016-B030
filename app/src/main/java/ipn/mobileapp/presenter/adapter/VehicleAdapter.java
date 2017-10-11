@@ -24,7 +24,7 @@ public class VehicleAdapter extends ArrayAdapter<Vehicle> {
     private int resource;
     private DialogInterface.OnDismissListener dismissListener;
 
-    public VehicleAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List objects, DialogInterface.OnDismissListener dismissListener) {
+    public VehicleAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Vehicle> objects, DialogInterface.OnDismissListener dismissListener) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
@@ -40,14 +40,14 @@ public class VehicleAdapter extends ArrayAdapter<Vehicle> {
             convertView = LayoutInflater.from(context).inflate(resource, parent, false);
         }
 
-        ImageButton imgBtnEditContact = (ImageButton) convertView.findViewById(R.id.img_btn_edit_contact);
-        imgBtnEditContact.setOnClickListener(new VehicleDialog(context, vehicle, dismissListener, Crud.UPDATE));
+        ImageButton imgBtnEdit = (ImageButton) convertView.findViewById(R.id.img_btn_edit);
+        imgBtnEdit.setOnClickListener(new VehicleDialog(context, vehicle, dismissListener, Crud.UPDATE));
 
-        ImageButton imgBtnDeleteContact = (ImageButton) convertView.findViewById(R.id.img_btn_delete_contact);
-        imgBtnDeleteContact.setOnClickListener(new VehicleDialog(context, vehicle, dismissListener, Crud.DELETE));
+        ImageButton imgBtnDelete = (ImageButton) convertView.findViewById(R.id.img_btn_delete);
+        imgBtnDelete.setOnClickListener(new VehicleDialog(context, vehicle, dismissListener, Crud.DELETE));
 
         TextView tvRegistrationPlates = (TextView) convertView.findViewById(R.id.tv_registration_plates);
-        tvRegistrationPlates.setText(vehicle.getCarPlates());
+        tvRegistrationPlates.setText(vehicle.getLicensePlate());
 
         TextView tvSerialKey = (TextView) convertView.findViewById(R.id.tv_serial_key);
         tvSerialKey.setText(vehicle.getDevice().getSerialKey());

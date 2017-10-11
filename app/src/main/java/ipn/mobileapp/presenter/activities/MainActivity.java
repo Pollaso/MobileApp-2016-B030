@@ -24,7 +24,7 @@ public class MainActivity extends Activity {
 
     private void checkForCurrentSession() {
         SharedPreferencesManager manager = new SharedPreferencesManager(MainActivity.this, "currentUser");
-        if (manager.getValue("_id", String.class) != null) {
+        if (manager.getValue("id", String.class) != null) {
             Intent intent = new Intent(getBaseContext(), HomeActivity.class);
             finish();
             startActivity(intent);

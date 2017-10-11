@@ -46,7 +46,7 @@ import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.pojo.Vehicle;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.service.DatabaseHelper;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
@@ -264,7 +264,7 @@ public class RegisterActivity extends AppCompatActivity {
         user.setRole(User.USER_ROLE);
 
         device.setSerialKey(etSerialKey.getText().toString());
-        vehicle.setCarPlates(etCarPlates.getText().toString());
+        vehicle.setLicensePlate(etCarPlates.getText().toString());
         vehicle.setDevice(device);
         Collection<Vehicle> vehicles = new ArrayList<>();
         vehicles.add(vehicle);
@@ -291,14 +291,8 @@ public class RegisterActivity extends AppCompatActivity {
                             databaseHelper.close();
                         }
 
-                        /* Using SQLite
-                        Database database = new Database(LoginActivity.this);
-                        database.open();
-                        Database.userDao.insert(user);
-                        database.close();*/
-
                         SharedPreferencesManager manager = new SharedPreferencesManager(RegisterActivity.this, "currentUser");
-                        manager.putValue("_id", user.get_id(), true);
+                        manager.putValue("id", user.getId(), true);
 
                         Toast.makeText(RegisterActivity.this, getString(R.string.msj_successful_registration), Toast.LENGTH_SHORT).show();
                         Intent intent = new Intent(getBaseContext(), ConfirmPhoneActivity.class);
@@ -342,7 +336,7 @@ public class RegisterActivity extends AppCompatActivity {
             Map<String, String> params = new ArrayMap<>();
             params.put("user", user.toString());
 
-            ServletRequest request = new ServletRequest(getBaseContext());
+            OkHttpServletRequest request = new OkHttpServletRequest(getBaseContext());
             Request builtRequest = request.buildRequest(Servlets.REGISTER, RequestType.POST, params);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {

@@ -29,7 +29,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_alert_unhandled"
+                    android:background="@drawable/ic_alert_new"
                     android:contentDescription="" />
 
                 <TextView
@@ -71,7 +71,7 @@
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:background="@drawable/ic_alert_handled"
+                    android:background="@drawable/ic_alert_answered"
                     android:contentDescription="" />
 
                 <TextView

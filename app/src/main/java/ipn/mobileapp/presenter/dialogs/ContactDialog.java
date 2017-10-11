@@ -29,7 +29,7 @@ import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
-import ipn.mobileapp.model.service.ServletRequest;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
@@ -92,7 +92,7 @@ public class ContactDialog implements View.OnClickListener {
             title = mode == Crud.UPDATE ? context.getString(R.string.title_dialog_edit_contact) : context.getString(R.string.title_dialog_delete_contact);
 
         dialog = new AlertDialog.Builder(context)
-                .setView(R.layout.dialog_contacts)
+                .setView(R.layout.dialog_contact)
                 .setTitle(title)
                 .setCancelable(cancelable)
                 .setOnDismissListener(dismissListener)
@@ -239,15 +239,7 @@ public class ContactDialog implements View.OnClickListener {
     }
 
     private boolean checkForNull(Contact contact) {
-        if (contact.getName() != null)
-            return true;
-        if (contact.getPaternalSurname() != null)
-            return true;
-        if (contact.getMaternalSurname() != null)
-            return true;
-        if (contact.getPhoneNumber() != null)
-            return true;
-        return false;
+        return contact.getName() != null || contact.getPaternalSurname() != null || contact.getMaternalSurname() != null || contact.getPhoneNumber() != null;
     }
 
     private Button.OnClickListener saveContact = new View.OnClickListener() {
@@ -255,17 +247,17 @@ public class ContactDialog implements View.OnClickListener {
         public void onClick(View v) {
             if (!udMode) {
                 SharedPreferences sharedPreferences = context.getSharedPreferences("currentUser", MODE_PRIVATE);
-                contact.setUserId(sharedPreferences.getString("_id", null));
+                contact.setUserId(sharedPreferences.getString("id", null));
             }
 
             ArrayList<Object> contacts = new ArrayList<>();
             Object param = mode == Crud.DELETE ? contact.getId() : contact;
             contacts.add(param);
             Map<String, String> params = new ArrayMap<>();
-            String parameterName = mode != Crud.DELETE ? "emergencyContacts" : "contactIds";
+            String parameterName = mode != Crud.DELETE ? "contacts" : "contactIds";
             params.put(parameterName, new Gson().toJson(contacts));
 
-            ServletRequest request = new ServletRequest(context);
+            OkHttpServletRequest request = new OkHttpServletRequest(context);
             RequestType type = RequestType.POST;
             if (udMode)
                 type = mode == Crud.UPDATE ? RequestType.PUT : RequestType.DELETE;

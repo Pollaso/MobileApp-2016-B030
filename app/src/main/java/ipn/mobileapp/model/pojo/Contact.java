@@ -1,16 +1,33 @@
 package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
+import com.j256.ormlite.field.DatabaseField;
+import com.j256.ormlite.table.DatabaseTable;
 
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.COLUMN_ID;
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.COLUMN_MATERNAL_SURNAME;
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.COLUMN_NAME;
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.COLUMN_PATERNAL_SURNAME;
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.COLUMN_PHONE_NUMBER;
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.COLUMN_USER_ID;
+import static ipn.mobileapp.model.service.dao.contact.IContactSchema.CONTACT_TABLE;
+
+@DatabaseTable(tableName = CONTACT_TABLE)
 public class Contact {
+    @DatabaseField(columnName = COLUMN_ID, id = true)
     private String id;
+    @DatabaseField(columnName = COLUMN_PHONE_NUMBER)
     private String phoneNumber;
+    @DatabaseField(columnName = COLUMN_NAME)
     private String name;
+    @DatabaseField(columnName = COLUMN_PATERNAL_SURNAME)
     private String paternalSurname;
+    @DatabaseField(columnName = COLUMN_MATERNAL_SURNAME)
     private String maternalSurname;
+    @DatabaseField(columnName = COLUMN_USER_ID, columnDefinition = "STRING REFERENCES users(id)")
     private String userId;
 
     public Contact() {
