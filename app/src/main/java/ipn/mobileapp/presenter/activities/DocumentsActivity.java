@@ -242,6 +242,13 @@ public class DocumentsActivity extends BaseActivity {
     private FloatingActionButton.OnClickListener saveDocument = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            if(document != null)
+                document.setUserId(id);
+
+            int index = fileUri.toString().lastIndexOf(".");
+            String finalName  = document.getName() + fileUri.toString().substring(index);
+            document.setName(finalName);
+
             Map<String, String> params = new ArrayMap<>();
             params.put("document", document.toString());
 
