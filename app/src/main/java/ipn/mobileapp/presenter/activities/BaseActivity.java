@@ -54,8 +54,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             id = (String) manager.getValue("id", String.class);
         if (user == null)
             getUser();
-        if (isSubUser && user == null)
+        if (isSubUser && userId == null) {
+            manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
             userId = (String) manager.getValue("userId", String.class);
+        }
 
         setNavigationView();
         setDrawerLayout();
@@ -209,6 +211,14 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         SharedPreferencesManager manager = new SharedPreferencesManager(BaseActivity.this, "currentUser");
         manager.clear();
+        id = null;
+        user = null;
+        isSubUser = false;
+        if (userId != null) {
+            userId = null;
+            manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
+            manager.clear();
+        }
     }
 }
 

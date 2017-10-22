@@ -128,7 +128,7 @@
     <string name="msj_need_one_contact">Necesita mínimo un contacto registrado</string>
     <string name="msj_phone_confirmed">Tu teléfono ha sido confirmado</string>
     <string name="msj_resend_code">El nuevo código ha sido enviado</string>
-    <string name="msj_alert_sent">El mensaje a sido enviado</string>
+    <string name="msj_sms_sent">El mensaje a sido enviado</string>
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
     <string name="msj_contact_deleted">El contacto ha sido eliminado exitosamente</string>

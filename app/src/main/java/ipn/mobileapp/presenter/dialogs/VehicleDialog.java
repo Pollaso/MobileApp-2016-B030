@@ -42,7 +42,7 @@ public class VehicleDialog implements View.OnClickListener {
     private AlertDialog dialog;
     private DialogInterface.OnDismissListener dismissListener;
 
-    private EditText etRegistrationPlates;
+    private EditText etLicensePlate;
     private EditText etSerialKey;
 
     private Button btnSave;
@@ -93,7 +93,7 @@ public class VehicleDialog implements View.OnClickListener {
         btnSave = (Button) dialog.findViewById(R.id.btn_save_vehicle);
         btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
 
-        etRegistrationPlates = (EditText) dialog.findViewById(R.id.et_registration_plates);
+        etLicensePlate = (EditText) dialog.findViewById(R.id.et_license_plate);
         etSerialKey = (EditText) dialog.findViewById(R.id.et_serial_key);
     }
 
@@ -114,19 +114,19 @@ public class VehicleDialog implements View.OnClickListener {
             });
 
         if (udMode && mode == Crud.UPDATE) {
-            etRegistrationPlates.setText(vehicle.getLicensePlate());
+            etLicensePlate.setText(vehicle.getLicensePlate());
             etSerialKey.setText(vehicle.getDevice().getSerialKey());
         }
 
-        final TextView[] fields = new TextView[]{etRegistrationPlates, etSerialKey};
+        final TextView[] fields = new TextView[]{etLicensePlate, etSerialKey};
         if (mode != Crud.DELETE) {
             final Validator validator = new Validator(context);
 
-            etRegistrationPlates.addTextChangedListener(new TextValidator(etRegistrationPlates) {
+            etLicensePlate.addTextChangedListener(new TextValidator(etLicensePlate) {
                 @Override
                 public void validate(TextView textView, String text) {
                     if (!validator.isValidCarPlates(text))
-                        etRegistrationPlates.setError(context.getString(R.string.warning_car_plates));
+                        etLicensePlate.setError(context.getString(R.string.warning_car_plates));
                     else {
                         vehicle.setLicensePlate(text);
                         btnSave.setEnabled(validator.validateFields(fields));
@@ -184,11 +184,18 @@ public class VehicleDialog implements View.OnClickListener {
                 vehicle.setOwner(sharedPreferences.getString("id", null));
             }
 
+            if (mode != Crud.DELETE) {
+                final TextView[] fields = new TextView[]{etLicensePlate, etSerialKey};
+                final Validator validator = new Validator(context);
+                if(!validator.validateFields(fields))
+                    return;
+            }
+
             Map<String, String> params = new ArrayMap<>();
             if (mode == Crud.DELETE) {
                 params.put("id", vehicle.getId());
                 params.put("ownerId", vehicle.getOwner());
-            }else
+            } else
                 params.put("vehicle", vehicle.toString());
 
             OkHttpServletRequest request = new OkHttpServletRequest(context);

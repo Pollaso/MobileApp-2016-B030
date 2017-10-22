@@ -1,6 +1,7 @@
 package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 
@@ -15,14 +16,14 @@ public class Alert {
     private String senderName;
     private String senderPhone;
     private Date dateSent;
-    private double alcoholicState;
+    private int alcoholicState;
     private Coordinate coordinate;
     private int alertState;
     private String userId;
 
     @Override
     public String toString() {
-        return new Gson().toJson(this);
+        return new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create().toJson(this);
     }
 
     public String getId() {
@@ -61,7 +62,7 @@ public class Alert {
         return alcoholicState;
     }
 
-    public void setAlcoholicState(double alcoholicState) {
+    public void setAlcoholicState(int alcoholicState) {
         this.alcoholicState = alcoholicState;
     }
 

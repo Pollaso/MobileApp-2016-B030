@@ -86,7 +86,7 @@ public class VehiclesActivity extends BaseActivity {
     }
 
     public void getVehicles() {
-        Map<String, String> params = new ArrayMap<>();
+         Map<String, String> params = new ArrayMap<>();
         params.put("expression", SELECT_ALL);
         params.put("owner", id);
         if (isSubUser)
@@ -117,7 +117,7 @@ public class VehiclesActivity extends BaseActivity {
                     if (json.has("data")) {
                         TypeToken type = new TypeToken<ArrayList<Vehicle>>() {
                         };
-                        vehicles = new Gson().fromJson(json.get("data").getAsString(), type.getType());
+                        vehicles = new Gson().fromJson(json.get("data").getAsJsonArray(), type.getType());
                     } else if (json.has("warnings")) {
                         vehicles = null;
                     }

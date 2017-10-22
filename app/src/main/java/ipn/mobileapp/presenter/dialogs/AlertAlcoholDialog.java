@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v7.app.AlertDialog;
 import android.telephony.SmsManager;
 import android.view.View;
@@ -14,13 +16,32 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
+
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.enums.Crud;
+import ipn.mobileapp.model.enums.RequestType;
+import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.Alert;
 import ipn.mobileapp.model.pojo.Coordinate;
+import ipn.mobileapp.model.pojo.User;
+import ipn.mobileapp.model.service.OkHttpServletRequest;
+import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.presenter.validation.TextValidator;
 import ipn.mobileapp.presenter.validation.Validator;
+import okhttp3.Call;
+import okhttp3.Callback;
+import okhttp3.OkHttpClient;
+import okhttp3.Request;
+import okhttp3.Response;
 
-public class SMSAlertDialog implements View.OnClickListener {
+public class AlertAlcoholDialog implements View.OnClickListener {
     private Context context;
     private AlertDialog dialog;
     private DialogInterface.OnDismissListener dismissListener;
@@ -35,7 +56,9 @@ public class SMSAlertDialog implements View.OnClickListener {
 
     private Alert alert;
 
-    public SMSAlertDialog(Context context, Alert alert, DialogInterface.OnDismissListener dismissListener) {
+    private String sms;
+
+    public AlertAlcoholDialog(Context context, Alert alert, DialogInterface.OnDismissListener dismissListener) {
         this.context = context;
         this.alert = alert;
         this.dismissListener = dismissListener;
@@ -46,6 +69,9 @@ public class SMSAlertDialog implements View.OnClickListener {
         createDialog();
         getComponents();
         setComponentAttributes();
+        if (alert.getAlertState() == 0)
+            updateState(1);
+
     }
 
     private void createDialog() {
@@ -86,16 +112,50 @@ public class SMSAlertDialog implements View.OnClickListener {
         etMessage.addTextChangedListener(new TextValidator(etMessage) {
             @Override
             public void validate(TextView textView, String text) {
+                sms = text;
                 btnSendMessage.setEnabled(validator.validateFields(fields));
             }
         });
     }
 
-    private String getMessageBody(String googleMapsUrl) {
-        String body = "DACBA:\n" + alert.getSenderName() + " tiene un porcentaje de alcohol en sangre de " + alert.getAlcoholicState() + ":\n" + context.getResources().getStringArray(R.array.alcohol_effects)[1];
+    private void updateState(int state) {
+        alert.setAlertState(state);
+        Map<String, String> params = new HashMap<>();
+        params.put("alert", alert.toString());
 
-        body += "\nEl usuario se encuentra ubicado en:\n" + googleMapsUrl;
-        return body;
+        OkHttpServletRequest request = new OkHttpServletRequest(context);
+        Request builtRequest = request.buildRequest(Servlets.ALERT, RequestType.PUT, params);
+        OkHttpClient client = request.buildClient();
+        client.newCall(builtRequest).enqueue(new Callback() {
+            @Override
+            public void onFailure(Call call, IOException e) {
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        Toast.makeText(context, context.getString(R.string.error_server), Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+
+            @Override
+            public void onResponse(Call call, Response response) throws IOException {
+                final String jsonResponse = response.body().string();
+                new Handler(Looper.getMainLooper()).post(new Runnable() {
+                    @Override
+                    public void run() {
+                        String message = context.getString(R.string.error_server);
+                        if (jsonResponse != null && JsonUtils.isValidJson(jsonResponse)) {
+                            JsonObject json = new JsonParser().parse(jsonResponse).getAsJsonObject();
+                            if (json.has("data"))
+                                message = context.getString(R.string.msj_alert_state_changed);
+                            else if (json.has("warnings"))
+                                message = context.getString(R.string.warning_alert_state_changed);
+                        }
+                        Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
+                    }
+                });
+            }
+        });
     }
 
     private ImageButton.OnClickListener openLocation = new View.OnClickListener() {
@@ -113,22 +173,28 @@ public class SMSAlertDialog implements View.OnClickListener {
     private Button.OnClickListener sendMessage = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            Coordinate coordinate = alert.getCoordinate();
-            String urlGoogleMaps = "https://maps.google.com/?q=" + coordinate.getLatitude() + "," + coordinate.getLongitude();
             SmsManager smsManager = SmsManager.getDefault();
             PendingIntent sentPI;
             String SENT = "SMS_SENT";
 
             sentPI = PendingIntent.getBroadcast(context, 0, new Intent(SENT), 0);
 
-            String sms = getMessageBody(urlGoogleMaps);
             try {
-                smsManager.sendTextMessage("+525519718397", null, sms, sentPI, null);
+                ArrayList<String> parts = smsManager.divideMessage(sms);
+                ArrayList<PendingIntent> sentList = new ArrayList<>();
+                for (int i = 0; i < parts.size(); i++)
+                    sentList.add(sentPI);
+
+                smsManager.sendMultipartTextMessage(alert.getSenderPhone(), null, parts, sentList, null);
             } catch (Exception e) {
                 e.printStackTrace();
             }
 
-            Toast.makeText(context, context.getResources().getString(R.string.msj_alert_sent), Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getResources().getString(R.string.msj_sms_sent), Toast.LENGTH_LONG).show();
+
+            if (alert.getAlertState() != 2)
+                updateState(2);
+
             dialog.dismiss();
         }
     };

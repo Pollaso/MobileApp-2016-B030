@@ -119,8 +119,11 @@ public class LoginActivity extends AppCompatActivity {
 
                         SharedPreferencesManager manager = new SharedPreferencesManager(LoginActivity.this, "currentUser");
                         manager.putValue("id", user.getId(), true);
-                        if (user.getRole().equals(User.SUBUSER_ROLE))
+
+                        if (user.getRole().equals(User.SUBUSER_ROLE)) {
+                            manager = new SharedPreferencesManager(LoginActivity.this, "currentSupervisor");
                             manager.putValue("userId", user.getUserId(), true);
+                        }
 
                         Class redirection = user.isEnabled() ? HomeActivity.class : ConfirmPhoneActivity.class;
                         Intent intent = new Intent(getBaseContext(), redirection);

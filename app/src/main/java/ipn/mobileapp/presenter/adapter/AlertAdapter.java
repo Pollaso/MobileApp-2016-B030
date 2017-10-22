@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.Alert;
-import ipn.mobileapp.presenter.dialogs.SMSAlertDialog;
+import ipn.mobileapp.presenter.dialogs.AlertAlcoholDialog;
 
 public class AlertAdapter extends ArrayAdapter<Alert> {
     private Context context;
@@ -59,7 +59,7 @@ public class AlertAdapter extends ArrayAdapter<Alert> {
         }
         if (imgBtnIcon != null)
             imgBtnAlertPreview.setBackground(imgBtnIcon);
-        imgBtnAlertPreview.setOnClickListener(new SMSAlertDialog(context, alert, dismissListener));
+        imgBtnAlertPreview.setOnClickListener(new AlertAlcoholDialog(context, alert, dismissListener));
 
         TextView tvAlertUserName = (TextView) convertView.findViewById(R.id.tv_alert_user_name);
         tvAlertUserName.setText(alert.getSenderName());

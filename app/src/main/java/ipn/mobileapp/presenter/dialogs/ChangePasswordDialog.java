@@ -98,8 +98,6 @@ public class ChangePasswordDialog implements MenuItem.OnMenuItemClickListener {
             public void validate(TextView textView, String text) {
                 if (text != null && !text.equals("") && text.length() >= minPasswordLength)
                     user.setPassword(text);
-                else
-                    etPassword.setError(context.getString(R.string.warning_input_length).replace("#", String.valueOf(minPasswordLength)));
                 btnSaveChanges.setEnabled(validator.validateFields(fields));
             }
         });
@@ -108,8 +106,15 @@ public class ChangePasswordDialog implements MenuItem.OnMenuItemClickListener {
             public void validate(TextView textView, String text) {
                 if (!validator.isValidPassword(text))
                     etNewPassword.setError(context.getString(R.string.warning_password));
-                else
+                else {
+                    final String passwordStr = etConfirmPassword.getText().toString();
+                    if (!passwordStr.equals(text))
+                        etConfirmPassword.setError(context.getString(R.string.warning_password_matches));
+                    else
+                        etConfirmPassword.setError(null);
+
                     btnSaveChanges.setEnabled(validator.validateFields(fields));
+                }
             }
         });
         etConfirmPassword.addTextChangedListener(new TextValidator(etConfirmPassword) {

@@ -63,16 +63,6 @@ public class AlertsActivity extends BaseActivity {
         getComponents();
         setComponentAttributes();
         getAlerts();
-        //setListView();
-
-        /*SmsManager smsManager = SmsManager.getDefault();
-        ArrayList<String> parts = smsManager.divideMessage("DACBA:\n" +
-                "Gerardo Diaz Rodarte tiene un porcentaje de alcohol en sangre de 300.0:\n" +
-                "-Concentración y juicio deteriorado\n" +
-                "-Desinhibición sexual\n" +
-                "El usuario se encuentra ubicado en:\n" +
-                "https://maps.google.com/?q=19.408195,-99.062418");
-        smsManager.sendMultipartTextMessage("+525519718397", null, parts, null, null);*/
     }
 
     private void setListView() {

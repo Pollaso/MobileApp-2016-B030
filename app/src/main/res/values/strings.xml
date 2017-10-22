@@ -30,6 +30,7 @@
     <string name="title_dialog_edit_contact">Editar contacto</string>
     <string name="title_dialog_delete_contact">Eliminar contacto</string>
     <string name="title_dialog_register_sub_user">Registrar sub-usuario</string>
+    <string name="title_dialog_set_vehicle_user">Usuario del vehículo</string>
     <string name="title_dialog_add_vehicle">Agregar vehículo</string>
     <string name="title_dialog_edit_vehicle">Editar vehículo</string>
     <string name="title_dialog_delete_vehicle">Eliminar vehículo</string>
@@ -58,9 +59,11 @@
     <string name="btn_register_sub_user">Registrar Sub-Usuario</string>
     <string name="btn_save_vehicle">Guardar vehículo</string>
     <string name="btn_view_document">Abrir documento actual</string>
+    <string name="btn_accept">Aceptar</string>
 
     <!--TextView names-->
     <string name="txtv_email_hint">Correo electrónico</string>
+    <string name="tv_current_password_hint">Contraseña actual</string>
     <string name="txtv_password_hint">Contraseña</string>
     <string name="txtv_confirm_password_hint">Confirmar contraseña</string>
     <string name="txtv_name_hint">Nombre(s)</string>
@@ -73,6 +76,8 @@
     <string name="txtv_car_plates">Matrícula automovilística</string>
     <string name="txtv_terms">Al registrar a este usuario usted acepta los </string>
     <string name="tv_delete_contact">¿Desea eliminar el contacto?</string>
+    <string name="tv_set_vehicle_user">¿Desea marcar este vehículo bajo su uso?</string>
+    <string name="tv_remove_vehicle_user">¿Desea dejar de marcar este vehículo bajo su uso?</string>
 
     <!--TextView label Names-->
     <string name="tv_label_user">Usuario</string>
@@ -132,7 +137,7 @@
     <string name="msj_need_one_contact">Necesita mínimo un contacto registrado</string>
     <string name="msj_phone_confirmed">Tu teléfono ha sido confirmado</string>
     <string name="msj_resend_code">El nuevo código ha sido enviado</string>
-    <string name="msj_alert_sent">El mensaje a sido enviado</string>
+    <string name="msj_sms_sent">El mensaje a sido enviado</string>
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
     <string name="msj_contact_deleted">El contacto ha sido eliminado exitosamente</string>
@@ -151,6 +156,8 @@
     <string name="msj_no_vehicles">No tiene ningún vehículo registrado</string>
     <string name="msj_confirmation_sms_sent">Se le ha enviado un mensaje de texto con su código de confirmación</string>
     <string name="msj_change_phone_numer">Si desea cambiar su teléfono celular, póngase en contacto con el equipo de soporte</string>
+    <string name="msj_vehicle_user_updated">El usuario del vehículo ha sido actualizado.</string>
+    <string name="msj_alert_state_changed">El estado de la alerta ha sido actualizado</string>
 
     <!--Error messages-->
     <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
@@ -180,6 +187,9 @@
     <string name="warning_confirmation_code_not_current">El código de confirmación ingresado no corresponde con el más actual, ingrese el último que le haya llegado</string>
     <string name="warning_contact_not_inserted">No se pudo registrar ese contacto de emergencia, verifique los datos e inténtelo de nuevo</string>
     <string name="warning_vehicle_not_inserted">No se pudo registrar ese vehículo, verifique los datos e inténtelo de nuevo</string>
+    <string name="warning_vehicle_user_not_updated">No se pudo actualizar el usuario del vehículo.</string>
+    <string name="warning_vehicle_has_user">Este vehículo ya cuenta con usuario.</string>
+    <string name="warning_alert_state_changed">No se pudo actualizar el estado de la alerta</string>
 
     <!--Examples-->
     <string name="example_handled_alert">Nombre del sub-usuario\nFecha: día/mes/año\nNivel de alcohol: 0.00</string>
@@ -189,7 +199,7 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.0.6</item>
+        <item>10.0.0.7</item>
         <!--MEmu 10.0.3.2-->
         <item>8080</item>
         <item></item>
@@ -220,7 +230,7 @@
 
     <!--Regex for validations-->
     <string name="uuid_regex">^[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}$</string>
-    <string name="password_regex">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&amp;+=])(?=\\S+$).{7,50}$</string>
+    <string name="password_regex">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\\S+$).{7,50}$</string>
     <string name="name_regex">^\\p{L}+[\\p{L}\\p{Zs}]{0,50}$</string>
     <string name="last_name_regex">^\\p{L}+[\\p{L}\\p{Zs}\\p{Pd}\\p{Pi}]{0,50}$</string>
     <string name="car_plate_regex">^[\\p{L}\\p{N}]{3,10}$</string>
@@ -230,7 +240,6 @@
 
     <!--Database attributes-->
     <string name="database_name">dacba</string>
-
 
     <string-array name="contact_skip_fields">
         <item>id</item>
@@ -244,4 +253,12 @@
         <item>-Extremadamente somnoliento\n-Pérdida de memoria\n-Vomito\n-Respiración fuerte</item>
         <item>-Respiración ralentizada, superﬁcial o parada\n-Coma\n-Muerte</item>
     </string-array>
+
+    <!--Vehicle activity and dialog-->
+    <string name="tv_vehicle_no_user">Sin usuario</string>
+    <string name="tv_vehicle_vin">VIN: </string>
+    <string name="tv_vehicle_license_plate">Matrícula: </string>
+    <string name="tv_vehicle_device">Clave serial del dispositivo: </string>
+    <string name="tv_vehicle_owner">Dueño: </string>
+    <string name="tv_vehicle_user">Usuario: </string>
 </resources>

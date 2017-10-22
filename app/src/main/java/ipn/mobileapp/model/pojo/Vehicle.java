@@ -6,7 +6,9 @@ public class Vehicle {
     private String id;
     private String licensePlate;
     private String owner;
+    private User ownerData;
     private String user;
+    private User userData;
     private Device device;
 
     public Vehicle() {
@@ -55,6 +57,22 @@ public class Vehicle {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public User getOwnerData() {
+        return ownerData;
+    }
+
+    public void setOwnerData(User ownerData) {
+        this.ownerData = ownerData;
+    }
+
+    public User getUserData() {
+        return userData;
+    }
+
+    public void setUserData(User userData) {
+        this.userData = userData;
     }
 }
 

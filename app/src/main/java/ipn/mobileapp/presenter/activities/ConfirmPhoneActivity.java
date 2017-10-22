@@ -173,7 +173,7 @@ public class ConfirmPhoneActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             JsonObject json = new JsonObject();
-            json.addProperty("confirmationId", confirmationId);
+            json.addProperty("id", confirmationId);
             json.addProperty("code", etConfirmationCode.getText().toString());
             json.addProperty("userId", id);
 
