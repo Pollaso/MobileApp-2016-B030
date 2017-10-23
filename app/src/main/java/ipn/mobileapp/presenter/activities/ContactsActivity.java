@@ -1,12 +1,15 @@
 package ipn.mobileapp.presenter.activities;
 
+import android.app.PendingIntent;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.ArrayMap;
+import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
@@ -26,6 +29,8 @@ import java.util.Map;
 
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
+import ipn.mobileapp.model.helper.AlcoholTestHelper;
+import ipn.mobileapp.model.pojo.Coordinate;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.service.OkHttpServletRequest;
@@ -149,4 +154,32 @@ public class ContactsActivity extends BaseActivity {
             getContacts();
         }
     };
+
+    private void sendMultipleSms() {
+        SmsManager smsManager = SmsManager.getDefault();
+        PendingIntent sentPI;
+        String SENT = "SMS_SENT";
+
+        AlcoholTestHelper helper = new AlcoholTestHelper(this, user);
+        sentPI = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
+
+        Coordinate coordinate = new Coordinate();
+        coordinate.setLatitude(-19);
+        coordinate.setLongitude(99);
+        String sms = helper.generateSmsBody(300, coordinate);
+        try {
+            ArrayList<String> parts = smsManager.divideMessage(sms);
+            ArrayList<PendingIntent> sentList = new ArrayList<>();
+            for (int i = 0; i < parts.size(); i++)
+                sentList.add(sentPI);
+
+            if (contacts != null)
+                for (Contact contact : contacts) {
+                    smsManager.sendMultipartTextMessage(contact.getPhoneNumber(), null, parts, sentList, null);
+                    Thread.sleep(500);
+                }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

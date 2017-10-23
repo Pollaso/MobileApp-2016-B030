@@ -7,7 +7,7 @@ import java.sql.Date;
 public class AlcoholTest {
 	private Date ocurrence;
 	private Coordinate coordinate;
-	private double alcoholicState;
+	private int alcoholicState;
 	private Location location;
 	private String userId;
 
@@ -36,7 +36,7 @@ public class AlcoholTest {
 		return alcoholicState;
 	}
 
-	public void setAlcoholicState(double alcoholicState) {
+	public void setAlcoholicState(int alcoholicState) {
 		this.alcoholicState = alcoholicState;
 	}
 

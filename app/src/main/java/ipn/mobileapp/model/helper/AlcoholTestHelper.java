@@ -7,8 +7,11 @@ import android.telephony.SmsManager;
 import android.widget.Toast;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.pojo.AlcoholTest;
 import ipn.mobileapp.model.pojo.Coordinate;
 import ipn.mobileapp.model.pojo.User;
 
@@ -19,6 +22,13 @@ public class AlcoholTestHelper {
     public AlcoholTestHelper(Context context, User user) {
         this.user = user;
         this.context = context;
+    }
+
+    public void generateAlcoholTest(int ppm){
+        AlcoholTest alcoholTest =  new AlcoholTest();
+        alcoholTest.setAlcoholicState(ppm);
+        Date currentTime = Calendar.getInstance().getTime();
+        alcoholTest.setOcurrence((java.sql.Date) currentTime);
     }
 
     public void sendSms(int ppm, Coordinate coordinate){
@@ -43,7 +53,7 @@ public class AlcoholTestHelper {
         Toast.makeText(context, context.getResources().getString(R.string.msj_sms_sent), Toast.LENGTH_LONG).show();
     }
 
-    private String generateSmsBody(int ppm, Coordinate coordinate) {
+    public String generateSmsBody(int ppm, Coordinate coordinate) {
         String googleMapsUrl = "https://maps.google.com/?q=" + coordinate.getLatitude() + "," + coordinate.getLongitude();
         String body = "DACBA:\n" + user.getName() + " tiene un porcentaje de alcohol en sangre de ";
 

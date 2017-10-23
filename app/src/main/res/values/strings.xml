@@ -36,6 +36,7 @@
     <string name="title_dialog_delete_vehicle">Eliminar vehículo</string>
     <string name="title_dialog_forgot_password">Restablecer contraseña</string>
     <string name="title_dialog_change_password">Change contraseña</string>
+    <string name="title_dialog_gps_settings">GPS desactivado</string>
 
     <!--Home screen project description-->
     <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
@@ -60,6 +61,7 @@
     <string name="btn_save_vehicle">Guardar vehículo</string>
     <string name="btn_view_document">Abrir documento actual</string>
     <string name="btn_accept">Aceptar</string>
+    <string name="btn_activate">Activar</string>
 
     <!--TextView names-->
     <string name="txtv_email_hint">Correo electrónico</string>
@@ -78,6 +80,7 @@
     <string name="tv_delete_contact">¿Desea eliminar el contacto?</string>
     <string name="tv_set_vehicle_user">¿Desea marcar este vehículo bajo su uso?</string>
     <string name="tv_remove_vehicle_user">¿Desea dejar de marcar este vehículo bajo su uso?</string>
+    <string name="tv_gps_disabled">El GPS parece estar desactivado, para el correcto funcionamiento de la aplicación activelo por favor.</string>
 
     <!--TextView label Names-->
     <string name="tv_label_user">Usuario</string>
