@@ -202,8 +202,8 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.0.7</item>
-        <!--MEmu 10.0.3.2-->
+        <!--<item>10.0.0.7</item>-->
+        <item>10.0.3.2</item> //MEmu
         <item>8080</item>
         <item></item>
     </string-array>

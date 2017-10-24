@@ -114,10 +114,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         View header = navigationView.getHeaderView(0);
         ImageView ivProfileImage = (ImageView) header.findViewById(R.id.header_profile_picture);
-        TextView tvHeaderName = (TextView) header.findViewById(R.id.header_name);
-        TextView tvHeaderEmail = (TextView) header.findViewById(R.id.header_email);
-        tvHeaderName.setText(user.getName());
-        tvHeaderEmail.setText(user.getEmail());
+        if (user != null) {
+            TextView tvHeaderName = (TextView) header.findViewById(R.id.header_name);
+            TextView tvHeaderEmail = (TextView) header.findViewById(R.id.header_email);
+            tvHeaderName.setText(user.getName());
+            tvHeaderEmail.setText(user.getEmail());
+        }
 
         navHeader = (LinearLayout) navigationView.getHeaderView(0);
         navMenu = navigationView.getMenu();

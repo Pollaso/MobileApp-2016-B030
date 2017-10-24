@@ -118,7 +118,7 @@ public class SubUsersActivity extends BaseActivity {
                     if (json.has("data")) {
                         TypeToken type = new TypeToken<ArrayList<User>>() {
                         };
-                        subUsers = new Gson().fromJson(json.get("data").getAsString(), type.getType());
+                        subUsers = new Gson().fromJson(json.get("data"), type.getType());
                     } else if (json.has("warnings")) {
                         subUsers = null;
                     }
