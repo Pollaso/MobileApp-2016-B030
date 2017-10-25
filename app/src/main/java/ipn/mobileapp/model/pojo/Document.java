@@ -1,17 +1,17 @@
 package ipn.mobileapp.model.pojo;
 
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.annotations.Expose;
-
-import java.io.File;
 
 public class Document {
+    public static final int PENDING = 0;
+    public static final int VALID = 1;
+    public static final int INVALID = 2;
+
     private String id;
     private String name;
     private String source;
     private String userId;
-    private boolean valid;
+    private int state = PENDING;
 
     public Document() {
     }
@@ -53,12 +53,12 @@ public class Document {
         this.userId = userId;
     }
 
-    public boolean isValid() {
-        return valid;
+    public int getState() {
+        return state;
     }
 
-    public void setValid(boolean valid) {
-        this.valid = valid;
+    public void setState(int state) {
+        this.state = state;
     }
 
 }

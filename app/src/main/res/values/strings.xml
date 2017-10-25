@@ -37,6 +37,8 @@
     <string name="title_dialog_forgot_password">Restablecer contraseña</string>
     <string name="title_dialog_change_password">Change contraseña</string>
     <string name="title_dialog_gps_settings">GPS desactivado</string>
+    <string name="title_dialog_invalid_document">Documento inválido</string>
+    <string name="title_dialog_valid_document">Documento válido</string>
 
     <!--Home screen project description-->
     <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
@@ -52,6 +54,7 @@
     <string name="btn_confirm_code">Confirmar teléfono</string>
     <string name="btn_resend_code">Reenviar código</string>
     <string name="btn_cancel">Cancelar</string>
+    <string name="btn_close">Cerrar</string>
     <string name="btn_send_message">Enviar mensaje</string>
     <string name="btn_save_changes">Guardar cambios</string>
     <string name="btn_add_document">Guardar documento</string>
@@ -81,6 +84,8 @@
     <string name="tv_set_vehicle_user">¿Desea marcar este vehículo bajo su uso?</string>
     <string name="tv_remove_vehicle_user">¿Desea dejar de marcar este vehículo bajo su uso?</string>
     <string name="tv_gps_disabled">El GPS parece estar desactivado, para el correcto funcionamiento de la aplicación activelo por favor.</string>
+    <string name="tv_invalid_document">El documento que subío al servidor es inválido. Suba uno nuevo para que sea validado.</string>
+    <string name="tv_valid_document">El documento que subío al servidor ha sido denominado válido.</string>
 
     <!--TextView label Names-->
     <string name="tv_label_user">Usuario</string>
@@ -161,6 +166,7 @@
     <string name="msj_change_phone_numer">Si desea cambiar su teléfono celular, póngase en contacto con el equipo de soporte</string>
     <string name="msj_vehicle_user_updated">El usuario del vehículo ha sido actualizado.</string>
     <string name="msj_alert_state_changed">El estado de la alerta ha sido actualizado</string>
+    <string name="msj_document">El documento se subío exitosamente al servidor.</string>
 
     <!--Error messages-->
     <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
@@ -202,8 +208,8 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <!--<item>10.0.0.7</item>-->
-        <item>10.0.3.2</item> //MEmu
+        <item>10.0.0.7</item>
+        <!--<item>10.0.3.2</item> //MEmu-->
         <item>8080</item>
         <item></item>
     </string-array>

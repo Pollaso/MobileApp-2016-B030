@@ -2,6 +2,7 @@ package ipn.mobileapp.presenter.activities;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -11,6 +12,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.ArrayMap;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -49,6 +51,7 @@ import java.net.URL;
 import java.util.Map;
 
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.enums.Crud;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.Document;
@@ -184,7 +187,7 @@ public class DocumentsActivity extends BaseActivity {
     public void performFileSearch() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/*");
+        intent.setType("application/pdf");
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
@@ -215,8 +218,15 @@ public class DocumentsActivity extends BaseActivity {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data")) {
                         document = new Gson().fromJson(json.get("data").getAsString(), Document.class);
-                        if (get)
+                        if (get) {
+                            if(document.getState() != Document.PENDING)
+                                showStateDialog(document.getState());
                             btnViewDocument.setVisibility(document.getId() != null ? View.VISIBLE : View.GONE);
+                        }
+                        else
+                            Toast.makeText(DocumentsActivity.this, getString(R.string.msj_document), Toast.LENGTH_SHORT).show();
+                        String filename = document.getName();
+                        etDocumentName.setText(filename.substring(0, filename.lastIndexOf('.')));
                     } else if (json.has("warnings")) {
                         if (get)
                             document = new Document();
@@ -242,11 +252,11 @@ public class DocumentsActivity extends BaseActivity {
     private FloatingActionButton.OnClickListener saveDocument = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
-            if(document != null)
+            if (document != null)
                 document.setUserId(id);
 
             int index = fileUri.toString().lastIndexOf(".");
-            String finalName  = document.getName() + fileUri.toString().substring(index);
+            String finalName = document.getName() + fileUri.toString().substring(index);
             document.setName(finalName);
 
             Map<String, String> params = new ArrayMap<>();
@@ -270,7 +280,6 @@ public class DocumentsActivity extends BaseActivity {
             );
             Request.Builder requestBuilder = new Request.Builder().url(url);
             Request builtRequest = requestBuilder.post(multipartBodyBuilder.build()).build();
-            //Request builtRequest = request.buildRequest(Servlets.DOCUMENT, RequestType.POST, params, file);
             OkHttpClient client = request.buildClient();
             client.newCall(builtRequest).enqueue(new Callback() {
                 @Override
@@ -283,94 +292,28 @@ public class DocumentsActivity extends BaseActivity {
                     processResults(response.body().string(), false);
                 }
             });
-            //new sendFile().execute(new String[] { url });
         }
     };
 
-    private class sendFile extends AsyncTask<String, Void, String> {
+    private void showStateDialog(int state)
+    {
+        String title = (state == Document.VALID ? getString(R.string.title_dialog_valid_document) : getString(R.string.title_dialog_invalid_document));
 
-        @Override
-        protected String doInBackground(String... urls) {
-            HttpURLConnection httpConn = null;
+        AlertDialog dialog = new AlertDialog.Builder(DocumentsActivity.this)
+                .setView(R.layout.dialog_document_state)
+                .setTitle(title)
+                .setCancelable(false)
+                .setPositiveButton(getString(R.string.btn_close), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        dialog.dismiss();
+                    }
+                })
+                .create();
+        dialog.show();
 
-            try {
-                InputStream inputStream = getAssets().open(file.getAbsolutePath());
-
-                System.out.println("File to upload: " + file);
-
-                // creates a HTTP connection
-                URL url1 = new URL(urls[0]);
-                httpConn = (HttpURLConnection) url1.openConnection();
-                httpConn.setUseCaches(false);
-                httpConn.setDoOutput(true);
-                httpConn.setRequestMethod("POST");
-                httpConn.setRequestProperty("fileName", file.getName());
-                httpConn.connect();
-                // sets file name as a HTTP header
-
-
-                OutputStream outputStream = httpConn.getOutputStream();
-
-                // Opens input stream of the file for reading data
-
-
-                byte[] buffer = new byte[255];
-                int bytesRead = -1;
-
-                System.out.println("Start writing data...");
-
-                while ((bytesRead = inputStream.read(buffer)) != -1) {
-                    outputStream.write(buffer, 0, bytesRead);
-                }
-
-                System.out.println("Data was written.");
-                outputStream.close();
-                inputStream.close();
-            } catch (SocketTimeoutException e) {
-                Log.e("Debug", "error: " + e.getMessage(), e);
-            } catch (MalformedURLException ex) {
-                Log.e("Debug", "error: " + ex.getMessage(), ex);
-            } catch (IOException ioe) {
-                Log.e("Debug", "error: " + ioe.getMessage(), ioe);
-            }
-
-            try {
-
-                // always check HTTP response code from server
-                int responseCode = httpConn.getResponseCode();
-                if (responseCode == HttpURLConnection.HTTP_OK) {
-                    // reads server's response
-                    BufferedReader reader = new BufferedReader(new InputStreamReader(httpConn.getInputStream()));
-                    String response = reader.readLine();
-                    System.out.println("Server's response: " + response);
-                } else {
-                    System.out.println("Server returned non-OK code: " + responseCode);
-                }
-            } catch (IOException ioex) {
-                Log.e("Debug", "error: " + ioex.getMessage(), ioex);
-            }
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(String result) {
-        }
-
-        @Override
-        protected void onPreExecute() {
-        }
-
-        @Override
-        protected void onProgressUpdate(Void... values) {
-        }
-    }
-
-    private String getMimeType(String url) {
-        String type = null;
-        String extension = MimeTypeMap.getFileExtensionFromUrl(url);
-        if (extension != null) {
-            type = MimeTypeMap.getSingleton().getMimeTypeFromExtension(extension);
-        }
-        return type;
+        TextView tvDocumentState = (TextView) dialog.findViewById(R.id.tv_msj_document_state);
+        String message = (state == Document.INVALID ? getString(R.string.tv_invalid_document) : getString(R.string.tv_valid_document));
+        tvDocumentState.setText(message);
     }
 }
