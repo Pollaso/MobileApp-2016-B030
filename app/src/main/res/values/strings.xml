@@ -39,6 +39,7 @@
     <string name="title_dialog_gps_settings">GPS desactivado</string>
     <string name="title_dialog_invalid_document">Documento inválido</string>
     <string name="title_dialog_valid_document">Documento válido</string>
+    <string name="title_dialog_paring_intructions">Intrucciones de vinculación</string>
 
     <!--Home screen project description-->
     <string name="txvw_project_description">Un sistema capaz de medir los niveles de alcohol en la sangre de conductores de autos mediante el uso de uno o varios sensores. Por medio de estos datos, se determina si estos niveles del alcohol en la sangre son superiores a los permitidos según normativas, e impedir al conductor hacer uso de su automóvil, generando una señal que permita el bloqueo de encendido o arranque del motor.</string>
@@ -65,6 +66,8 @@
     <string name="btn_view_document">Abrir documento actual</string>
     <string name="btn_accept">Aceptar</string>
     <string name="btn_activate">Activar</string>
+    <string name="btn_scan">Escanear</string>
+    <string name="btn_settings">Configurar</string>
 
     <!--TextView names-->
     <string name="txtv_email_hint">Correo electrónico</string>
@@ -86,6 +89,7 @@
     <string name="tv_gps_disabled">El GPS parece estar desactivado, para el correcto funcionamiento de la aplicación activelo por favor.</string>
     <string name="tv_invalid_document">El documento que subío al servidor es inválido. Suba uno nuevo para que sea validado.</string>
     <string name="tv_valid_document">El documento que subío al servidor ha sido denominado válido.</string>
+    <string name="tv_pairing_instructions">1.- Presionar el botón de <i>Configurar</i>.\n2.- Encender el Bluetooth de su dispositivo.\n3.- Seleccionar el dispositivo Bluetooth con el nombre <i>DACBA</i>.\n4.- Ingresar el PIN 0123 ó 0000 en caso de error.\n5.- Regresar a la aplicación.\n6.- Presionar el botón de <i>Escanear</i> y seleccionar el dispositivo que vínculo.\n\nEn caso de haber vínculado un dispositivo previamente, sáltese al paso 6.</string>
 
     <!--TextView label Names-->
     <string name="tv_label_user">Usuario</string>
@@ -246,6 +250,7 @@
 
     <!--Shared Preferences filenames-->
     <string name="current_user_filename">currentUser</string>
+    <string name="bluetooth_device_filename">bluetoothDevice</string>
 
     <!--Database attributes-->
     <string name="database_name">dacba</string>

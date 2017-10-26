@@ -2,6 +2,7 @@ package ipn.mobileapp.presenter.activities;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
@@ -31,12 +32,15 @@ import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.model.service.dao.user.IUserSchema;
+import ipn.mobileapp.presenter.dialogs.PairedDevicesDialog;
 
 public class BaseActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
     protected DrawerLayout drawer;
     private NavigationView navigationView;
     private LinearLayout navHeader;
     private Menu navMenu;
+
+    private SharedPreferencesManager manager;
 
     private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
     private long backPressed;
@@ -45,6 +49,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     protected static String id;
     protected static String userId;
+    protected static String bluetoothDeviceAddress;
     protected static boolean isSubUser = false;
 
     @Override
@@ -54,7 +59,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
-        SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
+        manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
         if (id == null)
             id = (String) manager.getValue("id", String.class);
         if (user == null)
@@ -63,6 +68,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
             userId = (String) manager.getValue("userId", String.class);
         }
+        if (bluetoothDeviceAddress == null)
+            new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
 
         setNavigationView();
         setDrawerLayout();
@@ -227,5 +234,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             manager.clear();
         }
     }
+
+    private DialogInterface.OnDismissListener dismissPairedDevices = new DialogInterface.OnDismissListener() {
+        @Override
+        public void onDismiss(DialogInterface dialog) {
+            manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
+            bluetoothDeviceAddress = (String) manager.getValue("address", String.class);
+        }
+    };
 }
 

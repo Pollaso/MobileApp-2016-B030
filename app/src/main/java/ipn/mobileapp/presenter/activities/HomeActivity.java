@@ -9,9 +9,13 @@ import android.support.v4.app.ActivityCompat;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
+import android.widget.Button;
+import android.widget.Toast;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.service.GpsService;
+import ipn.mobileapp.model.service.SharedPreferencesManager;
+import ipn.mobileapp.presenter.dialogs.PairedDevicesDialog;
 
 import static android.support.v4.content.PermissionChecker.PERMISSION_DENIED;
 
@@ -41,6 +45,9 @@ public class HomeActivity extends BaseActivity {
         if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) == PERMISSION_DENIED)
             ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_COARSE_LOCATION}, 1);
 
+        /*Button button = new Button(this);
+        button.setOnClickListener(new PairedDevicesDialog(HomeActivity.this));
+        button.performClick();*/
 
         GpsService gpsService =  new GpsService(this);
         gpsService.getLocation();

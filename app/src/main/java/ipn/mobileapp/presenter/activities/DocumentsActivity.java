@@ -116,6 +116,7 @@ public class DocumentsActivity extends BaseActivity {
             int size = (int) file.length();
             fileBytes = new byte[size];
             try {
+                int i = getContentResolver().openInputStream(fileUri).read();
                 BufferedInputStream buf = new BufferedInputStream(getContentResolver().openInputStream(fileUri));
                 buf.read(fileBytes, 0, fileBytes.length);
                 buf.close();
@@ -187,7 +188,7 @@ public class DocumentsActivity extends BaseActivity {
     public void performFileSearch() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/pdf");
+        intent.setType("application/*");
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
@@ -254,6 +255,8 @@ public class DocumentsActivity extends BaseActivity {
         public void onClick(View v) {
             if (document != null)
                 document.setUserId(id);
+
+            int i = (int) file.length();
 
             int index = fileUri.toString().lastIndexOf(".");
             String finalName = document.getName() + fileUri.toString().substring(index);
