@@ -20,6 +20,9 @@
         <item
             android:id="@+id/nav_menu_alerts"
             android:title="@string/nav_menu_alerts" />
+        <item
+            android:id="@+id/nav_menu_configure"
+            android:title="@string/nav_menu_configure" />
     </group>
     <item android:title="@string/nav_menu_other_section">
         <menu>

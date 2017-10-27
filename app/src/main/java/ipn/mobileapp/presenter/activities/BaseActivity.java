@@ -68,8 +68,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
             userId = (String) manager.getValue("userId", String.class);
         }
-        if (bluetoothDeviceAddress == null)
-            new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
+        if (bluetoothDeviceAddress == null) {
+            manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
+            bluetoothDeviceAddress = (String) manager.getValue("address", String.class);
+            if (bluetoothDeviceAddress == null)
+                new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
+        }
 
         setNavigationView();
         setDrawerLayout();
@@ -192,6 +196,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_menu_alerts:
                 intent = new Intent(getBaseContext(), AlertsActivity.class);
                 break;
+            case R.id.nav_menu_configure:
+                finish = false;
+                new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
+                break;
             case R.id.nav_menu_about_us:
                 finish = false;
                 intent = new Intent(getBaseContext(), HomeActivity.class);
@@ -210,14 +218,15 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         if (finish)
             finish();
-        startActivity(intent);
+        if(intent != null)
+            startActivity(intent);
 
         /*if (fragment != null) {
             android.support.v4.app.FragmentManager fragmentManager = getSupportFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_frame, fragment).commit();
         }*/
 
-        return false;
+        return true;
     }
 
     protected void logout() {
@@ -238,6 +247,8 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private DialogInterface.OnDismissListener dismissPairedDevices = new DialogInterface.OnDismissListener() {
         @Override
         public void onDismiss(DialogInterface dialog) {
+            MenuItem menuItem = navMenu.getItem(6);
+            menuItem.setChecked(false);
             manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
             bluetoothDeviceAddress = (String) manager.getValue("address", String.class);
         }

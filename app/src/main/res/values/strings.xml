@@ -127,6 +127,7 @@
     <string name="nav_menu_contacts">Contactos</string>
     <string name="nav_menu_alerts">Alertas</string>
     <string name="nav_menu_other_section">Otros</string>
+    <string name="nav_menu_configure">Configuración</string>
     <string name="nav_menu_about_us">Acerca de nosotros</string>
     <string name="nav_menu_privacy">Aviso de privacidad</string>
     <string name="nav_menu_logout">Cerrar sesión</string>
