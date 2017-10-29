@@ -1,5 +1,8 @@
 package ipn.mobileapp.presenter.activities;
 
+import android.app.ActivityManager;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -7,6 +10,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -27,10 +32,12 @@ import java.sql.SQLException;
 import java.util.List;
 
 import ipn.mobileapp.R;
+import ipn.mobileapp.model.helper.ServiceHelper;
 import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
+import ipn.mobileapp.model.service.bluetooth.BluetoothService;
 import ipn.mobileapp.model.service.dao.user.IUserSchema;
 import ipn.mobileapp.presenter.dialogs.PairedDevicesDialog;
 
@@ -68,11 +75,13 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
             userId = (String) manager.getValue("userId", String.class);
         }
-        if (bluetoothDeviceAddress == null) {
-            manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
-            bluetoothDeviceAddress = (String) manager.getValue("address", String.class);
+
+        if (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
+            Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            startActivityForResult(enableBtIntent, 1);
+        } else {
             if (bluetoothDeviceAddress == null)
-                new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
+                setBluetoothDeviceAddress();
         }
 
         setNavigationView();
@@ -166,6 +175,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == RESULT_OK)
+            setBluetoothDeviceAddress();
+    }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -218,7 +232,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         drawer.closeDrawer(GravityCompat.START);
         if (finish)
             finish();
-        if(intent != null)
+        if (intent != null)
             startActivity(intent);
 
         /*if (fragment != null) {
@@ -230,6 +244,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     }
 
     protected void logout() {
+        Intent intent = new Intent(BaseActivity.this, BluetoothService.class);
+        stopService(intent);
+
         getApplicationContext().deleteDatabase(getString(R.string.database_name));
 
         SharedPreferencesManager manager = new SharedPreferencesManager(BaseActivity.this, "currentUser");
@@ -249,9 +266,34 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         public void onDismiss(DialogInterface dialog) {
             MenuItem menuItem = navMenu.getItem(6);
             menuItem.setChecked(false);
-            manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
-            bluetoothDeviceAddress = (String) manager.getValue("address", String.class);
+            setBluetoothDeviceAddress();
         }
     };
+
+    public void setBluetoothDeviceAddress() {
+        new Handler(Looper.getMainLooper()).post(new Runnable() {
+            @Override
+            public void run() {
+                manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
+                String address = (String) manager.getValue("address", String.class);
+
+                if (address == null) {
+                    new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
+                    return;
+                }
+
+                bluetoothDeviceAddress = address;
+                connectToDevice();
+            }
+        });
+    }
+
+    public void connectToDevice() {
+        Intent intent = new Intent(BaseActivity.this, BluetoothService.class);
+        stopService(intent);
+        intent.putExtra("address", bluetoothDeviceAddress);
+        intent.putExtra("user", user.toString());
+        startService(intent);
+    }
 }
 

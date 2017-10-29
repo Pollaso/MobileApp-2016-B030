@@ -1,6 +1,6 @@
 package ipn.mobileapp.model.pojo;
 
-import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import java.sql.Date;
 
@@ -13,7 +13,7 @@ public class AlcoholTest {
 
 	@Override
 	public String toString() {
-		return new Gson().toJson(this);
+		return new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create().toJson(this);
 	}
 
 	public Date getOcurrence() {
@@ -32,7 +32,7 @@ public class AlcoholTest {
 		this.coordinate = coordinate;
 	}
 
-	public double getAlcoholicState() {
+	public int getAlcoholicState() {
 		return alcoholicState;
 	}
 

@@ -9,7 +9,8 @@ public enum Servlets {
     CONTACT(5),
     ALERT(6),
     VEHICLE(7),
-    DOCUMENT(8);
+    DOCUMENT(8),
+    ALCOHOL_TEST(9);
 
     private int value;
 

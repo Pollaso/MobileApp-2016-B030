@@ -21,6 +21,16 @@ public class Alert {
     private int alertState;
     private String userId;
 
+    public Alert(AlcoholTest alcoholTest, User user) {
+        this.senderName = user.getName() + " " + user.getPaternalSurname() + " " + user.getMaternalSurname();
+        this.senderPhone = user.getPhoneNumber();
+        this.dateSent = alcoholTest.getOcurrence();
+        this.alcoholicState = alcoholTest.getAlcoholicState();
+        this.coordinate = alcoholTest.getCoordinate();
+        this.alertState = 0;
+        this.userId = user.getUserId();
+    }
+
     @Override
     public String toString() {
         return new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create().toJson(this);

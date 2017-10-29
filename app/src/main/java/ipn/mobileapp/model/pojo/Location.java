@@ -4,9 +4,11 @@ import com.google.gson.Gson;
 
 public class Location {
 	private String id;
+	private String city;
 	private String division;
 	private String state;
 	private String country;
+	private String postalCode;
 
 	public Location() {
 	}
@@ -22,6 +24,14 @@ public class Location {
 
 	public void setId(String id) {
 		this.id = id;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
 	}
 
 	public String getDivision() {
@@ -46,5 +56,13 @@ public class Location {
 
 	public void setCountry(String country) {
 		this.country = country;
+	}
+
+	public String getPostalCode() {
+		return postalCode;
+	}
+
+	public void setPostalCode(String postalCode) {
+		this.postalCode = postalCode;
 	}
 }

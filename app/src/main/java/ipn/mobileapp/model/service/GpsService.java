@@ -20,19 +20,18 @@ import java.util.Locale;
 
 import ipn.mobileapp.R;
 
-public class GpsService extends Service {
+public class GpsService extends Service implements LocationListener {
 
     private final Context context;
 
-    boolean isPassiveEnabled = false;
-    boolean isGPSEnabled = false;
-    boolean isNetworkEnabled = false;
+    private static final long MIN_DISTANCE_CHANGE_FOR_UPDATES = 10;
+    private static final long MIN_TIME_BW_UPDATES = 1000 * 60 * 1;
 
     boolean canGetLocation = false;
 
-    Location location; // location
-    double latitude; // latitude
-    double longitude; // longitude
+    Location location;
+    double latitude;
+    double longitude;
 
     protected LocationManager locationManager;
 
@@ -42,6 +41,8 @@ public class GpsService extends Service {
         locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
         if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
             showSettingsAlert();
+        else
+            getLocation();
     }
 
     public Location getLocation() {
@@ -51,6 +52,10 @@ public class GpsService extends Service {
             if (providers != null) {
                 this.canGetLocation = true;
                 for (String provider : providers) {
+                    locationManager.requestLocationUpdates(
+                            LocationManager.GPS_PROVIDER,
+                            MIN_TIME_BW_UPDATES,
+                            MIN_DISTANCE_CHANGE_FOR_UPDATES, this);
                     Location temp = locationManager.getLastKnownLocation(provider);
                     if (temp == null) {
                         continue;
@@ -71,23 +76,26 @@ public class GpsService extends Service {
 
     public ipn.mobileapp.model.pojo.Location getAddress() {
         List<Address> addresses = null;
-        Geocoder geocoder = new Geocoder(context, Locale.getDefault());
+        Geocoder geocoder = new Geocoder(context.getApplicationContext(), Locale.getDefault());
 
         try {
-            addresses = geocoder.getFromLocation(latitude, longitude, 1); // Here 1 represent max location result to returned, by documents it recommended 1 to 5
+            addresses = geocoder.getFromLocation(latitude, longitude, 1);
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        ipn.mobileapp.model.pojo.Location location = new ipn.mobileapp.model.pojo.Location();
         if (addresses != null) {
-            String address = addresses.get(0).getAddressLine(0); // If any additional address line present than only, check with max available address lines by getMaxAddressLineIndex()
-            String city = addresses.get(0).getLocality();
-            String state = addresses.get(0).getAdminArea();
-            String country = addresses.get(0).getCountryName();
+            //String address = addresses.get(0).getAddressLine(0);
+            //String city = addresses.get(0).getLocality();
+            //String state = addresses.get(0).getAdminArea();
+            //String country = addresses.get(0).getCountryName();
             String postalCode = addresses.get(0).getPostalCode();
-            String knownName = addresses.get(0).getFeatureName();
+            location.setPostalCode(postalCode);
+            //String knownName = addresses.get(0).getFeatureName();
         }
 
-        return null;
+        return location;
     }
 
     public double getLatitude() {
@@ -95,7 +103,6 @@ public class GpsService extends Service {
             latitude = location.getLatitude();
         }
 
-        // return latitude
         return latitude;
     }
 
@@ -104,7 +111,6 @@ public class GpsService extends Service {
             longitude = location.getLongitude();
         }
 
-        // return longitude
         return longitude;
     }
 
@@ -136,4 +142,23 @@ public class GpsService extends Service {
         return null;
     }
 
+    @Override
+    public void onLocationChanged(Location location) {
+
+    }
+
+    @Override
+    public void onStatusChanged(String provider, int status, Bundle extras) {
+
+    }
+
+    @Override
+    public void onProviderEnabled(String provider) {
+
+    }
+
+    @Override
+    public void onProviderDisabled(String provider) {
+
+    }
 }

@@ -38,6 +38,16 @@ public class Contact {
         return new Gson().toJson(this);
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (!(obj instanceof Contact)) {
+            return false;
+        }
+        Contact contact = (Contact)obj;
+        return contact.getId().equals(getId());
+
+    }
+
     public boolean hasNullFields(ArrayList<String> skippedFields, ArrayList<Class> validTypes) {
         for (Field field : getClass().getDeclaredFields())
             try {

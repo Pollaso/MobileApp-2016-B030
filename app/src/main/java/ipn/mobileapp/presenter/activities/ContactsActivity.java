@@ -9,6 +9,7 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.ArrayMap;
+import android.support.v4.util.CircularArray;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -19,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.google.gson.reflect.TypeToken;
@@ -30,7 +32,9 @@ import java.util.Map;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.helper.AlcoholTestHelper;
+import ipn.mobileapp.model.pojo.AlcoholTest;
 import ipn.mobileapp.model.pojo.Coordinate;
+import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.service.OkHttpServletRequest;
@@ -52,7 +56,8 @@ public class ContactsActivity extends BaseActivity {
     private View contentView;
     private TextView tvEmpty;
 
-    private ArrayList<Contact> contacts;
+    private static ArrayList<Contact> contacts;
+    private AlcoholTest alcoholTest;
 
     private String id;
 
@@ -71,12 +76,19 @@ public class ContactsActivity extends BaseActivity {
         getComponents();
         setComponentAttributes();
         getContacts();
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            Bundle extras = intent.getExtras();
+            if (extras != null)
+                alcoholTest = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create().fromJson(extras.getString("alcoholTest"), AlcoholTest.class);
+
+            if (alcoholTest != null)
+                sendMultipleSms();
+        }
     }
 
     private void setListView() {
-        if (contacts == null)
-            contacts = new ArrayList<>();
-
         ContactAdapter adapter = new ContactAdapter(this, R.layout.listview_contact_item, contacts, dismissDialog);
         lvContacts.setAdapter(adapter);
         if (lvContacts.getCount() != 0)
@@ -131,13 +143,19 @@ public class ContactsActivity extends BaseActivity {
                     if (json.has("data")) {
                         TypeToken type = new TypeToken<ArrayList<Contact>>() {
                         };
-                        contacts = new Gson().fromJson(json.get("data").getAsString(), type.getType());
+                        if (contacts == null)
+                            contacts = new ArrayList<>();
+                        ArrayList<Contact> temp = new Gson().fromJson(json.get("data").getAsString(), type.getType());
+                        contacts.removeAll(temp);
+                        contacts.addAll(temp);
                     } else if (json.has("warnings")) {
                         contacts = null;
                     }
-                    setListView();
                 } else
                     Toast.makeText(ContactsActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();
+
+                if (contacts != null)
+                    setListView();
             }
         });
     }
@@ -151,6 +169,7 @@ public class ContactsActivity extends BaseActivity {
     private DialogInterface.OnDismissListener dismissDialog = new DialogInterface.OnDismissListener() {
         @Override
         public void onDismiss(DialogInterface dialog) {
+            contacts = null;
             getContacts();
         }
     };
@@ -160,13 +179,12 @@ public class ContactsActivity extends BaseActivity {
         PendingIntent sentPI;
         String SENT = "SMS_SENT";
 
-        AlcoholTestHelper helper = new AlcoholTestHelper(this, user);
+        AlcoholTestHelper helper = new AlcoholTestHelper(this);
         sentPI = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
 
-        Coordinate coordinate = new Coordinate();
-        coordinate.setLatitude(-19);
-        coordinate.setLongitude(99);
-        String sms = helper.generateSmsBody(300, coordinate);
+        Coordinate coordinate = alcoholTest.getCoordinate();
+        String fullName = user.getName() + " " + user.getPaternalSurname() + " " + user.getMaternalSurname();
+        String sms = helper.generateSmsBody(alcoholTest.getAlcoholicState(), coordinate, fullName);
         try {
             ArrayList<String> parts = smsManager.divideMessage(sms);
             ArrayList<PendingIntent> sentList = new ArrayList<>();
@@ -177,6 +195,7 @@ public class ContactsActivity extends BaseActivity {
                 for (Contact contact : contacts) {
                     smsManager.sendMultipartTextMessage(contact.getPhoneNumber(), null, parts, sentList, null);
                     Thread.sleep(500);
+                    Toast.makeText(this, "Mensaje enviado a " + contact.getName() + " (" + contact.getPhoneNumber() + ")", Toast.LENGTH_SHORT).show();
                 }
         } catch (Exception e) {
             e.printStackTrace();

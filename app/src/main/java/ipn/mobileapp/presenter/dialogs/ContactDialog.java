@@ -201,7 +201,7 @@ public class ContactDialog implements View.OnClickListener {
                     if (!validator.isValidPhone(phoneNumber))
                         etPhoneNumber.setError(context.getString(R.string.warning_phone_number));
                     else {
-                        contact.setPhoneNumber(phoneNumber);
+                        contact.setPhoneNumber(phoneNumber.trim());
                         btnSaveContact.setEnabled(validator.validateFields(fields));
                     }
                 }
