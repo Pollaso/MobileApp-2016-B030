@@ -41,14 +41,18 @@ public class OkHttpServletRequest {
         String[] confValues = this.context.getResources().getStringArray(resourceId);
         scheme = confValues[0];
         host = confValues[1];
-        port = Integer.parseInt(confValues[2]);
+        if (DebugMode.ON)
+            port = Integer.parseInt(confValues[2]);
     }
 
     public Request buildRequest(Servlets servlet, RequestType requestType, Map<String, String> params) {
         HttpUrl url = null;
         String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.getValue()];
 
-        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host).port(port).addPathSegment(servletPath);
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host);
+        if (DebugMode.ON)
+            urlBuilder.port(port);
+        urlBuilder.addPathSegment(servletPath);
         RequestBody body = null;
         if (requestType.equals(RequestType.GET) || requestType.equals(RequestType.DELETE)) {
             for (Map.Entry map : params.entrySet()) {
@@ -83,7 +87,10 @@ public class OkHttpServletRequest {
 
     public String buildUrl(Servlets servlet) {
         String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.getValue()];
-        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host).port(port).addPathSegment(servletPath);
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host);
+        if (DebugMode.ON)
+            urlBuilder.port(port);
+        urlBuilder.addPathSegment(servletPath);
         HttpUrl url = urlBuilder.build();
         return url.toString();
     }
@@ -91,7 +98,10 @@ public class OkHttpServletRequest {
     public Request buildRequest(Servlets servlet, RequestType requestType, Map<String, String> params, File file) {
         String servletPath = context.getResources().getStringArray(R.array.servlets)[servlet.getValue()];
 
-        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host).port(port).addPathSegment(servletPath);
+        HttpUrl.Builder urlBuilder = new HttpUrl.Builder().scheme(scheme).host(host);
+        if (DebugMode.ON)
+            urlBuilder.port(port);
+        urlBuilder.addPathSegment(servletPath);
         HttpUrl url = urlBuilder.build();
 
         okhttp3.MultipartBody.Builder multipartBodyBuilder = new okhttp3.MultipartBody.Builder();

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DACBA</string>
-    <string name="app_title">Sistema Móvil de Detección de Alcohol en Conductores, con Bloquero Automotriz</string>
+    <string name="app_title">Sistema Móvil de Detección de Alcohol en Conductores, con Bloqueo Automotriz</string>
 
     <!--Activity titles-->
     <string name="title_activity_home">Hogar</string>
@@ -107,16 +107,12 @@
     <string name="txtv_country_calling_code">PTM</string>
     <string-array name="s_country_names">
         <item>MX</item>
-        <item>USA</item>
+        <!--<item>USA</item>-->
     </string-array>
 
     <string-array name="s_country_codes">
         <item>+52</item>
-        <item>+1</item>
-    </string-array>
-
-    <string-array name="s_valid_vehicles">
-        <item>Jetta 2010</item>
+        <!--<item>+1</item>-->
     </string-array>
 
     <!--Navigation menu-->
@@ -223,8 +219,8 @@
 
     <string-array name="server">
         <item>https</item>
-        <item>10.0.0.12</item>
-        <item>8080</item>
+        <item>dacba-176904.appspot.com</item>
+        <item></item>
         <item></item>
     </string-array>
 

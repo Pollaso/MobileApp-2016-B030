@@ -214,10 +214,10 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 finish = false;
                 new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
                 break;
-            case R.id.nav_menu_about_us:
+            /*case R.id.nav_menu_about_us:
                 finish = false;
                 intent = new Intent(getBaseContext(), HomeActivity.class);
-                break;
+                break;*/
             case R.id.nav_menu_privacy:
                 finish = false;
                 intent = new Intent(Intent.ACTION_VIEW);
