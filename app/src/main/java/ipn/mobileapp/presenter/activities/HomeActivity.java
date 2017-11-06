@@ -55,8 +55,6 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        //setupBluetooth();
     }
 
     @Override

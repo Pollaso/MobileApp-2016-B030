@@ -32,7 +32,7 @@
         android:layout_gravity="top|center"
         android:paddingBottom="@dimen/txtv_bottom_padding"
         android:paddingTop="@dimen/txtv_bottom_padding"
-        android:text="@string/txtv_confirmation_code" />
+        android:text="@string/btn_confirm_code" />
 
     <Space
         android:layout_width="match_parent"

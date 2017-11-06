@@ -1,13 +1,8 @@
 package ipn.mobileapp.presenter.activities;
 
-import android.app.ActivityManager;
 import android.bluetooth.BluetoothAdapter;
-import android.bluetooth.BluetoothDevice;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.IntentFilter;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +10,7 @@ import android.os.Looper;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -22,6 +18,7 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -46,6 +43,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
     private NavigationView navigationView;
     private LinearLayout navHeader;
     private Menu navMenu;
+    private AlertDialog progressDialog;
 
     private SharedPreferencesManager manager;
 
@@ -71,6 +69,15 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             id = (String) manager.getValue("id", String.class);
         if (user == null)
             getUser();
+
+        if (!user.isEnabled()) {
+            user = null;
+            Intent intent = new Intent(getBaseContext(), ConfirmPhoneActivity.class);
+            startActivity(intent);
+            finish();
+            return;
+        }
+
         if (isSubUser && userId == null) {
             manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
             userId = (String) manager.getValue("userId", String.class);
@@ -286,6 +293,20 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 connectToDevice();
             }
         });
+    }
+
+    protected void showProgressDialog() {
+        progressDialog = new AlertDialog.Builder(BaseActivity.this)
+                .setView(R.layout.dialog_progress)
+                .setTitle("Espere por favor")
+                .setCancelable(true)
+                .create();
+        progressDialog.show();
+    }
+
+    protected void hideProgressDialog() {
+        if (progressDialog != null)
+            progressDialog.dismiss();
     }
 
     public void connectToDevice() {

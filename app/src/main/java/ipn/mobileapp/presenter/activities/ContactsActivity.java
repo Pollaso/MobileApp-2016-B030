@@ -82,9 +82,6 @@ public class ContactsActivity extends BaseActivity {
             Bundle extras = intent.getExtras();
             if (extras != null)
                 alcoholTest = new GsonBuilder().setDateFormat("yyyy-MM-dd'T'HH:mm:ssz").create().fromJson(extras.getString("alcoholTest"), AlcoholTest.class);
-
-            if (alcoholTest != null)
-                sendMultipleSms();
         }
     }
 
@@ -143,11 +140,16 @@ public class ContactsActivity extends BaseActivity {
                     if (json.has("data")) {
                         TypeToken type = new TypeToken<ArrayList<Contact>>() {
                         };
+
                         if (contacts == null)
                             contacts = new ArrayList<>();
+
                         ArrayList<Contact> temp = new Gson().fromJson(json.get("data").getAsString(), type.getType());
                         contacts.removeAll(temp);
                         contacts.addAll(temp);
+
+                        if (alcoholTest != null)
+                            sendMultipleSms();
                     } else if (json.has("warnings")) {
                         contacts = null;
                     }

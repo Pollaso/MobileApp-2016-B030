@@ -243,7 +243,7 @@
 
     <!--Regex for validations-->
     <string name="uuid_regex">^[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}$</string>
-    <string name="password_regex">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;+=])(?=\\S+$).{7,50}$</string>
+    <string name="password_regex">^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&amp;;:()\[\]{}+=])(?=\\S+$).{7,50}$</string>
     <string name="name_regex">^\\p{L}+[\\p{L}\\p{Zs}]{0,50}$</string>
     <string name="last_name_regex">^\\p{L}+[\\p{L}\\p{Zs}\\p{Pd}\\p{Pi}]{0,50}$</string>
     <string name="car_plate_regex">^[\\p{L}\\p{N}]{3,10}$</string>

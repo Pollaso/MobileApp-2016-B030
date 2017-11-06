@@ -10,6 +10,7 @@ import android.os.Handler;
 import android.os.IBinder;
 import android.os.Looper;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
@@ -18,7 +19,9 @@ import com.google.gson.GsonBuilder;
 import java.io.IOException;
 import java.util.UUID;
 
+import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.User;
+import ipn.mobileapp.presenter.activities.BaseActivity;
 
 public class BluetoothService extends Service {
     private BluetoothAdapter bluetoothAdapter = null;
