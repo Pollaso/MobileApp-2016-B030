@@ -3,10 +3,12 @@ package ipn.mobileapp.presenter.activities;
 import android.bluetooth.BluetoothAdapter;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.LocationManager;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -31,6 +33,7 @@ import java.util.List;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.helper.ServiceHelper;
 import ipn.mobileapp.model.pojo.Contact;
+import ipn.mobileapp.model.pojo.Location;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
@@ -81,6 +84,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         if (isSubUser && userId == null) {
             manager = new SharedPreferencesManager(BaseActivity.this, "currentSupervisor");
             userId = (String) manager.getValue("userId", String.class);
+        }
+
+        LocationManager locationManager = (LocationManager) getSystemService(LOCATION_SERVICE);
+        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER)) {
+            showSettingsAlert();
+            return;
         }
 
         if (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
@@ -315,6 +324,25 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("address", bluetoothDeviceAddress);
         intent.putExtra("user", user.toString());
         startService(intent);
+    }
+
+    public void showSettingsAlert() {
+        android.app.AlertDialog.Builder alertDialog = new android.app.AlertDialog.Builder(BaseActivity.this);
+
+        alertDialog.setCancelable(false);
+
+        alertDialog.setTitle(getString(R.string.title_dialog_gps_settings));
+
+        alertDialog.setMessage(getString(R.string.tv_gps_disabled));
+
+        alertDialog.setPositiveButton(getString(R.string.btn_activate), new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int which) {
+                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
+                startActivity(intent);
+            }
+        });
+
+        alertDialog.show();
     }
 }
 

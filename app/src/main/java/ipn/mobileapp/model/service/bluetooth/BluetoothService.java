@@ -41,7 +41,8 @@ public class BluetoothService extends Service {
     @Override
     public void onDestroy() {
         try {
-            bluetoothSocket.close();
+            if(bluetoothSocket != null)
+                bluetoothSocket.close();
         } catch (IOException e) {
             e.printStackTrace();
         }

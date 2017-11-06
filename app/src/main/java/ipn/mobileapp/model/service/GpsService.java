@@ -39,10 +39,7 @@ public class GpsService extends Service implements LocationListener {
         this.context = context;
 
         locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-        if (!locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
-            showSettingsAlert();
-        else
-            getLocation();
+        getLocation();
     }
 
     public Location getLocation() {
@@ -118,24 +115,7 @@ public class GpsService extends Service implements LocationListener {
         return this.canGetLocation;
     }
 
-    public void showSettingsAlert() {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(context);
 
-        alertDialog.setCancelable(false);
-
-        alertDialog.setTitle(context.getString(R.string.title_dialog_gps_settings));
-
-        alertDialog.setMessage(context.getString(R.string.tv_gps_disabled));
-
-        alertDialog.setPositiveButton(context.getString(R.string.btn_activate), new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int which) {
-                Intent intent = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                context.startActivity(intent);
-            }
-        });
-
-        alertDialog.show();
-    }
 
     @Override
     public IBinder onBind(Intent arg0) {
