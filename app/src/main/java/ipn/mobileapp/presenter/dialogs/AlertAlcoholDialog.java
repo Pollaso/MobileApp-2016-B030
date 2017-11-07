@@ -21,7 +21,10 @@ import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Formatter;
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 import ipn.mobileapp.R;
@@ -104,8 +107,15 @@ public class AlertAlcoholDialog implements View.OnClickListener {
         imgBtnLocation.setOnClickListener(openLocation);
 
         tvAlertUserName.setText(alert.getSenderName());
-        tvAlertDate.setText(alert.getDateSent().toString());
-        tvAlertBac.setText(Double.toString(alert.getAlcoholicState()));
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(alert.getDateSent().getTime());
+        Formatter formatter = new Formatter(new Locale("es", "ES"));
+        formatter.format("%tB %td %tY", calendar, calendar, calendar);
+        tvAlertDate.setText(formatter.toString());
+
+        float bac = (float) (alert.getAlcoholicState() / 2600.00);
+        tvAlertBac.setText(String.format("%.4f", bac) + "% de alcohol en sangre");
 
         final Validator validator = new Validator(context);
         final TextView[] fields = new TextView[]{etMessage};

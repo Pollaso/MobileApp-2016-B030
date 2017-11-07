@@ -14,6 +14,9 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Formatter;
+import java.util.Locale;
 
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.Alert;
@@ -64,11 +67,16 @@ public class AlertAdapter extends ArrayAdapter<Alert> {
         TextView tvAlertUserName = (TextView) convertView.findViewById(R.id.tv_alert_user_name);
         tvAlertUserName.setText(alert.getSenderName());
 
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(alert.getDateSent().getTime());
+        Formatter formatter = new Formatter(new Locale("es", "ES"));
+        formatter.format("%tB %td %tY", calendar, calendar, calendar);
         TextView tvAlertDate = (TextView) convertView.findViewById(R.id.tv_alert_date);
-        tvAlertDate.setText(alert.getDateSent().toString());
+        tvAlertDate.setText(formatter.toString());
 
         TextView tvAlertBac = (TextView) convertView.findViewById(R.id.tv_alert_bac);
-        tvAlertBac.setText(Double.toString(alert.getAlcoholicState()));
+        float bac = (float) (alert.getAlcoholicState() / 2600.00);
+        tvAlertBac.setText(String.format("%.4f", bac) + "% de alcohol en sangre");
 
         return convertView;
     }
