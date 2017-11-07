@@ -69,6 +69,7 @@ public class PairedDevicesDialog{
         btnScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                dialog.setTitle("Dispositivos Bluetooth vinculados");
                 llInstructions.setVisibility(View.GONE);
                 scanPairedDevices();
             }
