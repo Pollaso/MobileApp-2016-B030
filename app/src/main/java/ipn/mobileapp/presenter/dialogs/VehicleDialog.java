@@ -44,13 +44,13 @@ public class VehicleDialog implements View.OnClickListener {
 
     private EditText etLicensePlate;
     private EditText etSerialKey;
+    private TextView tvMsjVehicle;
 
     private Button btnSave;
     private Button btnCancel;
 
     private Crud mode;
     private boolean udMode;
-    private Boolean cancelable = true;
     private Vehicle vehicle;
 
     public VehicleDialog(Context context) {
@@ -64,7 +64,6 @@ public class VehicleDialog implements View.OnClickListener {
         this.mode = mode;
         this.udMode = (mode != Crud.CREATE);
         this.vehicle = udMode ? vehicle : new Vehicle();
-        this.cancelable = (mode != Crud.DELETE);
     }
 
     @Override
@@ -83,7 +82,7 @@ public class VehicleDialog implements View.OnClickListener {
         dialog = new AlertDialog.Builder(context)
                 .setView(R.layout.dialog_vehicle)
                 .setTitle(title)
-                .setCancelable(cancelable)
+                .setCancelable(true)
                 .setOnDismissListener(dismissListener)
                 .create();
         dialog.show();
@@ -92,6 +91,7 @@ public class VehicleDialog implements View.OnClickListener {
     private void getComponents() {
         btnSave = (Button) dialog.findViewById(R.id.btn_save_vehicle);
         btnCancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        tvMsjVehicle = (TextView) dialog.findViewById(R.id.tv_message);
 
         etLicensePlate = (EditText) dialog.findViewById(R.id.et_license_plate);
         etSerialKey = (EditText) dialog.findViewById(R.id.et_serial_key);
@@ -105,13 +105,15 @@ public class VehicleDialog implements View.OnClickListener {
 
         btnSave.setText(saveBtnText);
         btnSave.setOnClickListener(save);
-        if (cancelable)
-            btnCancel.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    dialog.dismiss();
-                }
-            });
+        btnCancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+
+        tvMsjVehicle.setText("¿Desea eliminar el vehículo con la matrícula automovilística " + vehicle.getLicensePlate() + "?");
+        tvMsjVehicle.setVisibility(mode == Crud.DELETE ? View.VISIBLE : View.GONE);
 
         if (udMode && mode == Crud.UPDATE) {
             etLicensePlate.setText(vehicle.getLicensePlate());
@@ -187,7 +189,7 @@ public class VehicleDialog implements View.OnClickListener {
             if (mode != Crud.DELETE) {
                 final TextView[] fields = new TextView[]{etLicensePlate, etSerialKey};
                 final Validator validator = new Validator(context);
-                if(!validator.validateFields(fields))
+                if (!validator.validateFields(fields))
                     return;
             }
 

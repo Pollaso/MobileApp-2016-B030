@@ -46,7 +46,7 @@
 
     <!--Button names-->
     <string name="btn_login_name">Iniciar sesión</string>
-    <string name="btn_register_name">Registrate</string>
+    <string name="btn_register_name">Regístrate</string>
     <string name="btn_register_new_user_name">¿Eres nuevo aquí?</string>
     <string name="btn_already_have_an_account">¿Ya tienes una cuenta?</string>
     <string name="btn_forgot_password">¿Olvidaste tu contraseña?</string>
@@ -146,12 +146,12 @@
     <string name="msj_need_one_contact">Necesita mínimo un contacto registrado</string>
     <string name="msj_phone_confirmed">Tu teléfono ha sido confirmado</string>
     <string name="msj_resend_code">El nuevo código ha sido enviado</string>
-    <string name="msj_sms_sent">El mensaje a sido enviado</string>
+    <string name="msj_sms_sent">El mensaje ha sido enviado</string>
     <string name="msj_contact_added">El contacto de emergencia ha sido agregado exitosamente</string>
     <string name="msj_contact_saved">Los cambios al contacto de emergencia han sido guardados exitosamente</string>
     <string name="msj_contact_deleted">El contacto ha sido eliminado exitosamente</string>
     <string name="msj_successful_registration">Su registro se ha realizado de forma exitosa</string>
-    <string name="msj_sub_user_registered">El subusuario has sido registrado de forma exitosa</string>
+    <string name="msj_sub_user_registered">El sub-usuario has sido registrado de forma exitosa</string>
     <string name="msj_account_deactivated">Su cuenta ha sido desactivada\nPara poder activarla, inicie sesión y confirme nuevamente su teléfono celular</string>
     <string name="msj_vehicle_added">El vehículo ha sido agregado de forma exitosa</string>
     <string name="msj_vehicle_saved">Los cambios al vehículo han sido guardados exitosamente</string>
@@ -159,7 +159,7 @@
     <string name="msj_forgot_password">Las instrucciones para restablecer su contraseña han sido enviadas a su correo</string>
     <string name="msj_change_password">Su contraseña ha sido actualizada</string>
     <string name="msj_profile_changes">Sus datos de perfil han sido actualizados</string>
-    <string name="msj_no_sub_users">No tiene ningún subusuario registrado</string>
+    <string name="msj_no_sub_users">No tiene ningún sub-usuario registrado</string>
     <string name="msj_no_emergency_contacts">No tiene ningún contacto de emergencia registrado</string>
     <string name="msj_no_alerts">No ha recibído ninguna alerta</string>
     <string name="msj_no_vehicles">No tiene ningún vehículo registrado</string>
@@ -172,9 +172,9 @@
     <string name="msj_alcohol_test_saved">La prueba de alcohol ha sido guardada</string>
 
     <!--Error messages-->
-    <string name="error_server">Ocurrio un error, intentelo de nuevo</string>
-    <string name="error_confirmation_sms">Ocurrío un error al enviarle el mensaje de texto, intentelo de nuevo</string>
-    <string name="error_phone_confirmation">Ocurrío un error al confirmar su teléfono, intentelo de nuevo</string>
+    <string name="error_server">Ocurrió un error, inténtelo de nuevo</string>
+    <string name="error_confirmation_sms">Ocurrió un error al enviarle el mensaje de texto, inténtelo de nuevo</string>
+    <string name="error_phone_confirmation">Ocurrió un error al confirmar su teléfono, inténtelo de nuevoo</string>
 
     <!--Warning messages-->
     <string name="warning_login_user">No existe una cuenta registrada a ese correo</string>
@@ -190,7 +190,7 @@
     <string name="warning_surname">Ingrese un apellido válido</string>
     <string name="warning_input_length">Este campo debe tener una longitud de mínimo # caracteres</string>
     <string name="warning_password">Ingrese una contraseña que contenga mínimo una letra minúscula y mayúscula, un carácter especial y un número y de una longitud de 8 caracteres</string>
-    <string name="warning_password_matches">Las contraseñs no coinciden</string>
+    <string name="warning_password_matches">Las contraseñas no coinciden</string>
     <string name="warning_phone_number">Ingrese un teléfono celular válido</string>
     <string name="warning_terms">Por favor, indique que ha leído y está de acuerdo con los Términos y Condiciones</string>
     <string name="warning_confirmation_code">La longitud del código de confirmación no es válida</string>
