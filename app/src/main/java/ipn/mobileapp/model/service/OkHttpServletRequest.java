@@ -10,6 +10,7 @@ import java.io.FileNotFoundException;
 import java.io.OutputStream;
 import java.io.PrintStream;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import javax.net.ssl.SSLContext;
 
@@ -129,7 +130,8 @@ public class OkHttpServletRequest {
         try {
             sslContext = SSLContext.getInstance("TLS");
             sslContext.init(null, null, null);
-            client = new OkHttpClient().newBuilder().followRedirects(false).sslSocketFactory(sslContext.getSocketFactory()).build();
+            client = new OkHttpClient().newBuilder().followRedirects(false).sslSocketFactory(sslContext.getSocketFactory())
+                    .connectTimeout(30, TimeUnit.SECONDS).readTimeout(30, TimeUnit.SECONDS).writeTimeout(30, TimeUnit.SECONDS).build();
         } catch (Exception e) {
             e.printStackTrace();
         }
