@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">DACBA</string>
-    <string name="app_title">Sistema Móvil de Detección de Alcohol en Conductores, con Bloqueo Automotriz</string>
+    <string name="app_title">Sistema Móvil de <b>D</b>etección de <b>A</b>lcohol en <b>C</b>onductores, con <b>B</b>loqueo <b>A</b>utomotriz</string>
 
     <!--Activity titles-->
     <string name="title_activity_home">Hogar</string>

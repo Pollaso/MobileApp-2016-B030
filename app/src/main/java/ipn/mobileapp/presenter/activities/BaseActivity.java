@@ -20,7 +20,6 @@ import android.support.v4.widget.DrawerLayout;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,12 +27,8 @@ import com.j256.ormlite.dao.Dao;
 import com.j256.ormlite.stmt.UpdateBuilder;
 
 import java.sql.SQLException;
-import java.util.List;
 
 import ipn.mobileapp.R;
-import ipn.mobileapp.model.helper.ServiceHelper;
-import ipn.mobileapp.model.pojo.Contact;
-import ipn.mobileapp.model.pojo.Location;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
@@ -50,8 +45,9 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     private SharedPreferencesManager manager;
 
-    private static final int TIME_INTERVAL = 2000; // # milliseconds, desired time passed between two back presses.
+    private static final int TIME_INTERVAL = 2000;
     private long backPressed;
+    private static int bluetoothCounter = 0;
 
     protected static User user;
 
@@ -181,6 +177,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         else {
             if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
+                bluetoothCounter = 0;
                 finish();
                 System.exit(0);
             } else {
@@ -269,6 +266,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         manager.clear();
         id = null;
         user = null;
+        bluetoothCounter = 0;
         isSubUser = false;
         if (userId != null) {
             userId = null;
@@ -293,7 +291,11 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
                 String address = (String) manager.getValue("address", String.class);
 
+                if(bluetoothCounter > 0)
+                    return;
+
                 if (address == null) {
+                    bluetoothCounter++;
                     new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
                     return;
                 }
