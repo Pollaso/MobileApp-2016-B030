@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.util.ArrayMap;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
@@ -92,9 +93,13 @@ class ConnectionThread extends Thread {
                         Location location = gpsService.getAddress();
                         alcoholTest.setLocation(location);
 
-                        String ppmStr = msj.split("\r\n")[0].replace('\r', ' ').replace('\n', ' ').trim();
-                        int ppm = Integer.valueOf(ppmStr);
-                        alcoholTest.setAlcoholicState(ppm);
+                        String ppmStr = msj.split("\n")[0].replace('\n', ' ').trim();
+                        try {
+                            float ppm = Float.valueOf(ppmStr);
+                            alcoholTest.setAlcoholicState((int) ppm);
+                        } catch (Exception e) {
+                            return;
+                        }
 
                         alcoholTest.setUserId(user.getId());
 
