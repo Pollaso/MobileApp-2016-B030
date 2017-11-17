@@ -56,18 +56,19 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btn_view_document"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:visibility="gone"
-            android:text="@string/btn_view_document" />
-
-        <Button
             android:id="@+id/btn_modify_document"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center|right"
-            android:enabled="true"
+            android:enabled="false"
             android:text="@string/btn_add_document" />
     </LinearLayout>
+
+    <Button
+        android:id="@+id/btn_uploaded_document"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:text="@string/btn_view_document"
+        android:visibility="gone" />
 </LinearLayout>

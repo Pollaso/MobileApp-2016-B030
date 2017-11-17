@@ -4,20 +4,18 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.os.Environment;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
-import android.webkit.MimeTypeMap;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
@@ -28,30 +26,13 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 
-import org.apache.http.HttpResponse;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpPost;
-import org.apache.http.client.utils.URIBuilder;
-import org.apache.http.entity.InputStreamEntity;
-import org.apache.http.impl.client.DefaultHttpClient;
-
 import java.io.BufferedInputStream;
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.OutputStream;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.SocketTimeoutException;
-import java.net.URL;
 import java.util.Map;
 
 import ipn.mobileapp.R;
-import ipn.mobileapp.model.enums.Crud;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.pojo.Document;
@@ -63,7 +44,6 @@ import ipn.mobileapp.presenter.validation.Validator;
 import okhttp3.Call;
 import okhttp3.Callback;
 import okhttp3.MediaType;
-import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
@@ -77,8 +57,8 @@ public class DocumentsActivity extends BaseActivity {
     private TextView tvDocumentPath;
 
     private Button btnModifyDocument;
-    private Button btnViewDocument;
     private ImageButton imgBtnFindDocument;
+    private Button btnUploadedDocument;
 
     private String id;
     private TextView[] fields;
@@ -102,6 +82,8 @@ public class DocumentsActivity extends BaseActivity {
         SharedPreferencesManager manager = new SharedPreferencesManager(this, getString(R.string.current_user_filename));
         id = (String) manager.getValue("id", String.class);
 
+        document = new Document();
+        showProgressDialog();
         getDocument();
         getComponents();
         setComponentAttributes();
@@ -111,12 +93,17 @@ public class DocumentsActivity extends BaseActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent resultData) {
         if (requestCode == READ_REQUEST_CODE && resultCode == Activity.RESULT_OK) {
             fileUri = resultData.getData();
-            String path = fileUri.getPath();
-            file = new File(path);
-            int size = (int) file.length();
-            fileBytes = new byte[size];
+
+            String[] filePathColumn = {MediaStore.Files.FileColumns.SIZE};
+            Cursor cursor = getContentResolver().query(fileUri, filePathColumn, null, null, null);
+            cursor.moveToFirst();
+            int columnIndex = cursor.getColumnIndex(filePathColumn[0]);
+            long size = cursor.getLong(columnIndex);
+            cursor.close();
+
+            file = new File(fileUri.getPath());
+            fileBytes = new byte[(int) size];
             try {
-                int i = getContentResolver().openInputStream(fileUri).read();
                 BufferedInputStream buf = new BufferedInputStream(getContentResolver().openInputStream(fileUri));
                 buf.read(fileBytes, 0, fileBytes.length);
                 buf.close();
@@ -126,23 +113,7 @@ public class DocumentsActivity extends BaseActivity {
                 e.printStackTrace();
             }
 
-            /*String displayName = null;
-
-            if (uriString.startsWith("content://")) {
-                Cursor cursor = null;
-                try {
-                    cursor = getContentResolver().query(uri, null, null, null, null);
-                    if (cursor != null && cursor.moveToFirst()) {
-                        displayName = cursor.getString(cursor.getColumnIndex(OpenableColumns.DISPLAY_NAME));
-                    }
-                } finally {
-                    cursor.close();
-                }
-            } else if (uriString.startsWith("file://")) {
-                displayName = file.getName();
-            }*/
-
-            tvDocumentPath.setText(path);
+            tvDocumentPath.setText(fileUri.getPath());
             btnModifyDocument.setEnabled(validator.validateFields(fields));
         }
     }
@@ -155,9 +126,8 @@ public class DocumentsActivity extends BaseActivity {
 
     private void getComponents() {
         imgBtnFindDocument = (ImageButton) contentView.findViewById(R.id.ib_find_document);
-
         btnModifyDocument = (Button) contentView.findViewById(R.id.btn_modify_document);
-        btnViewDocument = (Button) contentView.findViewById(R.id.btn_view_document);
+        btnUploadedDocument = (Button) contentView.findViewById(R.id.btn_uploaded_document);
 
         etDocumentName = (EditText) contentView.findViewById(R.id.et_document_name);
         tvDocumentPath = (TextView) contentView.findViewById(R.id.tv_document_path);
@@ -172,8 +142,9 @@ public class DocumentsActivity extends BaseActivity {
                 performFileSearch();
             }
         });
-        btnViewDocument.setOnClickListener(viewDocument);
         btnModifyDocument.setOnClickListener(saveDocument);
+
+        btnUploadedDocument.setOnClickListener(viewDocument);
 
         etDocumentName.addTextChangedListener(new TextValidator(etDocumentName) {
             @Override
@@ -188,7 +159,7 @@ public class DocumentsActivity extends BaseActivity {
     public void performFileSearch() {
         Intent intent = new Intent(Intent.ACTION_OPEN_DOCUMENT);
         intent.addCategory(Intent.CATEGORY_OPENABLE);
-        intent.setType("application/*");
+        intent.setType("application/pdf");
         startActivityForResult(intent, READ_REQUEST_CODE);
     }
 
@@ -220,23 +191,24 @@ public class DocumentsActivity extends BaseActivity {
                     if (json.has("data")) {
                         document = new Gson().fromJson(json.get("data").getAsString(), Document.class);
                         if (get) {
-                            if(document.getState() != Document.PENDING)
+                            if (document.getState() != Document.PENDING)
                                 showStateDialog(document.getState());
-                            btnViewDocument.setVisibility(document.getId() != null ? View.VISIBLE : View.GONE);
-                        }
-                        else
+                            btnUploadedDocument.setVisibility(View.VISIBLE);
+                        } else
                             Toast.makeText(DocumentsActivity.this, getString(R.string.msj_document), Toast.LENGTH_SHORT).show();
                         String filename = document.getName();
                         etDocumentName.setText(filename.substring(0, filename.lastIndexOf('.')));
                     } else if (json.has("warnings")) {
-                        if (get)
-                            document = new Document();
+                        JsonObject warnings = json.getAsJsonObject("warnings");
+                        if (warnings.has("noneFound"))
+                            Toast.makeText(DocumentsActivity.this, "No ha subido ningún documento", Toast.LENGTH_SHORT).show();
+                        else
+                            Toast.makeText(DocumentsActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();
                     }
                 } else {
                     Toast.makeText(DocumentsActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();
-                    if (get)
-                        document = new Document();
                 }
+                hideProgressDialog();
             }
         });
     }
@@ -253,10 +225,9 @@ public class DocumentsActivity extends BaseActivity {
     private FloatingActionButton.OnClickListener saveDocument = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
+            showProgressDialog();
             if (document != null)
                 document.setUserId(id);
-
-            int i = (int) file.length();
 
             int index = fileUri.toString().lastIndexOf(".");
             String finalName = document.getName() + fileUri.toString().substring(index);
@@ -278,7 +249,7 @@ public class DocumentsActivity extends BaseActivity {
             MediaType type = MediaType.parse(getContentResolver().getType(fileUri));
             multipartBodyBuilder.addFormDataPart(
                     "file",
-                    file.getName(),
+                    document.getName(),
                     okhttp3.RequestBody.create(type, fileBytes)
             );
             Request.Builder requestBuilder = new Request.Builder().url(url);
@@ -298,8 +269,7 @@ public class DocumentsActivity extends BaseActivity {
         }
     };
 
-    private void showStateDialog(int state)
-    {
+    private void showStateDialog(int state) {
         String title = (state == Document.VALID ? getString(R.string.title_dialog_valid_document) : getString(R.string.title_dialog_invalid_document));
 
         AlertDialog dialog = new AlertDialog.Builder(DocumentsActivity.this)
