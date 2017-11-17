@@ -8,7 +8,9 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.util.ArrayMap;
 import android.support.v7.app.AlertDialog;
+import android.text.Html;
 import android.text.format.Time;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -31,6 +33,7 @@ import java.util.Locale;
 import java.util.Map;
 
 import ipn.mobileapp.R;
+import ipn.mobileapp.debug.DebugMode;
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
 import ipn.mobileapp.model.utility.JsonUtils;
@@ -60,6 +63,7 @@ public class SubUserDialog implements View.OnClickListener {
     private EditText etPhoneNumber;
     private TextView tvBirthdate;
     private ImageButton imgBtnBirthdate;
+    private TextView tvTerms;
 
     private Button btnRegisterSubUser;
     private Button btnCancel;
@@ -77,6 +81,7 @@ public class SubUserDialog implements View.OnClickListener {
         createDialog();
         getComponents();
         setComponentAttributes();
+        setTerms();
     }
 
     private void createDialog() {
@@ -102,6 +107,8 @@ public class SubUserDialog implements View.OnClickListener {
         etPhoneNumber = (EditText) dialog.findViewById(R.id.et_phone_number);
         tvBirthdate = (TextView) dialog.findViewById(R.id.txtv_birthdate);
         imgBtnBirthdate = (ImageButton) dialog.findViewById(R.id.ib_birthdate);
+
+        tvTerms = (TextView) dialog.findViewById(R.id.txtv_terms);
     }
 
     private void setComponentAttributes() {
@@ -202,6 +209,14 @@ public class SubUserDialog implements View.OnClickListener {
                     Toast.makeText(context, context.getString(R.string.error_server), Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    private void setTerms() {
+        String htmlUrl = "<a 'href='" + context.getResources().getString(DebugMode.ON ? R.string.localhost_terms : R.string.server_terms) + "'>Términos y Condiciones</a>";
+
+        tvTerms.setClickable(true);
+        tvTerms.setMovementMethod(LinkMovementMethod.getInstance());
+        tvTerms.setText(Html.fromHtml(htmlUrl));
     }
 
     private void createUser() {

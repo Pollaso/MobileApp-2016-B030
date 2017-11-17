@@ -29,6 +29,7 @@ import com.j256.ormlite.stmt.UpdateBuilder;
 import java.sql.SQLException;
 
 import ipn.mobileapp.R;
+import ipn.mobileapp.debug.DebugMode;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
@@ -234,7 +235,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             case R.id.nav_menu_privacy:
                 finish = false;
                 intent = new Intent(Intent.ACTION_VIEW);
-                intent.setData(Uri.parse(getString(R.string.localhost_terms)));
+                intent.setData(Uri.parse(getString(DebugMode.ON ? R.string.localhost_terms : R.string.server_terms)));
                 break;
             case R.id.nav_menu_logout:
                 logout();

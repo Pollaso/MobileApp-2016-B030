@@ -211,7 +211,7 @@
     <!--Configuration for servlets-->
     <string-array name="localhost">
         <item>http</item>
-        <item>10.0.0.8</item>
+        <item>10.0.0.7</item>
         <!--<item>10.0.3.2</item> //MEmu-->
         <item>8080</item>
         <item></item>
@@ -239,7 +239,7 @@
 
     <!--URL for terms-->
     <string name="localhost_terms">http://10.0.0.6:8080/Terms.jsp</string>
-    <string name="server_terms"></string>
+    <string name="server_terms">https://dacba-176904.appspot.com/Terms.jsp</string>
 
     <!--Regex for validations-->
     <string name="uuid_regex">^[0-9a-fA-F]{8}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{4}[0-9a-fA-F]{12}$</string>
