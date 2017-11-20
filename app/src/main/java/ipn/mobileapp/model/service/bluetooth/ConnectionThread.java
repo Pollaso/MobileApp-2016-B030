@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.support.v4.util.ArrayMap;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.google.gson.JsonObject;
@@ -38,6 +37,10 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 class ConnectionThread extends Thread {
+    private final static int ALERT = 0;
+    private final static int ALCOHOL = 1;
+    private final static int GPS = 2;
+
     private Context context;
     private User user;
     private BluetoothSocket socket;
@@ -85,6 +88,11 @@ class ConnectionThread extends Thread {
                         alcoholTest.setOcurrence(new Date(calendar.getTimeInMillis()));
 
                         GpsService gpsService = new GpsService(context);
+                        if (!gpsService.validLocation()) {
+                            processResults(null, GPS);
+                            return;
+                        }
+
                         Coordinate coordinate = new Coordinate();
                         coordinate.setLatitude(gpsService.getLatitude());
                         coordinate.setLongitude(gpsService.getLongitude());
@@ -113,12 +121,12 @@ class ConnectionThread extends Thread {
                         client.newCall(builtRequest).enqueue(new Callback() {
                             @Override
                             public void onFailure(Call call, IOException e) {
-                                processResults(null, true);
+                                processResults(null, ALCOHOL);
                             }
 
                             @Override
                             public void onResponse(Call call, final Response response) throws IOException {
-                                processResults(response.body().string(), true);
+                                processResults(response.body().string(), ALCOHOL);
                             }
                         });
 
@@ -130,12 +138,12 @@ class ConnectionThread extends Thread {
                             client.newCall(builtRequest).enqueue(new Callback() {
                                 @Override
                                 public void onFailure(Call call, IOException e) {
-                                    processResults(null, false);
+                                    processResults(null, ALERT);
                                 }
 
                                 @Override
                                 public void onResponse(Call call, Response response) throws IOException {
-                                    processResults(response.body().string(), false);
+                                    processResults(response.body().string(), ALERT);
                                 }
                             });
                         }
@@ -162,16 +170,17 @@ class ConnectionThread extends Thread {
         }
     }
 
-    private void processResults(final String response, final boolean alcoholTest) {
+    private void processResults(final String response, final int type) {
         new Handler(Looper.getMainLooper()).post(new Runnable() {
             @Override
             public void run() {
-                String message = context.getString(R.string.error_server);
+                String message = type == GPS ? "Ocurrió un error al obtener la localización" : context.getString(R.string.error_server);
                 if (response != null && JsonUtils.isValidJson(response)) {
                     JsonObject json = (JsonObject) new JsonParser().parse(response);
                     if (json.has("data"))
-                        message = alcoholTest ? context.getString(R.string.msj_alcohol_test_saved) : context.getString(R.string.msj_alert_saved);
+                        message = type == ALCOHOL ? context.getString(R.string.msj_alcohol_test_saved) : context.getString(R.string.msj_alert_saved);
                 }
+                message += " " + type;
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             }
         });

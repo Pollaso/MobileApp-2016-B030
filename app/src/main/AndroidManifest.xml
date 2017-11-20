@@ -41,7 +41,9 @@
             android:name=".presenter.activities.ConfirmPhoneActivity"
             android:label="@string/title_activity_confirm_phone_number"
             android:screenOrientation="portrait" />
-        <activity android:name=".presenter.activities.MainActivity">
+        <activity
+            android:name=".presenter.activities.MainActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -76,6 +78,7 @@
             android:name=".presenter.activities.AlertsActivity"
             android:label="@string/title_activity_alerts"
             android:screenOrientation="portrait" />
+
         <service
             android:name=".model.service.bluetooth.BluetoothService"
             android:enabled="true" />

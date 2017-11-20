@@ -39,7 +39,8 @@ public class GpsService extends Service implements LocationListener {
         this.context = context;
 
         locationManager = (LocationManager) context.getSystemService(LOCATION_SERVICE);
-        getLocation();
+        if(locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER))
+            getLocation();
     }
 
     public Location getLocation() {
@@ -82,14 +83,13 @@ public class GpsService extends Service implements LocationListener {
         }
 
         ipn.mobileapp.model.pojo.Location location = new ipn.mobileapp.model.pojo.Location();
-        if (addresses != null) {
-            //String address = addresses.get(0).getAddressLine(0);
-            //String city = addresses.get(0).getLocality();
-            //String state = addresses.get(0).getAdminArea();
-            //String country = addresses.get(0).getCountryName();
-            String postalCode = addresses.get(0).getPostalCode();
-            location.setPostalCode(postalCode);
-            //String knownName = addresses.get(0).getFeatureName();
+        try {
+            if (addresses != null) {
+                String postalCode = addresses.get(0).getPostalCode();
+                location.setPostalCode(postalCode);
+            }
+        } catch (Exception e) {
+            location = null;
         }
 
         return location;
@@ -111,10 +111,9 @@ public class GpsService extends Service implements LocationListener {
         return longitude;
     }
 
-    public boolean canGetLocation() {
-        return this.canGetLocation;
+    public boolean validLocation() {
+        return location != null;
     }
-
 
 
     @Override

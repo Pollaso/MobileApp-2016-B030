@@ -281,6 +281,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         public void onDismiss(DialogInterface dialog) {
             MenuItem menuItem = navMenu.getItem(6);
             menuItem.setChecked(false);
+            bluetoothCounter = 0;
             setBluetoothDeviceAddress();
         }
     };
