@@ -28,7 +28,8 @@
         <activity
             android:name=".presenter.activities.HomeActivity"
             android:label="@string/title_activity_home"
-            android:screenOrientation="portrait" />
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
         <activity
             android:name=".presenter.activities.LoginActivity"
             android:label="@string/title_activity_login"

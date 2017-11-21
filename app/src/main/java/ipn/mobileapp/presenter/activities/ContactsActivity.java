@@ -151,7 +151,11 @@ public class ContactsActivity extends BaseActivity {
                         if (alcoholTest != null)
                             sendMultipleSms();
                     } else if (json.has("warnings")) {
-                        contacts = null;
+                        JsonObject warnings = json.getAsJsonObject("warnings");
+                        if(warnings.has("noneFound"))
+                            contacts = new ArrayList<>();
+                        else
+                            contacts = null;
                     }
                 } else
                     Toast.makeText(ContactsActivity.this, getString(R.string.error_server), Toast.LENGTH_SHORT).show();

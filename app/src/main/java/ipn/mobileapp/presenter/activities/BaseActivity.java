@@ -32,6 +32,7 @@ import ipn.mobileapp.R;
 import ipn.mobileapp.debug.DebugMode;
 import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.service.DatabaseHelper;
+import ipn.mobileapp.model.service.GpsService;
 import ipn.mobileapp.model.service.SharedPreferencesManager;
 import ipn.mobileapp.model.service.bluetooth.BluetoothService;
 import ipn.mobileapp.model.service.dao.user.IUserSchema;
@@ -48,7 +49,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
     private static final int TIME_INTERVAL = 2000;
     private long backPressed;
-    private static int bluetoothCounter = 0;
 
     protected static User user;
 
@@ -88,6 +88,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             showSettingsAlert();
             return;
         }
+        new GpsService(BaseActivity.this);
 
         if (!BluetoothAdapter.getDefaultAdapter().isEnabled()) {
             Intent enableBtIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
@@ -178,7 +179,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
             drawer.closeDrawer(GravityCompat.START);
         else {
             if (backPressed + TIME_INTERVAL > System.currentTimeMillis()) {
-                bluetoothCounter = 0;
                 finish();
                 System.exit(0);
             } else {
@@ -267,7 +267,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         manager.clear();
         id = null;
         user = null;
-        bluetoothCounter = 0;
         isSubUser = false;
         if (userId != null) {
             userId = null;
@@ -281,7 +280,6 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
         public void onDismiss(DialogInterface dialog) {
             MenuItem menuItem = navMenu.getItem(6);
             menuItem.setChecked(false);
-            bluetoothCounter = 0;
             setBluetoothDeviceAddress();
         }
     };
@@ -293,11 +291,7 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
                 manager = new SharedPreferencesManager(BaseActivity.this, getString(R.string.bluetooth_device_filename));
                 String address = (String) manager.getValue("address", String.class);
 
-                if(bluetoothCounter > 0)
-                    return;
-
                 if (address == null) {
-                    bluetoothCounter++;
                     new PairedDevicesDialog(BaseActivity.this, dismissPairedDevices);
                     return;
                 }
