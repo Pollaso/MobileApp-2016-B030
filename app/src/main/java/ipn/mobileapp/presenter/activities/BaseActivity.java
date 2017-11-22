@@ -157,9 +157,12 @@ public class BaseActivity extends AppCompatActivity implements NavigationView.On
 
         navHeader = (LinearLayout) navigationView.getHeaderView(0);
         navMenu = navigationView.getMenu();
-        MenuItem menuItem = navMenu.getItem(getResources().getInteger(R.integer.sub_user_menu_item_index));
-        if (user.getRole().equals(User.SUBUSER_ROLE))
-            menuItem.setVisible(false);
+        MenuItem menuItemSubUsers = navMenu.getItem(getResources().getInteger(R.integer.sub_user_menu_item_index));
+        MenuItem menuItemAlerts = navMenu.getItem(5);
+        if (user.getRole().equals(User.SUBUSER_ROLE)) {
+            menuItemSubUsers.setVisible(false);
+            menuItemAlerts.setVisible(false);
+        }
     }
 
     @Override

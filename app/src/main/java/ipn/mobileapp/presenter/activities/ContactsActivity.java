@@ -89,6 +89,9 @@ public class ContactsActivity extends BaseActivity {
         if (lvContacts.getCount() != 0)
             tvEmpty.setVisibility(View.GONE);
         else {
+            if(alcoholTest != null)
+                return;
+
             tvEmpty.setVisibility(View.VISIBLE);
 
             Button registerFirstContact = new Button(this);

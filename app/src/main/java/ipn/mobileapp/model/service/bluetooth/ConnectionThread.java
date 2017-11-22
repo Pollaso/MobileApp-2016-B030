@@ -102,12 +102,16 @@ class ConnectionThread extends Thread {
                         alcoholTest.setLocation(location);
 
                         String ppmStr = msj.split("\n")[0].replace('\n', ' ').trim();
+                        float ppm;
                         try {
-                            float ppm = Float.valueOf(ppmStr);
+                            ppm = Float.valueOf(ppmStr);
                             alcoholTest.setAlcoholicState((int) ppm);
                         } catch (Exception e) {
                             return;
                         }
+
+                        if(ppm < 208.0f)
+                            return;
 
                         alcoholTest.setUserId(user.getId());
 
@@ -180,7 +184,6 @@ class ConnectionThread extends Thread {
                     if (json.has("data"))
                         message = type == ALCOHOL ? context.getString(R.string.msj_alcohol_test_saved) : context.getString(R.string.msj_alert_saved);
                 }
-                message += " " + type;
                 Toast.makeText(context, message, Toast.LENGTH_SHORT).show();
             }
         });
