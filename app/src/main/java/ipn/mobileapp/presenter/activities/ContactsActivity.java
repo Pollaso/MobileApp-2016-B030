@@ -9,7 +9,6 @@ import android.os.Handler;
 import android.os.Looper;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.util.ArrayMap;
-import android.support.v4.util.CircularArray;
 import android.telephony.SmsManager;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -31,10 +30,9 @@ import java.util.Map;
 
 import ipn.mobileapp.model.enums.RequestType;
 import ipn.mobileapp.model.enums.Servlets;
-import ipn.mobileapp.model.helper.AlcoholTestHelper;
+import ipn.mobileapp.model.helper.SmsHelper;
 import ipn.mobileapp.model.pojo.AlcoholTest;
 import ipn.mobileapp.model.pojo.Coordinate;
-import ipn.mobileapp.model.pojo.User;
 import ipn.mobileapp.model.utility.JsonUtils;
 import ipn.mobileapp.model.pojo.Contact;
 import ipn.mobileapp.model.service.OkHttpServletRequest;
@@ -185,7 +183,7 @@ public class ContactsActivity extends BaseActivity {
         PendingIntent sentPI;
         String SENT = "SMS_SENT";
 
-        AlcoholTestHelper helper = new AlcoholTestHelper(this);
+        SmsHelper helper = new SmsHelper(this);
         sentPI = PendingIntent.getBroadcast(this, 0, new Intent(SENT), 0);
 
         Coordinate coordinate = alcoholTest.getCoordinate();

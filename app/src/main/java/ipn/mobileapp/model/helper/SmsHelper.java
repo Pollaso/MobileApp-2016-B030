@@ -4,10 +4,10 @@ import android.content.Context;
 import ipn.mobileapp.R;
 import ipn.mobileapp.model.pojo.Coordinate;
 
-public class AlcoholTestHelper {
+public class SmsHelper {
     private Context context;
 
-    public AlcoholTestHelper(Context context) {
+    public SmsHelper(Context context) {
         this.context = context;
     }
 
