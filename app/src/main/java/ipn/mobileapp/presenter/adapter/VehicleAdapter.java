@@ -44,12 +44,14 @@ public class VehicleAdapter extends ArrayAdapter<Vehicle> {
     private Context context;
     private int resource;
     private DialogInterface.OnDismissListener dismissListener;
+    private boolean usingAnotherVehicle;
 
-    public VehicleAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Vehicle> objects, DialogInterface.OnDismissListener dismissListener) {
+    public VehicleAdapter(@NonNull Context context, @LayoutRes int resource, @NonNull List<Vehicle> objects, DialogInterface.OnDismissListener dismissListener, boolean usingAnotherVehicle) {
         super(context, resource, objects);
         this.context = context;
         this.resource = resource;
         this.dismissListener = dismissListener;
+        this.usingAnotherVehicle = usingAnotherVehicle;
     }
 
     @NonNull
@@ -70,6 +72,12 @@ public class VehicleAdapter extends ArrayAdapter<Vehicle> {
 
                 if (vehicle.getUserData() != null && vehicle.getUserData().getId() != null && !isUser) {
                     Toast.makeText(context, context.getString(R.string.warning_vehicle_has_user), Toast.LENGTH_LONG).show();
+                    return true;
+                }
+
+                if(usingAnotherVehicle && !isUser)
+                {
+                    Toast.makeText(context, "Solo se permite tener un vehículo marcado bajo su uso a la vez", Toast.LENGTH_LONG).show();
                     return true;
                 }
 

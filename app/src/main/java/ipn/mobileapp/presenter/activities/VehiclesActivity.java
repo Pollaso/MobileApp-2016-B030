@@ -45,6 +45,7 @@ public class VehiclesActivity extends BaseActivity {
     private FloatingActionButton addVehicle;
     private View contentView;
     private TextView tvEmpty;
+    private boolean usingAnotherVehicle = false;
 
     private ArrayList<Vehicle> vehicles;
 
@@ -66,7 +67,7 @@ public class VehiclesActivity extends BaseActivity {
         if (vehicles == null)
             vehicles = new ArrayList<>();
 
-        VehicleAdapter adapter = new VehicleAdapter(this, R.layout.listview_vehicle_item, vehicles, dismissDialog);
+        VehicleAdapter adapter = new VehicleAdapter(this, R.layout.listview_vehicle_item, vehicles, dismissDialog, usingAnotherVehicle);
         lvVehicles.setAdapter(adapter);
         if (lvVehicles.getCount() != 0)
             tvEmpty.setVisibility(View.GONE);
@@ -118,6 +119,12 @@ public class VehiclesActivity extends BaseActivity {
                         TypeToken type = new TypeToken<ArrayList<Vehicle>>() {
                         };
                         vehicles = new Gson().fromJson(json.get("data").getAsJsonArray(), type.getType());
+                        usingAnotherVehicle = false;
+                        for(Vehicle vehicle: vehicles)
+                            if(vehicle.getUserData() != null && vehicle.getUserData().getId() != null && vehicle.getUserData().getId().equalsIgnoreCase(id)) {
+                                usingAnotherVehicle = true;
+                                break;
+                            }
                     } else if (json.has("warnings")) {
                         vehicles = null;
                     }
